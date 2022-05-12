@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Attack : MonoBehaviour {
+public class Cleave : MonoBehaviour {
 
-    public Cards attackCard;
+    public Cards cleaveCard;
     // Start is called before the first frame update
     void Start() {
-        attackCard = new AttackCards("Attack", 6, 1, 0, false, 1);  
+        cleaveCard = new AttackCards("Cleave", 8, 1, 0, true, 1);  
     }
 
     // Update is called once per frame
     void Update() {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(attackCard);
+            StageManager.instance.playerMove(cleaveCard);
         }        
     }
 }

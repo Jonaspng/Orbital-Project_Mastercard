@@ -13,13 +13,15 @@ public class StageManager : MonoBehaviour {
     }
 
     private void Start() {
-        player = new Warrior(100,1.0,0,1.0);
+        player = new Archer(100,1.0,0,1.0, 0);
         enemy = new CatSword(10,1.0,0,1);
-        
+       
     }
 
     public void playerMove(Cards card) {
        card.executeCard(player, enemy);
     }
+
+    
     
 }

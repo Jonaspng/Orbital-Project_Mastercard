@@ -9,6 +9,8 @@ public class Warrior : Player {
         //empty
     }
 
-
+    public override void changeEvasionCount( int evasionCount) {
+        //do nothing
+    }
   
 }

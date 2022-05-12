@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Player {
+public abstract class Player {
 
     public int health;
     
@@ -15,7 +15,8 @@ public class Player {
 
     //private Card[] deck;
 
-    public Player(int health, int baseAttack, double attackModifier, int baseShield, double shieldModifier) {
+    public Player(int health, int baseAttack, double attackModifier, 
+    int baseShield, double shieldModifier) {
         this.health = health;
         this.baseAttack = baseAttack;
         this.baseShield = baseShield;
@@ -47,6 +48,10 @@ public class Player {
     public void changeShieldModifier(double shieldModifier) {
         this.shieldModifier = shieldModifier;
     }
+
+    public abstract void changeEvasionCount( int evasionCount);
+
+    
 
     
     //poison damage will be done by stageManager

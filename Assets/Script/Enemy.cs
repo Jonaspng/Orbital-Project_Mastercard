@@ -13,6 +13,8 @@ public class Enemy {
 
     public double shieldModifier;
 
+    public int arrowStuckCount;
+
 
     public Enemy(int health, int baseAttack, double attackModifier, int baseShield, double shieldModifier) {
         this.health = health;
@@ -21,11 +23,6 @@ public class Enemy {
         this.baseShield = baseShield;
         this.shieldModifier = shieldModifier;
     }
-
-    // public void Attack(string enemyid) {
-    //     Enemy enemy = GameObject.Find(enemyid);
-    //     enemy.receiveDamage(attackModifier * baseAttack);
-    // }
 
     public void receiveDamage(int damage) {
         health -= damage;
@@ -50,6 +47,12 @@ public class Enemy {
     public void changeShieldModifier(double shieldModifier) {
         this.shieldModifier = shieldModifier;
     }
+
+    public void IncrementArrowStuckCount() {
+        arrowStuckCount++;
+    }
+
+    
 
     
     //overtime damage will be done by stageManager

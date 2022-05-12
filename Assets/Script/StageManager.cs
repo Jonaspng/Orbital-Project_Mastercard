@@ -8,6 +8,8 @@ public class StageManager : MonoBehaviour {
 
     public Enemy enemy;
 
+    public int manaCount;
+
     private void Awake() {
         instance = this;
     }

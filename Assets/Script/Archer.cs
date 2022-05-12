@@ -4,7 +4,7 @@ using UnityEngine;
 public class Archer : Player {
  
 
-    public Archer(int baseAttack, int attackModifier, int baseShield, int shieldModifier) 
+    public Archer(int baseAttack, double attackModifier, int baseShield, double shieldModifier) 
     : base(70, baseAttack, attackModifier, baseShield, shieldModifier) { 
         //empty
     }

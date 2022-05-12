@@ -7,14 +7,14 @@ public class Enemy {
     
     public int baseAttack;
 
-    public int attackModifier;
+    public double attackModifier;
 
     public int baseShield;
 
-    public int shieldModifier;
+    public double shieldModifier;
 
 
-    public Enemy(int health, int baseAttack, int attackModifier, int baseShield, int shieldModifier) {
+    public Enemy(int health, int baseAttack, double attackModifier, int baseShield, double shieldModifier) {
         this.health = health;
         this.baseAttack = baseAttack;
         this.attackModifier = attackModifier;
@@ -43,11 +43,11 @@ public class Enemy {
         this.baseShield = baseShield;
     }
     
-    public void changeAttackModifier(int attackModifier) {
+    public void changeAttackModifier(double attackModifier) {
         this.attackModifier = attackModifier;
     }
 
-    public void changeShieldModifier(int shieldModifier) {
+    public void changeShieldModifier(double shieldModifier) {
         this.shieldModifier = shieldModifier;
     }
 

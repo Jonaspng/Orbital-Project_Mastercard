@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -5,21 +6,27 @@ public class SkillCards : Cards {
 
    public int damage;
 
-   public float damageModifier;
+   public double damageModifier;
 
-   public int defense;
+   public int shield;
 
-   public float defenseModifier;
+   public double shieldModifier;
 
    public int turns;
 
     public SkillCards(string name, int damage, 
-    float damageModifier, int defense, float defenseModifier, int turns) : base(name) {
+    float damageModifier, int shield, float shieldModifier, int turns) : base(name) {
         this.damage = damage;
         this.damageModifier = damageModifier;
-        this.defense = defense;
-        this.defenseModifier = defenseModifier;
+        this.shield = shield;
+        this.shieldModifier = shieldModifier;
         this.turns = turns;
-    }       
+    }
+
+    public override void executeCard(Player player, Enemy enemy) {
+        player.changeAttackModifier(damageModifier);
+        player.changeBaseShield((int) Math.Round(shield * shieldModifier));
+        player.changeShieldModifier(shieldModifier);
+    }  
 
 }

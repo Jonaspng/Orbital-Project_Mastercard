@@ -7,24 +7,21 @@ public class Player {
     
     public int baseAttack;
 
-    public int attackModifier;
+    public double attackModifier;
 
     public int baseShield;
 
-    public int shieldModifier;
+    public double shieldModifier;
 
     //private Card[] deck;
 
-    public Player(int health, int baseAttack, int attackModifier, int baseShield, int shieldModifier) {
+    public Player(int health, int baseAttack, double attackModifier, int baseShield, double shieldModifier) {
         this.health = health;
         this.baseAttack = baseAttack;
+        this.baseShield = baseShield;
         this.attackModifier = attackModifier;
         this.baseShield = baseShield;
         this.shieldModifier = shieldModifier;
-    }
-
-    public void attack(Enemy enemy) {
-        enemy.receiveDamage(attackModifier * baseAttack);
     }
 
     public void receiveDamage(int damage) {
@@ -43,11 +40,11 @@ public class Player {
         this.baseShield = baseShield;
     }
     
-    public void changeAttackModifier(int attackModifier) {
+    public void changeAttackModifier(double attackModifier) {
         this.attackModifier = attackModifier;
     }
 
-    public void changeShieldModifier(int shieldModifier) {
+    public void changeShieldModifier(double shieldModifier) {
         this.shieldModifier = shieldModifier;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Warrior : Player {
 
 
-    public Warrior(int baseAttack, int attackModifier, int baseShield, int shieldModifier) 
+    public Warrior(int baseAttack, double attackModifier, int baseShield, double shieldModifier) 
     : base(100, baseAttack, attackModifier, baseShield, shieldModifier) { 
         //empty
     }

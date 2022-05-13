@@ -18,16 +18,10 @@ public class DefenseCards : Cards{
         this.turns = turns;
     }
 
-    public override void executeCard(Player player) {
-        player.changeBaseShield((int) Math.Round(shield * shieldModifier));
-    }
+    // what defense card need to do in execute card method!
+    // public override void executeCard(Player player) {
+    //     player.changeBaseShield((int) Math.Round(shield * shieldModifier));
+    // }
 
-    public override void executeCard(Enemy enemy) {
-        //do nothing
-    }
-
-    public override void executeCard(Player player, Enemy enemy) {
-        //do nothing
-    }
 
 }

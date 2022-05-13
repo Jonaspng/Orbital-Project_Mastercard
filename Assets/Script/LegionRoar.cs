@@ -14,4 +14,6 @@ public class LegionRoar : MonoBehaviour {
             StageManager.instance.playerMove(legionRoarCard);
         }        
     }
+
+    
 }

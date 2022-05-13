@@ -12,10 +12,9 @@ public abstract class Cards {
         this.manaCost = manaCost;
     }
 
-    public abstract void executeCard(Player player, Enemy enemy);
+    public void executeCard(Player player, Enemy enemy) {
+        // do nothing
+    }
 
-    public abstract void executeCard(Player player);
-
-    public abstract void executeCard(Enemy enemy);
 
 }

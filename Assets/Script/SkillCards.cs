@@ -24,20 +24,23 @@ public class SkillCards : Cards {
         this.turns = turns;
     }
 
-    public override void executeCard(Player player) {
-        player.changeAttackModifier(damageModifier);
-        player.changeBaseShield((int) Math.Round(shield * shieldModifier));
-        player.changeShieldModifier(shieldModifier);
-    }
 
-    public override void executeCard(Enemy enemy) {
-        enemy.changeAttackModifier(damageModifier);
-        enemy.changeBaseShield((int) Math.Round(shield * shieldModifier));
-        enemy.changeShieldModifier(shieldModifier);
-    }
+    
+    
+    // public override void executeCard(Player player) {
+    //     player.changeAttackModifier(damageModifier);
+    //     player.changeBaseShield((int) Math.Round(shield * shieldModifier));
+    //     player.changeShieldModifier(shieldModifier);
+    // }
 
-    public override void executeCard(Player player, Enemy enemy) {
-        //do nothing
-    }
+    // public override void executeCard(Enemy enemy) {
+    //     enemy.changeAttackModifier(damageModifier);
+    //     enemy.changeBaseShield((int) Math.Round(shield * shieldModifier));
+    //     enemy.changeShieldModifier(shieldModifier);
+    // }
+
+    // public override void executeCard(Player player, Enemy enemy) {
+    //     //do nothing
+    // }
 
 }

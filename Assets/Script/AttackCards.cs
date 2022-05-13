@@ -19,18 +19,11 @@ public class AttackCards : Cards {
         this.turns = turns;
         this.isAOE = isAOE;
     }
+    
 
-    public override void executeCard(Player player, Enemy enemy) {
-        player.changeAttackModifier(damageModifier);
-        enemy.receiveDamage((int) Math.Round(damage * damageModifier));
-    }
-
-    public override void executeCard(Player player) {
-       //do nothing
-    }
-
-    public override void executeCard(Enemy enemy) {
-        //do nothing
-    }
-
+    // What attack cards need to do in execute card method
+    // public override void executeCard(Player player, Enemy enemy) {
+    //     player.changeAttackModifier(damageModifier);
+    //     enemy.receiveDamage((int) Math.Round(damage * damageModifier));
+    // }
 }

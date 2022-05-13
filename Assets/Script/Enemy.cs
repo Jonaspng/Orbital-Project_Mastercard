@@ -37,15 +37,15 @@ public class Enemy {
     }
 
      public void changeBaseShield(int baseShield) {
-        this.baseShield = baseShield;
+        this.baseShield += baseShield;
     }
     
     public void changeAttackModifier(double attackModifier) {
-        this.attackModifier = attackModifier;
+        this.attackModifier *= attackModifier;
     }
 
     public void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier = shieldModifier;
+        this.shieldModifier *= shieldModifier;
     }
 
     public void IncrementArrowStuckCount() {

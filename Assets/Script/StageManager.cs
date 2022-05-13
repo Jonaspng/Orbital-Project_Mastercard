@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour {
     public Enemy[] enemies;
 
     public int manaCount;
+
+    public int currentTurn;
     
     //key = int; value = AbstractEvent[];
     public Hashtable eventManager;

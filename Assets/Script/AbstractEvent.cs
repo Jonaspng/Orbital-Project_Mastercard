@@ -12,7 +12,7 @@ abstract class AbstractEvent {
         this.numberOfTurns = numberOfTurns;
     }
 
-    public abstract void executeEvent();
+    public abstract void executeEvent(Player player, Enemy enemy);
 
 
     

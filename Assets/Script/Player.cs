@@ -38,7 +38,7 @@ public abstract class Player {
     }
 
      public void changeBaseShield(int baseShield) {
-        this.baseShield = baseShield;
+        this.baseShield += baseShield;
     }
     
     public void changeAttackModifier(double attackModifier) {

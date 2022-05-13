@@ -7,14 +7,11 @@ public abstract class Cards : MonoBehaviour{
 
    public int turns;
 
-   public bool isAoe;
-
-    public Cards(int manaCost, int turns, bool isAoe) {
+    public Cards(int manaCost, int turns) {
         this.manaCost = manaCost;
         this.turns = turns;
-        this.isAoe = isAoe;
     }
 
-    public abstract void executeCard(Player player, Enemy enemy);
+    public abstract void executeCard(Player player, Enemy[] enemies, int Enemyindex);
 
 }

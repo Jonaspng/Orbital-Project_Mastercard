@@ -7,24 +7,28 @@ public class Cleave : Cards {
     public int damage;
 
     public Cleave(int damage, int turns, 
-    bool isAoe, int manaCost) : base(manaCost, turns, isAoe) {
+    int manaCost) : base(manaCost, turns) {
         this.damage = damage;
     }
 
     public 
     // Start is called before the first frame update
     void Start() {
-        cleaveCard = new Cleave(8, 1, true, 1);  
+        cleaveCard = new Cleave(8, 1, 1);  
     }
 
     // Update is called once per frame
     void Update() {
+        int enemyIndex = 0;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(cleaveCard);
+            StageManager.instance.playerMove(cleaveCard, enemyIndex);
         }        
     }
 
-    public override void executeCard(Player player, Enemy enemy) {
-        enemy.receiveDamage(this.damage);
+    public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
+        foreach (Enemy enemy in enemies) {
+            enemy.receiveDamage(this.damage);
+        }
+        
     }
 }

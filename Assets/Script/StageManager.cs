@@ -1,14 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class StageManager : MonoBehaviour {
 
     public static StageManager instance;
 
     public Player player;
 
-    public Enemy enemy;
+    public Enemy[] enemies;
 
     public int manaCount;
     
@@ -21,12 +20,11 @@ public class StageManager : MonoBehaviour {
 
     private void Start() {
         player = new Archer(100,1.0,0,1.0, 0);
-        enemy = new CatSword(10,1.0,0,1);
         eventManager = new Hashtable();
     }
 
-    public void playerMove(Cards card) {
-        card.executeCard(player, enemy);
+    public void playerMove(Cards card, int enemyIndex) {
+        card.executeCard(player, enemies, enemyIndex);
     }
     
     

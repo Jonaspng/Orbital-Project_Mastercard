@@ -1,26 +1,26 @@
 using UnityEngine;
 
-public class Cleave : Cards {
-
-    public Cards cleaveCard;
+public class BasicAttack : Cards {
 
     public int damage;
 
-    public Cleave(int damage, int turns, 
+    public Cards attackCard;
+
+    public BasicAttack(int damage, int turns, 
     bool isAoe, int manaCost) : base(manaCost, turns, isAoe) {
         this.damage = damage;
     }
 
-    public 
+    
     // Start is called before the first frame update
     void Start() {
-        cleaveCard = new Cleave(8, 1, true, 1);  
+        attackCard = new BasicAttack(6, 1, false, 1);  
     }
 
     // Update is called once per frame
     void Update() {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(cleaveCard);
+            StageManager.instance.playerMove(attackCard);
         }        
     }
 

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class StageManager : MonoBehaviour {
 
@@ -9,6 +11,9 @@ public class StageManager : MonoBehaviour {
     public Enemy enemy;
 
     public int manaCount;
+    
+    //key = int; value = AbstractEvent[];
+    public Hashtable eventManager;
 
     private void Awake() {
         instance = this;
@@ -17,13 +22,12 @@ public class StageManager : MonoBehaviour {
     private void Start() {
         player = new Archer(100,1.0,0,1.0, 0);
         enemy = new CatSword(10,1.0,0,1);
-       
+        eventManager = new Hashtable();
     }
 
     public void playerMove(Cards card) {
-       card.executeCard(player, enemy);
+        card.executeCard(player, enemy);
     }
-
     
     
 }

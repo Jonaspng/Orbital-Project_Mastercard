@@ -1,11 +1,20 @@
 using UnityEngine;
 
-public class Bash : MonoBehaviour {
+public class Bash : Cards {
+
+    public int damage;
 
     public Cards bashCard;
+
+    public Bash(int damage, int turns, 
+    bool isAoe, int manaCost) : base(manaCost, turns, isAoe) {
+        this.damage = damage;
+    }
+
+
     // Start is called before the first frame update
     void Start() {
-        bashCard = new AttackCards("Bash", 8, 1, 0, false, 2);  
+        bashCard = new Bash(8, 2, false, 2);  
     }
 
     // Update is called once per frame
@@ -14,4 +23,9 @@ public class Bash : MonoBehaviour {
             StageManager.instance.playerMove(bashCard);
         }        
     }
+
+    public override void executeCard(Player player, Enemy enemy) {
+        enemy.receiveDamage(this.damage);
+    }
+
 }

@@ -1,11 +1,18 @@
 using UnityEngine;
 
-public class LegionRoar : MonoBehaviour {
+public class LegionRoar : Cards {
 
     public Cards legionRoarCard;
+
+
+    public LegionRoar(int turns, 
+    bool isAoe, int manaCost) : base(manaCost, turns, isAoe) {
+
+    }
+
     // Start is called before the first frame update
     void Start() {
-        legionRoarCard = new SkillCards("Legion's Roar", 8, 1, 0, 1, 1, 1);  
+        legionRoarCard = new LegionRoar(1, true, 1);  
     }
 
     // Update is called once per frame
@@ -15,5 +22,9 @@ public class LegionRoar : MonoBehaviour {
         }        
     }
 
-    
+    public override void executeCard(Player player, Enemy enemy) {
+       
+    }
+
+
 }

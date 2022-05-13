@@ -1,20 +1,20 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Cards {
-
-   public string name;
+public abstract class Cards : MonoBehaviour{
 
    public int manaCost;
 
-    public Cards(string name, int manaCost) {
-        this.name = name;
+   public int turns;
+
+   public bool isAoe;
+
+    public Cards(int manaCost, int turns, bool isAoe) {
         this.manaCost = manaCost;
+        this.turns = turns;
+        this.isAoe = isAoe;
     }
 
-    public void executeCard(Player player, Enemy enemy) {
-        // do nothing
-    }
-
+    public abstract void executeCard(Player player, Enemy enemy);
 
 }

@@ -23,7 +23,9 @@ public class LegionRoar : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-       
+       foreach(Enemy enemy in enemies) {
+           enemy.changeAttackModifier(0.75);
+       }
     }
 
 

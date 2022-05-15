@@ -26,7 +26,7 @@ public class Bash : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(this.damage);
+        enemies[enemyIndex].receiveDamage(this.damage + player.baseAttack);
     }
 
 }

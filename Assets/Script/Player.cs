@@ -42,11 +42,11 @@ public abstract class Player {
     }
     
     public void changeAttackModifier(double attackModifier) {
-        this.attackModifier = attackModifier;
+        this.attackModifier *= attackModifier;
     }
 
     public void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier = shieldModifier;
+        this.shieldModifier *= shieldModifier;
     }
 
     public abstract void addEvasionCount( int evasionCount);

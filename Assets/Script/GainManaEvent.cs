@@ -4,7 +4,7 @@ class GainManaEvent : AbstractEvent {
 
     }
 
-    public override void executeEvent() {
+    public override void executeEvent(Player player, Enemy enemy) {
         
     }
 }

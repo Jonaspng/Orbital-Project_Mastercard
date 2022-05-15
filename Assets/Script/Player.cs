@@ -22,6 +22,8 @@ public abstract class Player : MonoBehaviour {
         this.shieldModifier = shieldModifier;
     }
 
+    public abstract void receiveDamage(Enemy source, int damage);
+
     public abstract void receiveDamage(int damage);
 
     public abstract int getHealth();

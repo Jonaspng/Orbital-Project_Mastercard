@@ -28,7 +28,11 @@ public class Warrior : Player {
         } else {
             this.health -= damage;
         }
-        
+    }
+
+    public override void receiveDamage(Enemy source, int damage)
+    {
+        throw new NotImplementedException();
     }
 
     public override int getHealth() {

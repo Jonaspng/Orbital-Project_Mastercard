@@ -22,6 +22,8 @@ public class Enemy {
 
     public bool isBroken;
 
+    public bool isPoisoned;
+
     public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
         this.attackModifier = attackModifier;
@@ -76,6 +78,9 @@ public class Enemy {
 
     public void ChangeIsBurned(bool status) {
         this.isBurned = status;
+    }
+    public void ChangeIsPoisoned(bool status) {
+        this.isPoisoned = status;
     }
     
     // Method to calculate damage from arrow damage cards if StickyArrows has been used.

@@ -8,7 +8,9 @@ public class Archer : Player {
 
     public bool isStickyArrowEnabled;
 
-    public Archer( double attackModifier, 
+    public bool isStealthed;
+
+    public Archer(double attackModifier, 
     double shieldModifier) 
     : base(70, attackModifier, shieldModifier) { 
         
@@ -19,7 +21,19 @@ public class Archer : Player {
     }
 
     public override void receiveDamage(int damage) {
-        health -= damage;
+        if (isStealthed) {
+            bool isAttackDodged = UnityEngine.Random.Range(0, 2) == 1;
+            if (isAttackDodged) {
+                health -= 0;
+            }
+        } else {
+            health -= damage;
+        }
+    }
+
+    public override void receiveDamage(Enemy source, int damage)
+    {
+        throw new NotImplementedException();
     }
 
     public override int getHealth() {
@@ -49,4 +63,8 @@ public class Archer : Player {
     public override int GetFullDamage(int cardDamage) {
         return (int) Math.Round(this.attackModifier * cardDamage);
     }  
+
+    public void ChangeStealthStatus(bool status) {
+        this.isStealthed = status;
+    }
 }

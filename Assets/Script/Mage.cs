@@ -4,6 +4,7 @@ using System;
 [System.Serializable]
 public class Mage : Player {
 
+    public bool isReflected;
 
     public Mage(double attackModifier, double shieldModifier) 
     : base(80, attackModifier, shieldModifier) { 
@@ -16,6 +17,16 @@ public class Mage : Player {
 
     public override void receiveDamage(int damage) {
         health -= damage;
+    }
+
+    public override void receiveDamage(Enemy source, int damage) {
+        if (isReflected) {
+            int reflectedDamage = (int) Math.Round(0.75 * damage);
+            receiveDamage(damage - reflectedDamage);
+            source.receiveDamage(reflectedDamage);
+        } else {
+            receiveDamage(damage);
+        }
     }
 
     public override int getHealth() {
@@ -40,6 +51,10 @@ public class Mage : Player {
 
     public override int GetFullDamage(int cardDamage) {
         return (int) Math.Round(this.attackModifier * cardDamage);
+    }
+
+    public void ChangeReflectStatus(bool status) {
+        this.isReflected = status;
     }
 
 

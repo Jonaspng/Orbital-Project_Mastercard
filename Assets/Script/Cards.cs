@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Cards : MonoBehaviour{
+public abstract class Cards : MonoBehaviour {
 
    public int manaCost;
 

@@ -21,7 +21,6 @@ public class StageManager : MonoBehaviour {
     }
 
     private void Start() {
-        player = new Archer(100,1.0,0,1.0, 0);
         eventManager = new Hashtable();
     }
 

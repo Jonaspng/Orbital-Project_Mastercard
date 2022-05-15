@@ -15,16 +15,18 @@ public class Enemy {
 
     public int arrowStuckCount;
 
+    public bool isImmobilised;
 
-    public Enemy(int health, int baseAttack, double attackModifier, int baseShield, double shieldModifier) {
+    public bool isBurned;
+
+    public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
-        this.baseAttack = baseAttack;
         this.attackModifier = attackModifier;
-        this.baseShield = baseShield;
         this.shieldModifier = shieldModifier;
     }
 
     public void receiveDamage(int damage) {
+    
         health -= damage;
     }
 
@@ -52,7 +54,11 @@ public class Enemy {
         arrowStuckCount++;
     }
 
-    
+    public void ChangeIsImmobilised(bool status) {
+        this.isImmobilised = status;
+    }
+
+
 
     
     //overtime damage will be done by stageManager

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-class AddDamageEvent : AbstractEvent {
+class DamageEvent : AbstractEvent {
 
     public int damage;
 
-    public AddDamageEvent(int numberOfTurns, int damage) : base(numberOfTurns){
+    public DamageEvent(int numberOfTurns, int damage) : base(numberOfTurns){
         this.numberOfTurns = numberOfTurns;
         this.damage = damage;
     }

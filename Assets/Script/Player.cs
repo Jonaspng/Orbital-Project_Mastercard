@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Player {
+public abstract class Player : MonoBehaviour {
 
     public int health;
     
@@ -15,41 +15,25 @@ public abstract class Player {
 
     //private Card[] deck;
 
-    public Player(int health, int baseAttack, double attackModifier, 
-    int baseShield, double shieldModifier) {
+    public Player(int health, double attackModifier, double shieldModifier) {
         this.health = health;
-        this.baseAttack = baseAttack;
-        this.baseShield = baseShield;
         this.attackModifier = attackModifier;
-        this.baseShield = baseShield;
         this.shieldModifier = shieldModifier;
     }
 
-    public void receiveDamage(int damage) {
-        health -= damage;
-    }
+    public abstract void receiveDamage(int damage);
 
-    public int getHealth() {
-        return health;
-    }
-
-    public void changeBaseAttack(int baseAttack) {
-        this.baseAttack = baseAttack;
-    }
-
-     public void changeBaseShield(int baseShield) {
-        this.baseShield += baseShield;
-    }
+    public abstract int getHealth();
     
-    public void changeAttackModifier(double attackModifier) {
-        this.attackModifier *= attackModifier;
-    }
+    public abstract void changeBaseAttack(int baseAttack);
 
-    public void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier *= shieldModifier;
-    }
+     public abstract void changeBaseShield(int baseShield);
+    
+    public abstract void changeAttackModifier(double attackModifier);
 
-    public abstract void addEvasionCount( int evasionCount);
+    public abstract void changeShieldModifier(double shieldModifier);
+
+    public abstract void addEvasionCount(int evasionCount);
 
     
 

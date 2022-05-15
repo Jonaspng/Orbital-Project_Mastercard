@@ -27,11 +27,17 @@ public class AncientPower : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
         Hashtable eventManager = StageManager.instance.eventManager;
-        player.changeBaseAttack(2);
+        AbstractEvent[] newAddEvent = {new DamageEvent(1, 5)};
+        AbstractEvent[] newResetEvent = {new DamageEvent(1, -5)};
         if (eventManager.Contains(currentTurn + 1)) {
-            AbstractEvent[] newEvent = {new AddDamageEvent(2, 4)};
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newEvent);
+            eventManager[currentTurn + 1] = currEvent.Concat(newAddEvent);
         }
+        if (eventManager.Contains(currentTurn + 2)) {
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+            eventManager[currentTurn + 2] = currEvent.Concat(newResetEvent);
+        }
+        eventManager.Add(currentTurn + 1, newAddEvent);
+        eventManager.Add(currentTurn + 2, newResetEvent);
     }
 }

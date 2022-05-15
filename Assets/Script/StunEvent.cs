@@ -4,13 +4,14 @@ class StunEvent : AbstractEvent {
 
     public bool isImmobilised;
 
-    public StunEvent(int numberOfTurns, bool isImmobilised) : base(numberOfTurns){
+    public StunEvent(int numberOfTurns, bool isImmobilised, int enemyIndex) 
+    : base(numberOfTurns, enemyIndex){
         this.numberOfTurns = numberOfTurns;
         this.isImmobilised = isImmobilised;
     }
 
-    public override void executeEvent(Player player, Enemy enemy) {
-        enemy.ChangeIsImmobilised(this.isImmobilised);
+    public override void executeEvent(Player player, Enemy[] enemy) {
+        enemy[this.enemyIndex].ChangeIsImmobilised(this.isImmobilised);
     }
 
 

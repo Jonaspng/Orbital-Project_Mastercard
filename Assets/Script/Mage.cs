@@ -37,6 +37,10 @@ public class Mage : Player {
         this.shieldModifier *= shieldModifier;
     }
 
+    public override int GetFullDamage(int cardDamage) {
+        return 0; //place holder value
+    }
+
 
   
 }

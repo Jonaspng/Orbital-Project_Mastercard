@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class Enemy {
@@ -13,11 +14,13 @@ public class Enemy {
 
     public double shieldModifier;
 
-    public int arrowStuckCount;
+    public int arrowStuckCount; 
 
     public bool isImmobilised;
 
     public bool isBurned;
+
+    public bool isBroken;
 
     public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
@@ -26,8 +29,17 @@ public class Enemy {
     }
 
     public void receiveDamage(int damage) {
-    
-        health -= damage;
+        if (health < 0) {
+            //game over
+        } else {
+            if (isBroken) {
+            health = (int) Math.Round(health - damage * 1.25);
+            } else {
+                health -= damage;
+            }
+        }
+        
+        
     }
 
     public int getHealth() {
@@ -58,9 +70,23 @@ public class Enemy {
         this.isImmobilised = status;
     }
 
+    public void ChangeIsBroken(bool status) {
+        this.isBroken = status;
+    }
+    
+    // Method to calculate damage from arrow damage cards if StickyArrows has been used.
+    public void ReceiveArrowDamage(Archer source, int damage) {
+        if (source.isStickyArrowEnabled) {
+            receiveDamage(damage + arrowStuckCount * 2);
+            arrowStuckCount++;
+        } else {
+            receiveDamage(damage);
+        }
+    }
 
 
     
+    // eh shit we need change to abstract later lol
     //overtime damage will be done by stageManager
 
        

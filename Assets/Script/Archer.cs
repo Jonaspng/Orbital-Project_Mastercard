@@ -1,11 +1,12 @@
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class Archer : Player {
 
     public int evasionCount; 
 
-    public bool isStickyArrow;
+    public bool isStickyArrowEnabled;
 
     public Archer( double attackModifier, 
     double shieldModifier) 
@@ -42,9 +43,10 @@ public class Archer : Player {
     }
 
     public void ChangeStickyArrowStatus(bool b) {
-        isStickyArrow = b;
+        isStickyArrowEnabled = b;
     }
 
-
-  
+    public override int GetFullDamage(int cardDamage) {
+        return (int) Math.Round(this.attackModifier * cardDamage);
+    }  
 }

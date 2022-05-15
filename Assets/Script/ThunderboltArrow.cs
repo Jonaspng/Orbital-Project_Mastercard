@@ -26,7 +26,9 @@ public class ThunderboltArrow : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(this.damage);
+        Archer archer = (Archer) player;
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage));
     }
+    
 
 }

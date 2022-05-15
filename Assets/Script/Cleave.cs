@@ -27,7 +27,7 @@ public class Cleave : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
         foreach (Enemy enemy in enemies) {
-            enemy.receiveDamage(this.damage + player.baseAttack);
+            enemy.receiveDamage(player.GetFullDamage(this.damage));
         }
         
     }

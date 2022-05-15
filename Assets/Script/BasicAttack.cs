@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class BasicAttack : Cards {
 
     public int damage;
@@ -25,7 +26,10 @@ public class BasicAttack : Cards {
         }        
     }
 
+
+
+
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(this.damage + player.baseAttack);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage));
     }
 }

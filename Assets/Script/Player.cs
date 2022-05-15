@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 [System.Serializable]
 public abstract class Player : MonoBehaviour {
 
@@ -35,11 +36,10 @@ public abstract class Player : MonoBehaviour {
 
     public abstract void addEvasionCount(int evasionCount);
 
-    
+    public abstract int GetFullDamage(int cardDamage);
 
-    
+   
     //poison damage will be done by stageManager
 
        
-
 }

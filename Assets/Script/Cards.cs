@@ -12,6 +12,6 @@ public abstract class Cards : MonoBehaviour {
         this.turns = turns;
     }
 
-    public abstract void executeCard(Player player, Enemy[] enemies, int Enemyindex);
+    public abstract void executeCard(Player player, Enemy[] enemies, int enemyindex);
 
 }

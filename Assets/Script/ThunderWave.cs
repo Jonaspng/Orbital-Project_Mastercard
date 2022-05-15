@@ -2,25 +2,24 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 
-class PommelStrike : Cards {
+class ThunderWave : Cards {
 
-    public Cards pommelStrikeCard;
+    public Cards thunderWaveCard;
 
-    public PommelStrike(int manaCost, int turns) 
+    public ThunderWave(int manaCost, int turns) 
     : base(manaCost, turns){
 
     }
 
-    // Start is called before the first frame update
     void Start() {
-        pommelStrikeCard = new PommelStrike(1, 1);  
+        thunderWaveCard = new ThunderWave(1, 1);  
     }
 
     // Update is called once per frame
     void Update() {
         int enemyIndex = 0;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(pommelStrikeCard, enemyIndex);
+            StageManager.instance.playerMove(thunderWaveCard, enemyIndex);
         }        
     }
 

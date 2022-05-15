@@ -11,8 +11,8 @@ public class Archer : Player {
         this.evasionCount = evasionCount;
     }
 
-    public override void changeEvasionCount(int evasionCount) {
-        this.evasionCount = evasionCount;
+    public override void addEvasionCount(int evasionCount) {
+        this.evasionCount += evasionCount;
     }
 
 

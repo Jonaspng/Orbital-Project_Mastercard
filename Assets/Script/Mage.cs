@@ -9,7 +9,7 @@ public class Mage : Player {
         //empty
     }
 
-    public override void changeEvasionCount(int evasionCount) {
+    public override void addEvasionCount(int evasionCount) {
         //do nothing
     }
 

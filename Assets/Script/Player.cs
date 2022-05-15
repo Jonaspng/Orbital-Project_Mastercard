@@ -49,7 +49,7 @@ public abstract class Player {
         this.shieldModifier = shieldModifier;
     }
 
-    public abstract void changeEvasionCount( int evasionCount);
+    public abstract void addEvasionCount( int evasionCount);
 
     
 

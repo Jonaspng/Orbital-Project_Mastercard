@@ -1,30 +1,29 @@
 using UnityEngine;
 
-public class SniperShot : Cards {
+public class Fireball : Cards {
 
-    public Cards sniperShotCard;
+    public Cards fireballCard;
 
     public int damage;
 
-    public SniperShot(int damage, int turns, 
+    public Fireball(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
     }
     // Start is called before the first frame update
     void Start() {
-        sniperShotCard = new SniperShot(20, 1, 2);        
+        fireballCard = new Fireball(8, 1, 3);        
     }
 
     // Update is called once per frame
     void Update() {
         int enemyIndex = 0;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(sniperShotCard, enemyIndex);
+            StageManager.instance.playerMove(fireballCard, enemyIndex);
         }
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        Archer archer = (Archer) player;
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage));
+        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(damage));
     }
 }

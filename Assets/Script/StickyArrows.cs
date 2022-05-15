@@ -16,7 +16,7 @@ public class StickyArrows : Cards {
 
     // Update is called once per frame
     void Update() {
-        int enemyIndex = 0;
+        int enemyIndex = -1;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
             StageManager.instance.playerMove(stickyArrowsCard, enemyIndex);
         }        

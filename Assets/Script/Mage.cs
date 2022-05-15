@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class Mage : Player {
@@ -38,7 +39,7 @@ public class Mage : Player {
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return 0; //place holder value
+        return (int) Math.Round(this.attackModifier * cardDamage);
     }
 
 

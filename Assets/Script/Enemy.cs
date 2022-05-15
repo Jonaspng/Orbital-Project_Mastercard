@@ -84,6 +84,15 @@ public class Enemy {
         }
     }
 
+    // Method to calculate damage from "Fireball" card.
+    public void ReceiveFireballDamage(int damage) {
+        if (isBurned) {
+            receiveDamage((int) Math.Round(damage * 1.25));
+        } else {
+            receiveDamage(damage);
+        }
+    }
+
 
     
     // eh shit we need change to abstract later lol

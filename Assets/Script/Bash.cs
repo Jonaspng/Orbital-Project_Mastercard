@@ -31,13 +31,13 @@ public class Bash : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
         Hashtable eventManager = StageManager.instance.eventManager;
-        AbstractEvent[] newAttackModEvent = {new BrokenEvent(1, true, enemyIndex)};
+        AbstractEvent[] newEvent = {new BrokenEvent(1, true, enemyIndex)};
         AbstractEvent[] newResetEvent = {new BrokenEvent(1, false, enemyIndex)};
         if (eventManager.Contains(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newAttackModEvent);
+            eventManager[currentTurn + 1] = currEvent.Concat(newEvent);
         } else {
-            eventManager.Add(currentTurn + 1, newAttackModEvent);
+            eventManager.Add(currentTurn + 1, newEvent);
         }
         if (eventManager.Contains(currentTurn + 2)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];

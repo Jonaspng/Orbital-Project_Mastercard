@@ -73,6 +73,10 @@ public class Enemy {
     public void ChangeIsBroken(bool status) {
         this.isBroken = status;
     }
+
+    public void ChangeIsBurned(bool status) {
+        this.isBurned = status;
+    }
     
     // Method to calculate damage from arrow damage cards if StickyArrows has been used.
     public void ReceiveArrowDamage(Archer source, int damage) {

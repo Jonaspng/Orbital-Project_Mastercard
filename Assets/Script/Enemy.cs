@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 [System.Serializable]
-public class Enemy {
+public abstract class Enemy {
 
     public int health;
     
@@ -102,7 +102,12 @@ public class Enemy {
         }
     }
 
+    public int GetFullDamage(int damage) {
+        return (int) Math.Round(this.attackModifier * this.baseAttack);
+    }
+    
 
+    public abstract void EnemyMove(Player player, Enemy[] enemies);
     
     // eh shit we need change to abstract later lol
     //overtime damage will be done by stageManager

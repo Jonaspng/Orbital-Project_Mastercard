@@ -20,7 +20,8 @@ public class Archer : Player {
         this.evasionCount += evasionCount;
     }
 
-    public override void receiveDamage(int damage) {
+    public override void receiveDamage(Enemy source, int damage)
+    {
         if (isStealthed) {
             bool isAttackDodged = UnityEngine.Random.Range(0, 2) == 1;
             if (isAttackDodged) {
@@ -29,11 +30,6 @@ public class Archer : Player {
         } else {
             health -= damage;
         }
-    }
-
-    public override void receiveDamage(Enemy source, int damage)
-    {
-        throw new NotImplementedException();
     }
 
     public override int getHealth() {

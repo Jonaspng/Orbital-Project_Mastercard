@@ -15,6 +15,9 @@ class PoisonEvent : AbstractEvent {
     }
 
 
+    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
+        //do nothing
+    }
     
 
 

@@ -14,6 +14,11 @@ class BrokenEvent : AbstractEvent {
         enemies[this.enemyIndex].ChangeIsBroken(this.isBroken);
     }
 
+    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
+        player.ChangeIsBroken(this.isBroken);
+    }
+
+
 
     
 

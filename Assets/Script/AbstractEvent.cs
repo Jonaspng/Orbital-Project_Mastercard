@@ -17,4 +17,6 @@ abstract class AbstractEvent {
 
     public abstract void executeEvent(Player player, Enemy[] enemies);
 
+    public abstract void ExecuteEnemyEvent(Player player, Enemy enemy);
+
 }

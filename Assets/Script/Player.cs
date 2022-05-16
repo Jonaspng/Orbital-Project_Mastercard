@@ -14,6 +14,8 @@ public abstract class Player : MonoBehaviour {
 
     public double shieldModifier;
 
+    public bool isBroken;
+
     //private Card[] deck;
 
     public Player(int health, double attackModifier, double shieldModifier) {
@@ -23,8 +25,6 @@ public abstract class Player : MonoBehaviour {
     }
 
     public abstract void receiveDamage(Enemy source, int damage);
-
-    public abstract void receiveDamage(int damage);
 
     public abstract int getHealth();
     
@@ -37,6 +37,10 @@ public abstract class Player : MonoBehaviour {
     public abstract void changeShieldModifier(double shieldModifier);
 
     public abstract void addEvasionCount(int evasionCount);
+
+    public void ChangeIsBroken(bool status) {
+        this.isBroken = status;
+    }
 
     public abstract int GetFullDamage(int cardDamage);
 

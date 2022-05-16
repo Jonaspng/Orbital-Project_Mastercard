@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CatStaff : Enemy {
@@ -10,15 +10,28 @@ public class CatStaff : Enemy {
 
     public override void EnemyMove(Player player, Enemy[] enemies) {
         int moveNumber = Random.Range(1, 4);
+        int numberOfEnemies = enemies.Length;
         if (moveNumber == 1) {
-            player.receiveDamage(this.GetFullDamage(6));
+            player.receiveDamage(this, this.GetFullDamage(6));
         } else if (moveNumber == 2) {
             this.changeBaseShield(6);
         } else {
-            foreach (Enemy enemy in enemies) {
-                enemy.changeBaseShield(6);
+            int currentTurn = StageManager.instance.currentTurn;
+            Hashtable eventManager = StageManager.instance.eventManager;
+            AbstractEvent[] newResetEvent = new AbstractEvent[numberOfEnemies];
+            foreach(Enemy enemy in enemies) {
+                this.changeAttackModifier(1.25);
             }
-            
+            for (int i = 0; i < numberOfEnemies; i++) {
+                newResetEvent[i] = new DamageEvent(1, -5, i);
+            }
+            if (eventManager.Contains(currentTurn + 1)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+                eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent);
+            } else {
+                eventManager.Add(currentTurn + 1, newResetEvent);
+            }
+                       
         }
     }
 }

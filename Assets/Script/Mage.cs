@@ -15,17 +15,13 @@ public class Mage : Player {
         //do nothing
     }
 
-    public override void receiveDamage(int damage) {
-        health -= damage;
-    }
-
     public override void receiveDamage(Enemy source, int damage) {
         if (isReflected) {
             int reflectedDamage = (int) Math.Round(0.75 * damage);
-            receiveDamage(damage - reflectedDamage);
+            health -= damage;
             source.receiveDamage(reflectedDamage);
         } else {
-            receiveDamage(damage);
+            health -= damage;
         }
     }
 

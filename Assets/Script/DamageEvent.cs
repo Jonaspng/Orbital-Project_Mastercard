@@ -14,6 +14,9 @@ class DamageEvent : AbstractEvent {
         player.changeBaseAttack(this.damage);
     }
 
+    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
+        enemy.changeBaseAttack(this.damage);
+    }
 
     
 

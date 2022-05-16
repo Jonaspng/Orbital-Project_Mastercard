@@ -19,7 +19,7 @@ public class Warrior : Player {
         //do nothing
     }
 
-    public override void receiveDamage(int damage) {
+    public override void receiveDamage(Enemy Source, int damage) {
         if (this.isEndure && this.health - damage < 0) {
             this.health = 1;
             this.isEndure = false;
@@ -28,11 +28,6 @@ public class Warrior : Player {
         } else {
             this.health -= damage;
         }
-    }
-
-    public override void receiveDamage(Enemy source, int damage)
-    {
-        throw new NotImplementedException();
     }
 
     public override int getHealth() {

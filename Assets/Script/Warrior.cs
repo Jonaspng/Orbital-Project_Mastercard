@@ -1,14 +1,14 @@
 using UnityEngine;
 using System;
 
-[System.Serializable]
+
 public class Warrior : Player {
 
-    public bool isStrongWillpower = false;
+    public bool isStrongWillpower;
 
-    public bool isEndure = false;
+    public bool isEndure;
 
-    public int hitCount = 0;
+    public int hitCount;
 
     public Warrior(double attackModifier, double shieldModifier) 
     : base(100, attackModifier, shieldModifier) { 
@@ -27,6 +27,7 @@ public class Warrior : Player {
             //probably some game over event
         } else {
             this.health -= damage;
+            StageManager.instance.playerHUD.SetHP(this.health);
         }
     }
 
@@ -64,7 +65,7 @@ public class Warrior : Player {
         if (this.isStrongWillpower) {
             return (int) Math.Round(this.attackModifier * (this.baseAttack + this.hitCount * 2));
         } else {
-            return (int) Math.Round(this.attackModifier * this.baseAttack);
+            return (int) Math.Round(this.attackModifier * cardDamage + baseAttack);
         }
     }
 

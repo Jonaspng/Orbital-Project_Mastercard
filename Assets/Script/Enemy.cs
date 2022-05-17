@@ -2,17 +2,7 @@ using UnityEngine;
 using System;
 
 [System.Serializable]
-public abstract class Enemy {
-
-    public int health;
-    
-    public int baseAttack;
-
-    public double attackModifier;
-
-    public int baseShield;
-
-    public double shieldModifier;
+public abstract class Enemy : Unit {
 
     public int arrowStuckCount; 
 
@@ -38,6 +28,7 @@ public abstract class Enemy {
             health = (int) Math.Round(health - damage * 1.25);
             } else {
                 health -= damage;
+                StageManager.instance.enemyHUD.SetHP(this.health);
             }
         }
         

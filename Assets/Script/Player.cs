@@ -1,18 +1,7 @@
 using UnityEngine;
 
+public abstract class Player : Unit {
 
-[System.Serializable]
-public abstract class Player : MonoBehaviour {
-
-    public int health;
-    
-    public int baseAttack;
-
-    public double attackModifier;
-
-    public int baseShield;
-
-    public double shieldModifier;
 
     public bool isBroken;
 

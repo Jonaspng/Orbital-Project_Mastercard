@@ -21,7 +21,7 @@ public abstract class Enemy : Unit {
     }
 
     public void receiveDamage(int damage) {
-        if (health < 0) {
+        if (health <= 0) {
             //game over
         } else {
             if (isBroken) {

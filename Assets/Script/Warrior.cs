@@ -20,7 +20,7 @@ public class Warrior : Player {
     }
 
     public override void receiveDamage(Enemy Source, int damage) {
-        if (this.isEndure && this.health - damage < 0) {
+        if (this.isEndure && this.health - damage <= 0) {
             this.health = 1;
             this.isEndure = false;
         } else if (health - damage < 0) {

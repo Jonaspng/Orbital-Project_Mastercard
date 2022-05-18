@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2506061783569640290}
-  - component: {fileID: 7192915688112435055}
+  - component: {fileID: 7186332194403598845}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7192915688112435055
+--- !u!114 &7186332194403598845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7919264731247161561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0e5553333e3b0f469fba77145ed20a5, type: 3}
+  m_Script: {fileID: 11500000, guid: a27be1fae4652cd4bb019298909a0793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Warrior
+  unitName: 
   health: 60
   maxHp: 60
   baseAttack: 0

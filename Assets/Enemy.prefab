@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5004797004330663989}
-  - component: {fileID: 4214253729438433548}
+  - component: {fileID: 8872401688639568735}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4214253729438433548
+--- !u!114 &8872401688639568735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 976137550515739682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7be986368bb5244bb14c5723a5990da, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e6990e66340e9643adcdbb8af9af59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Cat Staff
+  unitName: 
   health: 30
   maxHp: 30
   baseAttack: 0

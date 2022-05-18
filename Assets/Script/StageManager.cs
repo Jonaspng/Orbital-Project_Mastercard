@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
@@ -31,19 +31,20 @@ public class StageManager : MonoBehaviour {
     public DeckManager deckManager;
     
     //key = int; value = AbstractEvent[];
-    public Hashtable eventManager;
+    public Dictionary<int, AbstractEvent[]> eventManager;
 
     private void Awake() {
-        this.manaCount = 4;
+        this.manaCount = 3;
         this.currentTurn = 0;
         instance = this;
     }
 
     private void Start() {
         state = BattleState.START;
-        eventManager = new Hashtable();
+        eventManager = new Dictionary<int, AbstractEvent[]>();
         deckManager.Initialise();
         InitialiseBattle();
+         
     }
 
 
@@ -88,13 +89,10 @@ public class StageManager : MonoBehaviour {
 
     public void EndTurn() {
         foreach(Enemy enemy in enemies) {
-            print("test");
             enemy.EnemyMove(player, enemies);
         }
         // deckManager.DrawCard(5);
-
-
     }
-    
+
     
 }

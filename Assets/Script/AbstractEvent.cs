@@ -1,6 +1,6 @@
 using UnityEngine;
 
-abstract class AbstractEvent {
+public abstract class AbstractEvent {
 
     /*
     1) OverTime damage event -- Depends on who is the target

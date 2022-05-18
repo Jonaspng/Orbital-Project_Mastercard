@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 
 public class CatStaff : Enemy {
     public CatStaff(double attackModifier, double shieldModifier)
@@ -19,7 +21,7 @@ public class CatStaff : Enemy {
             this.changeBaseShield(6);
         } else {
             int currentTurn = StageManager.instance.currentTurn;
-            Hashtable eventManager = StageManager.instance.eventManager;
+            Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
             AbstractEvent[] newResetEvent = new AbstractEvent[numberOfEnemies];
             foreach(Enemy enemy in enemies) {
                 this.changeAttackModifier(1.25);
@@ -27,9 +29,9 @@ public class CatStaff : Enemy {
             for (int i = 0; i < numberOfEnemies; i++) {
                 newResetEvent[i] = new DamageEvent(1, -5, i);
             }
-            if (eventManager.Contains(currentTurn + 1)) {
+            if (eventManager.ContainsKey(currentTurn + 1)) {
                 AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
-                eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent);
+                eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
             } else {
                 eventManager.Add(currentTurn + 1, newResetEvent);
             }

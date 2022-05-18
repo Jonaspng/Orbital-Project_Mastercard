@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 class PommelStrike : Cards {
 
@@ -16,11 +17,11 @@ class PommelStrike : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
         int currentTurn = StageManager.instance.currentTurn;
-        Hashtable eventManager = StageManager.instance.eventManager;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
         AbstractEvent[] newResetEvent = {new StunEvent(1, false, 0)};
-        if (eventManager.Contains(currentTurn + 1)) {
+        if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent);
+            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }

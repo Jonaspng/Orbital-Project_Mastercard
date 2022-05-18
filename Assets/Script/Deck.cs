@@ -1,24 +1,25 @@
 using System.Collections.Generic;
+using UnityEngine;
 
+[System.Serializable]
 public class Deck {
 
-    public List<Cards> cardList;
+    public List<GameObject> cardList;
 
-
-    public Deck() {
-        this.cardList = new List<Cards>();        
+    public Deck() {   
+        this.cardList = new List<GameObject>(); 
     }
 
-    public void AddCard(Cards card) {
+    public void AddCard(GameObject card) {
         this.cardList.Add(card);
     }
 
-    public void RemoveCard(Cards card) {
+    public void RemoveCard(GameObject card) {
         this.cardList.Remove(card);
     }
 
     public void CopyTo(Deck deck) {
-        List<Cards> newList = new List<Cards>(this.cardList);
+        List<GameObject> newList = new List<GameObject>(this.cardList);
         deck.cardList = newList;
     }
 
@@ -30,7 +31,7 @@ public class Deck {
          System.Random random = new System.Random();
          for( int i = 0; i < deck.cardList.Count; i ++ ) {
              int j = random.Next( i, deck.cardList.Count );
-             Cards temporary = deck.cardList[i];
+             GameObject temporary = deck.cardList[i];
              deck.cardList[i] = deck.cardList[j];
              deck.cardList[j] = temporary;
          }

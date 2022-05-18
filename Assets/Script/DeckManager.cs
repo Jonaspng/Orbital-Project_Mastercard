@@ -1,6 +1,8 @@
 using System.IO;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
+[System.Serializable]
 public class DeckManager : MonoBehaviour {
 
     public string deckPath;
@@ -12,6 +14,11 @@ public class DeckManager : MonoBehaviour {
     public Deck unusedPile;
 
     public Deck currentHand;
+    
+    public GameObject BasicAttackPrefab;
+
+    public GameObject DefendPrefab;
+
 
     void Start() {
         deckPath = $"{Application.persistentDataPath}/deck.json";
@@ -19,17 +26,18 @@ public class DeckManager : MonoBehaviour {
             string json = File.ReadAllText(deckPath);
             currentDeck = JsonUtility.FromJson<Deck>(json);
         } else {
+       
             currentDeck = new Deck();
-            currentDeck.AddCard(new BasicAttack(6, 1, 1));
-            currentDeck.AddCard(new BasicAttack(6, 1, 1));
-            currentDeck.AddCard(new BasicAttack(6, 1, 1));
-            currentDeck.AddCard(new BasicAttack(6, 1, 1));
-            currentDeck.AddCard(new BasicAttack(6, 1, 1));
-            currentDeck.AddCard(new Defend(6, 1, 1));
-            currentDeck.AddCard(new Defend(6, 1, 1));
-            currentDeck.AddCard(new Defend(6, 1, 1));
-            currentDeck.AddCard(new Defend(6, 1, 1));
-            currentDeck.AddCard(new Defend(6, 1, 1));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
             SaveJson(currentDeck);
         }
     }

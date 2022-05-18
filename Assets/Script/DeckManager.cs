@@ -26,7 +26,6 @@ public class DeckManager : MonoBehaviour {
             string json = File.ReadAllText(deckPath);
             currentDeck = JsonUtility.FromJson<Deck>(json);
         } else {
-       
             currentDeck = new Deck();
             currentDeck.AddCard(Instantiate(BasicAttackPrefab));
             currentDeck.AddCard(Instantiate(BasicAttackPrefab));

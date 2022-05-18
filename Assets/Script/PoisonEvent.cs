@@ -14,11 +14,4 @@ class PoisonEvent : AbstractEvent {
         enemies[this.enemyIndex].ChangeIsPoisoned(this.isPoisoned);
     }
 
-
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-        //do nothing
-    }
-    
-
-
 }

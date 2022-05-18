@@ -12,12 +12,7 @@ class StunEvent : AbstractEvent {
 
     public override void executeEvent(Player player, Enemy[] enemies) {
         enemies[this.enemyIndex].ChangeIsImmobilised(this.isImmobilised);
-    }
-
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-        // do nothing
-    }
-    
+    }   
 
 
 }

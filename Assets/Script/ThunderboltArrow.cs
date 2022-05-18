@@ -24,8 +24,8 @@ public class ThunderboltArrow : Cards {
         // The part that applies broken. Implementation not finalised. 
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
-        AbstractEvent[] newBrokenEvent = {new BrokenEvent(1, true, enemyIndex)};
-        AbstractEvent[] newResetEvent = {new BrokenEvent(1, false, enemyIndex)};
+        AbstractEvent[] newBrokenEvent = {new BrokenEnemyEvent(1, true, enemyIndex)};
+        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
             eventManager[currentTurn + 1] = currEvent.Concat(newBrokenEvent).ToArray();

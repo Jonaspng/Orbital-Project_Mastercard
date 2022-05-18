@@ -15,40 +15,31 @@ public class Warrior : Player {
         //empty
     }
 
-    public override void addEvasionCount( int evasionCount) {
-        //do nothing
-    }
-
     public override void receiveDamage(Enemy Source, int damage) {
-        if (this.isEndure && this.health - damage <= 0) {
-            this.health = 1;
-            this.isEndure = false;
-        } else if (health - damage < 0) {
-            //probably some game over event
+        int realDamage;
+        if (isBroken) {
+            realDamage = (int) Math.Round(health - damage * 1.25);
         } else {
-            this.health -= damage;
-            StageManager.instance.playerHUD.SetHP(this.health);
+            realDamage = damage;
         }
-    }
-
-    public override int getHealth() {
-        return health;
-    }
-
-    public override void changeBaseAttack(int baseAttack) {
-            this.baseAttack = baseAttack;        
-    }
-
-     public override void changeBaseShield(int baseShield) {
-        this.baseShield += baseShield;
-    }
-    
-    public override void changeAttackModifier(double attackModifier) {
-        this.attackModifier *= attackModifier;
-    }
-
-    public override void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier *= shieldModifier;
+        if (realDamage > this.baseShield ) {
+            if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
+                this.health = 1;
+                this.isEndure = false;
+            
+            } else if (health - realDamage + this.baseShield <= 0) {
+                
+                //probably some game over event
+            } else {
+                health = health - realDamage + this.baseShield;
+            }
+            ResetBaseShield();
+        } else {
+            this.baseShield -= realDamage;
+        }
+        print(health);
+        StageManager.instance.playerHUD.SetHP(this.health);
+        
     }
 
     public void ChangeIsStrongWillpower(bool status) {

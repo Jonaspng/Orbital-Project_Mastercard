@@ -12,9 +12,4 @@ class OvertimeDamageEvent : AbstractEvent {
         enemies[enemyIndex].receiveDamage(damagePerTurn);
     }
 
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-        //do nothing
-    }
-
-
 }

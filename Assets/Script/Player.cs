@@ -15,20 +15,36 @@ public abstract class Player : Unit {
 
     public abstract void receiveDamage(Enemy source, int damage);
 
-    public abstract int getHealth();
+    public  int getHealth() {
+        return health;
+    }
+
+    public void changeBaseAttack(int baseAttack) {
+            this.baseAttack = baseAttack;        
+    }
+
+     public void changeBaseShield(int baseShield) {
+        this.baseShield += baseShield;
+    }
     
-    public abstract void changeBaseAttack(int baseAttack);
+    public void changeAttackModifier(double attackModifier) {
+        this.attackModifier *= attackModifier;
+    }
 
-     public abstract void changeBaseShield(int baseShield);
+    public void changeShieldModifier(double shieldModifier) {
+        this.shieldModifier *= shieldModifier;
+    }
     
-    public abstract void changeAttackModifier(double attackModifier);
-
-    public abstract void changeShieldModifier(double shieldModifier);
-
-    public abstract void addEvasionCount(int evasionCount);
-
     public void ChangeIsBroken(bool status) {
         this.isBroken = status;
+    }
+
+    public void ResetBaseShield() {
+        this.baseShield = 0;
+    }
+
+    public void ResetAttackModifier() {
+        this.attackModifier = 1;
     }
 
     public abstract int GetFullDamage(int cardDamage);

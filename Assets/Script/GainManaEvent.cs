@@ -11,7 +11,4 @@ class GainManaEvent : AbstractEvent {
         StageManager.instance.manaCount += manaGained;
     }
 
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-
-    }
 }

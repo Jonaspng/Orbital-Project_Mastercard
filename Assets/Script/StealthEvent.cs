@@ -11,7 +11,4 @@ class StealthEvent : AbstractEvent {
         archer.ChangeStealthStatus(isStealthed);
     }
 
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-
-    }
 }

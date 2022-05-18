@@ -14,6 +14,7 @@ public class Dodge : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.addEvasionCount(this.evasionCount);
+        Archer archer = (Archer) player;
+        archer.AddEvasionCount(this.evasionCount);
     }
 }

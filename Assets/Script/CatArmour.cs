@@ -12,10 +12,10 @@ public class CatArmour : Enemy {
         if (moveNumber == 1) {
             player.receiveDamage(this, this.GetFullDamage(6));
         } else if (moveNumber == 2) {
-            this.changeBaseShield(6);
+            this.AddBaseShield(6);
         } else {
             foreach (Enemy enemy in enemies) {
-                enemy.changeBaseShield(6);
+                enemy.AddBaseShield(6);
             }
             
         }

@@ -21,15 +21,23 @@ public abstract class Enemy : Unit {
     }
 
     public void receiveDamage(int damage) {
+        int realDamage;
         if (health <= 0) {
             //game over
         } else {
             if (isBroken) {
-            health = (int) Math.Round(health - damage * 1.25);
+                realDamage = (int) Math.Round(damage * 1.25);
             } else {
-                health -= damage;
-                StageManager.instance.enemyHUD.SetHP(this.health);
+                realDamage = damage;                
             }
+            if (damage > this.baseShield) {
+                health = health - realDamage + this.baseShield;
+                ResetBaseShield();
+            } else {
+                this.baseShield -= realDamage;
+            }
+            print(health);
+            StageManager.instance.enemyHUD.SetHP(this.health);
         }
         
         
@@ -43,12 +51,20 @@ public abstract class Enemy : Unit {
         this.baseAttack = baseAttack;
     }
 
-     public void changeBaseShield(int baseShield) {
+    public void AddBaseShield(int baseShield) {
         this.baseShield += baseShield;
+    }
+
+    public void ResetBaseShield() {
+        this.baseShield = 0;
     }
     
     public void changeAttackModifier(double attackModifier) {
         this.attackModifier *= attackModifier;
+    }
+
+    public void ResetAttackModifier() {
+        this.attackModifier = 1;
     }
 
     public void changeShieldModifier(double shieldModifier) {

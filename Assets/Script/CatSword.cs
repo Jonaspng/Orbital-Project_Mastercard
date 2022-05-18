@@ -15,14 +15,14 @@ public class CatSword : Enemy {
         if (moveNumber == 1) {
             player.receiveDamage(this, this.GetFullDamage(6));
         } else if (moveNumber == 2) {
-            this.changeBaseShield(6);
+            this.AddBaseShield(6);
         } else {
             player.receiveDamage(this, this.GetFullDamage(6));
             
             int currentTurn = StageManager.instance.currentTurn;
             Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
-            AbstractEvent[] newEvent = {new BrokenEvent(1, true, -1)};
-            AbstractEvent[] newResetEvent = {new BrokenEvent(1, false, -1)};
+            AbstractEvent[] newEvent = {new BrokenPlayerEvent(1, true, -1)};
+            AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(1, false, -1)};
             if (eventManager.ContainsKey(currentTurn + 1)) {
                 AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
                 eventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();

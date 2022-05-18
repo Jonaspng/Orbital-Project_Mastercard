@@ -16,40 +16,43 @@ public class Archer : Player {
         
     }
 
-    public override void addEvasionCount(int evasionCount) {
+    public void AddEvasionCount(int evasionCount) {
         this.evasionCount += evasionCount;
     }
 
-    public override void receiveDamage(Enemy source, int damage)
-    {
-        if (isStealthed) {
-            bool isAttackDodged = UnityEngine.Random.Range(0, 2) == 1;
-            if (isAttackDodged) {
-                health -= 0;
+    public override void receiveDamage(Enemy source, int damage) {
+        // Effective damage calculation
+        int realDamage;
+        if (isBroken) {
+            realDamage = (int) Math.Round(health - damage * 1.25);
+        } else {
+            realDamage = damage;
+        }
+
+        // special conditions
+        if (realDamage > this.baseShield) {
+            if (isStealthed) {
+                bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
+                if (isAttacked) {
+                    health -= realDamage + this.baseShield;
+                    ResetBaseShield();
+                } else if (evasionCount > 0) {
+                    health -= 0;
+                    evasionCount--;
+                }                 
+            } else {
+                if (evasionCount > 0) {
+                    health -= 0;
+                    evasionCount--;
+                } else {
+                    health -= realDamage + this.baseShield;
+                    ResetBaseShield();
+                }           
             }
         } else {
-            health -= damage;
+            this.baseShield -= realDamage;
         }
-    }
-
-    public override int getHealth() {
-        return health;
-    }
-
-    public override void changeBaseAttack(int baseAttack) {
-        this.baseAttack = baseAttack;
-    }
-
-     public override void changeBaseShield(int baseShield) {
-        this.baseShield += baseShield;
-    }
-    
-    public override void changeAttackModifier(double attackModifier) {
-        this.attackModifier *= attackModifier;
-    }
-
-    public override void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier *= shieldModifier;
+        StageManager.instance.playerHUD.SetHP(this.health);
     }
 
     public void ChangeStickyArrowStatus(bool b) {

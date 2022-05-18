@@ -14,13 +14,4 @@ class BurnEvent : AbstractEvent {
         enemies[this.enemyIndex].ChangeIsBurned(this.isBurned);
     }
 
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-        //do nothings
-    }
-   
-
-
-    
-
-
 }

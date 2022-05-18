@@ -1,10 +1,11 @@
 using UnityEngine;
 
-class DamageEvent : AbstractEvent {
+class PlayerDamageEvent : AbstractEvent {
 
+    // Affects player
     public int damage;
 
-    public DamageEvent(int numberOfTurns, int damage, int enemyIndex) 
+    public PlayerDamageEvent(int numberOfTurns, int damage, int enemyIndex) 
     : base(numberOfTurns, enemyIndex){
         this.numberOfTurns = numberOfTurns;
         this.damage = damage;
@@ -13,12 +14,5 @@ class DamageEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         player.changeBaseAttack(this.damage);
     }
-
-    public override void ExecuteEnemyEvent(Player player, Enemy enemy) {
-        enemy.changeBaseAttack(this.damage);
-    }
-
-    
-
 
 }

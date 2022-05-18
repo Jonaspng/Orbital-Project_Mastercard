@@ -1247,33 +1247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 1
   turns: 1
-  damage: 10
---- !u!61 &1089985477
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089985469}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.24912262, y: -0.73903656}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 96.24762, y: 140.26848}
-  m_EdgeRadius: 0
+  damage: 8
 --- !u!1 &1120091576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,6 +1989,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckPath: 
+  currentDeck:
+    cardList: []
+  usedPile:
+    cardList: []
+  unusedPile:
+    cardList: []
+  currentHand:
+    cardList: []
+  BasicAttackPrefab: {fileID: 2959851872217037864, guid: a19eab325a834a04aa19dae5dd0a6fbe, type: 3}
+  DefendPrefab: {fileID: 8664091777490389142, guid: b891e71f185b3dd4a94b6a6bb3cb8e67, type: 3}
 --- !u!4 &1867996999
 Transform:
   m_ObjectHideFlags: 0

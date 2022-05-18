@@ -65,15 +65,26 @@ public class StageManager : MonoBehaviour {
     }
 
 
-    private void Update() {
-        if (state == BattleState.ENEMYTURN) {
-            EndTurn();
-            state = BattleState.PLAYERTURN; 
-        }
-    }
+    
 
     public void OnEndTurnClick() {
+        foreach(Enemy enemy in enemies) {
+            enemy.ResetBaseShield();
+            enemy.ResetAttackModifier();
+        }
         state = BattleState.ENEMYTURN;
+        EndTurn();
+        currentTurn++;
+        if (eventManager.ContainsKey(currentTurn)) {
+            AbstractEvent[] events = eventManager[currentTurn];
+            for (int i = 0; i < events.Length; i++) {
+            events[i].executeEvent(player, enemies);
+            }
+        }
+        player.ResetBaseShield();
+        player.ResetAttackModifier();
+        state = BattleState.PLAYERTURN;
+        manaCount = 3;
 
     }
 
@@ -86,6 +97,7 @@ public class StageManager : MonoBehaviour {
             this.manaCount -= card.manaCost;
         }
     }
+
 
     public void EndTurn() {
         foreach(Enemy enemy in enemies) {

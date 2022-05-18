@@ -29,7 +29,7 @@ public class Deck {
 
     public static void Shuffle(Deck deck) {
          System.Random random = new System.Random();
-         for( int i = 0; i < deck.cardList.Count; i ++ ) {
+         for( int i = 0; i < deck.cardList.Count; i++ ) {
              int j = random.Next( i, deck.cardList.Count );
              GameObject temporary = deck.cardList[i];
              deck.cardList[i] = deck.cardList[j];

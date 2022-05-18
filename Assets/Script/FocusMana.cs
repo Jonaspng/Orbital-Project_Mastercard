@@ -4,25 +4,16 @@ using System.Collections;
 
 public class FocusMana : Cards {
 
-    public Cards focusManaCard;
-
     public int manaGained;
 
     public FocusMana(int manaGained, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.manaGained = manaGained;
     }
-    // Start is called before the first frame update
-    void Start() {
-        focusManaCard = new FocusMana(2, 1, 1);        
-    }
-
-    // Update is called once per frame
-    void Update() {
-        int enemyIndex = -1;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(focusManaCard, enemyIndex);
-        }
+    
+    public void OnMouseDown() {
+        int enemyIndex = 0;
+        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

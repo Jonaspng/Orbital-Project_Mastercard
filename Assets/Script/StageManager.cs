@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour {
     public Hashtable eventManager;
 
     private void Awake() {
-        this.manaCount = 3;
+        this.manaCount = 4;
         this.currentTurn = 0;
         instance = this;
     }
@@ -42,7 +42,7 @@ public class StageManager : MonoBehaviour {
     private void Start() {
         state = BattleState.START;
         eventManager = new Hashtable();
-        // deckManager.Initialise();
+        deckManager.Initialise();
         InitialiseBattle();
     }
 
@@ -66,7 +66,8 @@ public class StageManager : MonoBehaviour {
 
     private void Update() {
         if (state == BattleState.ENEMYTURN) {
-            EndTurn();        
+            EndTurn();
+            state = BattleState.PLAYERTURN; 
         }
     }
 
@@ -78,7 +79,7 @@ public class StageManager : MonoBehaviour {
 
     public void playerMove(Cards card, int enemyIndex) {
         if (this.manaCount - card.manaCost < 0) {
-            // throw error?
+            print("No Mana");
         } else {
             card.executeCard(player, enemies, enemyIndex);
             this.manaCount -= card.manaCost;
@@ -87,9 +88,10 @@ public class StageManager : MonoBehaviour {
 
     public void EndTurn() {
         foreach(Enemy enemy in enemies) {
+            print("test");
             enemy.EnemyMove(player, enemies);
         }
-        deckManager.DrawCard(5);
+        // deckManager.DrawCard(5);
 
 
     }

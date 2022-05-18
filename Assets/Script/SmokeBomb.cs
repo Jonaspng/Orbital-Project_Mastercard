@@ -4,23 +4,14 @@ using System.Collections;
 
 public class SmokeBomb : Cards {
 
-    public Cards smokeBombCard;
-
     public SmokeBomb(int turns, 
     int manaCost) : base(manaCost, turns) {
 
     }
-    // Start is called before the first frame update
-    void Start() {
-        smokeBombCard = new SmokeBomb(1, 1);        
-    }
 
-    // Update is called once per frame
-    void Update() {
-        int enemyIndex = -1;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(smokeBombCard, enemyIndex);
-        }
+    public void OnMouseDown() {
+        int enemyIndex = 0;
+        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

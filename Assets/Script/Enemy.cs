@@ -94,7 +94,7 @@ public abstract class Enemy : Unit {
     }
 
     public int GetFullDamage(int damage) {
-        return (int) Math.Round(this.attackModifier * this.baseAttack);
+        return (int) Math.Round(this.attackModifier * (damage + this.baseAttack));
     }
     
 

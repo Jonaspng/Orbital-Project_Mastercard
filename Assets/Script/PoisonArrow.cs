@@ -4,8 +4,6 @@ using System.Collections;
 
 class PoisonArrow : Cards {
 
-    public Cards poisonArrowCard;
-
     public int damage;
 
     public PoisonArrow(int damage, int manaCost, int turns) 
@@ -13,16 +11,10 @@ class PoisonArrow : Cards {
         this.damage = damage;
     }
 
-    void Start() {
-        poisonArrowCard = new PoisonArrow(6, 1, 1);  
-    }
 
-    // Update is called once per frame
-    void Update() {
+    public void OnMouseDown() {
         int enemyIndex = 0;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(poisonArrowCard, enemyIndex);
-        }        
+        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {

@@ -7,25 +7,15 @@ public class ArcaneBolt : Cards {
 
     public int damage;
 
-    public Cards arcaneBoltCard;
 
     public ArcaneBolt(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
     }
 
-
-    // Start is called before the first frame update
-    void Start() {
-        arcaneBoltCard = new ArcaneBolt(10, 2, 2);  
-    }
-
-    // Update is called once per frame
-    void Update() {
+    public void OnMouseDown() {
         int enemyIndex = 0;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(arcaneBoltCard, enemyIndex);
-        }        
+        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

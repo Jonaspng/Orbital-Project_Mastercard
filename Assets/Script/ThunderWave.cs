@@ -4,23 +4,15 @@ using System.Collections;
 
 class ThunderWave : Cards {
 
-    public Cards thunderWaveCard;
-
     public ThunderWave(int manaCost, int turns) 
     : base(manaCost, turns){
 
     }
 
-    void Start() {
-        thunderWaveCard = new ThunderWave(1, 1);  
-    }
-
     // Update is called once per frame
-    void Update() {
+    public void OnMouseDown() {
         int enemyIndex = 0;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) {
-            StageManager.instance.playerMove(thunderWaveCard, enemyIndex);
-        }        
+        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {

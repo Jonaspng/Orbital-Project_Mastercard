@@ -12,8 +12,10 @@ public class CatStaff : Enemy {
         int moveNumber = Random.Range(1, 4);
         int numberOfEnemies = enemies.Length;
         if (moveNumber == 1) {
+            print("Enemy Attacks");
             player.receiveDamage(this, this.GetFullDamage(6));
         } else if (moveNumber == 2) {
+            print("Enemy Defends");
             this.changeBaseShield(6);
         } else {
             int currentTurn = StageManager.instance.currentTurn;
@@ -26,7 +28,7 @@ public class CatStaff : Enemy {
                 newResetEvent[i] = new DamageEvent(1, -5, i);
             }
             if (eventManager.Contains(currentTurn + 1)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+                AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
                 eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent);
             } else {
                 eventManager.Add(currentTurn + 1, newResetEvent);

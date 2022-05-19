@@ -75,6 +75,7 @@ public class StageManager : MonoBehaviour {
         state = BattleState.ENEMYTURN;
         EndTurn();
         currentTurn++;
+        deckManager.RerenderCards();
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] events = eventManager[currentTurn];
             for (int i = 0; i < events.Length; i++) {
@@ -91,7 +92,7 @@ public class StageManager : MonoBehaviour {
 
     public void playerMove(Cards card, int enemyIndex) {
         if (this.manaCount - card.manaCost < 0) {
-            print("No Mana");
+
         } else {
             card.executeCard(player, enemies, enemyIndex);
             this.manaCount -= card.manaCost;

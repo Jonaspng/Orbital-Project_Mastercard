@@ -17,4 +17,3 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
   artwork: {fileID: 21300000, guid: 07b32ef483f53ad47920c47dad2aaca7, type: 3}
   manaCost: 1
-  cardData: {fileID: -943092243264920544, guid: af204db0bd6dae441ae8052962aa5665, type: 3}

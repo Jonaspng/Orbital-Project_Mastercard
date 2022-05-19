@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 1139073064350559806}
   - component: {fileID: 4133931840316670532}
   - component: {fileID: 5336960491206820712}
-  - component: {fileID: 125718033948522884}
+  - component: {fileID: 1437394505959830799}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!61 &125718033948522884
+--- !u!61 &1437394505959830799
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -631,7 +631,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0140686035}
+  m_Offset: {x: 0.02722168, y: -0.0803833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -642,5 +642,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 95.70679, y: 138.38959}
+  m_Size: {x: 96.1001, y: 139.03784}
   m_EdgeRadius: 0

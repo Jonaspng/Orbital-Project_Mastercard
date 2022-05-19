@@ -6,7 +6,7 @@ public class DeckID {
 
     public List<int> cardIDList;
 
-    public DeckID() {   
+    public DeckID() {
         this.cardIDList = new List<int>(); 
     }
 
@@ -24,6 +24,6 @@ public class DeckID {
     }
 
 
-    
-   
+
+
 }

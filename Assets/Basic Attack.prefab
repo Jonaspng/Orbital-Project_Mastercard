@@ -414,7 +414,6 @@ GameObject:
   - component: {fileID: 1087004904150911606}
   - component: {fileID: 8960981704850803546}
   - component: {fileID: 2718444197791153469}
-  - component: {fileID: 8126604629570054321}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -510,22 +509,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 96.1001, y: 139.03784}
   m_EdgeRadius: 0
---- !u!114 &8126604629570054321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192616588375733498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  manaCost: 1
-  turns: 1
-  damage: 6
 --- !u!1 &9134426160558484228
 GameObject:
   m_ObjectHideFlags: 0

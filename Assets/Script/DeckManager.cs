@@ -1,8 +1,8 @@
 using System.IO;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-
+[DefaultExecutionOrder(-1)]
 [System.Serializable]
 public class DeckManager : MonoBehaviour {
 
@@ -17,8 +17,11 @@ public class DeckManager : MonoBehaviour {
     public Deck unusedPile;
 
     public Deck currentHand;
-
+    
     public List<GameObject> prefabList;
+
+    public GameObject panel;
+
 
 
     void Start() {
@@ -43,53 +46,58 @@ public class DeckManager : MonoBehaviour {
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
-        
     }
 
-    public void DeckIdToDeck() {
+     public void DeckIdToDeck() {
         foreach (int id in currentDeckID.cardIDList) {
             currentDeck.AddCard(Instantiate(prefabList[id]));            
         }
     }
 
-    public void SaveJson(DeckID newDeckId) {
-        string json = JsonUtility.ToJson(newDeckId);
+    public void SaveJson(DeckID newDeck) {
+        string json = JsonUtility.ToJson(newDeck);
         File.WriteAllText(deckPath, json);
     }
 
     public void Initialise() {
         unusedPile = currentDeck;
         Deck.Shuffle(unusedPile);
+        DrawCard(5);
     }
 
-    public void Reshuffle(int numOfShuffles) {
-        for (int i = 0; i < numOfShuffles; i++) {
-                currentHand.AddCard(unusedPile.cardList[i]);
-                unusedPile.RemoveCard(unusedPile.cardList[i]);
-                usedPile.AddCard(unusedPile.cardList[i]);
-            }
-    }
+    // public void Reshuffle(int numOfShuffles) {
+    //     for (int i = 0; i < numOfShuffles; i++) {
+    //             currentHand.AddCard(unusedPile.cardList[i]);
+    //             unusedPile.RemoveCard(unusedPile.cardList[i]);
+    //             usedPile.AddCard(unusedPile.cardList[i]);
+    //         }
+    // }
 
+    
     public void DrawCard(int numOfCards) {
         int numOfCardLeft = unusedPile.cardList.Count;
         if (numOfCardLeft < numOfCards) {
-            // for (int i = 0; i < numOfCardLeft; i++) {
-            //     currentHand.AddCard(unusedPile.cardList[i]);
-            //     unusedPile.RemoveCard(unusedPile.cardList[i]);
-            //     usedPile.AddCard(unusedPile.cardList[i]);
-            // }
-            this.Reshuffle(numOfCardLeft);       
-            usedPile.CopyTo(unusedPile);
-            usedPile.ResetDeck();
-            Deck.Shuffle(unusedPile);
-            // for (int i = 0; i < numOfCards - numOfCardLeft; i++) {
-            //     currentHand.AddCard(unusedPile.cardList[i]);
-            //     unusedPile.RemoveCard(unusedPile.cardList[i]);
-            //     usedPile.AddCard(unusedPile.cardList[i]);
-            // }
-            this.Reshuffle(numOfCards - numOfCardLeft);
+           print("test");
+            for (int i = 0; i < numOfCards; i++) {
+                currentHand.AddCard(unusedPile.cardList[i]);
+                currentHand.cardList[i].transform.SetParent(panel.transform);
+                unusedPile.RemoveCard(unusedPile.cardList[i]);
+                usedPile.AddCard(unusedPile.cardList[i]);
+            }
+            //this.Reshuffle(numOfCardLeft);       
+            // usedPile.CopyTo(unusedPile);
+            // usedPile.ResetDeck();
+            // Deck.Shuffle(unusedPile);
+            // this.Reshuffle(numOfCards - numOfCardLeft);
         } else {
-            this.Reshuffle(numOfCards);
+             print("test");
+            for (int i = 0; i < numOfCards; i++) {
+                currentHand.AddCard(unusedPile.cardList[i]);
+                currentHand.cardList[i].transform.SetParent(panel.transform);
+                unusedPile.RemoveCard(unusedPile.cardList[i]);
+                usedPile.AddCard(unusedPile.cardList[i]);
+            }
+            //this.Reshuffle(numOfCards);
         }
     }
    

@@ -1,19 +1,13 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Cleave : Cards {
+public class CleaveData : CardData {
 
 
     public int damage;
 
-    public Cleave(int damage, int turns, 
+    public CleaveData(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
-    }
-
-    public void OnMouseDown() {
-        int enemyIndex = 0;
-        StageManager.instance.playerMove(this, enemyIndex);
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {

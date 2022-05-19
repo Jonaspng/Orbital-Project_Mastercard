@@ -2,10 +2,10 @@ using UnityEngine;
 
 [System.Serializable]
 public abstract class Cards : MonoBehaviour {
+    
+    public int manaCost;
 
-   public int manaCost;
-
-   public int turns;
+    public int turns;
 
     public Cards(int manaCost, int turns) {
         this.manaCost = manaCost;

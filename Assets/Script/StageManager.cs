@@ -98,6 +98,15 @@ public class StageManager : MonoBehaviour {
         }
     }
 
+    public void playerMove(CardData card, int enemyIndex) {
+        if (this.manaCount - card.manaCost < 0) {
+            print("No Mana");
+        } else {
+            card.executeCard(player, enemies, enemyIndex);
+            this.manaCount -= card.manaCost;
+        }
+    }
+
 
     public void EndTurn() {
         foreach(Enemy enemy in enemies) {

@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867996997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d27d69116c3d964995c30b40b1575ef, type: 3}
+  m_Script: {fileID: 11500000, guid: a0db757bcdc0747409335bf65cd7a4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deckPath: 
@@ -1867,6 +1867,8 @@ MonoBehaviour:
   prefabList:
   - {fileID: 2959851872217037864, guid: a19eab325a834a04aa19dae5dd0a6fbe, type: 3}
   - {fileID: 8664091777490389142, guid: b891e71f185b3dd4a94b6a6bb3cb8e67, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -14,8 +14,6 @@ public class CardDisplay : MonoBehaviour
     public Image artworkImage;
     public TextMeshProUGUI manaText;
 
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +22,6 @@ public class CardDisplay : MonoBehaviour
      descriptionText.text = card.description;
      frameImage.sprite = card.frame;
      artworkImage.sprite = card.artwork;
-     manaText.text = card.manaCost.ToString();  
+     manaText.text = card.manaCost.ToString();   
     }
-
-   
-
 }

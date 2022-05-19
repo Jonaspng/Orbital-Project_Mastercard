@@ -1,14 +1,11 @@
 using System.IO;
-using System.Collections.Generic;
 using UnityEngine;
 
-
+[DefaultExecutionOrder(-1)]
 [System.Serializable]
 public class DeckManager : MonoBehaviour {
 
     public string deckPath;
-
-    public DeckID currentDeckID;
     
     public Deck currentDeck;
 
@@ -17,46 +14,38 @@ public class DeckManager : MonoBehaviour {
     public Deck unusedPile;
 
     public Deck currentHand;
+    
+    public GameObject BasicAttackPrefab;
 
-    public List<GameObject> prefabList;
+    public GameObject DefendPrefab;
 
     public GameObject panel;
 
 
 
     void Start() {
-        deckPath = $"{Application.persistentDataPath}/deckID.json";
+        deckPath = $"{Application.persistentDataPath}/deck.json";
         if (File.Exists(deckPath)) {
             string json = File.ReadAllText(deckPath);
-            currentDeckID = JsonUtility.FromJson<DeckID>(json);
-            DeckIdToDeck();
+            currentDeck = JsonUtility.FromJson<Deck>(json);
         } else {
             currentDeck = new Deck();
-            currentDeckID = new DeckID(); 
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            SaveJson(currentDeckID);
-            DeckIdToDeck();
-        }
-        
-    }
-
-    public void DeckIdToDeck() {
-        foreach (int id in currentDeckID.cardIDList) {
-            currentDeck.AddCard(Instantiate(prefabList[id]));            
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(BasicAttackPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            currentDeck.AddCard(Instantiate(DefendPrefab));
+            SaveJson(currentDeck);
         }
     }
 
-    public void SaveJson(DeckID newDeckId) {
-        string json = JsonUtility.ToJson(newDeckId);
+    public void SaveJson(Deck newDeck) {
+        string json = JsonUtility.ToJson(newDeck);
         File.WriteAllText(deckPath, json);
     }
 

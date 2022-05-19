@@ -16,7 +16,7 @@ public class AncientPower : Cards {
         StageManager.instance.playerMove(this, enemyIndex);
 
     }
-    public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
+public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
         AbstractEvent[] newAddEvent = {new PlayerDamageEvent(1, 5, enemyIndex)};
@@ -34,7 +34,7 @@ public class AncientPower : Cards {
             eventManager.Add(currentTurn + 2, newResetEvent);
         }
         player.changeBaseAttack(5);
-            
+        
     }
     
 }

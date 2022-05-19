@@ -12,7 +12,10 @@ public class BasicAttack : Cards {
 
     public void OnMouseDown() {
         int enemyIndex = 0;
-        StageManager.instance.playerMove(this, enemyIndex);
+        if (StageManager.instance.manaCount - this.manaCost >= 0) {
+            StageManager.instance.playerMove(this, enemyIndex);
+            GameObject.Destroy(this.transform.gameObject);
+        } 
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

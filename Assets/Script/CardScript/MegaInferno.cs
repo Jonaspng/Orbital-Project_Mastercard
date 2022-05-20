@@ -17,8 +17,8 @@ public class MegaInferno : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        foreach(Enemy enemy in enemies) {
-            enemy.receiveDamage(this.damage);
+        for (int i = 0; i < enemies.Length; i ++) {
+            enemies[i].receiveDamage(this.damage, i);
         }
     }
 }

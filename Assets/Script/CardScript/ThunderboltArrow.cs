@@ -22,7 +22,7 @@ public class ThunderboltArrow : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage));
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
 
         // The part that applies broken. Implementation not finalised. 
         int currentTurn = StageManager.instance.currentTurn;

@@ -15,7 +15,7 @@ public class Warrior : Player {
         //empty
     }
 
-    public override void receiveDamage(Enemy Source, int damage) {
+    public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
         if (isBroken) {
             realDamage = (int) Math.Round(health - damage * 1.25);
@@ -28,7 +28,7 @@ public class Warrior : Player {
                 this.isEndure = false;
             
             } else if (health - realDamage + this.baseShield <= 0) {
-                
+                health = health - realDamage + this.baseShield;
                 //probably some game over event
             } else {
                 health = health - realDamage + this.baseShield;

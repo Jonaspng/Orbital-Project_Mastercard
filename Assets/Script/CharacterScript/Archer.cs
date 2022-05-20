@@ -20,7 +20,7 @@ public class Archer : Player {
         this.evasionCount += evasionCount;
     }
 
-    public override void receiveDamage(Enemy source, int damage) {
+    public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         // Effective damage calculation
         int realDamage;
         if (isBroken) {

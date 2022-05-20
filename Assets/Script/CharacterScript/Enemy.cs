@@ -14,13 +14,14 @@ public abstract class Enemy : Unit {
 
     public bool isPoisoned;
 
+
     public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
         this.attackModifier = attackModifier;
         this.shieldModifier = shieldModifier;
     }
 
-    public void receiveDamage(int damage) {
+    public void receiveDamage(int damage, int index) {
         int realDamage;
         if (health <= 0) {
             realDamage = 0;
@@ -38,13 +39,13 @@ public abstract class Enemy : Unit {
                 this.baseShield -= realDamage;
             }
             print(health);
-            StageManager.instance.enemyHUD.SetHP(this.health);
+            StageManager.instance.enemyHUDs[index].SetHP(this.health);
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
-            StageManager.instance.enemyHUD.RemoveShieldIcon();
+            StageManager.instance.enemyHUDs[index].RemoveShieldIcon();
         } else {
-            StageManager.instance.enemyHUD.RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
+            StageManager.instance.enemyHUDs[index].RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
         }
         
         
@@ -98,21 +99,21 @@ public abstract class Enemy : Unit {
     }
     
     // Method to calculate damage from arrow damage cards if StickyArrows has been used.
-    public void ReceiveArrowDamage(Archer source, int damage) {
+    public void ReceiveArrowDamage(Archer source, int damage, int enemyIndex) {
         if (source.isStickyArrowEnabled) {
-            receiveDamage(damage + arrowStuckCount * 2);
+            receiveDamage(damage + arrowStuckCount * 2, enemyIndex);
             arrowStuckCount++;
         } else {
-            receiveDamage(damage);
+            receiveDamage(damage, enemyIndex);
         }
     }
 
     // Method to calculate damage from "Fireball" card.
-    public void ReceiveFireballDamage(int damage) {
+    public void ReceiveFireballDamage(int damage, int enemyIndex) {
         if (isBurned) {
-            receiveDamage((int) Math.Round(damage * 1.25));
+            receiveDamage((int) Math.Round(damage * 1.25), enemyIndex);
         } else {
-            receiveDamage(damage);
+            receiveDamage(damage, enemyIndex);
         }
     }
 
@@ -121,7 +122,7 @@ public abstract class Enemy : Unit {
     }
     
 
-    public abstract void EnemyMove(Player player, Enemy[] enemies);
+    public abstract void EnemyMove(Player player, Enemy[] enemies, int index);
     
     // eh shit we need change to abstract later lol
     //overtime damage will be done by stageManager

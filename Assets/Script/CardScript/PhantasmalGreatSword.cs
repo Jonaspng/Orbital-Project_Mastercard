@@ -18,6 +18,6 @@ public class PhantasmalGreatSword : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage));
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
     }
 }

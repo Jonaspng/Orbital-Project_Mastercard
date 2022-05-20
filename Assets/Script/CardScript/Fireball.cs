@@ -18,6 +18,6 @@ public class Fireball : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(damage));
+        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(damage), enemyIndex);
     }
 }

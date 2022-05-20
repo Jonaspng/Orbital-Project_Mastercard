@@ -7,10 +7,10 @@ public class CatArmour : Enemy {
         //empty
     }
 
-    public override void EnemyMove(Player player, Enemy[] enemies) {
+    public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int moveNumber = Random.Range(1, 4);
         if (moveNumber == 1) {
-            player.receiveDamage(this, this.GetFullDamage(6));
+            player.receiveDamage(this, this.GetFullDamage(6), index);
         } else if (moveNumber == 2) {
             this.AddBaseShield(6);
         } else {

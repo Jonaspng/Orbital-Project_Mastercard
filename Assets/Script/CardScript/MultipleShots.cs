@@ -20,7 +20,7 @@ public class MultipleShots : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         for (int i = 0; i < shotCount; i++) {
-            enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage));
+            enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
         }      
     }
 }

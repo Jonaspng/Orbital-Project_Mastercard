@@ -12,7 +12,9 @@ public class StageManager : MonoBehaviour {
 
     public Transform playerBattleStation;
 
-    public Transform enemyBattleStation;
+    public Transform enemy1BattleStation;
+
+    public Transform enemy2BattleStation;
 
     public static StageManager instance;
     
@@ -26,7 +28,7 @@ public class StageManager : MonoBehaviour {
 
     public BattleHUD playerHUD;
 
-    public BattleHUD enemyHUD;
+    public BattleHUD[] enemyHUDs;
 
     public DeckManager deckManager;
     
@@ -56,13 +58,19 @@ public class StageManager : MonoBehaviour {
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         player = playerGO.GetComponent<Player>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        Enemy enemy1 = enemyGO.GetComponent<Enemy>();
-        Enemy[] temp = {enemy1};
+        GameObject enemy1GO = Instantiate(enemyPrefab, enemy1BattleStation);
+        Enemy enemy1 = enemy1GO.GetComponent<Enemy>();
+
+        GameObject enemy2GO = Instantiate(enemyPrefab, enemy2BattleStation);
+        Enemy enemy2 = enemy2GO.GetComponent<Enemy>();
+
+        Enemy[] temp = {enemy1, enemy2};
         enemies = temp;
 
         playerHUD.SetHUD(player);
-        enemyHUD.SetHUD(enemy1);
+
+        enemyHUDs[0].SetHUD(enemy1);
+         enemyHUDs[1].SetHUD(enemy2);
 
         state = BattleState.PLAYERTURN;
     }
@@ -76,7 +84,10 @@ public class StageManager : MonoBehaviour {
             enemy.ResetBaseShield();
             enemy.ResetAttackModifier();
         }
-        enemyHUD.RemoveShieldIcon();
+
+        enemyHUDs[0].RemoveShieldIcon();
+        enemyHUDs[1].RemoveShieldIcon();
+
         state = BattleState.ENEMYTURN;
         EndTurn();
         currentTurn++;
@@ -107,10 +118,9 @@ public class StageManager : MonoBehaviour {
 
 
     public void EndTurn() {
-        foreach(Enemy enemy in enemies) {
-            enemy.EnemyMove(player, enemies);
+        for (int i = 0; i< enemies.Length; i++) {
+            enemies[i].EnemyMove(player, enemies, i);
         }
-        // deckManager.DrawCard(5);
     }
 
     

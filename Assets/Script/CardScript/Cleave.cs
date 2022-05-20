@@ -20,7 +20,7 @@ public class Cleave : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
         foreach (Enemy enemy in enemies) {
-            enemy.receiveDamage(player.GetFullDamage(this.damage));
+            enemy.receiveDamage(player.GetFullDamage(this.damage), enemyindex);
         }
         
     }

@@ -10,16 +10,16 @@ public class CatStaff : Enemy {
         
     }
 
-    public override void EnemyMove(Player player, Enemy[] enemies) {
+    public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int moveNumber = Random.Range(1, 4);
         int numberOfEnemies = enemies.Length;
         if (moveNumber == 1) {
             print("Enemy Attacks");
-            player.receiveDamage(this, this.GetFullDamage(6));
+            player.receiveDamage(this, this.GetFullDamage(6), index);
         } else if (moveNumber == 2) {
             print("Enemy Defends");
             this.AddBaseShield(6);
-            StageManager.instance.enemyHUD.RenderEnemyShieldIcon(6, 0);
+            StageManager.instance.enemyHUDs[index].RenderEnemyShieldIcon(6, 0);
         } else {
             foreach(Enemy enemy in enemies) {
                 this.changeAttackModifier(1.25);

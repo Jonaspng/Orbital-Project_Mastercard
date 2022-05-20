@@ -13,7 +13,7 @@ public abstract class Player : Unit {
         this.shieldModifier = shieldModifier;
     }
 
-    public abstract void receiveDamage(Enemy source, int damage);
+    public abstract void receiveDamage(Enemy source, int damage, int enemyIndex);
 
     public  int getHealth() {
         return health;

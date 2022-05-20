@@ -22,7 +22,7 @@ class PoisonArrow : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        enemies[enemyindex].receiveDamage(player.GetFullDamage(6));
+        enemies[enemyindex].receiveDamage(player.GetFullDamage(6), enemyindex);
 
         // The part that applies poison. Implementation to be improved. 
          int currentTurn = StageManager.instance.currentTurn;

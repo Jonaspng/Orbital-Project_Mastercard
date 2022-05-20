@@ -11,7 +11,7 @@ public class Mage : Player {
         //empty
     }
 
-    public override void receiveDamage(Enemy source, int damage) {
+    public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
         if (isBroken) {
             realDamage = (int) Math.Round(health - damage * 1.25);
@@ -27,7 +27,7 @@ public class Mage : Player {
         }
         if (isReflected) {
                 int reflectedDamage = (int) Math.Round(0.75 * realDamage);
-                source.receiveDamage(reflectedDamage);
+                source.receiveDamage(reflectedDamage, enemyIndex);
         }
         if (realDamage >= this.baseShield) {
             StageManager.instance.playerHUD.RemoveShieldIcon();

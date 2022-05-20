@@ -33,7 +33,7 @@ public class Bash : Cards {
         } else {
             eventManager.Add(currentTurn + 2, newResetEvent);
         }
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage));
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
         enemies[enemyIndex].ChangeIsBroken(true);
     }
 }

@@ -19,6 +19,7 @@ public class CatStaff : Enemy {
         } else if (moveNumber == 2) {
             print("Enemy Defends");
             this.AddBaseShield(6);
+            StageManager.instance.enemyHUD.RenderEnemyShieldIcon(6, 0);
         } else {
             foreach(Enemy enemy in enemies) {
                 this.changeAttackModifier(1.25);

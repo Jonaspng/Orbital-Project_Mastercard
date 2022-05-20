@@ -23,6 +23,7 @@ public abstract class Enemy : Unit {
     public void receiveDamage(int damage) {
         int realDamage;
         if (health <= 0) {
+            realDamage = 0;
             //game over
         } else {
             if (isBroken) {
@@ -38,6 +39,12 @@ public abstract class Enemy : Unit {
             }
             print(health);
             StageManager.instance.enemyHUD.SetHP(this.health);
+        }
+        if (realDamage >= this.baseShield) {
+            print("shield destroyed");
+            StageManager.instance.enemyHUD.RemoveShieldIcon();
+        } else {
+            StageManager.instance.enemyHUD.RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
         }
         
         

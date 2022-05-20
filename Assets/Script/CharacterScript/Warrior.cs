@@ -38,6 +38,11 @@ public class Warrior : Player {
             this.baseShield -= realDamage;
         }
         print(health);
+        if (realDamage >= this.baseShield) {
+            StageManager.instance.playerHUD.RemoveShieldIcon();
+        } else {
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
+        }
         StageManager.instance.playerHUD.SetHP(this.health);
         
     }

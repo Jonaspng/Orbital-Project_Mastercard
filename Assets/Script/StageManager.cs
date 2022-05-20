@@ -33,6 +33,10 @@ public class StageManager : MonoBehaviour {
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> eventManager;
 
+    public GameObject playerIconsPanel;
+
+    public GameObject enemyIconsPanel;
+
     private void Awake() {
         this.manaCount = 3;
         this.currentTurn = 0;
@@ -61,8 +65,8 @@ public class StageManager : MonoBehaviour {
         enemyHUD.SetHUD(enemy1);
 
         state = BattleState.PLAYERTURN;
-        
     }
+
 
 
     
@@ -72,9 +76,11 @@ public class StageManager : MonoBehaviour {
             enemy.ResetBaseShield();
             enemy.ResetAttackModifier();
         }
+        enemyHUD.RemoveShieldIcon();
         state = BattleState.ENEMYTURN;
         EndTurn();
         currentTurn++;
+        playerHUD.RemoveShieldIcon();
         deckManager.RerenderCards();
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] events = eventManager[currentTurn];

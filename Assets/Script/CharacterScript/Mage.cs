@@ -29,6 +29,11 @@ public class Mage : Player {
                 int reflectedDamage = (int) Math.Round(0.75 * realDamage);
                 source.receiveDamage(reflectedDamage);
         }
+        if (realDamage >= this.baseShield) {
+            StageManager.instance.playerHUD.RemoveShieldIcon();
+        } else {
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
+        }
         StageManager.instance.playerHUD.SetHP(this.health);
     
     }

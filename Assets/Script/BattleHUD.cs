@@ -8,6 +8,12 @@ public class BattleHUD : MonoBehaviour {
 
    public Slider hpSlider;
 
+   public GameObject iconsBar;
+
+   public GameObject shieldIcon;
+
+   public bool isShieldIconOn;
+
    public void SetHUD(Unit unit) {
        nameText.text = unit.unitName;
        hpSlider.maxValue = unit.maxHp;
@@ -18,4 +24,34 @@ public class BattleHUD : MonoBehaviour {
    public void SetHP(int hp) {
        hpSlider.value = hp;
    }
+
+   public void RenderPlayerShieldIcon(int shield) {
+       int baseShield = StageManager.instance.player.baseShield;
+       if (!isShieldIconOn) {
+           GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
+           icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
+           isShieldIconOn = true;
+       } else {
+           iconsBar.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
+       }
+   }
+
+   public void RenderEnemyShieldIcon(int shield, int enemyIndex) {
+       int baseShield = StageManager.instance.enemies[enemyIndex].baseShield;
+       if (!isShieldIconOn) {
+           GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
+           icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
+           isShieldIconOn = true;
+       } else {
+           iconsBar.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
+       }
+   }
+
+   public void RemoveShieldIcon() {
+       if (isShieldIconOn) {
+           GameObject.Destroy(iconsBar.transform.GetChild(0).gameObject);
+           isShieldIconOn = false;
+       }
+   }
+
 }

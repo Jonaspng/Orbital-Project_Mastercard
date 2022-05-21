@@ -8,15 +8,6 @@ public class Defend : Cards {
         this.shield = shield;
     }
     
-    public void OnDrop() {
-        int enemyIndex = 0;
-        if (StageManager.instance.manaCount - this.manaCost >= 0) {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
-            StageManager.instance.playerMove(this, enemyIndex);
-            GameObject.Destroy(this.transform.gameObject);
-        } 
-    }
-
     // public void OnMouseDown() {
     //     int enemyIndex = 0;
     //     if (StageManager.instance.manaCount - this.manaCost >= 0) {
@@ -33,10 +24,8 @@ public class Defend : Cards {
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
             StageManager.instance.playerMove(this, enemyIndex);
             GameObject.Destroy(this.transform.gameObject);
-            } 
+        } 
     }
-    
-        
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.changeBaseShield(this.shield);

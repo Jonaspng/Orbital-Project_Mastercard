@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3900921489086196142}
   - component: {fileID: 5835466673081667356}
   - component: {fileID: 6147860276686046734}
+  - component: {fileID: -5250056969541585457}
   m_Layer: 5
   m_Name: Basic Attack
   m_TagString: Untagged
@@ -224,6 +225,24 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-5250056969541585457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293077088777099633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d96ee70568cf1c4cae6b5c114c84a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowHeadSize: 0
+  prefabArrow: {fileID: 5115779313872693514, guid: d4495e26e9a2bf041af13518b7c718c3, type: 3}
+  arrow: {fileID: 0}
+  arrowLine: {fileID: 0}
+  arrowCollider: {fileID: 0}
+  enemies: []
 --- !u!1 &368960833493861396
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,9 +60,11 @@ public class StageManager : MonoBehaviour {
 
         GameObject enemy1GO = Instantiate(enemyPrefab, enemy1BattleStation);
         Enemy enemy1 = enemy1GO.GetComponent<Enemy>();
+        enemy1.enemyIndex = 0;
 
         GameObject enemy2GO = Instantiate(enemyPrefab, enemy2BattleStation);
         Enemy enemy2 = enemy2GO.GetComponent<Enemy>();
+        enemy2.enemyIndex = 1;
 
         Enemy[] temp = {enemy1, enemy2};
         enemies = temp;

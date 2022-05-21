@@ -10,6 +10,10 @@ public class CatStaff : Enemy {
         
     }
 
+    public void OnTriggerEnter2D(Collider2D other) {
+         Debug.Log("test");
+     }
+
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int moveNumber = Random.Range(1, 4);
         int numberOfEnemies = enemies.Length;

@@ -10,10 +10,8 @@ public class BasicAttack : Cards {
         this.damage = damage;
     }
 
-<<<<<<< HEAD
     public void OnDrop() {
         int enemyIndex = 0;
-=======
     // public void OnMouseDown() {
     //     int enemyIndex = 0;
     //     if (StageManager.instance.manaCount - this.manaCost >= 0) {
@@ -23,7 +21,6 @@ public class BasicAttack : Cards {
     // }
 
     public void Testing(int enemyIndex) {
->>>>>>> origin/Test
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerMove(this, enemyIndex);
             GameObject.Destroy(this.transform.gameObject);

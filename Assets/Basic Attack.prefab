@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7393798881285097945}
   - component: {fileID: 2136019875686658488}
   - component: {fileID: 3900921489086196142}
-  - component: {fileID: 6034851435628557692}
   - component: {fileID: 5835466673081667356}
   - component: {fileID: 6147860276686046734}
   m_Layer: 5
@@ -102,24 +101,6 @@ MonoBehaviour:
   manaCost: 1
   turns: 1
   damage: 6
---- !u!114 &6034851435628557692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293077088777099633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d96ee70568cf1c4cae6b5c114c84a65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowHeadSize: 0
-  prefabArrow: {fileID: 5115779313872693514, guid: d4495e26e9a2bf041af13518b7c718c3, type: 3}
-  arrow: {fileID: 0}
-  arrowLine: {fileID: 4257872455814704367, guid: 36f1cc7cb6a9d974fab5df75e65de4df, type: 3}
-  arrowCollider: {fileID: 5452002886385409383, guid: d4495e26e9a2bf041af13518b7c718c3, type: 3}
-  enemies: []
 --- !u!68 &5835466673081667356
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -10,16 +10,6 @@ public class BasicAttack : Cards {
         this.damage = damage;
     }
 
-    public void OnDrop() {
-        int enemyIndex = 0;
-    // public void OnMouseDown() {
-    //     int enemyIndex = 0;
-    //     if (StageManager.instance.manaCount - this.manaCost >= 0) {
-    //         StageManager.instance.playerMove(this, enemyIndex);
-    //         GameObject.Destroy(this.transform.gameObject);
-    //     } 
-    // }
-
     public void Testing(int enemyIndex) {
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerMove(this, enemyIndex);

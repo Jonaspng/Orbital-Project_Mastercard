@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 2523502268626094668}
   - component: {fileID: 6358486581368468013}
   - component: {fileID: 1056704368410120506}
+  - component: {fileID: -348132199762383632}
   m_Layer: 5
   m_Name: Block
   m_TagString: Untagged
@@ -390,6 +391,18 @@ MonoBehaviour:
   manaCost: 1
   turns: 1
   shield: 6
+--- !u!114 &-348132199762383632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722150751326526180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8560427552079790214
 GameObject:
   m_ObjectHideFlags: 0

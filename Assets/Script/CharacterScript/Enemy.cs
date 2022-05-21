@@ -4,6 +4,8 @@ using System;
 [System.Serializable]
 public abstract class Enemy : Unit {
 
+    public int enemyIndex;
+
     public int arrowStuckCount; 
 
     public bool isImmobilised;

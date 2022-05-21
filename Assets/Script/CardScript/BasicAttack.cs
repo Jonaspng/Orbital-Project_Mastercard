@@ -10,7 +10,7 @@ public class BasicAttack : Cards {
         this.damage = damage;
     }
 
-    public void OnMouseDown() {
+    public void OnDrop() {
         int enemyIndex = 0;
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerMove(this, enemyIndex);

@@ -8,7 +8,7 @@ public class Defend : Cards {
         this.shield = shield;
     }
     
-    public void OnMouseDown() {
+    public void OnDrop() {
         int enemyIndex = 0;
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);

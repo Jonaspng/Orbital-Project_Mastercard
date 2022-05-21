@@ -7,18 +7,19 @@
      Camera mainCamera;
      float zAxis = 0;
      Vector3 clickOffset = Vector3.zero;
+
+     Transform parentToReturnTo;
      // Use this for initialization
-     void Start()
-     {
+     void Start() {
+         parentToReturnTo = this.transform.parent;
          mainCamera = Camera.main;
          if (mainCamera.GetComponent<Physics2DRaycaster>() == null)
              mainCamera.gameObject.AddComponent<Physics2DRaycaster>();
      }
  
-     public void OnBeginDrag(PointerEventData eventData)
-     {
-         zAxis=transform.position.z;
-         
+     public void OnBeginDrag(PointerEventData eventData) {
+         this.transform.SetParent(this.transform.parent.parent);
+         zAxis = transform.position.z;
          transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
      }
  
@@ -33,12 +34,14 @@
      }
  
      public void OnEndDrag(PointerEventData eventData) {
-         this.GetComponent<Defend>().Testing();        
+        bool isGODeleted = this.GetComponent<Defend>().Testing();
+        if (!isGODeleted) {
+            this.transform.SetParent(parentToReturnTo);
+        }
      }
  
      //Add Event System to the Camera
-     void addEventSystem()
-     {
+     void addEventSystem() {
          GameObject eventSystem = new GameObject("EventSystem");
          eventSystem.AddComponent<EventSystem>();
          eventSystem.AddComponent<StandaloneInputModule>();

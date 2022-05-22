@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Pommel Strike
   description: Stun an enemy for 1 turn.
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: cc7c36c9b61d42241bec6827bf1377dc, type: 3}
+  frame: {fileID: 21300000, guid: 686540f74222bbe4c9881f3c0d377dc5, type: 3}
   manaCost: 1

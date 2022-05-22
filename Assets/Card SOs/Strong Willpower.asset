@@ -15,6 +15,5 @@ MonoBehaviour:
   cardName: Strong Willpower
   description: For every hit you take, your attacks do 2 more damage for rest of
     combat.
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: 977dcc925721890469b80108bdcc5d2b, type: 3}
+  frame: {fileID: 21300000, guid: 7310171f0de64d04b83b0dcb5eb8f72e, type: 3}
   manaCost: 1

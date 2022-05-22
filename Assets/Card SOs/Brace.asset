@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Brace
   description: Block 10 damage. Draw a card.
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: e206a0d4caf23014387dda79bd9166c8, type: 3}
+  frame: {fileID: 21300000, guid: 22119caa386567a439d1f8fd5484871e, type: 3}
   manaCost: 1

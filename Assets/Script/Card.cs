@@ -8,6 +8,5 @@ public class Card : ScriptableObject
     public string cardName;
     public string description;
     public Sprite frame;
-    public Sprite artwork;
     public int manaCost;
 }

@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1383555610}
   - component: {fileID: 1383555609}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,8 +539,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279703491
-  m_fontColor: {r: 0.764151, g: 0.09131357, b: 0.09131357, a: 1}
+    rgba: 4289536155
+  m_fontColor: {r: 0.6071948, g: 0.12602346, b: 0.6792453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 2087358015}
   - component: {fileID: 2087358014}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Title bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

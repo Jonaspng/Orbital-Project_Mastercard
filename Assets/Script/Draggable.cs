@@ -89,8 +89,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Enemy DetectEnemySelected() {
         enemies = StageManager.instance.enemies;  
         foreach(Enemy enemy in enemies) {
-            if (this.GetComponent<EdgeCollider2D>().IsTouching(enemy.GetComponentInChildren<Collider2D>())) {
-                return enemy;
+            if (enemy != null) {
+                if (this.GetComponent<EdgeCollider2D>().IsTouching(enemy.GetComponentInChildren<Collider2D>())) {
+                    return enemy;
+                }
             }
         }
         return null;

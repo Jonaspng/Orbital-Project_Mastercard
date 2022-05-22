@@ -40,6 +40,10 @@ public abstract class Enemy : Unit {
             } else {
                 this.baseShield -= realDamage;
             }
+            if (health <= 0) {
+                
+                StageManager.instance.DestroyEnemy(enemyIndex);
+            }
             print(health);
             StageManager.instance.enemyHUDs[index].SetHP(this.health);
         }

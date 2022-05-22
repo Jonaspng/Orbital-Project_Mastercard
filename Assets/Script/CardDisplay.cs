@@ -11,7 +11,6 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
     public Image frameImage;
-    public Image artworkImage;
     public TextMeshProUGUI manaText;
 
 
@@ -21,7 +20,6 @@ public class CardDisplay : MonoBehaviour
      nameText.text = card.cardName;
      descriptionText.text = card.description;
      frameImage.sprite = card.frame;
-     artworkImage.sprite = card.artwork;
      manaText.text = card.manaCost.ToString();   
     }
 }

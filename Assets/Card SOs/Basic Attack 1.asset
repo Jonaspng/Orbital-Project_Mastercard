@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316056a0e167fd041b145b9305532a68, type: 3}
-  m_Name: Basic Attack
+  m_Name: Basic Attack 1
   m_EditorClassIdentifier: 
-  cardName: Basic Attack
-  description: Deal 6 damage
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: 0ac0c52d50eddde44b5f591883f975e7, type: 3}
+  cardName: Attack
+  description: Deal 6 Dmg to enemy
+  frame: {fileID: 21300000, guid: 84414ebb6fd2b4349a06906e3eac7855, type: 3}
+  artwork: {fileID: 0}
   manaCost: 1

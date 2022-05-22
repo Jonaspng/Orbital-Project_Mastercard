@@ -3,37 +3,37 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(EdgeCollider2D))]
- public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
  
-     Camera mainCamera;
+    Camera mainCamera;
 
-     Vector3 clickOffset = Vector3.zero;
+    Vector3 clickOffset = Vector3.zero;
 
-     Vector3 touchWorld;
+    Vector3 touchWorld;
 
-     Vector3 startPosition;
+    Vector3 startPosition;
 
-     Transform parentToReturnTo = null;
+    Transform parentToReturnTo = null;
 
-     public float arrowHeadSize;
+    public float arrowHeadSize;
 
-     public GameObject prefabArrow;
+    public GameObject prefabArrow;
 
-     public GameObject arrow;
+    public GameObject arrow;
 
-     public LineRenderer arrowLine;
+    public LineRenderer arrowLine;
 
-     public EdgeCollider2D arrowCollider;
+    public EdgeCollider2D arrowCollider;
 
-     public Enemy[] enemies;
+    public Enemy[] enemies;
      // Use this for initialization
-     void Start() {
-         enemies = StageManager.instance.enemies;             
-         arrowHeadSize = 5.0f;
-         touchWorld = new Vector3();
-         mainCamera = Camera.main;
+    void Start() {
+                   
+        arrowHeadSize = 5.0f;
+        touchWorld = new Vector3();
+        mainCamera = Camera.main;
 
-     }
+    }
  
      public void OnBeginDrag(PointerEventData eventData) {
         //  zAxis = transform.position.z;
@@ -47,7 +47,7 @@ using System.Collections.Generic;
         
      }
 
-     public void DrawArrow(PointerEventData eventData) {
+    public void DrawArrow(PointerEventData eventData) {
          
         touchWorld = Camera.main.ScreenToWorldPoint(
             new Vector3 (eventData.position.x,
@@ -70,7 +70,7 @@ using System.Collections.Generic;
         new Keyframe (1, 0f));
 
         SetCollider();
-        }
+    }
 
     public void SetCollider() {
         List<Vector2> edges = new List<Vector2>();
@@ -87,6 +87,7 @@ using System.Collections.Generic;
      }
 
     public Enemy DetectEnemySelected() {
+        enemies = StageManager.instance.enemies;  
         foreach(Enemy enemy in enemies) {
             if (this.GetComponent<EdgeCollider2D>().IsTouching(enemy.GetComponentInChildren<Collider2D>())) {
                 return enemy;

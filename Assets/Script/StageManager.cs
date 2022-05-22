@@ -16,6 +16,7 @@ public class StageManager : MonoBehaviour {
 
     public Transform enemy2BattleStation;
 
+
     public static StageManager instance;
     
     public Player player;
@@ -77,8 +78,13 @@ public class StageManager : MonoBehaviour {
         state = BattleState.PLAYERTURN;
     }
 
-
-
+    public void DestroyEnemy(int enemyIndex) {
+        GameObject.Destroy(enemies[enemyIndex].gameObject);
+        GameObject.Destroy(enemyHUDs[enemyIndex].gameObject);
+        List<Enemy> temp = new List<Enemy>(enemies);
+        temp.RemoveAt(enemyIndex);
+        enemies = temp.ToArray();
+    }
     
 
     public void OnEndTurnClick() {

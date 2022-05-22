@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Block
   m_EditorClassIdentifier: 
   cardName: Block
-  description: Gain 6 shield
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: db154110ed55e4f4f9121d824b055e53, type: 3}
+  description: Gain 6 Shield
+  frame: {fileID: 21300000, guid: e585156c4b9b29f42bca7d06ccfa1bc1, type: 3}
+  artwork: {fileID: 0}
   manaCost: 1

@@ -1,9 +1,7 @@
  using UnityEngine;
  using UnityEngine.EventSystems;
  
- public class ShieldDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
- {
- 
+ public class ShieldDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
      Camera mainCamera;
      float zAxis = 0;
      Vector3 clickOffset = Vector3.zero;
@@ -23,8 +21,7 @@
          transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
      }
  
-     public void OnDrag(PointerEventData eventData)
-     {
+     public void OnDrag(PointerEventData eventData) {
          //Use Offset To Prevent Sprite from Jumping to where the finger is
          Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position);
          tempVec.z = zAxis; //Make sure that the z zxis never change

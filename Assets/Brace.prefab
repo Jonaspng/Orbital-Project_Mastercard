@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 242343737347120110}
   - component: {fileID: 8675160428173222799}
   - component: {fileID: 6589489952387366226}
+  - component: {fileID: -5774329060446965523}
   m_Layer: 5
   m_Name: Brace
   m_TagString: Untagged
@@ -579,3 +580,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5774329060446965523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048642215604456262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d564b61dcf6514eb3507374984654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 0
+  turns: 0
+  shield: 0

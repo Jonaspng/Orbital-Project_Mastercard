@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 203638304004779830}
   - component: {fileID: 6341224501981247240}
   - component: {fileID: 5189285968903127577}
+  - component: {fileID: 5720503625403981583}
   m_Layer: 5
   m_Name: Bash
   m_TagString: Untagged
@@ -710,3 +711,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &5720503625403981583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133081325716529817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f73ce9888d709441bf6edf021065f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 2
+  turns: 0
+  damage: 8

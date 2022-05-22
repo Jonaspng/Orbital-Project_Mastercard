@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 5295136405719810200}
   - component: {fileID: 3622227445169322233}
   - component: {fileID: 1248186401338123812}
+  - component: {fileID: -5106472772004392693}
   m_Layer: 5
   m_Name: Strong Willpower
   m_TagString: Untagged
@@ -365,6 +366,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5106472772004392693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166363029711065136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323da2f08c911164ab793d22719f3238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 1
+  turns: 0
 --- !u!1 &7004189593887660258
 GameObject:
   m_ObjectHideFlags: 0

@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 204399867152177358}
   - component: {fileID: 6342710377112420592}
   - component: {fileID: 5188524409941652961}
+  - component: {fileID: 5890696616524555094}
   m_Layer: 5
   m_Name: Phantasmal GreatSword
   m_TagString: Untagged
@@ -710,3 +711,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &5890696616524555094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131719489253430625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ab6f9cdac47a439a493ba431c6bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 3
+  turns: 0
+  damage: 20

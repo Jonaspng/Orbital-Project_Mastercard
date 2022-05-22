@@ -5,6 +5,6 @@ using UnityEngine.UI;
 public class Start : MonoBehaviour {
     
     public void StartButton() {
-        SceneManager.LoadScene("Stage 1");
+        SceneManager.LoadScene("Character Selection");
     }
 }

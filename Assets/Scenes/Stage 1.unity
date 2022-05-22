@@ -1535,7 +1535,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  playerPrefab: {fileID: 9020239396726545674, guid: a540e3ef95f78584c813a2dee149011e, type: 3}
+  WarriorPrefab: {fileID: 7919264731247161561, guid: 4df59c286e2310c4f9ded6ed29a41901, type: 3}
+  ArcherPrefab: {fileID: 5002011742762386276, guid: 26f8526dac6e0d14095a52a8f6a3f03e, type: 3}
+  MagePrefab: {fileID: 9020239396726545674, guid: a540e3ef95f78584c813a2dee149011e, type: 3}
+  confirmedCharacter: {fileID: 0}
   enemyPrefab: {fileID: 1270119128613213266, guid: 6917b45f3b27ec34ea1bd2fe5ff4258c, type: 3}
   playerBattleStation: {fileID: 707969626}
   enemy1BattleStation: {fileID: 272738093}

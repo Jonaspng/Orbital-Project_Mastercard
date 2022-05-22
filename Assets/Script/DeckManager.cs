@@ -78,7 +78,6 @@ public class DeckManager : MonoBehaviour {
         currentHand.ResetDeck();
         int numOfCardLeft = unusedPile.cardList.Count;
         if (numOfCardLeft < numOfCards) {
-            print("test");
             this.Draw(numOfCardLeft);       
             usedPile.CopyTo(unusedPile);
             usedPile.ResetDeck();

@@ -1,12 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class StageManager : MonoBehaviour {
 
     public BattleState state;
 
-    public GameObject playerPrefab;
+    public GameObject WarriorPrefab;
+
+    public GameObject ArcherPrefab;
+
+    public GameObject MagePrefab;
+
+    public GameObject confirmedCharacter;
 
     public GameObject enemyPrefab;
 
@@ -18,6 +25,8 @@ public class StageManager : MonoBehaviour {
 
 
     public static StageManager instance;
+
+    public string playerType;
     
     public Player player;
 
@@ -47,18 +56,30 @@ public class StageManager : MonoBehaviour {
     }
 
     private void Start() {
+        
         state = BattleState.START;
         eventManager = new Dictionary<int, AbstractEvent[]>();
         deckManager.Initialise();
         InitialiseBattle();
-         
+             
     }
 
 
     public void InitialiseBattle() {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+        GameObject playerGO = null;
+        playerType = PlayerPrefs.GetString("character");
+        if (playerType == "Warrior") {
+            print("warrior selected");
+            playerGO = Instantiate(WarriorPrefab, playerBattleStation);
+        } else if (playerType == "Archer") {
+            playerGO = Instantiate(ArcherPrefab, playerBattleStation);
+        } else {
+            playerGO = Instantiate(MagePrefab, playerBattleStation);
+        }
+
         player = playerGO.GetComponent<Player>();
 
+        
         GameObject enemy1GO = Instantiate(enemyPrefab, enemy1BattleStation);
         Enemy enemy1 = enemy1GO.GetComponent<Enemy>();
         enemy1.enemyIndex = 0;
@@ -81,16 +102,17 @@ public class StageManager : MonoBehaviour {
     public void DestroyEnemy(int enemyIndex) {
         GameObject.Destroy(enemies[enemyIndex].gameObject);
         GameObject.Destroy(enemyHUDs[enemyIndex].gameObject);
-        List<Enemy> temp = new List<Enemy>(enemies);
-        temp.RemoveAt(enemyIndex);
-        enemies = temp.ToArray();
+        enemies[enemyIndex] = null;
     }
     
 
     public void OnEndTurnClick() {
         foreach(Enemy enemy in enemies) {
-            enemy.ResetBaseShield();
-            enemy.ResetAttackModifier();
+            if (enemy != null) {
+                enemy.ResetBaseShield();
+                enemy.ResetAttackModifier();
+            }
+            
         }
 
         enemyHUDs[0].RemoveShieldIcon();
@@ -127,7 +149,9 @@ public class StageManager : MonoBehaviour {
 
     public void EndTurn() {
         for (int i = 0; i< enemies.Length; i++) {
-            enemies[i].EnemyMove(player, enemies, i);
+            if (enemies[i] != null) {
+                enemies[i].EnemyMove(player, enemies, i);
+            }
         }
     }
 

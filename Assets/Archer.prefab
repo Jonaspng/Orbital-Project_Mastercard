@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 741694909277460703}
-  - component: {fileID: 5419709912371049024}
+  - component: {fileID: -8443845510419234344}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5419709912371049024
+--- !u!114 &-8443845510419234344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,20 +42,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5002011742762386276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27be1fae4652cd4bb019298909a0793, type: 3}
+  m_Script: {fileID: 11500000, guid: f96a1edf0aa991f4abe9410cde0f07d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: 
-  health: 60
-  maxHp: 60
+  health: 40
+  maxHp: 40
   baseAttack: 0
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
   isBroken: 0
-  isStrongWillpower: 0
-  isEndure: 0
-  hitCount: 0
+  evasionCount: 0
+  isStickyArrowEnabled: 0
+  isStealthed: 0
 --- !u!1 &8463407293110028209
 GameObject:
   m_ObjectHideFlags: 0

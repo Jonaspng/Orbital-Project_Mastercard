@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3860355629976498908}
-  - component: {fileID: 848711883095787958}
   - component: {fileID: 1134703103269041335}
   - component: {fileID: 5681177970837104122}
+  - component: {fileID: -1318351765171368983}
   m_Layer: 5
   m_Name: Sword Cat
   m_TagString: Untagged
@@ -119,31 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &848711883095787958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9038107951471341259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6990e66340e9643adcdbb8af9af59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  health: 30
-  maxHp: 30
-  baseAttack: 0
-  attackModifier: 1
-  baseShield: 0
-  shieldModifier: 1
-  enemyIndex: 0
-  arrowStuckCount: 0
-  isImmobilised: 0
-  isBurned: 0
-  isBroken: 0
-  isPoisoned: 0
 --- !u!61 &1134703103269041335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,3 +166,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1318351765171368983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038107951471341259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572116b017266bf4b834f8716be723dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: 
+  health: 40
+  maxHp: 40
+  baseAttack: 8
+  attackModifier: 1
+  baseShield: 0
+  shieldModifier: 1
+  enemyIndex: 0
+  arrowStuckCount: 0
+  isImmobilised: 0
+  isBurned: 0
+  isBroken: 0
+  isPoisoned: 0

@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3607351733921187505}
-  - component: {fileID: 8318792474855992366}
+  - component: {fileID: -4380994866705931044}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8318792474855992366
+--- !u!114 &-4380994866705931044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,17 +126,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 9020239396726545674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27be1fae4652cd4bb019298909a0793, type: 3}
+  m_Script: {fileID: 11500000, guid: bfc01df66d0600b4ea040da4dbb41b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: 
-  health: 60
-  maxHp: 60
+  health: 50
+  maxHp: 50
   baseAttack: 0
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
   isBroken: 0
-  isStrongWillpower: 0
-  isEndure: 0
-  hitCount: 0
+  isReflected: 0

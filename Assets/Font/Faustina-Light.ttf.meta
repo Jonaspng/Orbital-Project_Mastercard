@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: b88e6f694ced95b46b646c00764d0940
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Faustina
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 52879f8cb3004c541aaa32c464dc18b8, type: 3}
+  - {fileID: 12800000, guid: 6067783c19a8e744ba128a3b2f7b933f, type: 3}
+  - {fileID: 12800000, guid: 589fce71454093243864bedbd29a1da0, type: 3}
+  - {fileID: 12800000, guid: 9209d103ac2bec54e86702e4b11aaf82, type: 3}
+  - {fileID: 12800000, guid: 20cf86176955d144ca219f20ed9e2337, type: 3}
+  - {fileID: 12800000, guid: f2b3a2d111780e84aacb0bb2031fabea, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 585783620081476764}
   - component: {fileID: 8644329421353106376}
   - component: {fileID: 922804600902402985}
-  - component: {fileID: 3447711834447404404}
+  - component: {fileID: 5754286517084894987}
   m_Layer: 5
   m_Name: Ancient Power
   m_TagString: Untagged
@@ -83,7 +83,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &3447711834447404404
+--- !u!114 &5754286517084894987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548085058244782944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2467739218840039682

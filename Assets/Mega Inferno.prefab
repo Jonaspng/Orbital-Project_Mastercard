@@ -495,7 +495,8 @@ GameObject:
   - component: {fileID: 7690515592147615603}
   - component: {fileID: 1544171693084827687}
   - component: {fileID: 7950359480609216582}
-  - component: {fileID: 5567460224586516123}
+  - component: {fileID: 5751970878957194082}
+  - component: {fileID: 1951087360350529849}
   m_Layer: 5
   m_Name: Mega Inferno
   m_TagString: Untagged
@@ -567,7 +568,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &5567460224586516123
+--- !u!114 &5751970878957194082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,6 +577,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8638127417647984783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1951087360350529849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638127417647984783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5a8914aaac272449189da806be9fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  manaCost: 2
+  turns: 1
+  damage: 10

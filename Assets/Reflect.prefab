@@ -225,7 +225,8 @@ GameObject:
   - component: {fileID: 6234577567919790021}
   - component: {fileID: 2977556182077343889}
   - component: {fileID: 5938772056600146160}
-  - component: {fileID: 8177428584687562285}
+  - component: {fileID: 5553305568536840043}
+  - component: {fileID: 8639727635421013150}
   m_Layer: 5
   m_Name: Reflect
   m_TagString: Untagged
@@ -297,7 +298,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &8177428584687562285
+--- !u!114 &5553305568536840043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,9 +307,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5467180237992073273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8639727635421013150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467180237992073273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b817f5adef83d845bdd54898fe5947d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  manaCost: 2
+  turns: 1
 --- !u!1 &8246391488910919277
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,9 @@ class StunEvent : AbstractEvent {
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
+        if (enemies[this.enemyIndex] != null) {
         enemies[this.enemyIndex].ChangeIsImmobilised(this.isImmobilised);
+        }
     }   
 
 

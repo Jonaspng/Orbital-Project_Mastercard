@@ -281,8 +281,8 @@ GameObject:
   - component: {fileID: 3461234002914385763}
   - component: {fileID: 5755328928339214391}
   - component: {fileID: 3812208027414018134}
-  - component: {fileID: 1725267061881448075}
   - component: {fileID: -2616618254846024360}
+  - component: {fileID: 1797075444674429447}
   m_Layer: 5
   m_Name: Swords Dance
   m_TagString: Untagged
@@ -354,18 +354,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &1725267061881448075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265740632500523167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2616618254846024360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,9 +366,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ed30dc4b2c29e49b2cf7910ff6a5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   manaCost: 1
   turns: 0
   attackModifier: 2
+--- !u!114 &1797075444674429447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265740632500523167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7462731730260203597
 GameObject:
   m_ObjectHideFlags: 0

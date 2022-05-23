@@ -43,6 +43,7 @@ public abstract class Enemy : Unit {
             if (health <= 0) {
                 
                 StageManager.instance.DestroyEnemy(enemyIndex);
+                return;
             }
             print(health);
             StageManager.instance.enemyHUDs[index].SetHP(this.health);

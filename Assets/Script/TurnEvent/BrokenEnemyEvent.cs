@@ -12,7 +12,10 @@ class BrokenEnemyEvent : AbstractEvent {
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        enemies[this.enemyIndex].ChangeIsBroken(this.isBroken);
+        if (enemies[this.enemyIndex] != null) {
+            enemies[this.enemyIndex].ChangeIsBroken(this.isBroken);
+        }
+        
     }
 
   

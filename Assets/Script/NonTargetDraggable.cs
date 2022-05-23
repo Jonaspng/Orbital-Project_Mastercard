@@ -1,7 +1,7 @@
  using UnityEngine;
  using UnityEngine.EventSystems;
  
- public class ShieldDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+ public class NonTargetDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
      Camera mainCamera;
      float zAxis = 0;
      Vector3 clickOffset = Vector3.zero;
@@ -31,8 +31,8 @@
      }
  
      public void OnEndDrag(PointerEventData eventData) {
-        bool isGODeleted = this.GetComponent<Defend>().Testing();
-        if (!isGODeleted) {
+        this.GetComponent<Cards>().OnDrop(0);
+        if (StageManager.instance.manaCount <= 0) {
             this.transform.SetParent(parentToReturnTo);
         }
      }

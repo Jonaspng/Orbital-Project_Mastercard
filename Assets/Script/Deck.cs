@@ -10,6 +10,10 @@ public class Deck {
         this.cardList = new List<GameObject>(); 
     }
 
+    public Deck(List<GameObject> cardList) {   
+        this.cardList = cardList; 
+    }
+
     public void AddCard(GameObject card) {
         this.cardList.Add(card);
     }

@@ -495,8 +495,8 @@ GameObject:
   - component: {fileID: 7458668447163114468}
   - component: {fileID: 1753395286817193136}
   - component: {fileID: 7164639400410924241}
-  - component: {fileID: 4646351230313257484}
   - component: {fileID: -3586185555083745259}
+  - component: {fileID: 4766218387387058573}
   m_Layer: 5
   m_Name: Adrenaline
   m_TagString: Untagged
@@ -568,18 +568,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &4646351230313257484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851960713911315480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-3586185555083745259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +580,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b961ec0dbea83254fb83f33a9b043221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
-  turns: 0
-  damageModifier: 0
+  id: 0
+  manaCost: 1
+  turns: 1
+  damageModifier: 1.25
+--- !u!114 &4766218387387058573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851960713911315480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

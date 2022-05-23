@@ -19,9 +19,12 @@ public class StageManager : MonoBehaviour {
 
     public Transform playerBattleStation;
 
+    public int enemyCount = 2;
+
     public Transform enemy1BattleStation;
 
     public Transform enemy2BattleStation;
+
 
 
     public static StageManager instance;
@@ -94,7 +97,7 @@ public class StageManager : MonoBehaviour {
         playerHUD.SetHUD(player);
 
         enemyHUDs[0].SetHUD(enemy1);
-         enemyHUDs[1].SetHUD(enemy2);
+        enemyHUDs[1].SetHUD(enemy2);
 
         state = BattleState.PLAYERTURN;
     }
@@ -103,6 +106,15 @@ public class StageManager : MonoBehaviour {
         GameObject.Destroy(enemies[enemyIndex].gameObject);
         GameObject.Destroy(enemyHUDs[enemyIndex].gameObject);
         enemies[enemyIndex] = null;
+        enemyHUDs[enemyIndex] = null;
+        enemyCount -= 1;
+        if (enemyCount == 0) {
+            foreach (Transform obj in GameObject.Find("Current Hand").transform) {
+                GameObject.Destroy(obj.gameObject);
+            }
+            deckManager.GenerateNewCards();
+            this.GetComponent<PopUpMenu>().PopUp();
+        }
     }
     
 
@@ -115,8 +127,11 @@ public class StageManager : MonoBehaviour {
             
         }
 
-        enemyHUDs[0].RemoveShieldIcon();
-        enemyHUDs[1].RemoveShieldIcon();
+        for (int i = 0; i < enemyHUDs.Length; i ++) {
+            if (enemyHUDs[i] != null) {
+                enemyHUDs[i].RemoveShieldIcon();
+            }
+        }
 
         state = BattleState.ENEMYTURN;
         EndTurn();

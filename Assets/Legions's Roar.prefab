@@ -225,8 +225,8 @@ GameObject:
   - component: {fileID: 6694480329714444493}
   - component: {fileID: 2535630710811621273}
   - component: {fileID: 6343593408609161208}
-  - component: {fileID: 8871588620972003621}
   - component: {fileID: -7115738944363022285}
+  - component: {fileID: 8103329372879550778}
   m_Layer: 5
   m_Name: Legions's Roar
   m_TagString: Untagged
@@ -298,18 +298,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &8871588620972003621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737059300068812593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-7115738944363022285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,8 +310,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e0a13074469014bb949c6b60582b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   manaCost: 1
   turns: 0
+--- !u!114 &8103329372879550778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737059300068812593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8573066726001376595
 GameObject:
   m_ObjectHideFlags: 0

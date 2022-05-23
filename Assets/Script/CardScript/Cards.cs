@@ -3,9 +3,11 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Cards : MonoBehaviour {
 
-   public int manaCost;
+    public int id;
 
-   public int turns;
+    public int manaCost;
+
+    public int turns;
 
     public Cards(int manaCost, int turns) {
         this.manaCost = manaCost;
@@ -13,5 +15,7 @@ public abstract class Cards : MonoBehaviour {
     }
 
     public abstract void executeCard(Player player, Enemy[] enemies, int enemyindex);
+
+    public abstract void OnDrop(int enemyIndex);
 
 }

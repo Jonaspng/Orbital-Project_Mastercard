@@ -20,8 +20,11 @@ public class DeckManager : MonoBehaviour {
     
     public List<GameObject> prefabList;
 
-    public GameObject panel;
+    public GameObject currentHandPanel;
 
+    public GameObject cardselectionPanel;
+
+    public List<GameObject> peekDeck;
 
 
     void Start() {
@@ -68,10 +71,51 @@ public class DeckManager : MonoBehaviour {
     public void Draw(int numOfDraws) {
         for (int i = 0; i < numOfDraws; i++) {
                 currentHand.AddCard(unusedPile.cardList[0]);
-                Instantiate(currentHand.cardList[i]).transform.SetParent(panel.transform, false);
+                Instantiate(currentHand.cardList[i]).transform.SetParent(currentHandPanel.transform, false);
                 usedPile.AddCard(unusedPile.cardList[0]);
                 unusedPile.RemoveCard(unusedPile.cardList[0]);
             }
+    }
+
+    public void DisableAllScripts(GameObject obj) {
+        foreach (MonoBehaviour c in obj.GetComponents<MonoBehaviour>()) {
+            if (!(c is CardDisplay)) {
+                c.enabled = false;
+            }
+            
+        }
+    }
+
+    public void GenerateNewCards() {
+        string playerType = PlayerPrefs.GetString("character");
+        List<GameObject> newList = null;
+        if (playerType == "Warrior") {
+            newList = prefabList.GetRange(6, 10);
+            Deck warriorDeck = new Deck(newList);
+            Deck.Shuffle(warriorDeck);
+            for (int i = 0; i < 3; i ++) {
+                Instantiate(warriorDeck.cardList[i]).transform.SetParent(cardselectionPanel.transform, false);
+            }
+        } else if (playerType == "Archer") {
+            newList = prefabList.GetRange(16, 10);
+            Deck archerDeck= new Deck(newList);
+            Deck.Shuffle(archerDeck);
+            peekDeck = archerDeck.cardList;
+            for (int i = 0; i < 3; i ++) {
+                GameObject temp = Instantiate(archerDeck.cardList[i]);
+                temp.transform.SetParent(cardselectionPanel.transform, false);
+                DisableAllScripts(temp);
+                temp.AddComponent<CardSelection>();
+            }
+
+        } else {
+            newList = prefabList.GetRange(26, 10);
+            Deck mageDeck= new Deck(newList);
+            Deck.Shuffle(mageDeck);
+            for (int i = 0; i < 3; i ++) {
+                Instantiate(mageDeck.cardList[i]).transform.SetParent(cardselectionPanel.transform, false);
+            }
+        }
     }
 
     public void DrawCard(int numOfCards) {
@@ -90,10 +134,9 @@ public class DeckManager : MonoBehaviour {
 
     public void RerenderCards() {
         // destroy cards left on panel
-        foreach (Transform obj in panel.transform) {
+        foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }
-
         DrawCard(5);
     }
    

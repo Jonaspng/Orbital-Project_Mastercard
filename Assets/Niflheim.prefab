@@ -495,7 +495,8 @@ GameObject:
   - component: {fileID: 7540837960535716141}
   - component: {fileID: 1689339118871670393}
   - component: {fileID: 7802797312020026904}
-  - component: {fileID: 5719523770089343173}
+  - component: {fileID: 4778745328382929753}
+  - component: {fileID: 690057993339941774}
   m_Layer: 5
   m_Name: Niflheim
   m_TagString: Untagged
@@ -567,7 +568,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &5719523770089343173
+--- !u!114 &4778745328382929753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,6 +577,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8501819858167856849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &690057993339941774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501819858167856849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907f5c5bd625f046bf388c50db6215c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  manaCost: 3
+  turns: 1
+  damage: 25

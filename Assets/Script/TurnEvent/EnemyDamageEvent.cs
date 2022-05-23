@@ -12,7 +12,9 @@ class EnemyDamageEvent : AbstractEvent {
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        enemies[enemyIndex].changeBaseAttack(this.damage);
+        if (enemies[this.enemyIndex] != null) {
+            enemies[enemyIndex].changeBaseAttack(this.damage);
+        }
     }
    
 

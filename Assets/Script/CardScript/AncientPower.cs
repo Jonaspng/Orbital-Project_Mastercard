@@ -11,8 +11,7 @@ public class AncientPower : Cards {
         this.damage = damage;
     }
 
-    public void OnMouseDown() {
-        int enemyIndex = 0;
+    public override void OnDrop(int enemyIndex) {
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerMove(this, enemyIndex);
             GameObject.Destroy(this.transform.gameObject);

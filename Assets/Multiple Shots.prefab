@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb20fbe95bd76b9449957533c357df7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 78d3f35adf14d3444b37cebe0cb5d56b, type: 2}
+  card: {fileID: 11400000, guid: deb4b5454f404cc42ada156885ecead0, type: 2}
   nameText: {fileID: 3997555639306662766}
   descriptionText: {fileID: 2511889873804853165}
   frameImage: {fileID: 1731466591088643997}
@@ -453,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d894db8516949e54d94a25d25f97e397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 25
   manaCost: 1
   turns: 0
   shotCount: 0

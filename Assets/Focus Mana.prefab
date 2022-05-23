@@ -495,7 +495,8 @@ GameObject:
   - component: {fileID: 9109038773045811627}
   - component: {fileID: 125540412157888255}
   - component: {fileID: 8828924975872704158}
-  - component: {fileID: 6453775073474043971}
+  - component: {fileID: 5517702748782593967}
+  - component: {fileID: 407147432296730608}
   m_Layer: 5
   m_Name: Focus Mana
   m_TagString: Untagged
@@ -567,7 +568,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &6453775073474043971
+--- !u!114 &5517702748782593967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -576,6 +577,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7148117168952972887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &407147432296730608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148117168952972887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f5cf0dabc4067479d5d71acccebf7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  manaCost: 1
+  turns: 1
+  manaGained: 2

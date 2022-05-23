@@ -103,7 +103,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
      public void OnEndDrag(PointerEventData eventData) {
         Enemy enemySelected = DetectEnemySelected();
         if (enemySelected != null) {
-            this.gameObject.GetComponent<BasicAttack>().Testing(enemySelected.enemyIndex);
+            this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
         }
         arrowLine.enabled = false;
 

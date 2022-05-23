@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1197348267156520702}
   - component: {fileID: 8019249788342788522}
   - component: {fileID: 1473450154137459147}
-  - component: {fileID: 3991439807465916182}
   - component: {fileID: 8300739641531029915}
+  - component: {fileID: 3371855438166342988}
   m_Layer: 5
   m_Name: Dodge
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb20fbe95bd76b9449957533c357df7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 87804a12234662346b100ccf252b975e, type: 2}
+  card: {fileID: 11400000, guid: 2de6fc6ee98374d48a551758e0470bcf, type: 2}
   nameText: {fileID: 8643020322068609667}
   descriptionText: {fileID: 7085288200244295232}
   frameImage: {fileID: 6381426042498811504}
@@ -84,18 +84,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &3991439807465916182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992812642097492226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8300739641531029915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,9 +96,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38475c54bcea064da6edd58e04dcdb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 18
   manaCost: 1
   turns: 0
   evasionCount: 1
+--- !u!114 &3371855438166342988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992812642097492226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3776672897551462230
 GameObject:
   m_ObjectHideFlags: 0

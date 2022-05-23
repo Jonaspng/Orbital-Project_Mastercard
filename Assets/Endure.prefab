@@ -281,8 +281,8 @@ GameObject:
   - component: {fileID: 3235900276120818126}
   - component: {fileID: 5998784801505693338}
   - component: {fileID: 2884362959580411643}
-  - component: {fileID: 797592971084179494}
   - component: {fileID: -9123234759423907410}
+  - component: {fileID: 2720636906000066900}
   m_Layer: 5
   m_Name: Endure
   m_TagString: Untagged
@@ -354,18 +354,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &797592971084179494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3581138069869485618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-9123234759423907410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,8 +366,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af78d13b44a63424a8da022cef1fa6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   manaCost: 1
-  turns: 0
+  turns: 1
+--- !u!114 &2720636906000066900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581138069869485618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7378378000769222942
 GameObject:
   m_ObjectHideFlags: 0

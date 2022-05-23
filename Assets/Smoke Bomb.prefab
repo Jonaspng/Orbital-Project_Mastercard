@@ -495,8 +495,8 @@ GameObject:
   - component: {fileID: 8152617960391889262}
   - component: {fileID: 1077527997686713914}
   - component: {fileID: 8488300321224816219}
-  - component: {fileID: 6258400857624668294}
   - component: {fileID: 287171023398713420}
+  - component: {fileID: 1266108833840869099}
   m_Layer: 5
   m_Name: Smoke Bomb
   m_TagString: Untagged
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb20fbe95bd76b9449957533c357df7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 020aa87d7706d7448a6927b99e9510af, type: 2}
+  card: {fileID: 11400000, guid: 83af2f5d75c19fc4193c684a57457b05, type: 2}
   nameText: {fileID: 1606678958903547155}
   descriptionText: {fileID: 282107353539025360}
   frameImage: {fileID: 4121178610276657632}
@@ -568,18 +568,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.95947, y: 138.91913}
   m_EdgeRadius: 0
---- !u!114 &6258400857624668294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816299411261562514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207ecfd2db0e6f14c84d9b404f92ff7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &287171023398713420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,5 +580,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1a7b619cbdf1340a6d0068ea01ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 20
   manaCost: 1
   turns: 0
+--- !u!114 &1266108833840869099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816299411261562514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

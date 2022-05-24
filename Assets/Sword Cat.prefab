@@ -181,7 +181,7 @@ MonoBehaviour:
   unitName: 
   health: 40
   maxHp: 40
-  baseAttack: 8
+  baseAttack: 0
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1

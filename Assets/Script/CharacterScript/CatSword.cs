@@ -13,10 +13,13 @@ public class CatSword : Enemy {
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int moveNumber = Random.Range(1, 4);
         if (moveNumber == 1) {
+            print("Cat attack with " + this.GetFullDamage(6));
             player.receiveDamage(this, this.GetFullDamage(6), index);
         } else if (moveNumber == 2) {
             this.AddBaseShield(6);
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, index);
         } else {
+            print("Cat attack with " + this.GetFullDamage(6) + " broken");
             player.receiveDamage(this, this.GetFullDamage(6), index);
             
             int currentTurn = StageManager.instance.currentTurn;

@@ -19,19 +19,23 @@ public class StageManager : MonoBehaviour {
 
     public Transform playerBattleStation;
 
-    public int enemyCount = 2;
+    public int enemyCount;
 
     public Transform enemy1BattleStation;
 
     public Transform enemy2BattleStation;
 
+    public Transform enemy3BattleStation;
 
+    public Transform enemy4BattleStation;
 
     public static StageManager instance;
 
     public string playerType;
     
     public Player player;
+
+    public GameObject playerGO;
 
     public Enemy[] enemies;
 
@@ -53,8 +57,7 @@ public class StageManager : MonoBehaviour {
     public GameObject enemyIconsPanel;
 
     private void Awake() {
-        this.manaCount = 3;
-        this.currentTurn = 0;
+        
         instance = this;
     }
 
@@ -62,51 +65,22 @@ public class StageManager : MonoBehaviour {
         
         state = BattleState.START;
         eventManager = new Dictionary<int, AbstractEvent[]>();
-        deckManager.Initialise();
         InitialiseBattle();
              
     }
 
 
     public void InitialiseBattle() {
-        GameObject playerGO = null;
-        playerType = PlayerPrefs.GetString("character");
-        if (playerType == "Warrior") {
-            print("warrior selected");
-            playerGO = Instantiate(WarriorPrefab, playerBattleStation);
-        } else if (playerType == "Archer") {
-            playerGO = Instantiate(ArcherPrefab, playerBattleStation);
-        } else {
-            playerGO = Instantiate(MagePrefab, playerBattleStation);
-        }
-
-        player = playerGO.GetComponent<Player>();
-
-        
-        GameObject enemy1GO = Instantiate(enemyPrefab, enemy1BattleStation);
-        Enemy enemy1 = enemy1GO.GetComponent<Enemy>();
-        enemy1.enemyIndex = 0;
-
-        GameObject enemy2GO = Instantiate(enemyPrefab, enemy2BattleStation);
-        Enemy enemy2 = enemy2GO.GetComponent<Enemy>();
-        enemy2.enemyIndex = 1;
-
-        Enemy[] temp = {enemy1, enemy2};
-        enemies = temp;
-
-        playerHUD.SetHUD(player);
-
-        enemyHUDs[0].SetHUD(enemy1);
-        enemyHUDs[1].SetHUD(enemy2);
-
+        this.manaCount = 3;
+        this.currentTurn = 0;
+        GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
+        deckManager.Initialise();
         state = BattleState.PLAYERTURN;
     }
 
     public void DestroyEnemy(int enemyIndex) {
-        GameObject.Destroy(enemies[enemyIndex].gameObject);
-        GameObject.Destroy(enemyHUDs[enemyIndex].gameObject);
+        GameObject.Destroy(enemies[enemyIndex].transform.parent.parent.gameObject);
         enemies[enemyIndex] = null;
-        enemyHUDs[enemyIndex] = null;
         enemyCount -= 1;
         if (enemyCount == 0) {
             foreach (Transform obj in GameObject.Find("Current Hand").transform) {
@@ -123,16 +97,10 @@ public class StageManager : MonoBehaviour {
             if (enemy != null) {
                 enemy.ResetBaseShield();
                 enemy.ResetAttackModifier();
+                enemy.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
             }
             
         }
-
-        for (int i = 0; i < enemyHUDs.Length; i ++) {
-            if (enemyHUDs[i] != null) {
-                enemyHUDs[i].RemoveShieldIcon();
-            }
-        }
-
         state = BattleState.ENEMYTURN;
         EndTurn();
         currentTurn++;

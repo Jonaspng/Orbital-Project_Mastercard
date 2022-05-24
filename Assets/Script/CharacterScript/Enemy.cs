@@ -46,13 +46,13 @@ public abstract class Enemy : Unit {
                 return;
             }
             print(health);
-            StageManager.instance.enemyHUDs[index].SetHP(this.health);
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
-            StageManager.instance.enemyHUDs[index].RemoveShieldIcon();
+            this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
-            StageManager.instance.enemyHUDs[index].RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
         }
         
         

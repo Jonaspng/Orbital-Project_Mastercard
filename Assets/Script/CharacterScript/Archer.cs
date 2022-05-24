@@ -24,7 +24,7 @@ public class Archer : Player {
         // Effective damage calculation
         int realDamage;
         if (isBroken) {
-            realDamage = (int) Math.Round(health - damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25);
         } else {
             realDamage = damage;
         }
@@ -34,7 +34,7 @@ public class Archer : Player {
             if (isStealthed) {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
-                    health -= realDamage + this.baseShield;
+                    health = health - realDamage + this.baseShield;
                     ResetBaseShield();
                 } else if (evasionCount > 0) {
                     health -= 0;
@@ -45,7 +45,7 @@ public class Archer : Player {
                     health -= 0;
                     evasionCount--;
                 } else {
-                    health -= realDamage + this.baseShield;
+                    health = health - realDamage + this.baseShield;
                     ResetBaseShield();
                 }           
             }

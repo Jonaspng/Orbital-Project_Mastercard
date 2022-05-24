@@ -13,9 +13,11 @@ public class CatArmour : Enemy {
             player.receiveDamage(this, this.GetFullDamage(6), index);
         } else if (moveNumber == 2) {
             this.AddBaseShield(6);
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, index);
         } else {
             foreach (Enemy enemy in enemies) {
                 enemy.AddBaseShield(6);
+                enemy.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, 0);
             }
             
         }

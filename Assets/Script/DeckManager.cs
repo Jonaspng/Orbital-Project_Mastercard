@@ -27,7 +27,19 @@ public class DeckManager : MonoBehaviour {
     public List<GameObject> peekDeck;
 
 
-    void Start() {
+
+     public void DeckIdToDeck() {
+        foreach (int id in currentDeckID.cardIDList) {
+            currentDeck.AddCard(prefabList[id]);            
+        }
+    }
+
+    public void SaveJson(DeckID newDeck) {
+        string json = JsonUtility.ToJson(newDeck);
+        File.WriteAllText(deckPath, json);
+    }
+
+    public void Initialise() {
         deckPath = $"{Application.persistentDataPath}/deckID.json";
         if (File.Exists(deckPath)) {
             string json = File.ReadAllText(deckPath);
@@ -49,20 +61,6 @@ public class DeckManager : MonoBehaviour {
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
-    }
-
-     public void DeckIdToDeck() {
-        foreach (int id in currentDeckID.cardIDList) {
-            currentDeck.AddCard(prefabList[id]);            
-        }
-    }
-
-    public void SaveJson(DeckID newDeck) {
-        string json = JsonUtility.ToJson(newDeck);
-        File.WriteAllText(deckPath, json);
-    }
-
-    public void Initialise() {
         unusedPile = currentDeck;
         Deck.Shuffle(unusedPile);
         DrawCard(5);

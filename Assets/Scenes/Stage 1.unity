@@ -997,32 +997,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  WarriorPrefab: {fileID: 7919264731247161561, guid: 4df59c286e2310c4f9ded6ed29a41901, type: 3}
-  ArcherPrefab: {fileID: 5002011742762386276, guid: 26f8526dac6e0d14095a52a8f6a3f03e, type: 3}
-  MagePrefab: {fileID: 9020239396726545674, guid: a540e3ef95f78584c813a2dee149011e, type: 3}
-  confirmedCharacter: {fileID: 0}
-  enemyPrefab: {fileID: 1270119128613213266, guid: 6917b45f3b27ec34ea1bd2fe5ff4258c, type: 3}
   playerBattleStation: {fileID: 707969626}
   enemyCount: 2
-  enemy1BattleStation: {fileID: 0}
-  enemy2BattleStation: {fileID: 0}
-  enemy3BattleStation: {fileID: 0}
-  enemy4BattleStation: {fileID: 0}
-  playerType: 
   player: {fileID: 0}
   playerGO: {fileID: 0}
   enemies: []
   manaCount: 0
   currentTurn: 0
   playerHUD: {fileID: 1786219134}
-  enemyHUDs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   deckManager: {fileID: 1867997000}
-  playerIconsPanel: {fileID: 895633776}
-  enemyIconsPanel: {fileID: 0}
 --- !u!4 &1001822084
 Transform:
   m_ObjectHideFlags: 0
@@ -1859,12 +1842,12 @@ MonoBehaviour:
   currentHand:
     cardList: []
   prefabList:
-  - {fileID: 8759188857992331474, guid: 4213b97157aa2194da331fecf1dd3a1c, type: 3}
+  - {fileID: 3473524972877913460, guid: d20047fb9c003c7458d041217f104857, type: 3}
+  - {fileID: 8333493018185184031, guid: 56287a5f6b37bc44290b7943ca4d0947, type: 3}
+  - {fileID: 7711939956655095149, guid: 068cf006f24b1ff48b92280c2bd42bcb, type: 3}
   - {fileID: 4722150751326526180, guid: b891e71f185b3dd4a94b6a6bb3cb8e67, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2516277227754163969, guid: 258e507bab1c5ab49a17283b2e96cc63, type: 3}
+  - {fileID: 6297006904612396340, guid: 9a18bb404b21a7b44b005858ed212df1, type: 3}
   - {fileID: 2787921980016644519, guid: 650d72261d51df44893a6190e644c672, type: 3}
   - {fileID: 3166363029711065136, guid: 7f4da93a266b39849a0fc1ca3d7822ab, type: 3}
   - {fileID: 9133081325716529817, guid: e20ec3bed94aceb4f9ba7762d9abfab5, type: 3}

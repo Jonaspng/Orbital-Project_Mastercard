@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 316056a0e167fd041b145b9305532a68, type: 3}
-  m_Name: Basic Attack 1
+  m_Name: Warrior Block
   m_EditorClassIdentifier: 
-  cardName: Attack
-  description: Deal 6 Dmg to enemy
-  frame: {fileID: 21300000, guid: 84414ebb6fd2b4349a06906e3eac7855, type: 3}
-  artwork: {fileID: 0}
+  cardName: Block
+  description: Gain 6 shield
+  frame: {fileID: 21300000, guid: 444dacf259c98c141aca31267340c7ea, type: 3}
   manaCost: 1

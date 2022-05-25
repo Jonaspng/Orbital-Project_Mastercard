@@ -14,7 +14,7 @@ public class Mage : Player {
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
         if (isBroken) {
-            realDamage = (int) Math.Round(health - damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25);
         } else {
             realDamage = damage;
         }

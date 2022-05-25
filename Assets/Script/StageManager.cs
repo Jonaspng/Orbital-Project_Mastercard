@@ -63,19 +63,26 @@ public class StageManager : MonoBehaviour {
             }
             deckManager.GenerateNewCards();
             this.GetComponent<PopUpMenu>().PopUp();
+            if (player is Warrior) {
+                Warrior temp = (Warrior) player;
+                temp.ChangeIsStrongWillpower(false);
+            } else if (player is Archer) {
+                Archer temp = (Archer) player;
+                temp.ChangeStickyArrowStatus(false);
+            }
         }
     }
     
 
     public void OnEndTurnClick() {
-        
+
         foreach(Enemy enemy in enemies) {
             if (enemy != null) {
                 enemy.ResetBaseShield();
-                enemy.ResetAttackModifier();
                 enemy.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
             }
-        }
+        }        
+        
 
         ExecuteEventsInManager(enemyEventManager);
 
@@ -90,6 +97,8 @@ public class StageManager : MonoBehaviour {
             temp.evasionCount = 0;
         }
 
+        
+
         ExecuteEventsInManager(playerEventManager);
 
         playerHUD.RemoveShieldIcon();
@@ -98,6 +107,12 @@ public class StageManager : MonoBehaviour {
         player.ResetAttackModifier();
 
         currentTurn++;
+
+        foreach(Enemy enemy in enemies) {
+            if (enemy != null) {
+                enemy.ResetAttackModifier();
+            }
+        }
 
         state = BattleState.PLAYERTURN;
     }

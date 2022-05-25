@@ -24,11 +24,9 @@ public class DeckManager : MonoBehaviour {
 
     public GameObject cardselectionPanel;
 
-    public List<GameObject> peekDeck;
 
-
-
-     public void DeckIdToDeck() {
+    public void DeckIdToDeck() {
+        currentDeck.ResetDeck();
         foreach (int id in currentDeckID.cardIDList) {
             currentDeck.AddCard(prefabList[id]);            
         }
@@ -86,31 +84,25 @@ public class DeckManager : MonoBehaviour {
     public void GenerateNewCards() {
         string playerType = PlayerPrefs.GetString("character");
         List<GameObject> newList = null;
+        Deck playerDeck;
         if (playerType == "Warrior") {
             newList = prefabList.GetRange(6, 10);
-            Deck warriorDeck = new Deck(newList);
-            Deck.Shuffle(warriorDeck);
-            for (int i = 0; i < 3; i ++) {
-                Instantiate(warriorDeck.cardList[i]).transform.SetParent(cardselectionPanel.transform, false);
-            }
+            playerDeck = new Deck(newList);
+            Deck.Shuffle(playerDeck);
         } else if (playerType == "Archer") {
             newList = prefabList.GetRange(16, 10);
-            Deck archerDeck= new Deck(newList);
-            Deck.Shuffle(archerDeck);
-            peekDeck = archerDeck.cardList;
-            for (int i = 0; i < 3; i ++) {
-                GameObject temp = Instantiate(archerDeck.cardList[i]);
-                temp.transform.SetParent(cardselectionPanel.transform, false);
-                DisableAllScripts(temp);
-                temp.AddComponent<CardSelection>();
-            }
+            playerDeck = new Deck(newList);
+            Deck.Shuffle(playerDeck);
         } else {
             newList = prefabList.GetRange(26, 10);
-            Deck mageDeck= new Deck(newList);
-            Deck.Shuffle(mageDeck);
-            for (int i = 0; i < 3; i ++) {
-                Instantiate(mageDeck.cardList[i]).transform.SetParent(cardselectionPanel.transform, false);
-            }
+            playerDeck = new Deck(newList);
+            Deck.Shuffle(playerDeck);
+        }
+        for (int i = 0; i < 3; i ++) {
+            GameObject temp = Instantiate(playerDeck.cardList[i]);
+            temp.transform.SetParent(cardselectionPanel.transform, false);
+            DisableAllScripts(temp);
+            temp.AddComponent<CardSelection>();
         }
     }
 

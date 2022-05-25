@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 4
   manaCost: 1
   turns: 0
   damage: 6

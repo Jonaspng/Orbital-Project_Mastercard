@@ -1,10 +1,10 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Start : MonoBehaviour {
-    
+
+    public GameObject gameSelectionMenu;    
     public void StartButton() {
-        SceneManager.LoadScene("Character Selection");
+        gameSelectionMenu.SetActive(true);
+        
     }
 }

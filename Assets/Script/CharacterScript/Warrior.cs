@@ -17,8 +17,11 @@ public class Warrior : Player {
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
+        if (isStrongWillpower) {
+            hitCount++;
+        }         
         if (isBroken) {
-            realDamage = (int) Math.Round(health - damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25);
         } else {
             realDamage = damage;
         }
@@ -57,9 +60,8 @@ public class Warrior : Player {
 
 
     public override int GetFullDamage(int cardDamage) {
-        hitCount++;
         if (this.isStrongWillpower) {
-            return (int) Math.Round(this.attackModifier * (this.baseAttack + this.hitCount * 2));
+            return (int) Math.Round(this.attackModifier * (this.baseAttack + cardDamage + this.hitCount * 2));
         } else {
             return (int) Math.Round(this.attackModifier * cardDamage + baseAttack);
         }

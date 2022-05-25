@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Endure
   description: If you receive lethal damage this turn, set your health to 1 instead.
-  frame: {fileID: 21300000, guid: efd06581d8dcfec4f84d3b5ebd4295a4, type: 3}
-  artwork: {fileID: 21300000, guid: bda87d6c96fd8d54f98d2086347e9bd5, type: 3}
+  frame: {fileID: 21300000, guid: 4b0ee6f3237d54941aa70a51a8830cd0, type: 3}
   manaCost: 1

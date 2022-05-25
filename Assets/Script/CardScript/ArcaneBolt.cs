@@ -23,20 +23,20 @@ public class ArcaneBolt : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
         AbstractEvent[] newEvent = {new BrokenEnemyEvent(1, true, enemyIndex)};
         AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+        if (eventManager.ContainsKey(currentTurn)) {
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+            eventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
+        } else {
+            eventManager.Add(currentTurn, newEvent);
+        }
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 1, newEvent);
-        }
-        if (eventManager.ContainsKey(currentTurn + 2)) {
-            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 2] = currEvent.Concat(newResetEvent).ToArray();
-        } else {
-            eventManager.Add(currentTurn + 2, newResetEvent);
+            eventManager.Add(currentTurn + 1, newResetEvent);
         }
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
     }

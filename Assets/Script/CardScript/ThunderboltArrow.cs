@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 
 public class ThunderboltArrow : Cards {
@@ -23,22 +22,17 @@ public class ThunderboltArrow : Cards {
         Archer archer = (Archer) player;
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
 
-        // The part that applies broken. Implementation not finalised. 
         int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
-        AbstractEvent[] newBrokenEvent = {new BrokenEnemyEvent(1, true, enemyIndex)};
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
         AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+
         if (eventManager.ContainsKey(currentTurn + 1)) {
-            AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newBrokenEvent).ToArray();
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 1, newBrokenEvent);
+            eventManager.Add(currentTurn + 1, newResetEvent);
         }
-        if (eventManager.ContainsKey(currentTurn + 2)) {
-            AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
-            eventManager[currentTurn + 2] = currEvent.Concat(newResetEvent).ToArray();
-        } else {
-            eventManager.Add(currentTurn + 2, newResetEvent);
-        }
+    
+        enemies[enemyIndex].ChangeIsBroken(true);
     }
 }

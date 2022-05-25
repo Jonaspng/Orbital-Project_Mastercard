@@ -1,4 +1,4 @@
-
+using UnityEngine;
 class OvertimeDamageEvent : AbstractEvent {
 
     public int damagePerTurn;

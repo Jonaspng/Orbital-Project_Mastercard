@@ -34,15 +34,15 @@ public class Archer : Player {
             if (isStealthed) {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
-                    health = health - realDamage + this.baseShield;
-                    ResetBaseShield();
-                } else if (evasionCount > 0) {
-                    health -= 0;
-                    evasionCount--;
-                }                 
+                    if (evasionCount > 0) {
+                        evasionCount--;
+                    } else {
+                        health = health - realDamage + this.baseShield;
+                        ResetBaseShield();
+                    }
+                }                
             } else {
                 if (evasionCount > 0) {
-                    health -= 0;
                     evasionCount--;
                 } else {
                     health = health - realDamage + this.baseShield;
@@ -58,6 +58,12 @@ public class Archer : Player {
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
         }
         StageManager.instance.playerHUD.SetHP(this.health);
+    }
+
+    public override void ChangeIsBroken(bool status) {
+        if (evasionCount == 0 && !isStealthed) {
+            this.isBroken = status;
+        }
     }
 
     public void ChangeStickyArrowStatus(bool b) {

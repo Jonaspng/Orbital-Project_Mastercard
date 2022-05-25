@@ -35,7 +35,7 @@ public abstract class Player : Unit {
         this.shieldModifier *= shieldModifier;
     }
     
-    public void ChangeIsBroken(bool status) {
+    public virtual void ChangeIsBroken(bool status) {
         this.isBroken = status;
     }
 

@@ -18,7 +18,7 @@ public class BasicAttack : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        print(player);
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
     }
+
 }

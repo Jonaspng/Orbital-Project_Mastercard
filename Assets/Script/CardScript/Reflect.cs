@@ -20,7 +20,7 @@ public class Reflect : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Mage mage = (Mage) player;
         int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
         AbstractEvent[] newResetEvent = {new ReflectEvent(1, false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];

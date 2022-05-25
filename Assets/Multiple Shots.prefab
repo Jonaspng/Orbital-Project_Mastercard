@@ -456,8 +456,7 @@ MonoBehaviour:
   id: 25
   manaCost: 1
   turns: 0
-  shotCount: 0
-  damage: 8
+  damage: 3
 --- !u!1 &8422128646222538427
 GameObject:
   m_ObjectHideFlags: 0

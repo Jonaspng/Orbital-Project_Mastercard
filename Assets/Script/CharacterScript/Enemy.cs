@@ -34,14 +34,15 @@ public abstract class Enemy : Unit {
             } else {
                 realDamage = damage;                
             }
-            if (damage > this.baseShield) {
+            if (realDamage > this.baseShield) {
+                print("real damage: " + realDamage);
+                print("base shield: " + this.baseShield);
                 health = health - realDamage + this.baseShield;
                 ResetBaseShield();
             } else {
                 this.baseShield -= realDamage;
             }
             if (health <= 0) {
-                
                 StageManager.instance.DestroyEnemy(enemyIndex);
                 return;
             }
@@ -52,7 +53,7 @@ public abstract class Enemy : Unit {
             print("shield destroyed");
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
-            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(this.baseShield - realDamage, 0);
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(this.baseShield - realDamage, enemyIndex);
         }
         
         

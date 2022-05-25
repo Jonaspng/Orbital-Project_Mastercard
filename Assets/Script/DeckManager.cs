@@ -67,10 +67,9 @@ public class DeckManager : MonoBehaviour {
     }
 
     public void Draw(int numOfDraws) {
-        for (int i = 0; i < numOfDraws; i++) {
+        for (int i = currentHand.cardList.Count; i < numOfDraws; i++) {
                 currentHand.AddCard(unusedPile.cardList[0]);
                 Instantiate(currentHand.cardList[i]).transform.SetParent(currentHandPanel.transform, false);
-                usedPile.AddCard(unusedPile.cardList[0]);
                 unusedPile.RemoveCard(unusedPile.cardList[0]);
             }
     }
@@ -105,7 +104,6 @@ public class DeckManager : MonoBehaviour {
                 DisableAllScripts(temp);
                 temp.AddComponent<CardSelection>();
             }
-
         } else {
             newList = prefabList.GetRange(26, 10);
             Deck mageDeck= new Deck(newList);
@@ -124,7 +122,7 @@ public class DeckManager : MonoBehaviour {
             usedPile.CopyTo(unusedPile);
             usedPile.ResetDeck();
             Deck.Shuffle(unusedPile);
-            this.Draw(numOfCards - numOfCardLeft);
+            this.Draw(numOfCards - numOfCardLeft + currentHand.cardList.Count);
         } else {
             this.Draw(numOfCards);
         }
@@ -132,6 +130,9 @@ public class DeckManager : MonoBehaviour {
 
     public void RerenderCards() {
         // destroy cards left on panel
+        for (int i = 0; i < 5; i ++) {
+            usedPile.AddCard(currentHand.cardList[i]);
+        }
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }

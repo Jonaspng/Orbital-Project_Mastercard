@@ -19,7 +19,7 @@ class FlashBang : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
         int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.eventManager;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
         AbstractEvent[] newResetEvent = {new StunEvent(1, false, 0)};
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];

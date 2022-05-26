@@ -19,9 +19,9 @@ public class Warrior : Player {
         int realDamage;
         if (isStrongWillpower) {
             hitCount++;
-        }         
+        }
         if (isBroken) {
-            realDamage = (int) Math.Round(damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
         }

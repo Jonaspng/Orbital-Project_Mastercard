@@ -2,6 +2,8 @@ using UnityEngine;
 public class PopUpMenu : MonoBehaviour  {
     public GameObject cardSelectionMenu;
 
+    public GameObject confirmButton;
+
     public int newCardId;
  
     void Start ()  {
@@ -10,6 +12,7 @@ public class PopUpMenu : MonoBehaviour  {
          
     public void PopUp()  { 
         cardSelectionMenu.SetActive (!cardSelectionMenu.activeSelf); 
+        cardSelectionMenu.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void OnConfirmClick() {
@@ -23,5 +26,9 @@ public class PopUpMenu : MonoBehaviour  {
         GameObject.Find("StageManager").GetComponent<PopUpMenu>().PopUp();
         
         StageManager.instance.InitialiseBattle();
+    }
+
+    public void RenderConfirmButton() {
+        confirmButton.SetActive(true);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class StageManager : MonoBehaviour {
@@ -47,6 +48,7 @@ public class StageManager : MonoBehaviour {
         playerEventManager = new Dictionary<int, AbstractEvent[]>();
         enemyEventManager = new Dictionary<int, AbstractEvent[]>();
         this.manaCount = 3;
+        RerenderManaCount(3);
         this.currentTurn = 0;
         GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
         deckManager.Initialise();
@@ -91,15 +93,16 @@ public class StageManager : MonoBehaviour {
         EndTurn();
 
         manaCount = 3; // resets mana for player
+        
 
         if (player is Archer) { // resets evasion count of archer
             Archer temp = (Archer) player;
             temp.evasionCount = 0;
         }
 
-        
-
         ExecuteEventsInManager(playerEventManager);
+
+        RerenderManaCount(this.manaCount);
 
         playerHUD.RemoveShieldIcon();
         deckManager.RerenderCards();
@@ -134,7 +137,13 @@ public class StageManager : MonoBehaviour {
         } else {
             card.executeCard(player, enemies, enemyIndex);
             this.manaCount -= card.manaCost;
+            RerenderManaCount(this.manaCount);
         }
+    }
+
+    public void RerenderManaCount(int manaCount) {
+        string strManaCount = manaCount.ToString();
+        GameObject.Find("Mana Counter").GetComponent<TextMeshProUGUI>().text = strManaCount;
     }
 
 

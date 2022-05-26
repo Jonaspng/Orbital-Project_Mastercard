@@ -14,7 +14,7 @@ public class Mage : Player {
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
         if (isBroken) {
-            realDamage = (int) Math.Round(damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
         }
@@ -26,7 +26,7 @@ public class Mage : Player {
             this.baseShield -= realDamage;
         }
         if (isReflected) {
-                int reflectedDamage = (int) Math.Round(0.75 * realDamage);
+                int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
                 source.receiveDamage(reflectedDamage, enemyIndex);
         }
         if (realDamage >= this.baseShield) {

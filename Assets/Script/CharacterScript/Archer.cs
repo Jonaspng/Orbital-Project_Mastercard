@@ -24,7 +24,7 @@ public class Archer : Player {
         // Effective damage calculation
         int realDamage;
         if (isBroken) {
-            realDamage = (int) Math.Round(damage * 1.25);
+            realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
         }

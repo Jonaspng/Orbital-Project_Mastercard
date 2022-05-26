@@ -593,6 +593,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 29
-  manaCost: 2
+  manaCost: 1
   turns: 1
   damage: 10

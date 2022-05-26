@@ -9,6 +9,7 @@ public class CardSelection : MonoBehaviour {
     }
 
     public void OnMouseDown() {
+        GameObject.Find("StageManager").GetComponent<PopUpMenu>().RenderConfirmButton();
         foreach (Transform obj in GameObject.Find("NewCards").transform) {
             obj.gameObject.GetComponentInChildren<Image>().material = null;
         }

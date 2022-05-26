@@ -30,7 +30,7 @@ public abstract class Enemy : Unit {
             //game over
         } else {
             if (isBroken) {
-                realDamage = (int) Math.Round(damage * 1.25);
+                realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
             } else {
                 realDamage = damage;                
             }

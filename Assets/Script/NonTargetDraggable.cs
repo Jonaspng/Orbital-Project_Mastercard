@@ -32,7 +32,7 @@
  
      public void OnEndDrag(PointerEventData eventData) {
         this.GetComponent<Cards>().OnDrop(0);
-        if (StageManager.instance.manaCount <= 0) {
+        if (StageManager.instance.manaCount - this.GetComponent<Cards>().manaCost <= 0) {
             this.transform.SetParent(parentToReturnTo);
         }
      }

@@ -18,6 +18,6 @@ public class Defend : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.changeBaseShield(this.shield);
+        player.AddBaseShield(this.shield);
     }
 }

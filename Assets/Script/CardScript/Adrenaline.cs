@@ -18,6 +18,6 @@ public class Adrenaline : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.changeAttackModifier(damageModifier);
+        player.AddAttackModifier(damageModifier);
     }
 }

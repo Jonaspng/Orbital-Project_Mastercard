@@ -17,6 +17,6 @@ public class SwordDance : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         // subject to changes
-        player.changeAttackModifier(2);
+        player.AddAttackModifier(2);
     }
 }

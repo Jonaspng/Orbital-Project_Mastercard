@@ -20,7 +20,7 @@ public class Brace : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.changeBaseShield(this.shield);
+        player.AddBaseShield(this.shield);
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
     }
 }

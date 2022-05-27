@@ -12,7 +12,7 @@ class PlayerDamageEvent : AbstractEvent {
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        player.changeBaseAttack(this.damage);
+        player.AddBaseAttack(this.damage);
     }
 
 }

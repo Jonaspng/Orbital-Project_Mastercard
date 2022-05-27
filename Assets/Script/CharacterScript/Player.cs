@@ -19,15 +19,15 @@ public abstract class Player : Unit {
         return health;
     }
 
-    public void changeBaseAttack(int baseAttack) {
-            this.baseAttack = baseAttack;        
+    public void AddBaseAttack(int baseAttack) {
+            this.baseAttack += baseAttack;        
     }
 
-     public void changeBaseShield(int baseShield) {
+     public void AddBaseShield(int baseShield) {
         this.baseShield += baseShield;
     }
     
-    public void changeAttackModifier(double attackModifier) {
+    public void AddAttackModifier(double attackModifier) {
         this.attackModifier *= attackModifier;
     }
 

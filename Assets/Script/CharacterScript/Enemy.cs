@@ -119,14 +119,14 @@ public abstract class Enemy : Unit {
     // Method to calculate damage from "Fireball" card.
     public void ReceiveFireballDamage(int damage, int enemyIndex) {
         if (isBurned) {
-            receiveDamage((int) Math.Round(damage * 1.25), enemyIndex);
+            receiveDamage((int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero), enemyIndex);
         } else {
             receiveDamage(damage, enemyIndex);
         }
     }
 
     public int GetFullDamage(int damage) {
-        return (int) Math.Round(this.attackModifier * (damage + this.baseAttack));
+        return (int) Math.Round(this.attackModifier * (damage + this.baseAttack), MidpointRounding.AwayFromZero);
     }
     
 

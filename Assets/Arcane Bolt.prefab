@@ -726,4 +726,4 @@ MonoBehaviour:
   id: 28
   manaCost: 1
   turns: 0
-  damage: 8
+  damage: 10

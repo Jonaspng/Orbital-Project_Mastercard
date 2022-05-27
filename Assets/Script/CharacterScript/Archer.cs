@@ -71,7 +71,7 @@ public class Archer : Player {
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return (int) Math.Round(this.attackModifier * cardDamage);
+        return (int) Math.Round(this.attackModifier * (cardDamage + this.baseAttack));
     }  
 
     public void ChangeStealthStatus(bool status) {

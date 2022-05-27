@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 class FireBlast : Cards {
 
-    public FireBlast(int manaCost, int turns) 
-    : base(manaCost, turns){
+    public int damage;
 
+    public FireBlast(int manaCost, int damage, int turns) 
+    : base(manaCost, turns){
+        this.damage = damage;
     }
 
     public override void OnDrop(int enemyIndex) {
@@ -20,7 +22,7 @@ class FireBlast : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
          int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(1, 3, enemyindex)};
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyindex)};
         AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyindex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
@@ -41,6 +43,7 @@ class FireBlast : Cards {
             eventManager.Add(currentTurn + 2, resetEvent);
         }
         enemies[enemyindex].ChangeIsBurned(true);
+        enemies[enemyindex].receiveDamage(this.damage, enemyindex);
     
     }
 

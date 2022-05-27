@@ -39,7 +39,7 @@ public class Mage : Player {
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return (int) Math.Round(this.attackModifier * cardDamage);
+        return (int) Math.Round(this.attackModifier * (cardDamage + this.baseAttack));
     }
 
     public void ChangeReflectStatus(bool status) {

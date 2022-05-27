@@ -39,6 +39,7 @@ public class ArcaneBolt : Cards {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].ChangeIsBroken(true);
     }
 
 }

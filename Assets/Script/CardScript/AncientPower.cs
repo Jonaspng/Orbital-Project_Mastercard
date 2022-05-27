@@ -32,9 +32,7 @@ public override void executeCard(Player player, Enemy[] enemies, int enemyIndex)
             eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
-        }
-        player.changeBaseAttack(5);
-        
+        }        
     }
     
 }

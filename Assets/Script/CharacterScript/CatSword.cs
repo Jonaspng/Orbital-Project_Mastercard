@@ -10,7 +10,8 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
+        int moveNumber = 2;
+        Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage(6));
@@ -25,16 +26,11 @@ public class CatSword : Enemy {
                 
                 int currentTurn = StageManager.instance.currentTurn;
                 Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-                AbstractEvent[] newEvent = {new BrokenPlayerEvent(1, true, -1)};
+                player.ChangeIsBroken(true);               
                 AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(1, false, -1)};
-                if (eventManager.ContainsKey(currentTurn + 1)) {
-                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-                    eventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
-                } else {
-                    eventManager.Add(currentTurn + 1, newEvent);
-                }
+                
                 if (eventManager.ContainsKey(currentTurn + 2)) {
-                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 2];
                     eventManager[currentTurn + 2] = currEvent.Concat(newResetEvent).ToArray();
                 } else {
                     eventManager.Add(currentTurn + 2, newResetEvent);

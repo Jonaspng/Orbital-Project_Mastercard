@@ -271,8 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ae224bf09153142b782bf404323845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterChosen: {fileID: 0}
-  playerPath: 
+  characterChosen: 
+  confirmButton: {fileID: 950028056}
 --- !u!1 &250487186
 GameObject:
   m_ObjectHideFlags: 0

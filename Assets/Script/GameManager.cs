@@ -27,10 +27,11 @@ class GameManager : MonoBehaviour {
     }
 
 
+
     public void InitialisePlayer() {
-        if (stageNumber == 1) {
+        StageManager stage = StageManager.instance;
+        if (stageNumber == 1 || stage.player.getHealth() <= 0) {
             playerType = PlayerPrefs.GetString("character");
-            StageManager stage = StageManager.instance;
             if (playerType == "Warrior") {
                 stage.playerGO = Instantiate(playerPrefabList[0], stage.playerBattleStation);
             } else if (playerType == "Archer") {

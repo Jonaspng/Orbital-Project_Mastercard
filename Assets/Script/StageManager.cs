@@ -19,6 +19,8 @@ public class StageManager : MonoBehaviour {
 
     public Enemy[] enemies;
 
+    public GameObject gameOverMenu;
+
     public int manaCount;
 
     public int currentTurn;
@@ -115,6 +117,17 @@ public class StageManager : MonoBehaviour {
             if (enemy != null) {
                 enemy.ResetAttackModifier();
             }
+        }
+
+        if (player.getHealth() <= 0) {
+            GameObject.Destroy(player.gameObject);
+            foreach (Transform obj in GameObject.Find("Current Hand").transform) {
+                GameObject.Destroy(obj.gameObject);
+            }
+            foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
+                GameObject.Destroy(obj.gameObject);
+            }
+            gameOverMenu.SetActive(true);
         }
 
         state = BattleState.PLAYERTURN;

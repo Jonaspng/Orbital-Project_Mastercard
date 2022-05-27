@@ -32,7 +32,9 @@ public class ThunderboltArrow : Cards {
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
-    
-        enemies[enemyIndex].ChangeIsBroken(true);
+
+        if (enemies[enemyIndex] != null) {
+            enemies[enemyIndex].ChangeIsBroken(true);
+        }    
     }
 }

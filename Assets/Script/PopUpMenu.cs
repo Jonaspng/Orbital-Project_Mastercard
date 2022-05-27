@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class PopUpMenu : MonoBehaviour  {
     public GameObject cardSelectionMenu;
 
@@ -23,9 +25,13 @@ public class PopUpMenu : MonoBehaviour  {
         foreach (Transform obj in GameObject.Find("NewCards").transform) {
             GameObject.Destroy(obj.gameObject);
         }
-        GameObject.Find("StageManager").GetComponent<PopUpMenu>().PopUp();
+        this.PopUp();
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber == 3) {
+            SceneManager.LoadScene("Start Menu");
+        } else {
+            StageManager.instance.InitialiseBattle();
+        }
         
-        StageManager.instance.InitialiseBattle();
     }
 
     public void RenderConfirmButton() {

@@ -30,9 +30,6 @@ public class Warrior : Player {
                 this.health = 1;
                 this.isEndure = false;
             
-            } else if (health - realDamage + this.baseShield <= 0) {
-                health = health - realDamage + this.baseShield;
-                //probably some game over event
             } else {
                 health = health - realDamage + this.baseShield;
             }

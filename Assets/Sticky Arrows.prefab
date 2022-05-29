@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 8534056687580776213}
   - component: {fileID: 573912976233333504}
   - component: {fileID: 8417092933547862326}
+  - component: {fileID: -7801453938495588600}
   m_Layer: 5
   m_Name: Sticky Arrows
   m_TagString: Untagged
@@ -595,3 +596,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &-7801453938495588600
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059927768813268956}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

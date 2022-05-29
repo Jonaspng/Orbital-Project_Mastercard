@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 7465441731768529854}
   - component: {fileID: 1607324672745851476}
   - component: {fileID: 8186345946314116990}
+  - component: {fileID: -173036872130857835}
   m_Layer: 5
   m_Name: Focus Shot
   m_TagString: Untagged
@@ -596,3 +597,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &-173036872130857835
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092487814072228727}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

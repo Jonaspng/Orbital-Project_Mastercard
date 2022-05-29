@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 5680979386065352189}
   - component: {fileID: 1747729233301706474}
   - component: {fileID: 1141884334026202188}
+  - component: {fileID: 4141527303424913239}
   m_Layer: 5
   m_Name: MageBlock
   m_TagString: Untagged
@@ -326,6 +327,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &4141527303424913239
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297006904612396340}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6928712145544480598
 GameObject:
   m_ObjectHideFlags: 0

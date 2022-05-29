@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 8828924975872704158}
   - component: {fileID: 5517702748782593967}
   - component: {fileID: 407147432296730608}
+  - component: {fileID: 8330984948645727209}
   m_Layer: 5
   m_Name: Focus Mana
   m_TagString: Untagged
@@ -596,3 +597,15 @@ MonoBehaviour:
   manaCost: 1
   turns: 1
   manaGained: 2
+--- !u!225 &8330984948645727209
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148117168952972887}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

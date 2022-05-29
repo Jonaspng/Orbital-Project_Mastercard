@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 7643472177995930582}
   - component: {fileID: 4360851886756673729}
   - component: {fileID: 3106705381104923239}
+  - component: {fileID: 8626215755332982022}
   m_Layer: 5
   m_Name: WarriorBlock
   m_TagString: Untagged
@@ -596,3 +597,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 7997402890464918755}
+--- !u!225 &8626215755332982022
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333493018185184031}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

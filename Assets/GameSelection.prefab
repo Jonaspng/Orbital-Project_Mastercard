@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3527040610608966419}
   - component: {fileID: 3527040610608966416}
   - component: {fileID: 3527040610608966418}
+  - component: {fileID: -2660921001621524242}
   m_Layer: 5
   m_Name: GameSelection
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b2a2078c6d6f54ba778dc8b2577b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &-2660921001621524242
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527040610608966430}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3527040610857698892
 GameObject:
   m_ObjectHideFlags: 0

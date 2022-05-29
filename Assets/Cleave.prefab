@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 4541073769657153902}
   - component: {fileID: 6940195261718329883}
   - component: {fileID: 7083213697222751941}
+  - component: {fileID: -1220167161102107388}
   m_Layer: 5
   m_Name: Cleave
   m_TagString: Untagged
@@ -382,6 +383,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &-1220167161102107388
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787921980016644519}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7814448423605082485
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 499177718293159123}
   - component: {fileID: -2074836345535563339}
   - component: {fileID: 4172385721233842571}
+  - component: {fileID: 5134214147952842416}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -124,6 +125,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!225 &5134214147952842416
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258834148862997530}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2807642090930612814
 GameObject:
   m_ObjectHideFlags: 0

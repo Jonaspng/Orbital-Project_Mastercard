@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 5938772056600146160}
   - component: {fileID: 5553305568536840043}
   - component: {fileID: 8639727635421013150}
+  - component: {fileID: 2675186349119220463}
   m_Layer: 5
   m_Name: Reflect
   m_TagString: Untagged
@@ -325,6 +326,18 @@ MonoBehaviour:
   id: 35
   manaCost: 1
   turns: 1
+--- !u!225 &2675186349119220463
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467180237992073273}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8246391488910919277
 GameObject:
   m_ObjectHideFlags: 0

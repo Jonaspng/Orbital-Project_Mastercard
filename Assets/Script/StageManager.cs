@@ -65,6 +65,11 @@ public class StageManager : MonoBehaviour {
             foreach (Transform obj in GameObject.Find("Current Hand").transform) {
                 GameObject.Destroy(obj.gameObject);
             }
+
+            playerHUD.RemoveShieldIcon();
+            player.ResetBaseShield();
+            player.ResetAttackModifier();
+            
             deckManager.GenerateNewCards();
             this.GetComponent<PopUpMenu>().PopUp();
             if (player is Warrior) {

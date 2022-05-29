@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 6358486581368468013}
   - component: {fileID: 1056704368410120506}
   - component: {fileID: 1816020182938999708}
+  - component: {fileID: 6179584296626144371}
   m_Layer: 5
   m_Name: ArcherBlock
   m_TagString: Untagged
@@ -326,6 +327,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &6179584296626144371
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722150751326526180}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8560427552079790214
 GameObject:
   m_ObjectHideFlags: 0

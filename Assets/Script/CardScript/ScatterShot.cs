@@ -19,8 +19,11 @@ public class ScatterShot : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
         foreach (Enemy enemy in enemies) {
-            Archer archer = (Archer) player;
-            enemy.ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyindex);
+            if (enemy != null) {
+                Archer archer = (Archer) player;
+                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyindex);
+            }
+            
         }
         
     }

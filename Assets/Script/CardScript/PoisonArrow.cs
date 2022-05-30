@@ -21,7 +21,7 @@ class PoisonArrow : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        enemies[enemyindex].ChangeIsPoisoned(true);
+        enemies[enemyindex].ChangeIsPoisoned(true); // changed
         enemies[enemyindex].receiveDamage(player.GetFullDamage(8), enemyindex);
 
         // The part that applies poison. Implementation to be improved. 

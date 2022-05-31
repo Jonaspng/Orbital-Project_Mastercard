@@ -30,7 +30,7 @@ public class Archer : Player {
         }
 
         // special conditions
-        if (realDamage > this.baseShield) {
+        if (realDamage >= this.baseShield) {
             if (isStealthed) {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
@@ -39,6 +39,7 @@ public class Archer : Player {
                     } else {
                         health = health - realDamage + this.baseShield;
                         ResetBaseShield();
+                        StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
                 }                
             } else {
@@ -47,15 +48,12 @@ public class Archer : Player {
                 } else {
                     health = health - realDamage + this.baseShield;
                     ResetBaseShield();
+                    StageManager.instance.playerHUD.RemoveShieldIcon();
                 }           
             }
         } else {
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
-        }
-        if (realDamage >= this.baseShield) {
-            StageManager.instance.playerHUD.RemoveShieldIcon();
-        } else {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
         }
         StageManager.instance.playerHUD.SetHP(this.health);
     }

@@ -25,7 +25,7 @@ public class Warrior : Player {
         } else {
             realDamage = damage;
         }
-        if (realDamage > this.baseShield ) {
+        if (realDamage >= this.baseShield ) {
             if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
                 this.health = 1;
                 this.isEndure = false;
@@ -34,15 +34,12 @@ public class Warrior : Player {
                 health = health - realDamage + this.baseShield;
             }
             ResetBaseShield();
+            StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }
         print(health);
-        if (realDamage >= this.baseShield) {
-            StageManager.instance.playerHUD.RemoveShieldIcon();
-        } else {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
-        }
         StageManager.instance.playerHUD.SetHP(this.health);
         
     }

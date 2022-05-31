@@ -19,21 +19,19 @@ public class Mage : Player {
             realDamage = damage;
         }
     
-        if (realDamage > this.baseShield) {
+        if (realDamage >= this.baseShield) {
                 health = health - realDamage + this.baseShield;
                 ResetBaseShield();
+                StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }
         if (isReflected) {
                 int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
                 source.receiveDamage(reflectedDamage, enemyIndex);
         }
-        if (realDamage >= this.baseShield) {
-            StageManager.instance.playerHUD.RemoveShieldIcon();
-        } else {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
-        }
+
         StageManager.instance.playerHUD.SetHP(this.health);
     
     }

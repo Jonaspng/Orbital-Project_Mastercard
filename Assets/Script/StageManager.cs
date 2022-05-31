@@ -28,13 +28,14 @@ public class StageManager : MonoBehaviour {
     public BattleHUD playerHUD;
 
     public DeckManager deckManager;
+
+    public GameObject endTurnButton;
     
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
     public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
 
     private void Awake() {
-        
         instance = this;
     }
 
@@ -91,49 +92,12 @@ public class StageManager : MonoBehaviour {
                 enemy.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
             }
         }        
-        
 
         ExecuteEventsInManager(enemyEventManager);
 
         state = BattleState.ENEMYTURN;
         
-        EndTurn();
-
-        manaCount = 3; // resets mana for player
-        
-
-        if (player is Archer) { // resets evasion count of archer
-            Archer temp = (Archer) player;
-            temp.evasionCount = 0;
-        }
-
-        ExecuteEventsInManager(playerEventManager);
-
-        RerenderManaCount(this.manaCount);
-
-        playerHUD.RemoveShieldIcon();
-        deckManager.RerenderCards();
-        player.ResetBaseShield();
-        player.ResetAttackModifier();
-
-        currentTurn++;
-
-        foreach(Enemy enemy in enemies) {
-            if (enemy != null) {
-                enemy.ResetAttackModifier();
-            }
-        }
-
-        if (player.getHealth() <= 0) {
-            GameObject.Destroy(player.gameObject);
-            foreach (Transform obj in GameObject.Find("Current Hand").transform) {
-                GameObject.Destroy(obj.gameObject);
-            }
-            foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
-                GameObject.Destroy(obj.gameObject);
-            }
-            gameOverMenu.SetActive(true);
-        }
+        StartCoroutine(EndTurn());
 
         state = BattleState.PLAYERTURN;
     }
@@ -165,12 +129,57 @@ public class StageManager : MonoBehaviour {
     }
 
 
-    public void EndTurn() {
+    public IEnumerator<WaitForSeconds> EndTurn() {
+
+        deckManager.ClearCards();
+
+        endTurnButton.SetActive(false);
         for (int i = 0; i< enemies.Length; i++) {
             if (enemies[i] != null) {
+                yield return new WaitForSeconds(2f);
+                print("Enemy attacks");
                 enemies[i].EnemyMove(player, enemies, i);
             }
         }
+
+        yield return new WaitForSeconds(0.5f);        
+
+        manaCount = 3; // resets mana for player
+        
+        if (player is Archer) { // resets evasion count of archer
+            Archer temp = (Archer) player;
+            temp.evasionCount = 0;
+        }
+
+        ExecuteEventsInManager(playerEventManager);
+
+        RerenderManaCount(this.manaCount);
+
+        playerHUD.RemoveShieldIcon();
+        player.ResetBaseShield();
+        player.ResetAttackModifier();
+
+        currentTurn++;
+
+        foreach(Enemy enemy in enemies) {
+            if (enemy != null) {
+                enemy.ResetAttackModifier();
+            }
+        }
+
+        if (player.getHealth() <= 0) {
+            GameObject.Destroy(player.gameObject);
+            foreach (Transform obj in GameObject.Find("Current Hand").transform) {
+                GameObject.Destroy(obj.gameObject);
+            }
+            foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
+                GameObject.Destroy(obj.gameObject);
+            }
+            gameOverMenu.SetActive(true);
+        }
+
+        endTurnButton.SetActive(true);
+        deckManager.DrawCard(5);
     }
 
     

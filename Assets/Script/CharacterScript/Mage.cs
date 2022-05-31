@@ -6,6 +6,8 @@ public class Mage : Player {
 
     public bool isReflected;
 
+    public Animator animator;
+
     public Mage(double attackModifier, double shieldModifier) 
     : base(80, attackModifier, shieldModifier) { 
         //empty

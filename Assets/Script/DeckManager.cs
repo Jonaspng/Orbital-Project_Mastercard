@@ -120,7 +120,7 @@ public class DeckManager : MonoBehaviour {
         }
     }
 
-    public void RerenderCards() {
+    public void ClearCards() {
         // destroy cards left on panel
         for (int i = 0; i < 5; i ++) {
             usedPile.AddCard(currentHand.cardList[i]);
@@ -128,7 +128,8 @@ public class DeckManager : MonoBehaviour {
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }
-        DrawCard(5);
+        // DrawCard(5);
     }
+
    
 }

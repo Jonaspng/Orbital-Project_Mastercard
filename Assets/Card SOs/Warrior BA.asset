@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316056a0e167fd041b145b9305532a68, type: 3}
   m_Name: Warrior BA
   m_EditorClassIdentifier: 
-  cardName: Basic Attack
+  cardName: Attack
   description: Deal 6 damage.
   frame: {fileID: 21300000, guid: f435e7d03f4130e42ae6d69054d51c91, type: 3}
   manaCost: 1

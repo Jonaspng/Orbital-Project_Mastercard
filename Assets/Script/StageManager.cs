@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -85,6 +86,10 @@ public class StageManager : MonoBehaviour {
     
 
     public void OnEndTurnClick() {
+        StartCoroutine(OnEndTurnCoroutine());
+    }
+
+    public IEnumerator OnEndTurnCoroutine() {
 
         foreach(Enemy enemy in enemies) {
             if (enemy != null) {
@@ -93,16 +98,16 @@ public class StageManager : MonoBehaviour {
             }
         }        
 
-        StartCoroutine(ExecuteEventsInManager(enemyEventManager));
+        yield return StartCoroutine(ExecuteEventsInManager(enemyEventManager));
 
         state = BattleState.ENEMYTURN;
         
-        StartCoroutine(EndTurn());
+        yield return StartCoroutine(EndTurn());
 
         state = BattleState.PLAYERTURN;
     }
 
-    public IEnumerator<WaitForSeconds> ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
+    public IEnumerator ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] events = eventManager[currentTurn];
             print("Dictionary event length is " + events.Length);
@@ -131,56 +136,64 @@ public class StageManager : MonoBehaviour {
     }
 
 
-    public IEnumerator<WaitForSeconds> EndTurn() {
+    public IEnumerator EndTurn() {
 
-        deckManager.ClearCards();
+        if (enemyCount > 0) {
 
-        endTurnButton.SetActive(false);
-        for (int i = 0; i< enemies.Length; i++) {
-            if (enemies[i] != null) {
-                yield return new WaitForSeconds(1f);
-                enemies[i].EnemyMove(player, enemies, i);
+            deckManager.ClearCards();
+
+            endTurnButton.SetActive(false);
+            for (int i = 0; i< enemies.Length; i++) {
+                if (enemies[i] != null) {
+                    yield return new WaitForSeconds(1f);
+                    enemies[i].EnemyMove(player, enemies, i);
+                }
             }
+
+            yield return new WaitForSeconds(0.5f);        
+
+            manaCount = 3; // resets mana for player
+            
+            if (player is Archer) { // resets evasion count of archer
+                Archer temp = (Archer) player;
+                temp.evasionCount = 0;
+            }
+
+            ExecuteEventsInManager(playerEventManager);
+
+            RerenderManaCount(this.manaCount);
+
+            playerHUD.RemoveShieldIcon();
+            player.ResetBaseShield();
+            player.ResetAttackModifier();
+
+            currentTurn++;
+
+            foreach(Enemy enemy in enemies) {
+                if (enemy != null) {
+                    enemy.ResetAttackModifier();
+                }
+            }
+
+            if (player.getHealth() <= 0) {
+                GameObject.Destroy(player.gameObject);
+                foreach (Transform obj in GameObject.Find("Current Hand").transform) {
+                    GameObject.Destroy(obj.gameObject);
+                }
+                foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
+                    GameObject.Destroy(obj.gameObject);
+                }
+                gameOverMenu.SetActive(true);
+            }
+
+            endTurnButton.SetActive(true);
+
+            deckManager.DrawCard(5);
+     
         }
 
-        yield return new WaitForSeconds(0.5f);        
-
-        manaCount = 3; // resets mana for player
         
-        if (player is Archer) { // resets evasion count of archer
-            Archer temp = (Archer) player;
-            temp.evasionCount = 0;
-        }
-
-        ExecuteEventsInManager(playerEventManager);
-
-        RerenderManaCount(this.manaCount);
-
-        playerHUD.RemoveShieldIcon();
-        player.ResetBaseShield();
-        player.ResetAttackModifier();
-
-        currentTurn++;
-
-        foreach(Enemy enemy in enemies) {
-            if (enemy != null) {
-                enemy.ResetAttackModifier();
-            }
-        }
-
-        if (player.getHealth() <= 0) {
-            GameObject.Destroy(player.gameObject);
-            foreach (Transform obj in GameObject.Find("Current Hand").transform) {
-                GameObject.Destroy(obj.gameObject);
-            }
-            foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
-                GameObject.Destroy(obj.gameObject);
-            }
-            gameOverMenu.SetActive(true);
-        }
-
-        endTurnButton.SetActive(true);
-        deckManager.DrawCard(5);
+        
     }
 
     

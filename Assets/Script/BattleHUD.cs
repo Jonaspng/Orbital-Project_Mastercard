@@ -16,15 +16,20 @@ public class BattleHUD : MonoBehaviour {
 
    public bool isShieldIconOn;
 
+   public int maxHp;
+
    public void SetHUD(Unit unit) {
        nameText.text = unit.unitName;
        hpSlider.maxValue = unit.maxHp;
+       this.maxHp = unit.maxHp;
        hpSlider.value = unit.health;
+       this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = unit.health + "/" + unit.maxHp;
    }
 
 
    public void SetHP(int hp) {
        hpSlider.value = hp;
+       this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = hp + "/" + maxHp;
    }
 
    public void RenderPlayerShieldIcon(int shield) {
@@ -64,5 +69,6 @@ public class BattleHUD : MonoBehaviour {
    public void RemovePoisonIcon() {
         GameObject.Destroy(iconsBar.transform.Find("Poison Icon(Clone)").gameObject);
    }
+
 
 }

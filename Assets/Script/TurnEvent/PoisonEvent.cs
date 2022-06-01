@@ -13,6 +13,9 @@ class PoisonEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         if (enemies[this.enemyIndex] != null) {
             enemies[this.enemyIndex].ChangeIsPoisoned(this.isPoisoned);
+            if (!this.isPoisoned) {
+                enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemovePoisonIcon();
+            }
         }
     }
 

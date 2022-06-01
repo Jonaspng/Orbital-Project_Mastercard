@@ -479,6 +479,7 @@ MonoBehaviour:
   hpSlider: {fileID: 9131307509513265267}
   iconsBar: {fileID: 9131307509171888505}
   shieldIcon: {fileID: 6915566598342927753, guid: ad90a3b75c2df9645ab29f1453be5ce7, type: 3}
+  poisonIcon: {fileID: 1357525036848282443, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
   isShieldIconOn: 0
 --- !u!1 &9131307509371588027
 GameObject:

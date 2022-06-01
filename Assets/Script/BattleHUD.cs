@@ -12,6 +12,8 @@ public class BattleHUD : MonoBehaviour {
 
    public GameObject shieldIcon;
 
+   public GameObject poisonIcon;
+
    public bool isShieldIconOn;
 
    public void SetHUD(Unit unit) {
@@ -32,7 +34,7 @@ public class BattleHUD : MonoBehaviour {
            icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
            isShieldIconOn = true;
        } else {
-           iconsBar.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
+           iconsBar.transform.Find("Shield Icon(Clone)").GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
        }
    }
 
@@ -43,15 +45,24 @@ public class BattleHUD : MonoBehaviour {
            icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
            isShieldIconOn = true;
        } else {
-           iconsBar.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
+           iconsBar.transform.Find("Shield Icon(Clone)").GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
        }
    }
 
    public void RemoveShieldIcon() {
        if (isShieldIconOn) {
-           GameObject.Destroy(iconsBar.transform.GetChild(0).gameObject);
+           GameObject.Destroy(iconsBar.transform.Find("Shield Icon(Clone)").gameObject);
            isShieldIconOn = false;
        }
+       
+   }
+
+   public void RenderEnemyPoisonIcon(int enemyIndex) {
+        GameObject icon = Instantiate(poisonIcon, iconsBar.transform);
+   }
+
+   public void RemovePoisonIcon() {
+        GameObject.Destroy(iconsBar.transform.Find("Poison Icon(Clone)").gameObject);
    }
 
 }

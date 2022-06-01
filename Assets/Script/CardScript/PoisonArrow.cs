@@ -19,20 +19,21 @@ class PoisonArrow : Cards {
         }
     }
 
-    public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
+    public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         
-        enemies[enemyindex].receiveDamage(player.GetFullDamage(8), enemyindex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(8), enemyIndex);
         player.animator.SetTrigger("Attack");
 
-        if (enemies[enemyindex] != null) {
-            enemies[enemyindex].ChangeIsPoisoned(true);
+        if (enemies[enemyIndex] != null) {
+            enemies[enemyIndex].ChangeIsPoisoned(true);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon(enemyIndex);
         }
 
         // The part that applies poison. Implementation to be improved. 
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyindex)};
-        AbstractEvent[] resetEvent = {new PoisonEvent(1, false, enemyindex)};
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
+        AbstractEvent[] resetEvent = {new PoisonEvent(1, false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();

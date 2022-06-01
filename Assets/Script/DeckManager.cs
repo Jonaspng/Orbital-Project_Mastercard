@@ -59,7 +59,7 @@ public class DeckManager : MonoBehaviour {
                 currentDeckID.AddCardID(1);
                 currentDeckID.AddCardID(1);
             } else if (playerType == "Archer") {
-                currentDeckID.AddCardID(2);
+                currentDeckID.AddCardID(19); //changed for testing
                 currentDeckID.AddCardID(2);
                 currentDeckID.AddCardID(2);
                 currentDeckID.AddCardID(2);

@@ -2800,7 +2800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1694425748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2932,6 +2932,7 @@ MonoBehaviour:
   hpSlider: {fileID: 740406692}
   iconsBar: {fileID: 895633776}
   shieldIcon: {fileID: 6915566598342927753, guid: ad90a3b75c2df9645ab29f1453be5ce7, type: 3}
+  poisonIcon: {fileID: 2616949004709166120, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
   isShieldIconOn: 0
 --- !u!1 &1867996997
 GameObject:

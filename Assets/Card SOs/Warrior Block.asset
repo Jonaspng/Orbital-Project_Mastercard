@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Warrior Block
   m_EditorClassIdentifier: 
   cardName: Block
-  description: Gain 6 shield
+  description: Gain 6 shield.
   frame: {fileID: 21300000, guid: 444dacf259c98c141aca31267340c7ea, type: 3}
   manaCost: 1

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dodge
   m_EditorClassIdentifier: 
   cardName: Dodge
-  description: Evade 1 attack
+  description: Evade 1 attack.
   frame: {fileID: 21300000, guid: 0f2359a8698141e4baf280bea33719bd, type: 3}
   manaCost: 1

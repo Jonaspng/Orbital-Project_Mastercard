@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Scatter Shot
   m_EditorClassIdentifier: 
   cardName: Scatter Shot
-  description: Deal 8 damage to all enemies
+  description: Deal 8 damage to all enemies.
   frame: {fileID: 21300000, guid: 03b86e2f0201d4248876051a256fc20d, type: 3}
   manaCost: 1

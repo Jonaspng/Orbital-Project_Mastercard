@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Thunderbolt Arrow
   m_EditorClassIdentifier: 
   cardName: Thunderbolt Arrow
-  description: Deal 8 damage to an enemy. Enemy takes 25% more damage for 2 turns.
+  description: Deal 8 damage. Enemy takes 25% more damage for 2 turns.
   frame: {fileID: 21300000, guid: d8279c089743ffc42be5e95ceb100996, type: 3}
   manaCost: 2

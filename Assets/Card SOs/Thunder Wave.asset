@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Thunder Wave
   m_EditorClassIdentifier: 
   cardName: 'Thunder Wave '
-  description: Apply paralysis to an enemy for 1 turn
+  description: Apply paralysis to an enemy for 1 turn.
   frame: {fileID: 21300000, guid: 3bd9adece8f9c3f4f96666b877a3ecc4, type: 3}
   manaCost: 1

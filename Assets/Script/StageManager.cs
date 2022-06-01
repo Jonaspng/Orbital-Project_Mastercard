@@ -93,7 +93,7 @@ public class StageManager : MonoBehaviour {
             }
         }        
 
-        ExecuteEventsInManager(enemyEventManager);
+        StartCoroutine(ExecuteEventsInManager(enemyEventManager));
 
         state = BattleState.ENEMYTURN;
         
@@ -102,11 +102,13 @@ public class StageManager : MonoBehaviour {
         state = BattleState.PLAYERTURN;
     }
 
-    public void ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
+    public IEnumerator<WaitForSeconds> ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] events = eventManager[currentTurn];
+            print("Dictionary event length is " + events.Length);
             for (int i = 0; i < events.Length; i++) {
-            events[i].executeEvent(player, enemies);
+                events[i].executeEvent(player, enemies);
+                yield return new WaitForSeconds(0.4f);                    
             }
         }
 

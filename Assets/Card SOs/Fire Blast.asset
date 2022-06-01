@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316056a0e167fd041b145b9305532a68, type: 3}
   m_Name: Fire Blast
   m_EditorClassIdentifier: 
-  cardName: 'FIre Blast '
+  cardName: 'Fire Blast '
   description: Deal 8 damage. Apply 2 burn.
   frame: {fileID: 21300000, guid: 6965f58928a287e429340f2e39486ac3, type: 3}
   manaCost: 1

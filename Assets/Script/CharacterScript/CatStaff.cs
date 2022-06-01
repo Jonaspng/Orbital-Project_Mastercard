@@ -17,7 +17,8 @@ public class CatStaff : Enemy {
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 print("Enemy Attacks");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
+                this.animator.SetTrigger("Attack");
+                player.receiveDamage(this, this.GetFullDamage(8), index);      
             } else if (moveNumber == 2) {
                 print("Enemy Defends");
                 this.AddBaseShield(6);

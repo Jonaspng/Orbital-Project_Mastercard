@@ -42,8 +42,15 @@ class FireBlast : Cards {
         } else {
             eventManager.Add(currentTurn + 2, resetEvent);
         }
-        enemies[enemyindex].ChangeIsBurned(true);
+        
+        player.animator.SetTrigger("Attack");
         enemies[enemyindex].receiveDamage(this.damage, enemyindex);
+        
+        if (enemies[enemyindex] != null) {
+            enemies[enemyindex].ChangeIsBurned(true);
+        }
+
+        
     
     }
 

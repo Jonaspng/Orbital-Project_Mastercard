@@ -136,8 +136,7 @@ public class StageManager : MonoBehaviour {
         endTurnButton.SetActive(false);
         for (int i = 0; i< enemies.Length; i++) {
             if (enemies[i] != null) {
-                yield return new WaitForSeconds(2f);
-                print("Enemy attacks");
+                yield return new WaitForSeconds(1f);
                 enemies[i].EnemyMove(player, enemies, i);
             }
         }

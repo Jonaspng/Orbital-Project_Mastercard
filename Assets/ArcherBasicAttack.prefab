@@ -498,8 +498,7 @@ GameObject:
   - component: {fileID: 1687194412722499778}
   - component: {fileID: 5600762157816834300}
   - component: {fileID: 6754666669435837933}
-  - component: {fileID: 727678396919353078}
-  - component: {fileID: 7225823549202727566}
+  - component: {fileID: 2632603196353666056}
   m_Layer: 5
   m_Name: ArcherBasicAttack
   m_TagString: Untagged
@@ -712,7 +711,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &727678396919353078
+--- !u!114 &2632603196353666056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,26 +720,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7711939956655095149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  manaCost: 1
-  turns: 0
-  damage: 6
---- !u!114 &7225823549202727566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7711939956655095149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e1814cad4af8284886b75e596ed4bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
   manaCost: 1
-  turns: 0
+  turns: 1
   damage: 6

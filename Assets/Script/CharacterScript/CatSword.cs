@@ -14,6 +14,7 @@ public class CatSword : Enemy {
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage(6));
+                this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(6), index);
             } else if (moveNumber == 2) {
                 print("applied shield");
@@ -21,6 +22,7 @@ public class CatSword : Enemy {
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, index);
             } else {
                 print("Cat attack with " + this.GetFullDamage(6) + " broken");
+                this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(6), index);
                 
                 int currentTurn = StageManager.instance.currentTurn;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7166027039724277294}
   - component: {fileID: 2457285988431126371}
   - component: {fileID: -3817623337818934607}
+  - component: {fileID: 8874090035435636899}
   m_Layer: 5
   m_Name: Armor Cat
   m_TagString: Untagged
@@ -97,16 +98,37 @@ MonoBehaviour:
   unitName: 
   health: 100
   maxHp: 100
-  baseAttack: 8
+  baseAttack: 0
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
+  animator: {fileID: 8874090035435636899}
   enemyIndex: 0
   arrowStuckCount: 0
   isImmobilised: 0
   isBurned: 0
   isBroken: 0
   isPoisoned: 0
+--- !u!95 &8874090035435636899
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270119128613213266}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18c8217929a0342428da16aa5016a347, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2991829253522246514
 GameObject:
   m_ObjectHideFlags: 0

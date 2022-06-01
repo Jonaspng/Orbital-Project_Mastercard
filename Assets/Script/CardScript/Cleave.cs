@@ -18,6 +18,7 @@ public class Cleave : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
+        player.animator.SetTrigger("Attack");
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
                 enemy.receiveDamage(player.GetFullDamage(this.damage), enemyindex);

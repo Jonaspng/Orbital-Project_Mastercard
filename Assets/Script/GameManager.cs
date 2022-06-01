@@ -15,12 +15,6 @@ class GameManager : MonoBehaviour {
     public GameObject enemyPanel;
 
 
-
-    private void Start() {
-            
-    }
-
-
     public void InitialiseStage() {
         InitialisePlayer();
         InitialiseEnemies();

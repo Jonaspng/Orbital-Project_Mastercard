@@ -93,9 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8394992901530168730}
-  - component: {fileID: 5392083743733176048}
   - component: {fileID: 5669182125797960689}
   - component: {fileID: 1136072782187674300}
+  - component: {fileID: 5392083743733176048}
+  - component: {fileID: 5813604611623287913}
   m_Layer: 5
   m_Name: Staff Cat
   m_TagString: Untagged
@@ -119,31 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5392083743733176048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4359046994557743501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6990e66340e9643adcdbb8af9af59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  health: 30
-  maxHp: 30
-  baseAttack: 0
-  attackModifier: 1
-  baseShield: 0
-  shieldModifier: 1
-  enemyIndex: 0
-  arrowStuckCount: 0
-  isImmobilised: 0
-  isBurned: 0
-  isBroken: 0
-  isPoisoned: 0
 --- !u!61 &5669182125797960689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,3 +167,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5392083743733176048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359046994557743501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6990e66340e9643adcdbb8af9af59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: 
+  health: 30
+  maxHp: 30
+  baseAttack: 0
+  attackModifier: 1
+  baseShield: 0
+  shieldModifier: 1
+  animator: {fileID: 5813604611623287913}
+  enemyIndex: 0
+  arrowStuckCount: 0
+  isImmobilised: 0
+  isBurned: 0
+  isBroken: 0
+  isPoisoned: 0
+--- !u!95 &5813604611623287913
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359046994557743501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6882f46411c6388418c0edd1a58b8584, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

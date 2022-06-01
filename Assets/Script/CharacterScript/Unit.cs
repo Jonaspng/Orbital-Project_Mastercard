@@ -15,7 +15,9 @@ public abstract class Unit : MonoBehaviour {
 
     public int baseShield;
 
-    public double shieldModifier;    
+    public double shieldModifier;
+
+    public Animator animator;
 
        
 }

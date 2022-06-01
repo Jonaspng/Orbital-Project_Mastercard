@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2506061783569640290}
   - component: {fileID: 7186332194403598845}
+  - component: {fileID: 2529367327091240091}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -136,7 +137,28 @@ MonoBehaviour:
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
+  animator: {fileID: 2529367327091240091}
   isBroken: 0
   isStrongWillpower: 0
   isEndure: 0
   hitCount: 0
+--- !u!95 &2529367327091240091
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7919264731247161561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d59bc44b6f32a14bbb8ef42cb5c959f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

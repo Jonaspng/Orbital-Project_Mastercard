@@ -19,5 +19,6 @@ public class SniperShot : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+        player.animator.SetTrigger("Attack");
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Niflheim
   m_EditorClassIdentifier: 
   cardName: Niflheim
-  description: Deal 15 damage to all enemies
+  description: Deal 25 damage to all enemies
   frame: {fileID: 21300000, guid: 4357a2dd16cfda64a83637bfd8fa2cbd, type: 3}
   manaCost: 3

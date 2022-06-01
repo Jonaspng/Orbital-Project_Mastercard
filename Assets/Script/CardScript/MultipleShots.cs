@@ -15,6 +15,7 @@ public class MultipleShots : Cards {
     }
     
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
+        player.animator.SetTrigger("Attack");
         Archer archer = (Archer) player;
         for (int i = 0; i < Random.Range(2, 6); i++) {
             if (enemies[enemyIndex] != null) {

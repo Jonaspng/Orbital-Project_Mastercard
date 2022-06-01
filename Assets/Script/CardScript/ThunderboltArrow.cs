@@ -20,7 +20,9 @@ public class ThunderboltArrow : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
+        
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+        player.animator.SetTrigger("Attack");
 
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;

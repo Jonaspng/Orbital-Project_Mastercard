@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741694909277460703}
   - component: {fileID: -8443845510419234344}
+  - component: {fileID: 9153205184267865467}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -52,10 +53,31 @@ MonoBehaviour:
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
+  animator: {fileID: 9153205184267865467}
   isBroken: 0
   evasionCount: 0
   isStickyArrowEnabled: 0
   isStealthed: 0
+--- !u!95 &9153205184267865467
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002011742762386276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a2d5fd1b5ba0b34bb183778856597e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8463407293110028209
 GameObject:
   m_ObjectHideFlags: 0

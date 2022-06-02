@@ -29,5 +29,6 @@ public class SmokeBomb : Cards {
             eventManager.Add(currentTurn, newResetEvent);
         }
         archer.ChangeStealthStatus(true);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderSmokeBombIcon();
     }
 }

@@ -17,6 +17,7 @@ public class LegionRoar : Cards {
        foreach(Enemy enemy in enemies) {
            if (enemy != null) {
                enemy.changeAttackModifier(0.75);
+               enemy.GetComponentInParent<BattleHUD>().RenderAttackDownIcon();
            }
        }
     }

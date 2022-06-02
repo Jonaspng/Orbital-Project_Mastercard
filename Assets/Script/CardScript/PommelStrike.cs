@@ -17,17 +17,18 @@ class PommelStrike : Cards {
         } 
     }
 
-    public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
+    public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemyindex)};
+        AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
             eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
-        enemies[enemyindex].ChangeIsImmobilised(true);
+        enemies[enemyIndex].ChangeIsImmobilised(true);
+        enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderStunIcon();
     }
 
 }

@@ -18,9 +18,12 @@ public class AncientPower : Cards {
     }
 public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
+
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
         AbstractEvent[] newAddEvent = {new PlayerDamageEvent(1, 5, enemyIndex)};
         AbstractEvent[] newResetEvent = {new PlayerDamageEvent(1, -5, enemyIndex)};
+
+        
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newAddEvent).ToArray();

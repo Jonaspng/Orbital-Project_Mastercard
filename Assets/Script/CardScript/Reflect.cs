@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Reflect : Cards {
@@ -29,5 +28,6 @@ public class Reflect : Cards {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
         mage.ChangeReflectStatus(true);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderReflectIcon();
     }
 }

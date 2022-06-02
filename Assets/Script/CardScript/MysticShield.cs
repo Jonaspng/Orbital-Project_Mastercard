@@ -15,6 +15,7 @@ public class MysticShield : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         enemies[enemyIndex].changeAttackModifier(0.75);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderMysticShieldIcon();
     }
 
 

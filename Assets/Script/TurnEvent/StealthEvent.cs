@@ -1,3 +1,5 @@
+using UnityEngine;
+
 class StealthEvent : AbstractEvent {
 
     public bool isStealthed;
@@ -9,6 +11,7 @@ class StealthEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         Archer archer = (Archer) player;
         archer.ChangeStealthStatus(isStealthed);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveSmokeBombIcon();
     }
 
 }

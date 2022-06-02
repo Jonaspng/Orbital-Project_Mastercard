@@ -37,6 +37,7 @@ public class ThunderboltArrow : Cards {
 
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }    
     }
 }

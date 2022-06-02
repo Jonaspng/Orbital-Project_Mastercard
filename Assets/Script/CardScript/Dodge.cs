@@ -18,5 +18,6 @@ public class Dodge : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         archer.AddEvasionCount(this.evasionCount);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderDodgeIcon();
     }
 }

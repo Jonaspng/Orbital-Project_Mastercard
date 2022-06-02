@@ -81,6 +81,7 @@ public abstract class Enemy : Unit {
 
     public void ResetAttackModifier() {
         this.attackModifier = 1;
+        this.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackDownIcon();        
     }
 
     public void changeShieldModifier(double shieldModifier) {

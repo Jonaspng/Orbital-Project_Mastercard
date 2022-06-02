@@ -2553,7 +2553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231992191293157555, guid: 5943b5a3a4117414691d7388666d7791, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -9.8
       objectReference: {fileID: 0}
     - target: {fileID: 4231992191293157555, guid: 5943b5a3a4117414691d7388666d7791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2812,6 +2812,15 @@ MonoBehaviour:
   iconsBar: {fileID: 895633776}
   shieldIcon: {fileID: 6915566598342927753, guid: ad90a3b75c2df9645ab29f1453be5ce7, type: 3}
   poisonIcon: {fileID: 2616949004709166120, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
+  brokenShieldIcon: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
+  burnedIcon: {fileID: 4501269151558208676, guid: 4756f0572c5917241a3697f81bb8fb70, type: 3}
+  stunIcon: {fileID: 6147622139561121238, guid: dea1b6391f42daf4fa2d38a53b307ef3, type: 3}
+  attackUpIcon: {fileID: 2912955603300944756, guid: 691937284723faa4e96ab59e0a43bfeb, type: 3}
+  attackDownIcon: {fileID: 8608382886452050791, guid: 414ff70e02510844ea6a7208527dba3f, type: 3}
+  dodgeIcon: {fileID: 4136961702214656306, guid: 7ec1f9bf14de4a34589783f7401690ea, type: 3}
+  smokeBombIcon: {fileID: 3281889666080369051, guid: d3e975a5479f7c04a9cf3ef40d386ba5, type: 3}
+  mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
+  reflectIcon: {fileID: 5621447903070136636, guid: 5c74302575aaeec459d70dd0678e2a69, type: 3}
   isShieldIconOn: 0
   maxHp: 0
 --- !u!1 &1867996997

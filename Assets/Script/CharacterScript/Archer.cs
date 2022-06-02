@@ -10,6 +10,8 @@ public class Archer : Player {
 
     public bool isStealthed;
 
+    public bool evaded;
+
     public Archer(double attackModifier, 
     double shieldModifier) 
     : base(70, attackModifier, shieldModifier) { 
@@ -35,17 +37,24 @@ public class Archer : Player {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
                     if (evasionCount > 0) {
+                        evaded = true;
                         evasionCount--;
                     } else {
+                        evaded = false;
                         health = health - realDamage + this.baseShield;
                         ResetBaseShield();
                         StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
-                }                
+                } else {
+                    evaded = true;
+                }      
             } else {
                 if (evasionCount > 0) {
+                    evaded = true;
                     evasionCount--;
+                    GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveDodgeIcon();
                 } else {
+                    evaded = false;
                     health = health - realDamage + this.baseShield;
                     ResetBaseShield();
                     StageManager.instance.playerHUD.RemoveShieldIcon();
@@ -59,9 +68,11 @@ public class Archer : Player {
     }
 
     public override void ChangeIsBroken(bool status) {
-        if (evasionCount == 0 && !isStealthed) {
+        if (!evaded) {
             this.isBroken = status;
+            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderBrokenIcon();
         }
+        evaded = false;
     }
 
     public void ChangeStickyArrowStatus(bool b) {

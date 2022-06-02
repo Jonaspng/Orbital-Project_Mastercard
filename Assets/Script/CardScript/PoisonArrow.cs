@@ -26,7 +26,7 @@ class PoisonArrow : Cards {
 
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsPoisoned(true);
-            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon(enemyIndex);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon();
         }
 
         // The part that applies poison. Implementation to be improved. 

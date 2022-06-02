@@ -24,10 +24,12 @@ public class CatSword : Enemy {
                 print("Cat attack with " + this.GetFullDamage(6) + " broken");
                 this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(6), index);
+
+                player.ChangeIsBroken(true);
                 
                 int currentTurn = StageManager.instance.currentTurn;
+
                 Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-                player.ChangeIsBroken(true);               
                 AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(1, false, -1)};
                 
                 if (eventManager.ContainsKey(currentTurn + 2)) {

@@ -32,10 +32,14 @@ public class Bash : Cards {
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
+
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+
         player.animator.SetTrigger("Attack");
+
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }
         
     }

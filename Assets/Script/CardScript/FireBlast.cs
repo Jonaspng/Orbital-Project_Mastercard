@@ -19,11 +19,13 @@ class FireBlast : Cards {
         }
     }
 
-    public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-         int currentTurn = StageManager.instance.currentTurn;
+    public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
+        int currentTurn = StageManager.instance.currentTurn;
+
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyindex)};
-        AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyindex)};
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
+        AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyIndex)};
+
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
@@ -44,10 +46,11 @@ class FireBlast : Cards {
         }
         
         player.animator.SetTrigger("Attack");
-        enemies[enemyindex].receiveDamage(this.damage, enemyindex);
+        enemies[enemyIndex].receiveDamage(this.damage, enemyIndex);
         
-        if (enemies[enemyindex] != null) {
-            enemies[enemyindex].ChangeIsBurned(true);
+        if (enemies[enemyIndex] != null) {
+            enemies[enemyIndex].ChangeIsBurned(true);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyBurnIcon();
         }
 
         

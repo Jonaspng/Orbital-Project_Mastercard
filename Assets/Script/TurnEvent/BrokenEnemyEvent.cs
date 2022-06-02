@@ -14,6 +14,7 @@ class BrokenEnemyEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         if (enemies[this.enemyIndex] != null) {
             enemies[this.enemyIndex].ChangeIsBroken(this.isBroken);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemoveBrokenIcon();
         }
         
     }

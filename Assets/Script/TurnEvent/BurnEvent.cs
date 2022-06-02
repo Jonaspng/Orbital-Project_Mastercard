@@ -13,6 +13,7 @@ class BurnEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         if (enemies[this.enemyIndex] != null) {
             enemies[this.enemyIndex].ChangeIsBurned(this.isBurned);
+            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemoveBurnIcon();
         }
     }
 

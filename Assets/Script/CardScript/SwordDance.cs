@@ -16,7 +16,7 @@ public class SwordDance : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        // subject to changes
         player.AddAttackModifier(2);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderAttackUpIcon();
     }
 }

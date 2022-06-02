@@ -68,7 +68,7 @@ public class StageManager : MonoBehaviour {
                 GameObject.Destroy(obj.gameObject);
             }
 
-            playerHUD.RemoveShieldIcon();
+            playerHUD.RemoveAllIcons();
             player.ResetBaseShield();
             player.ResetAttackModifier();
             
@@ -159,13 +159,14 @@ public class StageManager : MonoBehaviour {
                 temp.evasionCount = 0;
             }
 
-            ExecuteEventsInManager(playerEventManager);
-
-            RerenderManaCount(this.manaCount);
-
             playerHUD.RemoveShieldIcon();
             player.ResetBaseShield();
             player.ResetAttackModifier();
+
+            StartCoroutine(ExecuteEventsInManager(playerEventManager));
+
+            RerenderManaCount(this.manaCount);
+
 
             currentTurn++;
 
@@ -187,13 +188,13 @@ public class StageManager : MonoBehaviour {
             }
 
             endTurnButton.SetActive(true);
-
-            deckManager.DrawCard(5);
+            
+            if (enemyCount > 0) {
+                deckManager.DrawCard(5);
+            }
+            
      
-        }
-
-        
-        
+        }        
     }
 
     

@@ -18,5 +18,6 @@ public class FocusShot : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.AddAttackModifier(damageModifier);
+        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderAttackUpIcon();
     }
 }

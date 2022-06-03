@@ -49,6 +49,7 @@ public class StageManager : MonoBehaviour {
 
 
     public void InitialiseBattle() {
+        playerHUD.RemoveAllIcons();
         playerEventManager = new Dictionary<int, AbstractEvent[]>();
         enemyEventManager = new Dictionary<int, AbstractEvent[]>();
         this.manaCount = 3;

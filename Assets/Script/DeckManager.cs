@@ -70,8 +70,8 @@ public class DeckManager : MonoBehaviour {
                 currentDeckID.AddCardID(3);
                 currentDeckID.AddCardID(3);
             } else {
-                currentDeckID.AddCardID(31);
-                currentDeckID.AddCardID(35);
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(4);
                 currentDeckID.AddCardID(4);
                 currentDeckID.AddCardID(4);
                 currentDeckID.AddCardID(4);

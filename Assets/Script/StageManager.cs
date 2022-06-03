@@ -178,9 +178,6 @@ public class StageManager : MonoBehaviour {
 
             if (player.getHealth() <= 0) {
                 GameObject.Destroy(player.gameObject);
-                foreach (Transform obj in GameObject.Find("Current Hand").transform) {
-                    GameObject.Destroy(obj.gameObject);
-                }
                 foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
                     GameObject.Destroy(obj.gameObject);
                 }
@@ -189,7 +186,7 @@ public class StageManager : MonoBehaviour {
 
             endTurnButton.SetActive(true);
             
-            if (enemyCount > 0) {
+            if (enemyCount > 0 && player.getHealth() > 0) {
                 deckManager.DrawCard(5);
             }
             

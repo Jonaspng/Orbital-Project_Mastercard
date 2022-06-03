@@ -70,7 +70,9 @@ public class Archer : Player {
     public override void ChangeIsBroken(bool status) {
         if (!evaded) {
             this.isBroken = status;
-            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderBrokenIcon();
+            if (status) {
+                GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderBrokenIcon();
+            }            
         }
         evaded = false;
     }

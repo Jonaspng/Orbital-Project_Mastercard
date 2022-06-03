@@ -21,11 +21,11 @@ public class Reflect : Cards {
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
         AbstractEvent[] newResetEvent = {new ReflectEvent(1, false, enemyIndex)};
-        if (eventManager.ContainsKey(currentTurn + 1)) {
-            AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+        if (eventManager.ContainsKey(currentTurn)) {
+            AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn];
+            eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 1, newResetEvent);
+            eventManager.Add(currentTurn, newResetEvent);
         }
         mage.ChangeReflectStatus(true);
         GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderReflectIcon();

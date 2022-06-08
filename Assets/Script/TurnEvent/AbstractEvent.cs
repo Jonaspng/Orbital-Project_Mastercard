@@ -13,8 +13,4 @@ public abstract class AbstractEvent {
 
     public abstract void executeEvent(Player player, Enemy[] enemies);
 
-    public virtual void executeEvent(Player player) {
-        // do nothing
-    }
-
 }

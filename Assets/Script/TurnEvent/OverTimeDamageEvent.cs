@@ -15,8 +15,4 @@ class OvertimeDamageEvent : AbstractEvent {
         }
     }
 
-    public override void executeEvent(Player player) {
-        
-    }
-
 }

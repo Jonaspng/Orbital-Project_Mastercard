@@ -137,9 +137,10 @@ MonoBehaviour:
   attackModifier: 1
   baseShield: 0
   shieldModifier: 1
+  isPoisoned: 0
+  animator: {fileID: 5603534878026775476}
   isBroken: 0
   isReflected: 0
-  animator: {fileID: 5603534878026775476}
 --- !u!95 &5603534878026775476
 Animator:
   serializedVersion: 4

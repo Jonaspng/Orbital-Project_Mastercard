@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
@@ -42,9 +43,7 @@ public class StageManager : MonoBehaviour {
 
     private void Start() {
         state = BattleState.START;
-        
         InitialiseBattle();
-             
     }
 
 
@@ -55,8 +54,9 @@ public class StageManager : MonoBehaviour {
         this.manaCount = 3;
         RerenderManaCount(3);
         this.currentTurn = 0;
-        GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
         deckManager.Initialise();
+        GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
+        StageEventExecute();
         state = BattleState.PLAYERTURN;
     }
 
@@ -82,6 +82,8 @@ public class StageManager : MonoBehaviour {
                 Archer temp = (Archer) player;
                 temp.ChangeStickyArrowStatus(false);
             }
+
+            PlayerPrefs.SetInt("health", player.health);
         }
     }
     
@@ -190,9 +192,73 @@ public class StageManager : MonoBehaviour {
             if (enemyCount > 0 && player.getHealth() > 0) {
                 deckManager.DrawCard(5);
             }
-            
-     
         }        
+    }
+
+
+    public void StageEventExecute() {
+        int eventNumber = 0;
+        if (PlayerPrefs.HasKey("random event")) {
+            eventNumber = PlayerPrefs.GetInt("random event");
+        }
+        // Event 1: lock cat
+        if (eventNumber == 1) {
+            deckManager.LockCard();
+        }
+        // Event 2: Heal Cat
+        else if (eventNumber == 2) {
+            if (player.maxHp - player.health <= 20) {
+                player.health = player.maxHp;
+            } else {
+                player.health += 20;
+            }
+            PlayerPrefs.SetInt("health", player.health);
+            playerHUD.SetHP(player.health);
+        }
+        // Event 3: Poison Cat
+        else if (eventNumber == 3) {
+            player.ChangeIsPoisoned(true);
+            playerHUD.RenderEnemyPoisonIcon();
+
+            AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 2, 0)};
+            AbstractEvent[] resetEvent = {new PlayerPoisonEvent(1, false, 0)};
+
+            if (playerEventManager.ContainsKey(currentTurn)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
+                playerEventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
+            } else {
+                playerEventManager.Add(currentTurn, newEvent);
+            }
+
+            if (playerEventManager.ContainsKey(currentTurn + 1)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 1];
+                playerEventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+            } else {
+                playerEventManager.Add(currentTurn + 1, newEvent);
+            }
+
+            if (playerEventManager.ContainsKey(currentTurn + 2)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 2];
+                playerEventManager[currentTurn + 2] = currEvent.Concat(resetEvent).ToArray();
+            } else {
+                playerEventManager.Add(currentTurn + 2, resetEvent);
+            }        
+        }
+        // Event 4: Recess Cat
+        else if (eventNumber == 4) {
+            int randomEnemy = Random.Range(0, enemies.Count());
+            enemies[randomEnemy].ChangeIsImmobilised(true);
+            enemies[randomEnemy].GetComponentInParent<BattleHUD>().RenderStunIcon();
+            
+            AbstractEvent[] newResetEvent = {new StunEvent(1, false, randomEnemy)};
+            if (enemyEventManager.ContainsKey(currentTurn + 1)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn + 1];
+                enemyEventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+            } else {
+                enemyEventManager.Add(currentTurn + 1, newResetEvent);
+            }
+        }   
+        PlayerPrefs.SetInt("random event", 0); //reseted
     }
 
     

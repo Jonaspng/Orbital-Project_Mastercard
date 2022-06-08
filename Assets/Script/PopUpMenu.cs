@@ -8,7 +8,7 @@ public class PopUpMenu : MonoBehaviour  {
 
     public int newCardId;
  
-    void Start ()  {
+    void Start () {
         cardSelectionMenu.SetActive(false); 
     }
          
@@ -21,13 +21,14 @@ public class PopUpMenu : MonoBehaviour  {
         DeckID newDeck = StageManager.instance.deckManager.currentDeckID;
         newDeck.AddCardID(newCardId);
         StageManager.instance.deckManager.SaveJson(newDeck);
-        GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber += 1;
+        PlayerPrefs.SetInt("stage", GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber + 1);
         foreach (Transform obj in GameObject.Find("NewCards").transform) {
             GameObject.Destroy(obj.gameObject);
         }
         this.PopUp();
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber == 3) {
-            SceneManager.LoadScene("Start Menu");
+        int stageNumber = GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber + 1;
+        if (stageNumber == 2 || stageNumber == 6) {
+            SceneManager.LoadScene("Event");
         } else {
             StageManager.instance.InitialiseBattle();
         }

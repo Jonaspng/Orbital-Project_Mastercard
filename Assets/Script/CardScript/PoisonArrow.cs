@@ -29,7 +29,6 @@ class PoisonArrow : Cards {
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon();
         }
 
-        // The part that applies poison. Implementation to be improved. 
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
         AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};

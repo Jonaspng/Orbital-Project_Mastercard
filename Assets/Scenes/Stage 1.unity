@@ -2811,7 +2811,7 @@ MonoBehaviour:
   hpSlider: {fileID: 47356480}
   iconsBar: {fileID: 895633776}
   shieldIcon: {fileID: 6915566598342927753, guid: ad90a3b75c2df9645ab29f1453be5ce7, type: 3}
-  poisonIcon: {fileID: 2616949004709166120, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
+  poisonIcon: {fileID: 1357525036848282443, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
   brokenShieldIcon: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
   burnedIcon: {fileID: 4501269151558208676, guid: 4756f0572c5917241a3697f81bb8fb70, type: 3}
   stunIcon: {fileID: 6147622139561121238, guid: dea1b6391f42daf4fa2d38a53b307ef3, type: 3}
@@ -2878,6 +2878,7 @@ MonoBehaviour:
     cardList: []
   currentHand:
     cardList: []
+  lockedCardID: 0
   prefabList:
   - {fileID: 3473524972877913460, guid: d20047fb9c003c7458d041217f104857, type: 3}
   - {fileID: 8333493018185184031, guid: 56287a5f6b37bc44290b7943ca4d0947, type: 3}

@@ -14,16 +14,19 @@ public class CharacterSelectionManager : MonoBehaviour {
     public void OnSwordClick() {
         PlayerPrefs.SetString("character", "Warrior");
         confirmButton.SetActive(true);
+        PlayerPrefs.SetInt("health", 60);
     }
 
     public void OnArrowClick() {
         PlayerPrefs.SetString("character", "Archer");
         confirmButton.SetActive(true);
+        PlayerPrefs.SetInt("health", 40);
     }
 
     public void OnStaffClick() {
         PlayerPrefs.SetString("character", "Mage");
         confirmButton.SetActive(true);
+        PlayerPrefs.SetInt("health", 50);
     }
 
 

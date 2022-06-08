@@ -16,6 +16,9 @@ class GameManager : MonoBehaviour {
 
 
     public void InitialiseStage() {
+        if (PlayerPrefs.HasKey("stage")) {
+            this.stageNumber = PlayerPrefs.GetInt("stage");
+        }
         InitialisePlayer();
         InitialiseEnemies();
     }
@@ -24,7 +27,8 @@ class GameManager : MonoBehaviour {
 
     public void InitialisePlayer() {
         StageManager stage = StageManager.instance;
-        if (stageNumber == 1 || stage.player.getHealth() <= 0) {
+
+        if (stageNumber == 1 || stageNumber == 2 || stage.player.getHealth() <= 0) {
             playerType = PlayerPrefs.GetString("character");
             if (playerType == "Warrior") {
                 stage.playerGO = Instantiate(playerPrefabList[0], stage.playerBattleStation);
@@ -33,8 +37,10 @@ class GameManager : MonoBehaviour {
             } else {
                 stage.playerGO = Instantiate(playerPrefabList[2], stage.playerBattleStation);
             }
-        
             Player player = stage.playerGO.GetComponent<Player>();
+            if (PlayerPrefs.HasKey("health")) {
+                player.health = PlayerPrefs.GetInt("health");
+            }            
             stage.player = player;
             stage.playerHUD.SetHUD(player);
         }

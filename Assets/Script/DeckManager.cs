@@ -17,12 +17,27 @@ public class DeckManager : MonoBehaviour {
     public Deck unusedPile;
 
     public Deck currentHand;
+
+    public int lockedCardID;
     
     public List<GameObject> prefabList;
 
     public GameObject currentHandPanel;
 
     public GameObject cardselectionPanel;
+
+
+    public void LockCard() {
+        lockedCardID = currentDeckID.cardIDList[Random.Range(0, currentDeckID.cardIDList.Count)];
+        currentDeckID.RemoveCard(lockedCardID);
+        SaveJson(currentDeckID);
+    }
+
+    public void UnlockCard() {
+        currentDeckID.AddCardID(lockedCardID);
+        SaveJson(currentDeckID);
+        lockedCardID = 0;
+    }
 
 
     public void DeckIdToDeck() {

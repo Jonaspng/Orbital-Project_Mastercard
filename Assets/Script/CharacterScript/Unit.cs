@@ -17,7 +17,13 @@ public abstract class Unit : MonoBehaviour {
 
     public double shieldModifier;
 
+    public bool isPoisoned;
+
     public Animator animator;
+
+    public void ChangeIsPoisoned(bool status) {
+        this.isPoisoned = status;
+    }
 
        
 }

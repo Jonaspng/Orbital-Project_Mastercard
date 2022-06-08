@@ -27,8 +27,8 @@ public class Mage : Player {
             this.baseShield -= realDamage;
         }
         if (isReflected) {
-                int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
-                source.receiveDamage(reflectedDamage, enemyIndex);
+            int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
+            source.receiveDamage(reflectedDamage, enemyIndex);       
         }
 
         StageManager.instance.playerHUD.SetHP(this.health);

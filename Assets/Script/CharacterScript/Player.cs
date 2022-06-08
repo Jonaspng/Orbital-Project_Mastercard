@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class Player : Unit {
 
-
     public bool isBroken;
 
     //private Card[] deck;
@@ -14,6 +13,11 @@ public abstract class Player : Unit {
     }
 
     public abstract void receiveDamage(Enemy source, int damage, int enemyIndex);
+
+    public void receivePoisonDamage(int damage) {
+        health = health - damage;
+        StageManager.instance.playerHUD.SetHP(this.health);
+    }
 
     public  int getHealth() {
         return health;

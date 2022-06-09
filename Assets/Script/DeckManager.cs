@@ -18,7 +18,7 @@ public class DeckManager : MonoBehaviour {
 
     public Deck currentHand;
 
-    public int lockedCardID;
+    public int lockedCard;
     
     public List<GameObject> prefabList;
 
@@ -28,17 +28,9 @@ public class DeckManager : MonoBehaviour {
 
 
     public void LockCard() {
-        lockedCardID = currentDeckID.cardIDList[Random.Range(0, currentDeckID.cardIDList.Count)];
-        currentDeckID.RemoveCard(lockedCardID);
-        SaveJson(currentDeckID);
+        lockedCard = currentDeckID.cardIDList[Random.Range(0, currentDeckID.cardIDList.Count)];
+        currentDeck.RemoveCard(currentDeck.cardList[lockedCard]);
     }
-
-    public void UnlockCard() {
-        currentDeckID.AddCardID(lockedCardID);
-        SaveJson(currentDeckID);
-        lockedCardID = 0;
-    }
-
 
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();

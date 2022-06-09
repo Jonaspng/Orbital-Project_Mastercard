@@ -35,10 +35,7 @@ public abstract class Enemy : Unit {
                 print("real damage: " + realDamage);
                 print("base shield: " + this.baseShield);
                 health = health - realDamage + this.baseShield;
-                ResetBaseShield();
-            } else {
-                this.baseShield -= realDamage;
-            }
+            } 
             if (health <= 0) {
                 StageManager.instance.DestroyEnemy(enemyIndex);
                 return;
@@ -48,9 +45,11 @@ public abstract class Enemy : Unit {
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
+            this.baseShield -= realDamage;
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
-            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(this.baseShield - realDamage, enemyIndex);
+            this.baseShield -= realDamage;
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }
         
         

@@ -27,7 +27,7 @@ public class PopUpMenu : MonoBehaviour  {
         }
         this.PopUp();
         int stageNumber = GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber + 1;
-        if (stageNumber == 2 || stageNumber == 6) {
+        if (stageNumber == 3 || stageNumber == 6) {
             SceneManager.LoadScene("Event");
         } else {
             StageManager.instance.InitialiseBattle();

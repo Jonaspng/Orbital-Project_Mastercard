@@ -176,6 +176,11 @@ public class StageManager : MonoBehaviour {
             foreach(Enemy enemy in enemies) {
                 if (enemy != null) {
                     enemy.ResetAttackModifier();
+                    // just in case go 2 attack up icon
+                    for (int i = 0; i < 2; i++) {
+                        enemy.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackUpIcon();
+                        yield return new WaitForSeconds(0.001f);
+                    }
                 }
             }
 
@@ -260,6 +265,9 @@ public class StageManager : MonoBehaviour {
         }   
         PlayerPrefs.SetInt("random event", 0); //reseted
     }
+
+
+
 
     
 }

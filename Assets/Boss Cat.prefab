@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1626296337726825644}
-  - component: {fileID: 2937549750259916742}
   - component: {fileID: 3223514573490758343}
   - component: {fileID: 7914203722426708874}
+  - component: {fileID: 446887869201632575}
   m_Layer: 5
   m_Name: Boss Cat
   m_TagString: Untagged
@@ -35,31 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2937549750259916742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6804569956924094651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6990e66340e9643adcdbb8af9af59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  health: 30
-  maxHp: 30
-  baseAttack: 0
-  attackModifier: 1
-  baseShield: 0
-  shieldModifier: 1
-  enemyIndex: 0
-  arrowStuckCount: 0
-  isImmobilised: 0
-  isBurned: 0
-  isBroken: 0
-  isPoisoned: 0
 --- !u!61 &3223514573490758343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73,7 +48,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022858143, y: -0.06058383}
+  m_Offset: {x: 0.034646988, y: 0.09431076}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84,7 +59,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7030663, y: 3.1573024}
+  m_Size: {x: 3.9624233, y: 3.8849416}
   m_EdgeRadius: 0
 --- !u!50 &7914203722426708874
 Rigidbody2D:
@@ -107,6 +82,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &446887869201632575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804569956924094651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6811a61085941b4e9fa5c980a480158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Boss
+  health: 110
+  maxHp: 110
+  baseAttack: 10
+  attackModifier: 1
+  baseShield: 0
+  shieldModifier: 1
+  isPoisoned: 0
+  animator: {fileID: 0}
+  enemyIndex: 0
+  arrowStuckCount: 0
+  isImmobilised: 0
+  isBurned: 0
+  isBroken: 0
 --- !u!1 &7371251392171403163
 GameObject:
   m_ObjectHideFlags: 0

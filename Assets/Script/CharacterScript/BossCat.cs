@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
+public class BossCat : Enemy {
 
-public class CatStaff : Enemy {
-    public CatStaff(double attackModifier, double shieldModifier)
-    : base(30, attackModifier, shieldModifier) {
+    public BossCat(double attackModifier, double shieldModifier)
+    : base(110, attackModifier, shieldModifier) {
         
     }
 
@@ -20,13 +22,13 @@ public class CatStaff : Enemy {
                 this.AddBaseShield(6);
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
-                foreach(Enemy enemy in enemies) {
-                    if (enemy != null) {
-                        enemy.gameObject.GetComponentInParent<BattleHUD>().RenderAttackUpIcon();
-                        this.changeAttackModifier(1.25);
-                    }
+                print("Spawning Enemy");
+                if (StageManager.instance.enemyCount == 3) {
+                    GameManager.instance.SpawnEnemies();
+                } else {
+                    EnemyMove(player, enemies, index);
                 }
             }
         }
-    }
+    }   
 }

@@ -734,7 +734,7 @@ MonoBehaviour:
   - {fileID: 8680435248434076165, guid: aa9a216e563f8c14bb4c7d74bd9e280f, type: 3}
   - {fileID: 9131307509326684060, guid: d23729da3dc09d44ca9fec89322cc3ef, type: 3}
   - {fileID: 7057589699148304364, guid: ccae5deac61fc954ba81fcc60b809b48, type: 3}
-  - {fileID: 6804569956924094651, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
+  - {fileID: 500336115667892151, guid: 6b06545882913fc49be769c97e90446b, type: 3}
   playerPrefabList:
   - {fileID: 7919264731247161561, guid: 4df59c286e2310c4f9ded6ed29a41901, type: 3}
   - {fileID: 5002011742762386276, guid: 26f8526dac6e0d14095a52a8f6a3f03e, type: 3}
@@ -2878,7 +2878,7 @@ MonoBehaviour:
     cardList: []
   currentHand:
     cardList: []
-  lockedCardID: 0
+  lockedCard: 0
   prefabList:
   - {fileID: 3473524972877913460, guid: d20047fb9c003c7458d041217f104857, type: 3}
   - {fileID: 8333493018185184031, guid: 56287a5f6b37bc44290b7943ca4d0947, type: 3}
@@ -3223,8 +3223,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 124.68994, y: 57}
-  m_SizeDelta: {x: -249.39, y: -193.77}
+  m_AnchoredPosition: {x: 112.70996, y: 57}
+  m_SizeDelta: {x: -225.44, y: -193.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042308511
 MonoBehaviour:
@@ -3244,7 +3244,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 100
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

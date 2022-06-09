@@ -58,13 +58,13 @@ public class BattleHUD : MonoBehaviour {
         }
     }
 
-    public void RenderEnemyShieldIcon(int shield, int enemyIndex) {
+    public void RenderEnemyShieldIcon(int enemyIndex) {
         int baseShield = StageManager.instance.enemies[enemyIndex].baseShield;
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
-            icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
+            icon.GetComponentInChildren<TextMeshProUGUI>().text = baseShield.ToString();
         } else {
-            iconsBar.transform.Find("Shield Icon(Clone)").GetComponentInChildren<TextMeshProUGUI>().text = (baseShield + shield).ToString();
+            iconsBar.transform.Find("Shield Icon(Clone)").GetComponentInChildren<TextMeshProUGUI>().text = (baseShield).ToString();
         }
     }
 

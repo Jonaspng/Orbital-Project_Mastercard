@@ -10,7 +10,8 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
+        int moveNumber = 2;
+        //Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage(6));
@@ -19,7 +20,7 @@ public class CatSword : Enemy {
             } else if (moveNumber == 2) {
                 print("applied shield");
                 this.AddBaseShield(6);
-                this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, index);
+                this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Cat attack with " + this.GetFullDamage(6) + " broken");
                 this.animator.SetTrigger("Attack");

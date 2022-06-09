@@ -45,7 +45,7 @@ public abstract class Enemy : Unit {
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
-            this.baseShield -= realDamage;
+            ResetBaseShield();
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
             this.baseShield -= realDamage;

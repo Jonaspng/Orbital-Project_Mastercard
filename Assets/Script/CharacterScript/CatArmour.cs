@@ -8,8 +8,7 @@ public class CatArmour : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = 3;
-        //Random.Range(1, 4);
+        int moveNumber = Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 this.animator.SetTrigger("Attack");

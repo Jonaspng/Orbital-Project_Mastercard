@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3223514573490758343}
   - component: {fileID: 7914203722426708874}
   - component: {fileID: 446887869201632575}
+  - component: {fileID: 3772967356377890853}
   m_Layer: 5
   m_Name: Boss Cat
   m_TagString: Untagged
@@ -102,12 +103,32 @@ MonoBehaviour:
   baseShield: 0
   shieldModifier: 1
   isPoisoned: 0
-  animator: {fileID: 0}
+  animator: {fileID: 3772967356377890853}
   enemyIndex: 0
   arrowStuckCount: 0
   isImmobilised: 0
   isBurned: 0
   isBroken: 0
+--- !u!95 &3772967356377890853
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804569956924094651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfd3333b59a561644ac2d136177b17e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7371251392171403163
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 [System.Serializable]
 public abstract class Enemy : Unit {
@@ -45,9 +46,13 @@ public abstract class Enemy : Unit {
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
+            this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = (realDamage - this.baseShield).ToString();
+            this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
             ResetBaseShield();
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
+            this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = "0";
+            this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
             this.baseShield -= realDamage;
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }

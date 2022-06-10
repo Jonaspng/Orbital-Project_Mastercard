@@ -37,30 +37,36 @@ public class Archer : Player {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
                     if (evasionCount > 0) {
+                        DamageNumberAnimation("Evaded");
                         evaded = true;
                         evasionCount--;
                     } else {
                         evaded = false;
                         health = health - realDamage + this.baseShield;
+                        DamageNumberAnimation(realDamage - this.baseShield);
                         ResetBaseShield();
                         StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
                 } else {
+                    DamageNumberAnimation("Evaded");
                     evaded = true;
                 }      
             } else {
                 if (evasionCount > 0) {
+                    DamageNumberAnimation("Evaded");
                     evaded = true;
                     evasionCount--;
                     GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveDodgeIcon();
                 } else {
                     evaded = false;
                     health = health - realDamage + this.baseShield;
+                    DamageNumberAnimation(realDamage - this.baseShield);
                     ResetBaseShield();
                     StageManager.instance.playerHUD.RemoveShieldIcon();
                 }           
             }
         } else {
+            DamageNumberAnimation(0);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

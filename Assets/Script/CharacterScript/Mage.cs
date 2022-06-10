@@ -20,9 +20,11 @@ public class Mage : Player {
     
         if (realDamage >= this.baseShield) {
                 health = health - realDamage + this.baseShield;
+                DamageNumberAnimation(realDamage - this.baseShield);
                 ResetBaseShield();
                 StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            DamageNumberAnimation(0);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

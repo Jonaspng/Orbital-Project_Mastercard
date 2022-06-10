@@ -28,14 +28,15 @@ public class Warrior : Player {
         if (realDamage >= this.baseShield ) {
             if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
                 this.health = 1;
-                this.isEndure = false;
-            
+                this.isEndure = false;          
             } else {
                 health = health - realDamage + this.baseShield;
             }
+            DamageNumberAnimation(realDamage - this.baseShield);
             ResetBaseShield();
             StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            DamageNumberAnimation(0);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

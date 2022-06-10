@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public abstract class Player : Unit {
 
@@ -54,6 +55,16 @@ public abstract class Player : Unit {
         this.attackModifier = 1;
         GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveAttackUpIcon();
         GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveMysticShieldIcon();
+    }
+
+    public void DamageNumberAnimation(int number) {
+        this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = number.ToString();
+        this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
+    }
+
+    public void DamageNumberAnimation(string message) {
+        this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = message;
+        this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
     }
 
     public abstract int GetFullDamage(int cardDamage);

@@ -169,6 +169,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3607351733921187505}
     m_Modifications:
+    - target: {fileID: 389356509012173429, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 389356509012173429, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 389356509012173429, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -235,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.08
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_AnchoredPosition.y

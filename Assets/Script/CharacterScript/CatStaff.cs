@@ -23,7 +23,7 @@ public class CatStaff : Enemy {
                 foreach(Enemy enemy in enemies) {
                     if (enemy != null) {
                         enemy.gameObject.GetComponentInParent<BattleHUD>().RenderAttackUpIcon();
-                        this.changeAttackModifier(1.25);
+                        enemy.changeAttackModifier(1.25);
                     }
                 }
             }

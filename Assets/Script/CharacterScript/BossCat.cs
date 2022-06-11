@@ -21,7 +21,7 @@ public class BossCat : Enemy {
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Spawning Enemy");
-                if (StageManager.instance.enemyCount == 3) {
+                if (StageManager.instance.enemyCount != 3) {
                     GameManager.instance.SpawnEnemies();
                 } else {
                     EnemyMove(player, enemies, index);

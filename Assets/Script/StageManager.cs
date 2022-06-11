@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -74,16 +75,21 @@ public class StageManager : MonoBehaviour {
             player.ResetAttackModifier();
             
             deckManager.GenerateNewCards();
-            this.GetComponent<PopUpMenu>().PopUp();
-            if (player is Warrior) {
-                Warrior temp = (Warrior) player;
-                temp.ChangeIsStrongWillpower(false);
-            } else if (player is Archer) {
-                Archer temp = (Archer) player;
-                temp.ChangeStickyArrowStatus(false);
-            }
+            if (PlayerPrefs.GetInt("stage") != 6) {
+                    this.GetComponent<PopUpMenu>().PopUp();
+                if (player is Warrior) {
+                    Warrior temp = (Warrior) player;
+                    temp.ChangeIsStrongWillpower(false);
+                } else if (player is Archer) {
+                    Archer temp = (Archer) player;
+                    temp.ChangeStickyArrowStatus(false);
+                }
 
-            PlayerPrefs.SetInt("health", player.health);
+                PlayerPrefs.SetInt("health", player.health);
+            } else {
+                SceneManager.LoadScene("Start Menu");
+            }
+            
         }
     }
     

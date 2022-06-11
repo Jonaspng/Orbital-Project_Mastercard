@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Linq;
 
-
-
 class GameManager : MonoBehaviour {
 
     public static GameManager instance;

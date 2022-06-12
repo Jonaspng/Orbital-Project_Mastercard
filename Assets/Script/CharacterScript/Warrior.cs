@@ -33,10 +33,12 @@ public class Warrior : Player {
                 health = health - realDamage + this.baseShield;
             }
             DamageNumberAnimation(realDamage - this.baseShield);
+            this.animator.SetTrigger("Damaged");
             ResetBaseShield();
             StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
             DamageNumberAnimation(0);
+            this.animator.SetTrigger("Damaged");
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

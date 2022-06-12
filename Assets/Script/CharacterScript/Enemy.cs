@@ -23,7 +23,7 @@ public abstract class Enemy : Unit {
 
     public void receiveDamage(int damage, int index) {
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
-        this.gameObject.GetComponent<Animator>().SetTrigger("Poisoned");
+        this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
         int realDamage;
         if (health <= 0) {
             realDamage = 0;

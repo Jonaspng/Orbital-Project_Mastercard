@@ -80,6 +80,7 @@ public class StageManager : MonoBehaviour {
                 if (player is Warrior) {
                     Warrior temp = (Warrior) player;
                     temp.ChangeIsStrongWillpower(false);
+                    temp.resetHitCount();
                 } else if (player is Archer) {
                     Archer temp = (Archer) player;
                     temp.ChangeStickyArrowStatus(false);

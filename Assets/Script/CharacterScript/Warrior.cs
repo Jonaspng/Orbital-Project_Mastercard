@@ -55,6 +55,10 @@ public class Warrior : Player {
         this.isEndure = status;
     }
 
+    public void resetHitCount() {
+        this.hitCount = 0;
+    }
+
 
     public override int GetFullDamage(int cardDamage) {
         if (this.isStrongWillpower) {

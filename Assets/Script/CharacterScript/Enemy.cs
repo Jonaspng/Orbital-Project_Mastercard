@@ -25,27 +25,24 @@ public abstract class Enemy : Unit {
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
         int realDamage;
-        if (health <= 0) {
-            realDamage = 0;
-            //game over
+    
+        if (isBroken) {
+            realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
-            if (isBroken) {
-                realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
-            } else {
-                realDamage = damage;                
-            }
-            if (realDamage > this.baseShield) {
-                print("real damage: " + realDamage);
-                print("base shield: " + this.baseShield);
-                health = health - realDamage + this.baseShield;
-            } 
-            if (health <= 0) {
-                StageManager.instance.DestroyEnemy(enemyIndex);
-                return;
-            }
-            print(health);
-            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+            realDamage = damage;                
         }
+        if (realDamage > this.baseShield) {
+            print("real damage: " + realDamage);
+            print("base shield: " + this.baseShield);
+            health = health - realDamage + this.baseShield;
+        } 
+        if (health <= 0) {
+            StageManager.instance.DestroyEnemy(enemyIndex);
+            return;
+        }
+        print(health);
+        this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
             this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = (realDamage - this.baseShield).ToString();

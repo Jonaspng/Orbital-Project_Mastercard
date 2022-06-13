@@ -13,7 +13,10 @@ class BrokenPlayerEvent : AbstractEvent {
 
     public override void executeEvent(Player player, Enemy[] enemies) {
         player.ChangeIsBroken(this.isBroken);
-        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveBrokenIcon();
+        if (!isBroken) {
+            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveBrokenIcon();
+        }
+        
     }
 
 }

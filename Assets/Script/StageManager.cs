@@ -153,6 +153,7 @@ public class StageManager : MonoBehaviour {
             deckManager.ClearCards();
 
             endTurnButton.SetActive(false);
+            yield return new WaitForSeconds(1f);
             for (int i = 0; i< enemies.Length; i++) {
                 if (enemies[i] != null) {
                     enemies[i].EnemyMove(player, enemies, i);

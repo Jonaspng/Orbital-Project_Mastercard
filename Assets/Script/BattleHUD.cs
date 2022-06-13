@@ -33,6 +33,8 @@ public class BattleHUD : MonoBehaviour {
 
     public bool isShieldIconOn;
 
+    public bool isBrokenShieldIconOn;
+
     public int maxHp;
 
     public void SetHUD(Unit unit) {
@@ -99,13 +101,18 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderBrokenIcon() {
-        Instantiate(brokenShieldIcon, iconsBar.transform);
+        if (!isBrokenShieldIconOn) {
+            Instantiate(brokenShieldIcon, iconsBar.transform);
+            isBrokenShieldIconOn = true;
+        }
+        
     }
 
     public void RemoveBrokenIcon() {
         Transform icon  = iconsBar.transform.Find("Broken Shield Icon(Clone)");
         if (icon != null) {
             GameObject.Destroy(icon.gameObject);
+            isBrokenShieldIconOn = false;
         }        
     }
 

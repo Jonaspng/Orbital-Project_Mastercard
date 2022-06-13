@@ -58,6 +58,7 @@ public abstract class Player : Unit {
     }
 
     public void DamageNumberAnimation(int number) {
+        print("Damage animation played");
         this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = number.ToString();
         this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
     }

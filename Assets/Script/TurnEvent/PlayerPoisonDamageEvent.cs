@@ -9,8 +9,8 @@ class PlayerPoisonDamageEvent : AbstractEvent {
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
+        player.animator.SetTrigger("Poisoned");
         player.receiveDamage(null, damagePerTurn, -1); 
-        player.animator.SetTrigger("Poisoned");        
     }
 
 

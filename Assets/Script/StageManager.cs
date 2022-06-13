@@ -62,7 +62,7 @@ public class StageManager : MonoBehaviour {
     }
 
     public void DestroyEnemy(int enemyIndex) {
-        GameObject.Destroy(enemies[enemyIndex].transform.parent.parent.gameObject);
+        GameObject.Destroy(enemies[enemyIndex].transform.parent.gameObject);
         enemies[enemyIndex] = null;
         enemyCount -= 1;
         if (enemyCount == 0) {
@@ -155,8 +155,8 @@ public class StageManager : MonoBehaviour {
             endTurnButton.SetActive(false);
             for (int i = 0; i< enemies.Length; i++) {
                 if (enemies[i] != null) {
-                    yield return new WaitForSeconds(1f);
                     enemies[i].EnemyMove(player, enemies, i);
+                    yield return new WaitForSeconds(1f);
                 }
             }
 

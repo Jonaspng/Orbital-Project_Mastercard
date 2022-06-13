@@ -25,7 +25,6 @@ public abstract class Enemy : Unit {
     public void receiveDamage(int damage, int index) {
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
-        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         int realDamage;
     
         if (isBroken) {

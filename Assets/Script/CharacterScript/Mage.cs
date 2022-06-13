@@ -1,4 +1,5 @@
 using System;
+using EZCameraShake;
 
 [System.Serializable]
 public class Mage : Player {
@@ -12,6 +13,7 @@ public class Mage : Player {
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using EZCameraShake;
 
 
 public class Warrior : Player {
@@ -17,6 +18,7 @@ public class Warrior : Player {
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         this.animator.SetTrigger("Damaged");
         if (isStrongWillpower) {
             hitCount++;

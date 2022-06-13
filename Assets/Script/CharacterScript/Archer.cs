@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using EZCameraShake;
 
 [System.Serializable]
 public class Archer : Player {
@@ -25,6 +26,7 @@ public class Archer : Player {
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         // Effective damage calculation
         int realDamage;
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {

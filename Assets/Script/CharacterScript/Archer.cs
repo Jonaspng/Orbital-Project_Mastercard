@@ -44,6 +44,7 @@ public class Archer : Player {
                         evaded = false;
                         health = health - realDamage + this.baseShield;
                         DamageNumberAnimation(realDamage - this.baseShield);
+                        this.animator.SetTrigger("Damaged");
                         ResetBaseShield();
                         StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
@@ -61,6 +62,7 @@ public class Archer : Player {
                     evaded = false;
                     health = health - realDamage + this.baseShield;
                     DamageNumberAnimation(realDamage - this.baseShield);
+                    this.animator.SetTrigger("Damaged");
                     ResetBaseShield();
                     StageManager.instance.playerHUD.RemoveShieldIcon();
                 }           

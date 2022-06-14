@@ -1,5 +1,6 @@
 using System;
 using EZCameraShake;
+using UnityEngine;
 
 [System.Serializable]
 public class Mage : Player {
@@ -13,6 +14,7 @@ public class Mage : Player {
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
+        this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
@@ -22,11 +24,15 @@ public class Mage : Player {
     
         if (realDamage >= this.baseShield) {
                 health = health - realDamage + this.baseShield;
-                DamageNumberAnimation(realDamage - this.baseShield);
+                if (realDamage == this.baseShield) {
+                    DamageNumberAnimation("Blocked", Color.white);
+                } else {
+                    DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                }   
                 ResetBaseShield();
                 StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
-            DamageNumberAnimation(0);
+            DamageNumberAnimation("Blocked", Color.white);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

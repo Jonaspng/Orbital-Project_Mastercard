@@ -57,17 +57,6 @@ public abstract class Player : Unit {
         GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveMysticShieldIcon();
     }
 
-    public void DamageNumberAnimation(int number) {
-        print("Damage animation played");
-        this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = number.ToString();
-        this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
-    }
-
-    public void DamageNumberAnimation(string message) {
-        this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = message;
-        this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
-    }
-
     public abstract int GetFullDamage(int cardDamage);
 
    

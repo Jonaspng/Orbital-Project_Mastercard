@@ -73,6 +73,7 @@ public class StageManager : MonoBehaviour {
             playerHUD.RemoveAllIcons();
             player.ResetBaseShield();
             player.ResetAttackModifier();
+            player.isBroken = false;
             
             deckManager.GenerateNewCards();
             if (PlayerPrefs.GetInt("stage") != 6) {

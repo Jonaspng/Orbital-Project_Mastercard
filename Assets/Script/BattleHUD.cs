@@ -118,6 +118,7 @@ public class BattleHUD : MonoBehaviour {
 
 
     public void RemoveAllIcons() {
+        isBrokenShieldIconOn = false;
         foreach(Transform icon in iconsBar.transform) {
             GameObject.Destroy(icon.gameObject);
         } 

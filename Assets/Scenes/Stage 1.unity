@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart Stage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f1a06ed5d28b85146b7ea2ad1b6b437c, type: 2}
-  m_sharedMaterial: {fileID: 166399964432156631, guid: f1a06ed5d28b85146b7ea2ad1b6b437c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
+  m_sharedMaterial: {fileID: 6144394579458914034, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -543,7 +543,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272242745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 110}
+  m_LocalPosition: {x: 0, y: 0, z: 99.93653}
   m_LocalScale: {x: 0.02638889, y: 0.02638889, z: 0.02638889}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -561,7 +561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.12743533, y: 0.3386261}
   m_SizeDelta: {x: 800, y: 378.9474}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &303406025
@@ -1243,10 +1243,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Return to Main menu
+  m_text: Return to Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f1a06ed5d28b85146b7ea2ad1b6b437c, type: 2}
-  m_sharedMaterial: {fileID: 166399964432156631, guid: f1a06ed5d28b85146b7ea2ad1b6b437c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
+  m_sharedMaterial: {fileID: 6144394579458914034, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1411,8 +1411,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: End Turn
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
+  m_sharedMaterial: {fileID: 6144394579458914034, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2687,7 +2687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555424130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12743533, y: -0.3386261, z: 10.063473}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

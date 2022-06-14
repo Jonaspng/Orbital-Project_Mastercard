@@ -46,13 +46,15 @@ public abstract class Enemy : Unit {
 
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
-            this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = (realDamage - this.baseShield).ToString();
-            this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
+            if (realDamage == this.baseShield) {
+                DamageNumberAnimation("Blocked", Color.white);
+            } else {
+                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+            }
             ResetBaseShield();
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
-            this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = "0";
-            this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
+            DamageNumberAnimation("Blocked", Color.white);
             this.baseShield -= realDamage;
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }

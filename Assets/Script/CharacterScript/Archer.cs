@@ -26,6 +26,7 @@ public class Archer : Player {
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         // Effective damage calculation
         int realDamage;
+        this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
@@ -39,38 +40,46 @@ public class Archer : Player {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
                     if (evasionCount > 0) {
-                        DamageNumberAnimation("Evaded");
+                        DamageNumberAnimation("Evaded", Color.white);
                         evaded = true;
                         evasionCount--;
                     } else {
                         evaded = false;
                         health = health - realDamage + this.baseShield;
-                        DamageNumberAnimation(realDamage - this.baseShield);
+                        if (realDamage == this.baseShield) {
+                            DamageNumberAnimation("Blocked", Color.white);
+                        } else {
+                            DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                        }   
                         this.animator.SetTrigger("Damaged");
                         ResetBaseShield();
                         StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
                 } else {
-                    DamageNumberAnimation("Evaded");
+                    DamageNumberAnimation("Evaded", Color.white);
                     evaded = true;
                 }      
             } else {
                 if (evasionCount > 0) {
-                    DamageNumberAnimation("Evaded");
+                    DamageNumberAnimation("Evaded", Color.white);
                     evaded = true;
                     evasionCount--;
                     GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveDodgeIcon();
                 } else {
                     evaded = false;
                     health = health - realDamage + this.baseShield;
-                    DamageNumberAnimation(realDamage - this.baseShield);
+                    if (realDamage == this.baseShield) {
+                        DamageNumberAnimation("Blocked", Color.white);
+                    } else {
+                        DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                    }
                     this.animator.SetTrigger("Damaged");
                     ResetBaseShield();
                     StageManager.instance.playerHUD.RemoveShieldIcon();
                 }           
             }
         } else {
-            DamageNumberAnimation(0);
+            DamageNumberAnimation("Blocked", Color.white);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }

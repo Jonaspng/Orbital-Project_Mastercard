@@ -42,7 +42,11 @@ public abstract class Enemy : Unit {
             return;
         }
         print(health);
-        this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+        if (this.health < 0) {
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+        }
 
         if (realDamage >= this.baseShield) {
             print("shield destroyed");

@@ -49,7 +49,11 @@ public class Warrior : Player {
             this.baseShield -= realDamage;
         }
         print(health);
-        StageManager.instance.playerHUD.SetHP(this.health);
+        if (this.health < 0) {
+            StageManager.instance.playerHUD.SetHP(0);
+        } else {
+            StageManager.instance.playerHUD.SetHP(this.health);
+        }
         
     }
 

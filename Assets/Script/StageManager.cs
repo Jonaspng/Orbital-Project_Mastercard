@@ -159,6 +159,10 @@ public class StageManager : MonoBehaviour {
                 if (enemies[i] != null) {
                     enemies[i].EnemyMove(player, enemies, i);
                     yield return new WaitForSeconds(1f);
+                    if (player.getHealth() <= 0) {
+                        OnPlayerDeath();
+                        yield break;
+                    }
                 }
             }
 
@@ -174,6 +178,10 @@ public class StageManager : MonoBehaviour {
             playerHUD.RemoveShieldIcon();
             player.ResetBaseShield();
             player.ResetAttackModifier();
+            for (int i = 0; i < 5; i++) {
+                playerHUD.gameObject.GetComponent<BattleHUD>().RemoveAttackUpIcon();
+                yield return new WaitForSeconds(0.001f);
+            }
 
             StartCoroutine(ExecuteEventsInManager(playerEventManager));
 
@@ -193,20 +201,21 @@ public class StageManager : MonoBehaviour {
                 }
             }
 
-            if (player.getHealth() <= 0) {
-                GameObject.Destroy(player.gameObject);
-                foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
-                    GameObject.Destroy(obj.gameObject);
-                }
-                gameOverMenu.SetActive(true);
-            }
-
             endTurnButton.SetActive(true);
             
             if (enemyCount > 0 && player.getHealth() > 0) {
                 deckManager.DrawCard(5);
             }
         }        
+    }
+
+    public void OnPlayerDeath() {
+        GameObject.Destroy(player.gameObject);
+        foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
+            GameObject.Destroy(obj.gameObject);
+        }
+        gameOverMenu.SetActive(true);
+        endTurnButton.SetActive(true);
     }
 
 

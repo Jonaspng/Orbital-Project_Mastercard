@@ -83,7 +83,11 @@ public class Archer : Player {
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }
-        StageManager.instance.playerHUD.SetHP(this.health);
+        if (this.health < 0) {
+            StageManager.instance.playerHUD.SetHP(0);
+        } else {
+            StageManager.instance.playerHUD.SetHP(this.health);
+        }
     }
 
     public override void ChangeIsBroken(bool status) {

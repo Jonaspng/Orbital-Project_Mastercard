@@ -20,7 +20,8 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
+        int moveNumber = 2;
+        //Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage(6));

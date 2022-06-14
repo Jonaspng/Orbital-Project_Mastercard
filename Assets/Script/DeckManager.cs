@@ -28,7 +28,7 @@ public class DeckManager : MonoBehaviour {
 
 
     public void LockCard() {
-        lockedCard = currentDeckID.cardIDList[Random.Range(0, currentDeckID.cardIDList.Count)];
+        lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
         currentDeck.RemoveCard(currentDeck.cardList[lockedCard]);
     }
 

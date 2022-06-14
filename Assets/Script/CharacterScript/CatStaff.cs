@@ -8,7 +8,8 @@ public class CatStaff : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
+        int moveNumber = 2; 
+        //Random.Range(1, 4);
         int numberOfEnemies = enemies.Length;
         if (!this.isImmobilised) {
             if (moveNumber == 1) {

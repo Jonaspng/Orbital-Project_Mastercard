@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,10 @@ public class CharacterSelectionManager : MonoBehaviour {
 
     public GameObject description;
 
+    public string currentCharacter;
+
+    public int currentHp;
+
     public Sprite warriorSelection;
 
     public Sprite archerSelection;
@@ -23,15 +28,17 @@ public class CharacterSelectionManager : MonoBehaviour {
 
     public GameObject confirmButton;
 
+    public string deckPath;
     private void Start() {
+        deckPath = $"{Application.persistentDataPath}/deckID.json";
         OnSwordClick();
         GameObject.Find("Warrior Button").GetComponent<Button>().Select();
     }
 
     public void OnSwordClick() {
         backgroundImage.GetComponent<Image>().sprite = warriorSelection;
-        PlayerPrefs.SetString("character", "Warrior");
-        PlayerPrefs.SetInt("health", 60);
+        currentCharacter = "Warrior";
+        currentHp = 60;
         characterName.GetComponent<TextMeshProUGUI>().color = Color.white;
         hp.GetComponent<TextMeshProUGUI>().color = Color.white;
         description.GetComponent<TextMeshProUGUI>().color = Color.white;
@@ -42,8 +49,8 @@ public class CharacterSelectionManager : MonoBehaviour {
 
     public void OnArrowClick() {
         backgroundImage.GetComponent<Image>().sprite = archerSelection;
-        PlayerPrefs.SetString("character", "Archer");
-        PlayerPrefs.SetInt("health", 40);
+        currentCharacter = "Archer";
+        currentHp = 40;
         characterName.GetComponent<TextMeshProUGUI>().color = Color.black;
         hp.GetComponent<TextMeshProUGUI>().color = Color.black;
         description.GetComponent<TextMeshProUGUI>().color = Color.black;
@@ -53,8 +60,8 @@ public class CharacterSelectionManager : MonoBehaviour {
     }
 
     public void OnStaffClick() {
-        PlayerPrefs.SetString("character", "Mage");;
-        PlayerPrefs.SetInt("health", 50);
+        currentCharacter = "Mage";
+        currentHp = 50;
         characterName.GetComponent<TextMeshProUGUI>().color = Color.black;
         hp.GetComponent<TextMeshProUGUI>().color = Color.black;
         description.GetComponent<TextMeshProUGUI>().color = Color.black;
@@ -65,6 +72,11 @@ public class CharacterSelectionManager : MonoBehaviour {
 
 
     public void OnConfirmClick() {
+        PlayerPrefs.SetString("character", currentCharacter);
+        PlayerPrefs.SetInt("health", currentHp);
+        File.Delete(deckPath);
+        PlayerPrefs.SetInt("stage", 1);
+        PlayerPrefs.SetInt("random event", 0);
         SceneManager.LoadScene("Stage 1");
     }
 

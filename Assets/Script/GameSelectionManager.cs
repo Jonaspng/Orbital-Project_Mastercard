@@ -21,10 +21,8 @@ public class GameSelectionManager : MonoBehaviour {
     }
 
     public void OnStartNewGameClick() {
-        SceneManager.LoadScene("Character Selection");
-        File.Delete(deckPath);
-        PlayerPrefs.SetInt("stage", 1);
-        PlayerPrefs.SetInt("random event", 0);
+        SceneManager.LoadScene("Intro Cutscene1");
+
     }
 
     

@@ -68,6 +68,7 @@ MonoBehaviour:
   mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
   reflectIcon: {fileID: 0}
   isShieldIconOn: 0
+  isBrokenShieldIconOn: 0
   maxHp: 0
 --- !u!1 &8680435248489260256
 GameObject:
@@ -105,8 +106,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.6784973, y: -85.8}
-  m_SizeDelta: {x: 17.9945, y: -137.4154}
+  m_AnchoredPosition: {x: 0.67845154, y: -80.746666}
+  m_SizeDelta: {x: 17.9945, y: -143.8804}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8680435248489260259
 CanvasRenderer:

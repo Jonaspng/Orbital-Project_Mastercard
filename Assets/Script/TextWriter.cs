@@ -32,12 +32,15 @@ public class TextWriter : MonoBehaviour {
     private void Update() {
         if (uiText != null) {
             timer -= Time.deltaTime;
-            if (timer <= 0f) {
+            while (timer <= 0f) {
                 timer += timePerCharacter;
                 characterIndex++;
-                uiText.text = textToWrite.Substring(0, characterIndex);
+                string text = textToWrite.Substring(0, characterIndex);
+                text += "<color=#00000000>" + textToWrite.Substring(characterIndex) + "</color>";
+                uiText.text = text;
 
                 if (characterIndex >= textToWrite.Length) {
+                    this.gameObject.GetComponent<AudioSource>().Pause();
                     uiText = null;
                     nextButton.SetActive(true);
                     return;

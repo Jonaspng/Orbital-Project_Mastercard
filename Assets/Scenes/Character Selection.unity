@@ -281,10 +281,13 @@ MonoBehaviour:
   characterName: {fileID: 430267048}
   hp: {fileID: 96514244}
   description: {fileID: 889851896}
+  currentCharacter: 
+  currentHp: 0
   warriorSelection: {fileID: 21300000, guid: d165b1e1c17f2bd4f98baa57fdee9250, type: 3}
   archerSelection: {fileID: 21300000, guid: 30fdf7d8264b1424faed595713699f12, type: 3}
-  mageSelection: {fileID: 0}
+  mageSelection: {fileID: 21300000, guid: 464deea2799916b4ebeb2396d526926d, type: 3}
   confirmButton: {fileID: 950028056}
+  deckPath: 
 --- !u!1 &96514244
 GameObject:
   m_ObjectHideFlags: 0

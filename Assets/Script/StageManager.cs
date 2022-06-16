@@ -89,7 +89,7 @@ public class StageManager : MonoBehaviour {
 
                 PlayerPrefs.SetInt("health", player.health);
             } else {
-                SceneManager.LoadScene("Start Menu");
+                SceneManager.LoadScene("End Cutscene1");
             }
             
         }

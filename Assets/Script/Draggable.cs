@@ -43,7 +43,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
          arrowLine = this.GetComponentInChildren<LineRenderer>();
          parentToReturnTo = this.transform.parent;
          arrowLine.enabled = true;
-         startPosition = this.transform.position;
+         Vector3 newPos = this.transform.position;
+         newPos.y += 2;
+         this.transform.position = newPos;
+         startPosition = newPos;
         
      }
 
@@ -106,6 +109,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
         }
         arrowLine.enabled = false;
+        Vector3 newPos = this.transform.position;
+        newPos.y -= 2;
+        this.transform.position = newPos;
 
      }
  

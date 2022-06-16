@@ -60,6 +60,7 @@ public class CharacterSelectionManager : MonoBehaviour {
     }
 
     public void OnStaffClick() {
+        backgroundImage.GetComponent<Image>().sprite = mageSelection;
         currentCharacter = "Mage";
         currentHp = 50;
         characterName.GetComponent<TextMeshProUGUI>().color = Color.black;

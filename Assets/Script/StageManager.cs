@@ -39,6 +39,10 @@ public class StageManager : MonoBehaviour {
     public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
 
     private void Awake() {
+        RectTransform rt = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        float canvasHeight = rt.rect.height;
+        float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
         instance = this;
     }
 
@@ -61,7 +65,8 @@ public class StageManager : MonoBehaviour {
         state = BattleState.PLAYERTURN;
     }
 
-    public void DestroyEnemy(int enemyIndex) {
+    public IEnumerator DestroyEnemy(int enemyIndex) {
+        yield return new WaitForSeconds(1f);
         GameObject.Destroy(enemies[enemyIndex].transform.parent.gameObject);
         enemies[enemyIndex] = null;
         enemyCount -= 1;

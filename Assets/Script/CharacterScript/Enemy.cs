@@ -37,17 +37,13 @@ public abstract class Enemy : Unit {
             print("base shield: " + this.baseShield);
             health = health - realDamage + this.baseShield;
         } 
-        if (health <= 0) {
-            StageManager.instance.DestroyEnemy(enemyIndex);
-            return;
-        }
+        
         print(health);
         if (this.health < 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
         }
-
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
             if (realDamage == this.baseShield) {
@@ -61,6 +57,10 @@ public abstract class Enemy : Unit {
             DamageNumberAnimation("Blocked", Color.white);
             this.baseShield -= realDamage;
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
+        }
+        if (health <= 0) {
+            StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+            return;
         }
         
         

@@ -18,13 +18,13 @@ class FlashBang : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
         AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemyIndex)};
-        if (eventManager.ContainsKey(currentTurn + 1)) {
-            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+        if (eventManager.ContainsKey(currentTurn)) {
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+            eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 1, newResetEvent);
+            eventManager.Add(currentTurn, newResetEvent);
         }
         enemies[enemyIndex].ChangeIsImmobilised(true);
         enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderStunIcon();

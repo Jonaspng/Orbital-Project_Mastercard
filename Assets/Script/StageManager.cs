@@ -178,6 +178,7 @@ public class StageManager : MonoBehaviour {
             if (player is Archer) { // resets evasion count of archer
                 Archer temp = (Archer) player;
                 temp.evasionCount = 0;
+                playerHUD.RemoveDodgeIcon();
             }
 
             playerHUD.RemoveShieldIcon();

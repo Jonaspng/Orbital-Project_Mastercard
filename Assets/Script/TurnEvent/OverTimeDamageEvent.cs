@@ -11,7 +11,7 @@ class OvertimeDamageEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         if (enemies[this.enemyIndex] != null) {
             enemies[enemyIndex].animator.SetTrigger("Poisoned");
-            enemies[enemyIndex].receiveDamage(damagePerTurn, enemyIndex);              
+            enemies[enemyIndex].receiveOverTimeDamage(damagePerTurn, enemyIndex);              
         }
     }
 

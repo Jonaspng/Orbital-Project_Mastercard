@@ -23,6 +23,7 @@ class FireBlast : Cards {
         int currentTurn = StageManager.instance.currentTurn;
 
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
+        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.instance.playerEventManager;
         AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
         AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyIndex)};
 
@@ -38,11 +39,11 @@ class FireBlast : Cards {
         } else {
             eventManager.Add(currentTurn + 1, newEvent);
         }
-         if (eventManager.ContainsKey(currentTurn + 2)) {
-            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 2];
-            eventManager[currentTurn + 2] = currEvent.Concat(resetEvent).ToArray();
+         if (eventManager2.ContainsKey(currentTurn + 1)) {
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager2[currentTurn + 1];
+            eventManager2[currentTurn + 1] = currEvent.Concat(resetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 2, resetEvent);
+            eventManager2.Add(currentTurn + 1, resetEvent);
         }
         
         player.animator.SetTrigger("Attack");

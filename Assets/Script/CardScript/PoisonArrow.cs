@@ -47,10 +47,10 @@ class PoisonArrow : Cards {
             eventManager.Add(currentTurn + 1, newEvent);
         }
          if (eventManager2.ContainsKey(currentTurn + 1)) {
-            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-            eventManager[currentTurn + 1] = currEvent.Concat(resetEvent).ToArray();
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager2[currentTurn + 1];
+            eventManager2[currentTurn + 1] = currEvent.Concat(resetEvent).ToArray();
         } else {
-            eventManager.Add(currentTurn + 1, resetEvent);
+            eventManager2.Add(currentTurn + 1, resetEvent);
         }
         
     

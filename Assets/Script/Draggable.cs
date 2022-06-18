@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
@@ -25,28 +26,37 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public EdgeCollider2D arrowCollider;
 
+    public Quaternion originalRotation;
+
+    public Transform parentToReturn;
+
+    public Vector3 originalPosition;
+
+    public int originalIndex;
+
     public Enemy[] enemies;
      // Use this for initialization
     void Start() {
-                   
         arrowHeadSize = 5.0f;
         touchWorld = new Vector3();
         mainCamera = Camera.main;
-
+        parentToReturn = this.transform.parent;
     }
  
      public void OnBeginDrag(PointerEventData eventData) {
-        //  zAxis = transform.position.z;
-        //  clickOffset = transform.position - mainCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, zAxis)) + new Vector3(0, 3, 0);
-        //  transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
          arrow = Instantiate(prefabArrow, this.transform);
          arrowLine = this.GetComponentInChildren<LineRenderer>();
          parentToReturnTo = this.transform.parent;
+         originalPosition = this.transform.position;
+         originalRotation = this.transform.rotation;
+         originalIndex = this.transform.GetSiblingIndex();
          arrowLine.enabled = true;
          Vector3 newPos = this.transform.position;
          newPos.y += 2;
          this.transform.position = newPos;
+         this.transform.rotation = Quaternion.Euler(0,0,0);
          startPosition = newPos;
+         this.transform.SetParent(this.transform.parent.parent);
         
      }
 
@@ -86,7 +96,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         DrawArrow(eventData);
         Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position);
         GameObject.Destroy(arrow);
-
      }
 
     public Enemy DetectEnemySelected() {
@@ -101,18 +110,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return null;
     }
 
- 
- 
+
      public void OnEndDrag(PointerEventData eventData) {
         Enemy enemySelected = DetectEnemySelected();
         if (enemySelected != null) {
             this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
         }
         arrowLine.enabled = false;
-        Vector3 newPos = this.transform.position;
-        newPos.y -= 2;
-        this.transform.position = newPos;
-
+        this.transform.position = originalPosition;
+        this.transform.rotation = originalRotation;
+        this.transform.SetParent(parentToReturn);
+        this.transform.SetSiblingIndex(originalIndex);
      }
  
      //Add Event System to the Camera

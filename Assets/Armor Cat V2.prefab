@@ -306,6 +306,7 @@ MonoBehaviour:
   mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
   reflectIcon: {fileID: 0}
   isShieldIconOn: 0
+  isBrokenShieldIconOn: 0
   maxHp: 0
 --- !u!1001 &674422645932250588
 PrefabInstance:

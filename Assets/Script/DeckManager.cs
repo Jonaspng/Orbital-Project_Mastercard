@@ -151,6 +151,7 @@ public class DeckManager : MonoBehaviour {
         } else {
             this.Draw(numOfCards);
         }
+        GameObject.Find("Current Hand").GetComponent<Testing>().ArrangeCards();
     }
 
     public void ClearCards() {

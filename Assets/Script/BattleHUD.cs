@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class BattleHUD : MonoBehaviour {
+
     public TextMeshProUGUI nameText;
 
     public Slider hpSlider;

@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8888040840266899623, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9038107951471341259, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
       propertyPath: m_Name
       value: Sword Cat

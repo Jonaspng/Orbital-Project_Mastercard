@@ -12,6 +12,7 @@ public class SwordDance : Cards {
         if (StageManager.instance.manaCount - this.manaCost >= 0) {
             StageManager.instance.playerMove(this, enemyIndex);
             GameObject.Destroy(this.transform.gameObject);
+            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
         }
     }
 

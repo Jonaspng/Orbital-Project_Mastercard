@@ -1,9 +1,7 @@
 using UnityEngine;
 using System;
-using TMPro;
-using EZCameraShake;
 
-[System.Serializable]
+
 public abstract class Enemy : Unit {
 
     public int enemyIndex;
@@ -60,6 +58,7 @@ public abstract class Enemy : Unit {
         }
         if (health <= 0) {
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+            StageManager.instance.DestroyEnemy(this.enemyIndex);
             return;
         }
     }

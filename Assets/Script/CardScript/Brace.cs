@@ -16,6 +16,7 @@ public class Brace : Cards {
             StageManager.instance.playerMove(this, enemyIndex);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
             GameObject.Destroy(this.transform.gameObject);
+            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
         } 
     }
 

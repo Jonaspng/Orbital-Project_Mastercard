@@ -14,6 +14,7 @@ public class Defend : Cards {
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
             StageManager.instance.playerMove(this, enemyIndex);
             GameObject.Destroy(this.transform.gameObject);
+            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
         }
     }
 

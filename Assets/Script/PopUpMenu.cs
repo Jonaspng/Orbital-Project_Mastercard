@@ -18,6 +18,7 @@ public class PopUpMenu : MonoBehaviour  {
     }
 
     public void OnConfirmClick() {
+        PlayerPrefs.SetInt("health", StageManager.instance.player.health);
         DeckID newDeck = StageManager.instance.deckManager.currentDeckID;
         newDeck.AddCardID(newCardId);
         StageManager.instance.deckManager.SaveJson(newDeck);

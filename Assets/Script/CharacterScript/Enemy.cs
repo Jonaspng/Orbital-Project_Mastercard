@@ -59,7 +59,6 @@ public abstract class Enemy : Unit {
         if (health <= 0) {
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
-            StageManager.instance.DestroyEnemy(this.enemyIndex);
             return;
         }
     }
@@ -67,8 +66,9 @@ public abstract class Enemy : Unit {
     public void receiveOverTimeDamage(int damage, int index) {
         this.health = this.health - damage;
         DamageNumberAnimation(damage, Color.red);
-        if (this.health < 0) {
+        if (this.health <= 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);

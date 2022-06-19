@@ -53,7 +53,6 @@ public class StageManager : MonoBehaviour {
 
 
     public void InitialiseBattle() {
-        playerHUD.RemoveAllIcons();
         playerEventManager = new Dictionary<int, AbstractEvent[]>();
         enemyEventManager = new Dictionary<int, AbstractEvent[]>();
         this.manaCount = 3;
@@ -61,13 +60,12 @@ public class StageManager : MonoBehaviour {
         this.currentTurn = 0;
         deckManager.Initialise();
         GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
+        playerHUD.RemoveAllIcons();
         StageEventExecute();
         state = BattleState.PLAYERTURN;
     }
 
     public IEnumerator DestroyEnemy(int enemyIndex) {
-        yield return new WaitForSeconds(0.5f);
-        //GameObject.Destroy(enemies[enemyIndex].transform.parent.gameObject);
         enemies[enemyIndex] = null;
         enemyCount -= 1;
         if (enemyCount == 0) {
@@ -82,7 +80,8 @@ public class StageManager : MonoBehaviour {
             
             deckManager.GenerateNewCards();
             if (PlayerPrefs.GetInt("stage") != 6) {
-                    this.GetComponent<PopUpMenu>().PopUp();
+                yield return new WaitForSeconds(0.8f);
+                this.GetComponent<PopUpMenu>().PopUp();
                 if (player is Warrior) {
                     Warrior temp = (Warrior) player;
                     temp.ChangeIsStrongWillpower(false);
@@ -91,8 +90,6 @@ public class StageManager : MonoBehaviour {
                     Archer temp = (Archer) player;
                     temp.ChangeStickyArrowStatus(false);
                 }
-
-                PlayerPrefs.SetInt("health", player.health);
             } else {
                 SceneManager.LoadScene("End Cutscene1");
             }
@@ -165,7 +162,7 @@ public class StageManager : MonoBehaviour {
                     enemies[i].EnemyMove(player, enemies, i);
                     yield return new WaitForSeconds(1f);
                     if (player.getHealth() <= 0) {
-                        OnPlayerDeath();
+                        StartCoroutine(OnPlayerDeath());
                         yield break;
                     }
                 }
@@ -215,13 +212,16 @@ public class StageManager : MonoBehaviour {
         }        
     }
 
-    public void OnPlayerDeath() {
-        GameObject.Destroy(player.gameObject);
-        foreach (Transform obj in GameObject.Find("Enemy Panel").transform) {
-            GameObject.Destroy(obj.gameObject);
+    public IEnumerator OnPlayerDeath() {
+        player.animator.SetTrigger("Dead");
+        foreach (Enemy enemy in enemies) {
+            if (enemy != null) {
+                enemy.animator.SetTrigger("Dead");
+            }
         }
+        yield return new WaitForSeconds(0.8f);
         gameOverMenu.SetActive(true);
-        endTurnButton.SetActive(true);
+        endTurnButton.SetActive(false);
     }
 
 

@@ -15,9 +15,9 @@ class PlayerDamageEvent : AbstractEvent {
         player.AddBaseAttack(this.damage);
 
         if (this.damage > 0) {
-            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderAttackUpIcon();
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
         } else {
-            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveAttackUpIcon();
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveAttackUpIcon();
         }
     }
 

@@ -43,7 +43,7 @@ public abstract class Player : Unit {
     public virtual void ChangeIsBroken(bool status) {
         this.isBroken = status;
         if (status) {
-            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderBrokenIcon();
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
         }
     }
 
@@ -53,8 +53,8 @@ public abstract class Player : Unit {
 
     public void ResetAttackModifier() {
         this.attackModifier = 1;
-        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveAttackUpIcon();
-        GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveMysticShieldIcon();
+        GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveAttackUpIcon();
+        GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveMysticShieldIcon();
     }
 
     public abstract int GetFullDamage(int cardDamage);

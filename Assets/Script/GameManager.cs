@@ -43,11 +43,12 @@ class GameManager : MonoBehaviour {
             } else {
                 stage.playerGO = Instantiate(playerPrefabList[2], stage.playerBattleStation);
             }
-            Player player = stage.playerGO.GetComponent<Player>();
+            Player player = stage.playerGO.GetComponentInChildren<Player>();
             if (PlayerPrefs.HasKey("health")) {
                 player.health = PlayerPrefs.GetInt("health");
             }            
             stage.player = player;
+            stage.playerHUD = player.GetComponentInParent<BattleHUD>();
             stage.playerHUD.SetHUD(player);
         }
         

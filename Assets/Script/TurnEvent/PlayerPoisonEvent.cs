@@ -13,7 +13,7 @@ class PlayerPoisonEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         if (player != null) {
             player.ChangeIsPoisoned(this.isPoisoned);
-            GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemovePoisonIcon();
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemovePoisonIcon();
         }
     }
 

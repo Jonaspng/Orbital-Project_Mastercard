@@ -67,7 +67,7 @@ public class StageManager : MonoBehaviour {
 
     public IEnumerator DestroyEnemy(int enemyIndex) {
         yield return new WaitForSeconds(0.5f);
-        GameObject.Destroy(enemies[enemyIndex].transform.parent.gameObject);
+        //GameObject.Destroy(enemies[enemyIndex].transform.parent.gameObject);
         enemies[enemyIndex] = null;
         enemyCount -= 1;
         if (enemyCount == 0) {

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1134703103269041335}
   - component: {fileID: 5681177970837104122}
   - component: {fileID: -1318351765171368983}
-  - component: {fileID: 6333094040487347948}
+  - component: {fileID: 8827838565934297704}
   m_Layer: 5
   m_Name: Sword Cat
   m_TagString: Untagged
@@ -189,13 +189,13 @@ MonoBehaviour:
   baseShield: 0
   shieldModifier: 1
   isPoisoned: 0
-  animator: {fileID: 6333094040487347948}
+  animator: {fileID: 8827838565934297704}
   enemyIndex: 0
   arrowStuckCount: 0
   isImmobilised: 0
   isBurned: 0
   isBroken: 0
---- !u!95 &6333094040487347948
+--- !u!95 &8827838565934297704
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

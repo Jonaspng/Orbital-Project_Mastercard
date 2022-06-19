@@ -57,6 +57,7 @@ public abstract class Enemy : Unit {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }
         if (health <= 0) {
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
             StageManager.instance.DestroyEnemy(this.enemyIndex);
             return;

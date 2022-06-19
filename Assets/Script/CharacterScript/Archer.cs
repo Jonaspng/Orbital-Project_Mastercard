@@ -94,7 +94,7 @@ public class Archer : Player {
         if (!evaded) {
             this.isBroken = status;
             if (status) {
-                GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RenderBrokenIcon();
+                GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
             }            
         }
         evaded = false;

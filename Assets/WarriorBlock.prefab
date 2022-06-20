@@ -585,6 +585,8 @@ MonoBehaviour:
   manaCost: 1
   turns: 0
   shield: 6
+  outline: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0
 --- !u!114 &3106705381104923239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDropZone: 0
 --- !u!225 &8626215755332982022
 CanvasGroup:
   m_ObjectHideFlags: 0

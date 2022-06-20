@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDropZone: 0
 --- !u!225 &3485196182750796585
 CanvasGroup:
   m_ObjectHideFlags: 0

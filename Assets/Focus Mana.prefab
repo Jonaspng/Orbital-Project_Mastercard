@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDropZone: 0
 --- !u!114 &407147432296730608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +598,8 @@ MonoBehaviour:
   manaCost: 1
   turns: 1
   manaGained: 2
+  outline: {fileID: 2100000, guid: f5ada227d7514354fb072f5ca7560b3d, type: 2}
+  dissolve: 0
 --- !u!225 &8330984948645727209
 CanvasGroup:
   m_ObjectHideFlags: 0

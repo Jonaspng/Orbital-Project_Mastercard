@@ -9,6 +9,8 @@
     Quaternion originalAngle;
     Vector3 originalPosition;
 
+    public bool isInDropZone;
+
     int originalIndex;
     void Start() {
         mainCamera = Camera.main;
@@ -33,11 +35,16 @@
     }
  
     public void OnEndDrag(PointerEventData eventData) {
-        this.transform.SetParent(parentToReturnTo);
-        this.transform.position = originalPosition;
-        this.transform.SetSiblingIndex(originalIndex);
-        gameObject.GetComponent<RectTransform>().rotation = originalAngle;
-        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if (isInDropZone && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().manaCost >= 0) {
+            eventData.pointerDrag.GetComponent<Cards>().OnDrop(0);
+        } else {
+            this.transform.SetParent(parentToReturnTo);
+            this.transform.position = originalPosition;
+            this.transform.SetSiblingIndex(originalIndex);
+            gameObject.GetComponent<RectTransform>().rotation = originalAngle;
+            this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        
     }
 
      //Add Event System to the Camera

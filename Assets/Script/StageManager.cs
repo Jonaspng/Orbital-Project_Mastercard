@@ -40,9 +40,10 @@ public class StageManager : MonoBehaviour {
 
     private void Awake() {
         RectTransform rt = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        float canvasHeight = rt.rect.height;
-        float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
-        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
+        float height = GameObject.Find("Background Canvas").GetComponent<RectTransform>().rect.height;
+        Vector3 scale = GameObject.Find("Background Canvas").GetComponent<RectTransform>().localScale;
+        rt.sizeDelta = new Vector2(800, height);
+        rt.localScale = scale;
         instance = this;
     }
 

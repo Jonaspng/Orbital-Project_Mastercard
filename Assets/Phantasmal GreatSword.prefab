@@ -587,6 +587,10 @@ MonoBehaviour:
   arrow: {fileID: 0}
   arrowLine: {fileID: 0}
   arrowCollider: {fileID: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  parentToReturn: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  originalIndex: 0
   enemies: []
 --- !u!68 &6342710377112420592
 EdgeCollider2D:
@@ -727,3 +731,5 @@ MonoBehaviour:
   manaCost: 3
   turns: 0
   damage: 20
+  material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
@@ -9,7 +8,7 @@ public class FocusMana : Cards {
 
     public int manaGained = 2;
 
-    public Material outline;
+    public Material material;
 
     public bool dissolve;
 
@@ -20,27 +19,18 @@ public class FocusMana : Cards {
 
     private void Update() {
         if (this.dissolve) {
-            outline.SetFloat("_noiseStrength", Mathf.MoveTowards(outline.GetFloat("_noiseStrength"), 1.25f, 0.5f * Time.deltaTime));
-            Destroy(this.gameObject, 3f);
-        } else {
-
+            material.SetFloat("_Fade", Mathf.MoveTowards(material.GetFloat("_Fade"), 0f, 2f * Time.deltaTime));
+            Destroy(this.gameObject, 0.4f);
         }
     }
 
 
     public override void OnDrop(int enemyIndex) {
-        // if (StageManager.instance.manaCount - this.manaCost >= 0) {
-            outline.SetFloat("_noiseStrength",0f);
-            Transform frame = this.transform.Find("Frame");
-            foreach(Transform obj in frame) {
-                obj.GetComponent<TextMeshProUGUI>().text = "";
-            }
-            this.GetComponentInChildren<Image>().material = outline;
-            this.dissolve = true;
-            StageManager.instance.playerMove(this, enemyIndex);
-            // GameObject.Destroy(this.transform.gameObject);
-            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
-        //}
+        material.SetFloat("_Fade",1f);
+        this.GetComponentInChildren<Image>().material = material;
+        this.dissolve = true;
+        StageManager.instance.playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

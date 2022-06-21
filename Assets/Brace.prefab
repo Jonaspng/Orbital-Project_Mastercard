@@ -587,6 +587,8 @@ MonoBehaviour:
   turns: 1
   shield: 10
   damage: 10
+  material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0
 --- !u!68 &3613882207792592229
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -626,6 +628,10 @@ MonoBehaviour:
   arrow: {fileID: 0}
   arrowLine: {fileID: 0}
   arrowCollider: {fileID: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  parentToReturn: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  originalIndex: 0
   enemies: []
 --- !u!120 &-2925446059830532346
 LineRenderer:

@@ -113,14 +113,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
      public void OnEndDrag(PointerEventData eventData) {
         Enemy enemySelected = DetectEnemySelected();
-        if (enemySelected != null) {
-            this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
-        }
         arrowLine.enabled = false;
-        this.transform.position = originalPosition;
-        this.transform.rotation = originalRotation;
-        this.transform.SetParent(parentToReturn);
-        this.transform.SetSiblingIndex(originalIndex);
+        if (enemySelected != null && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().manaCost >= 0) {
+            this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
+        } else {
+            this.transform.position = originalPosition;
+            this.transform.rotation = originalRotation;
+            this.transform.SetParent(parentToReturn);
+            this.transform.SetSiblingIndex(originalIndex);
+        }        
      }
  
      //Add Event System to the Camera

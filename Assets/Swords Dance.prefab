@@ -371,6 +371,8 @@ MonoBehaviour:
   manaCost: 1
   turns: 0
   attackModifier: 2
+  material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0
 --- !u!114 &1797075444674429447
 MonoBehaviour:
   m_ObjectHideFlags: 0

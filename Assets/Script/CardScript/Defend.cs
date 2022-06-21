@@ -18,8 +18,6 @@ public class Defend : Cards {
         if (this.dissolve) {
             outline.SetFloat("_Fade", Mathf.MoveTowards(outline.GetFloat("_Fade"), 0f, 2f * Time.deltaTime));
             Destroy(this.gameObject, 0.4f);
-        } else {
-
         }
     }
 

@@ -585,6 +585,8 @@ MonoBehaviour:
   manaCost: 0
   turns: 1
   damageModifier: 1.25
+  material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0
 --- !u!114 &4766218387387058573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDropZone: 0
 --- !u!225 &2484431036923839663
 CanvasGroup:
   m_ObjectHideFlags: 0

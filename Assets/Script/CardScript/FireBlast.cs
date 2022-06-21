@@ -1,23 +1,34 @@
 using UnityEngine;
 using System.Linq;
-using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 class FireBlast : Cards {
 
     public int damage;
 
+    public Material material;
+
+    public bool dissolve;
+
     public FireBlast(int manaCost, int damage, int turns) 
     : base(manaCost, turns){
         this.damage = damage;
     }
 
-    public override void OnDrop(int enemyIndex) {
-        if (StageManager.instance.manaCount - this.manaCost >= 0) {
-            StageManager.instance.playerMove(this, enemyIndex);
-            GameObject.Destroy(this.transform.gameObject);
-            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+    private void Update() {
+        if (this.dissolve) {
+            material.SetFloat("_Fade", Mathf.MoveTowards(material.GetFloat("_Fade"), 0f, 2f * Time.deltaTime));
+            Destroy(this.gameObject, 0.4f);
         }
+    }
+
+    public override void OnDrop(int enemyIndex) {
+        material.SetFloat("_Fade",1f);
+        this.GetComponentInChildren<Image>().material = material;
+        this.dissolve = true;
+        StageManager.instance.playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

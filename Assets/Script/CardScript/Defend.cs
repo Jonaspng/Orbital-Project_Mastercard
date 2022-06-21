@@ -23,15 +23,16 @@ public class Defend : Cards {
 
 
     public override void OnDrop(int enemyIndex) {
-        //if (StageManager.instance.manaCount - this.manaCost >= 0) {
+        foreach (Transform word in this.transform.Find("Frame").transform) {
+            word.gameObject.SetActive(false);
+        }
         outline.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = outline;
         this.dissolve = true;
         StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
         StageManager.instance.playerMove(this, enemyIndex);
-        // GameObject.Destroy(this.transform.gameObject);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
-        //}
+   
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

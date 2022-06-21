@@ -38,10 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fade: 0.47
+    - _Fade: 0.11341878
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 50
+    - _Scale: 47.5
     m_Colors:
     - _Color: {r: 0, g: 538.102, b: 766.9961, a: 0}
   m_BuildTextureStacks: []

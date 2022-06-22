@@ -182,6 +182,7 @@ public class StageManager : MonoBehaviour {
             playerHUD.RemoveShieldIcon();
             player.ResetBaseShield();
             player.ResetAttackModifier();
+            playerHUD.RemoveEndureIcon();
             for (int i = 0; i < 5; i++) {
                 playerHUD.gameObject.GetComponent<BattleHUD>().RemoveAttackUpIcon();
                 yield return new WaitForSeconds(0.001f);

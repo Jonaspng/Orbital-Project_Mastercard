@@ -28,7 +28,11 @@ public class Endure : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Warrior temp = (Warrior) player;
+        if (!temp.isEndure) {
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderEndureIcon();
+        }
         temp.ChangeIsEndure(true);
+        
     }
 
 

@@ -32,6 +32,8 @@ public class BattleHUD : MonoBehaviour {
 
     public GameObject reflectIcon;
 
+    public GameObject EndureIcon;
+
     public bool isShieldIconOn;
 
     public bool isBrokenShieldIconOn;
@@ -199,6 +201,17 @@ public class BattleHUD : MonoBehaviour {
 
     public void RemoveReflectIcon() {
         Transform icon = iconsBar.transform.Find("Reflect Icon(Clone)");
+        if (icon != null) {
+            GameObject.Destroy(icon.gameObject);
+        }
+    }
+
+    public void RenderEndureIcon() {
+        Instantiate(EndureIcon, iconsBar.transform);
+    }
+
+    public void RemoveEndureIcon() {
+        Transform icon = iconsBar.transform.Find("Endure Icon(Clone)");
         if (icon != null) {
             GameObject.Destroy(icon.gameObject);
         }

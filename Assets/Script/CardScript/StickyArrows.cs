@@ -20,6 +20,9 @@ public class StickyArrows : Cards {
     }
     
     public override void OnDrop(int enemyIndex) {
+        foreach (Transform word in this.transform.Find("Frame").transform) {
+            word.gameObject.SetActive(false);
+        }
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;

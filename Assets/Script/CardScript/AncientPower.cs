@@ -23,11 +23,14 @@ public class AncientPower : Cards {
     }
 
     public override void OnDrop(int enemyIndex) {
-            material.SetFloat("_Fade",1f);
-            this.GetComponentInChildren<Image>().material = material;
-            this.dissolve = true;
-            StageManager.instance.playerMove(this, enemyIndex);
-            GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        foreach (Transform word in this.transform.Find("Frame").transform) {
+            word.gameObject.SetActive(false);
+        }
+        material.SetFloat("_Fade",1f);
+        this.GetComponentInChildren<Image>().material = material;
+        this.dissolve = true;
+        StageManager.instance.playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
 public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

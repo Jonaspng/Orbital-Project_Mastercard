@@ -23,6 +23,9 @@ public class PhantasmalGreatSword : Cards {
 
     public override void OnDrop(int enemyIndex) {
         material.SetFloat("_Fade",1f);
+        foreach (Transform word in this.transform.Find("Frame").transform) {
+            word.gameObject.SetActive(false);
+        }
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
         StageManager.instance.playerMove(this, enemyIndex);

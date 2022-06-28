@@ -1,3 +1,4 @@
+using UnityEngine;
 class ReflectEvent : AbstractEvent {
     public bool isReflected;
     public ReflectEvent(int numberOfTurns, bool isReflected, int enemyIndex) 
@@ -8,5 +9,6 @@ class ReflectEvent : AbstractEvent {
     public override void executeEvent(Player player, Enemy[] enemies) {
         Mage mage = (Mage) player;
         mage.ChangeReflectStatus(isReflected);
+        GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveReflectIcon();
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Legion's Roar
   m_EditorClassIdentifier: 
   cardName: Legion's Roar
-  description: All enemies do 25% less damage this turn
+  description: All enemies do 25% less damage this turn.
   frame: {fileID: 21300000, guid: 696d3c1b6586d5748a7bd9cc254bcb58, type: 3}
   manaCost: 1

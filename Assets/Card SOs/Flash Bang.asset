@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Flash Bang
   m_EditorClassIdentifier: 
   cardName: Flash Bang
-  description: Stun an enemy for 1 turn
+  description: Stun an enemy for 1 turn.
   frame: {fileID: 21300000, guid: e97cda473dba8e84dbd90ede56b86df5, type: 3}
   manaCost: 1

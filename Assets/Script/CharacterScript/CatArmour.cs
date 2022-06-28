@@ -11,14 +11,17 @@ public class CatArmour : Enemy {
         int moveNumber = Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
+                this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(6), index);
             } else if (moveNumber == 2) {
                 this.AddBaseShield(6);
-                this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, index);
+                this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 foreach (Enemy enemy in enemies) {
-                enemy.AddBaseShield(6);
-                enemy.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(6, 0);
+                    if (enemy != null) {
+                        enemy.AddBaseShield(6);
+                        enemy.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemy.enemyIndex);
+                    }
                 } 
             }
         }

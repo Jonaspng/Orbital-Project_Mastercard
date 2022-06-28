@@ -1,5 +1,6 @@
-using UnityEngine;
 using System;
+using EZCameraShake;
+using UnityEngine;
 
 [System.Serializable]
 public class Mage : Player {
@@ -13,28 +14,41 @@ public class Mage : Player {
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
+        this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        this.animator.SetTrigger("Damaged");
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
         }
     
-        if (realDamage > this.baseShield) {
+        if (realDamage >= this.baseShield) {
                 health = health - realDamage + this.baseShield;
+                if (realDamage == this.baseShield) {
+                    DamageNumberAnimation("Blocked", Color.white);
+                } else {
+                    DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                }   
                 ResetBaseShield();
+                StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            DamageNumberAnimation("Blocked", Color.white);
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }
         if (isReflected) {
-                int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
+            int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
+            if (source != null) {
                 source.receiveDamage(reflectedDamage, enemyIndex);
+            }
         }
-        if (realDamage >= this.baseShield) {
-            StageManager.instance.playerHUD.RemoveShieldIcon();
+
+        if (this.health < 0) {
+            StageManager.instance.playerHUD.SetHP(0);
         } else {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
+            StageManager.instance.playerHUD.SetHP(this.health);
         }
-        StageManager.instance.playerHUD.SetHP(this.health);
     
     }
 

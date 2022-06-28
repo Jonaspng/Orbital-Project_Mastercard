@@ -1,18 +1,18 @@
- using UnityEngine;
- using UnityEngine.EventSystems;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
  
- public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler{
-
-     public void OnPointerEnter(PointerEventData eventData) {
-     }
+public class DropZone : MonoBehaviour, IDropHandler {
 
      public void OnDrop(PointerEventData eventData) {
-         if (eventData.pointerDrag.GetComponent<LineRenderer>() == null) {
-             eventData.pointerDrag.GetComponent<Cards>().OnDrop(0);
-         }
+        if (eventData.pointerDrag.GetComponent<LineRenderer>() == null) {
+            eventData.pointerDrag.GetComponent<NonTargetDraggable>().isInDropZone = true;
+            // eventData.pointerDrag.GetComponent<Cards>().OnDrop(0);
+        }
          
-     }
+    }
+
+
 
      
- }
+}

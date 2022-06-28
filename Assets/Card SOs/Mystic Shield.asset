@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Mystic Shield
   m_EditorClassIdentifier: 
   cardName: Mystic Shield
-  description: Reduce damage by 25% this turn
+  description: Reduce damage by 25% this turn.
   frame: {fileID: 21300000, guid: 69ee8aac79eb0c04b8fffab8c1842a03, type: 3}
   manaCost: 1

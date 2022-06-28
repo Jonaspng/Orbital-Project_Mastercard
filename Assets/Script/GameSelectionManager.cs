@@ -17,11 +17,12 @@ public class GameSelectionManager : MonoBehaviour {
 
     public void OnResumeClick() {
         SceneManager.LoadScene("Stage 1");
+        PlayerPrefs.SetInt("random event", 0);
     }
 
     public void OnStartNewGameClick() {
-        SceneManager.LoadScene("Character Selection");
-        File.Delete(deckPath);
+        SceneManager.LoadScene("Intro Cutscene1");
+
     }
 
     

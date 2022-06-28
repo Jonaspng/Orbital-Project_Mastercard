@@ -9,11 +9,29 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: c5424e8ff28de51498721cd475736c33
   - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 97904344ef3b1b84982160b0f8ef1951
+  - enabled: 1
+    path: Assets/Scenes/Intro Cutscene1.unity
+    guid: 3f3e3a1191ab5d04dac0775b711862de
+  - enabled: 1
+    path: Assets/Scenes/Intro Cutscene2.unity
+    guid: b6db3bcbf0096034891be9487cee8060
+  - enabled: 1
     path: Assets/Scenes/Character Selection.unity
     guid: 10a0d3934c935ce4d9df60f6682d90ab
   - enabled: 1
     path: Assets/Scenes/Stage 1.unity
     guid: 1325ae8441a1c0646bbc81ccfe847bdf
+  - enabled: 1
+    path: Assets/Scenes/Event.unity
+    guid: 8a9fd67023410f043b5594876955cbac
+  - enabled: 1
+    path: Assets/Scenes/End Cutscene1.unity
+    guid: a36b989b4d348ea4cbaa39adaa0b8733
+  - enabled: 1
+    path: Assets/Scenes/End Cutscene2.unity
+    guid: c5edb45e72b95e741b0bec7955ffdf6e
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6cbedabe36298064f95f6728977c3482, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 78a040c2ae7880848a21fbb2eccc1cd5, type: 2}

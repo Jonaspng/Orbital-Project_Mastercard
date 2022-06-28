@@ -17,6 +17,8 @@ public class DeckManager : MonoBehaviour {
     public Deck unusedPile;
 
     public Deck currentHand;
+
+    public int lockedCard;
     
     public List<GameObject> prefabList;
 
@@ -24,6 +26,11 @@ public class DeckManager : MonoBehaviour {
 
     public GameObject cardselectionPanel;
 
+
+    public void LockCard() {
+        lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
+        currentDeck.RemoveCard(currentDeck.cardList[lockedCard]);
+    }
 
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();
@@ -44,18 +51,44 @@ public class DeckManager : MonoBehaviour {
             currentDeckID = JsonUtility.FromJson<DeckID>(json);
             DeckIdToDeck();
         } else {
+            string playerType = PlayerPrefs.GetString("character");
             currentDeck = new Deck();
             currentDeckID = new DeckID(); 
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(0);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
-            currentDeckID.AddCardID(1);
+            if (playerType == "Warrior") {
+                currentDeckID.AddCardID(0);
+                currentDeckID.AddCardID(0);
+                currentDeckID.AddCardID(0);
+                currentDeckID.AddCardID(0);
+                currentDeckID.AddCardID(0);
+                currentDeckID.AddCardID(1);
+                currentDeckID.AddCardID(1);
+                currentDeckID.AddCardID(1);
+                currentDeckID.AddCardID(1);
+                currentDeckID.AddCardID(1);
+            } else if (playerType == "Archer") {
+                currentDeckID.AddCardID(2); 
+                currentDeckID.AddCardID(2);
+                currentDeckID.AddCardID(2);
+                currentDeckID.AddCardID(2);
+                currentDeckID.AddCardID(2);
+                currentDeckID.AddCardID(3);
+                currentDeckID.AddCardID(3);
+                currentDeckID.AddCardID(3);
+                currentDeckID.AddCardID(3);
+                currentDeckID.AddCardID(3);
+            } else {
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(4);
+                currentDeckID.AddCardID(5);
+                currentDeckID.AddCardID(5);
+                currentDeckID.AddCardID(5);
+                currentDeckID.AddCardID(5);
+                currentDeckID.AddCardID(5);
+            }
+            
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
@@ -118,9 +151,10 @@ public class DeckManager : MonoBehaviour {
         } else {
             this.Draw(numOfCards);
         }
+        GameObject.Find("Current Hand").GetComponent<Testing>().ArrangeCards();
     }
 
-    public void RerenderCards() {
+    public void ClearCards() {
         // destroy cards left on panel
         for (int i = 0; i < 5; i ++) {
             usedPile.AddCard(currentHand.cardList[i]);
@@ -128,7 +162,8 @@ public class DeckManager : MonoBehaviour {
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }
-        DrawCard(5);
+
     }
+
    
 }

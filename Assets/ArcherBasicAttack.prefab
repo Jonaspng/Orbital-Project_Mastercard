@@ -147,8 +147,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f994ca1e2ef673447974bd66a739adf6, type: 2}
+  m_sharedMaterial: {fileID: 7398779058673527313, guid: f994ca1e2ef673447974bd66a739adf6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -249,8 +249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1225, y: 0.04817808}
   m_AnchorMax: {x: 0.93250006, y: 0.3732877}
-  m_AnchoredPosition: {x: 1.0315552, y: -3.1751862}
-  m_SizeDelta: {x: -0.29760742, y: 2.9450989}
+  m_AnchoredPosition: {x: -0.2611084, y: 0.000022888184}
+  m_SizeDelta: {x: 0.52221924, y: 0.00004529953}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2176375412861969009
 CanvasRenderer:
@@ -282,8 +282,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Insert Description
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a4e7a94cc66d57a40bf13361744eabc8, type: 2}
+  m_sharedMaterial: {fileID: 1372561525074077354, guid: a4e7a94cc66d57a40bf13361744eabc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -307,15 +307,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.55
-  m_fontSizeBase: 36
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 1
   m_fontSizeMax: 36
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -417,8 +417,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Insert Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
+  m_sharedMaterial: {fileID: 6144394579458914034, guid: 1faed925ca24fbf4e8e9099e6e8ed8fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -442,15 +442,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 12.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 32
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -498,8 +498,7 @@ GameObject:
   - component: {fileID: 1687194412722499778}
   - component: {fileID: 5600762157816834300}
   - component: {fileID: 6754666669435837933}
-  - component: {fileID: 727678396919353078}
-  - component: {fileID: 7225823549202727566}
+  - component: {fileID: 2632603196353666056}
   m_Layer: 5
   m_Name: ArcherBasicAttack
   m_TagString: Untagged
@@ -588,6 +587,10 @@ MonoBehaviour:
   arrow: {fileID: 0}
   arrowLine: {fileID: 0}
   arrowCollider: {fileID: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  parentToReturn: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  originalIndex: 0
   enemies: []
 --- !u!68 &5600762157816834300
 EdgeCollider2D:
@@ -712,7 +715,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &727678396919353078
+--- !u!114 &2632603196353666056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,26 +724,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7711939956655095149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  manaCost: 1
-  turns: 0
-  damage: 6
---- !u!114 &7225823549202727566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7711939956655095149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e84bb95b7b81d4a855ea8bab3277d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e1814cad4af8284886b75e596ed4bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
   manaCost: 1
-  turns: 0
+  turns: 1
   damage: 6
+  material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
+  dissolve: 0

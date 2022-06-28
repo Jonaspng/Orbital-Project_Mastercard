@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Brace
   m_EditorClassIdentifier: 
   cardName: Brace
-  description: Block 10 damage. Deal 10 damage to enemy.
+  description: Gain 10 shield. Deal 10 damage.
   frame: {fileID: 21300000, guid: 22119caa386567a439d1f8fd5484871e, type: 3}
   manaCost: 2

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Focus Mana
   m_EditorClassIdentifier: 
   cardName: Focus Mana
-  description: Gain 2 mana next turn
+  description: Gain 2 mana next turn.
   frame: {fileID: 21300000, guid: c86a9967a331e95419e19707a3ad1635, type: 3}
   manaCost: 1

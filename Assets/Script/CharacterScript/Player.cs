@@ -1,7 +1,7 @@
 using UnityEngine;
+using TMPro;
 
 public abstract class Player : Unit {
-
 
     public bool isBroken;
 
@@ -14,6 +14,11 @@ public abstract class Player : Unit {
     }
 
     public abstract void receiveDamage(Enemy source, int damage, int enemyIndex);
+
+    public void receivePoisonDamage(int damage) {
+        health = health - damage;
+        StageManager.instance.playerHUD.SetHP(this.health);
+    }
 
     public  int getHealth() {
         return health;
@@ -37,6 +42,9 @@ public abstract class Player : Unit {
     
     public virtual void ChangeIsBroken(bool status) {
         this.isBroken = status;
+        if (status) {
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
+        }
     }
 
     public void ResetBaseShield() {
@@ -45,6 +53,8 @@ public abstract class Player : Unit {
 
     public void ResetAttackModifier() {
         this.attackModifier = 1;
+        GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveAttackUpIcon();
+        GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveMysticShieldIcon();
     }
 
     public abstract int GetFullDamage(int cardDamage);

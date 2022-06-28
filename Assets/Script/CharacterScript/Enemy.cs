@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[System.Serializable]
+
 public abstract class Enemy : Unit {
 
     public int enemyIndex;
@@ -14,9 +14,6 @@ public abstract class Enemy : Unit {
 
     public bool isBroken;
 
-    public bool isPoisoned;
-
-
     public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
         this.attackModifier = attackModifier;
@@ -24,39 +21,58 @@ public abstract class Enemy : Unit {
     }
 
     public void receiveDamage(int damage, int index) {
+        this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
         int realDamage;
-        if (health <= 0) {
-            realDamage = 0;
-            //game over
+    
+        if (isBroken) {
+            realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
-            if (isBroken) {
-                realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
-            } else {
-                realDamage = damage;                
-            }
-            if (realDamage > this.baseShield) {
-                print("real damage: " + realDamage);
-                print("base shield: " + this.baseShield);
-                health = health - realDamage + this.baseShield;
-                ResetBaseShield();
-            } else {
-                this.baseShield -= realDamage;
-            }
-            if (health <= 0) {
-                StageManager.instance.DestroyEnemy(enemyIndex);
-                return;
-            }
-            print(health);
+            realDamage = damage;                
+        }
+        if (realDamage > this.baseShield) {
+            print("real damage: " + realDamage);
+            print("base shield: " + this.baseShield);
+            health = health - realDamage + this.baseShield;
+        } 
+        
+        print(health);
+        if (this.health < 0) {
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
+        } else {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
         }
         if (realDamage >= this.baseShield) {
             print("shield destroyed");
+            if (realDamage == this.baseShield) {
+                DamageNumberAnimation("Blocked", Color.white);
+            } else {
+                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+            }
+            ResetBaseShield();
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
-            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(this.baseShield - realDamage, enemyIndex);
+            DamageNumberAnimation("Blocked", Color.white);
+            this.baseShield -= realDamage;
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }
-        
-        
+        if (health <= 0) {
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+            StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+            return;
+        }
+    }
+
+    public void receiveOverTimeDamage(int damage, int index) {
+        this.health = this.health - damage;
+        DamageNumberAnimation(damage, Color.red);
+        if (this.health <= 0) {
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+            StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+        }
     }
 
     public int getHealth() {
@@ -81,6 +97,7 @@ public abstract class Enemy : Unit {
 
     public void ResetAttackModifier() {
         this.attackModifier = 1;
+        this.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackDownIcon();        
     }
 
     public void changeShieldModifier(double shieldModifier) {
@@ -101,9 +118,6 @@ public abstract class Enemy : Unit {
 
     public void ChangeIsBurned(bool status) {
         this.isBurned = status;
-    }
-    public void ChangeIsPoisoned(bool status) {
-        this.isPoisoned = status;
     }
     
     // Method to calculate damage from arrow damage cards if StickyArrows has been used.

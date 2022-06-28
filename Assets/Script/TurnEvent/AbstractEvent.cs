@@ -2,10 +2,6 @@ using UnityEngine;
 
 public abstract class AbstractEvent {
 
-    /*
-    1) OverTime damage event -- Depends on who is the target
-    2) Add mana
-    */
     public int numberOfTurns;
 
     public int enemyIndex;

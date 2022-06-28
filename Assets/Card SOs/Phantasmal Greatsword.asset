@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Phantasmal Greatsword
   m_EditorClassIdentifier: 
   cardName: Phantasmal Greatsword
-  description: Deal 20 damage to an enemy
+  description: Deal 20 damage.
   frame: {fileID: 21300000, guid: 04523078b8669ef40a114ea91c3809e8, type: 3}
   manaCost: 3

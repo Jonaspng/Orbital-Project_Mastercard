@@ -13,6 +13,12 @@ class PlayerDamageEvent : AbstractEvent {
 
     public override void executeEvent(Player player, Enemy[] enemies) {
         player.AddBaseAttack(this.damage);
+
+        if (this.damage > 0) {
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
+        } else {
+            GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RemoveAttackUpIcon();
+        }
     }
 
 }

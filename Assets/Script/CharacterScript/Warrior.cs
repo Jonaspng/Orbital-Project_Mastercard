@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using EZCameraShake;
 
 
 public class Warrior : Player {
@@ -17,6 +18,9 @@ public class Warrior : Player {
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
+        this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
+        this.animator.SetTrigger("Damaged");
         if (isStrongWillpower) {
             hitCount++;
         }
@@ -25,25 +29,31 @@ public class Warrior : Player {
         } else {
             realDamage = damage;
         }
-        if (realDamage > this.baseShield ) {
+        if (realDamage >= this.baseShield ) {
             if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
                 this.health = 1;
-                this.isEndure = false;
-            
+                this.isEndure = false;          
             } else {
                 health = health - realDamage + this.baseShield;
             }
+            if (realDamage == this.baseShield) {
+                DamageNumberAnimation("Blocked", Color.white);
+            } else {
+                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+            }            
             ResetBaseShield();
+            StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
+            DamageNumberAnimation("Blocked", Color.white);
+            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
             this.baseShield -= realDamage;
         }
         print(health);
-        if (realDamage >= this.baseShield) {
-            StageManager.instance.playerHUD.RemoveShieldIcon();
+        if (this.health < 0) {
+            StageManager.instance.playerHUD.SetHP(0);
         } else {
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.baseShield - realDamage);
+            StageManager.instance.playerHUD.SetHP(this.health);
         }
-        StageManager.instance.playerHUD.SetHP(this.health);
         
     }
 
@@ -53,6 +63,10 @@ public class Warrior : Player {
 
     public void ChangeIsEndure(bool status) {
         this.isEndure = status;
+    }
+
+    public void resetHitCount() {
+        this.hitCount = 0;
     }
 
 

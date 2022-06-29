@@ -33,6 +33,8 @@ public class StageManager : MonoBehaviour {
     public DeckManager deckManager;
 
     public GameObject endTurnButton;
+
+    public GameObject TurnNotification;
     
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player

@@ -34,8 +34,10 @@ public class DeckManager : MonoBehaviour {
 
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();
+        unusedPile.ResetDeck();
         foreach (int id in currentDeckID.cardIDList) {
-            currentDeck.AddCard(prefabList[id]);            
+            currentDeck.AddCard(prefabList[id]);
+            unusedPile.AddCard(prefabList[id]);       
         }
     }
 
@@ -92,7 +94,6 @@ public class DeckManager : MonoBehaviour {
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
-        unusedPile = currentDeck;
         Deck.Shuffle(unusedPile);
         DrawCard(5);
     }

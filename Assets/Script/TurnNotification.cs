@@ -3,7 +3,9 @@ using TMPro;
 
 public class TurnNotification : MonoBehaviour {
 
-    public Animator animator;
+    public Animator backgroundAnimator;
+
+    public Animator textAnimator;
 
 
     public void ChangeText(string message) {

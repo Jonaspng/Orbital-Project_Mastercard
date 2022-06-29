@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour {
 
     public GameObject endTurnButton;
 
-    public GameObject TurnNotification;
+    public TurnNotification turnNotification;
     
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
@@ -121,6 +121,7 @@ public class StageManager : MonoBehaviour {
         yield return StartCoroutine(EndTurn());
 
         state = BattleState.PLAYERTURN;
+        
     }
 
     public IEnumerator ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
@@ -159,7 +160,14 @@ public class StageManager : MonoBehaviour {
             deckManager.ClearCards();
 
             endTurnButton.SetActive(false);
-            yield return new WaitForSeconds(1f);
+
+            //enemy turn
+            turnNotification.ChangeText("Enemy Turn");
+            turnNotification.backgroundAnimator.SetTrigger("ChangeTurn");
+            turnNotification.textAnimator.SetTrigger("ChangeTurn");
+
+            yield return new WaitForSeconds(2f);
+            
             for (int i = 0; i< enemies.Length; i++) {
                 if (enemies[i] != null) {
                     enemies[i].EnemyMove(player, enemies, i);
@@ -207,6 +215,13 @@ public class StageManager : MonoBehaviour {
                     }
                 }
             }
+
+            // player turn
+            turnNotification.ChangeText("Player Turn");
+            turnNotification.backgroundAnimator.SetTrigger("ChangeTurn");
+            turnNotification.textAnimator.SetTrigger("ChangeTurn");
+
+            yield return new WaitForSeconds(2f);
 
             endTurnButton.SetActive(true);
             

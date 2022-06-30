@@ -35,6 +35,7 @@ public class DeckManager : MonoBehaviour {
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();
         unusedPile.ResetDeck();
+        usedPile.ResetDeck();
         foreach (int id in currentDeckID.cardIDList) {
             currentDeck.AddCard(prefabList[id]);
             unusedPile.AddCard(prefabList[id]);       

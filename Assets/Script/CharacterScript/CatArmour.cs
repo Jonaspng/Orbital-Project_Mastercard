@@ -12,9 +12,9 @@ public class CatArmour : Enemy {
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
+                player.receiveDamage(this, this.GetFullDamage(2), index);
             } else if (moveNumber == 2) {
-                this.AddBaseShield(6);
+                this.AddBaseShield(8);
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 foreach (Enemy enemy in enemies) {

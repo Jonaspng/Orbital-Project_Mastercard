@@ -23,17 +23,17 @@ public class CatSword : Enemy {
         int moveNumber = Random.Range(1, 4);
         if (!this.isImmobilised) {
             if (moveNumber == 1) {
-                print("Cat attack with " + this.GetFullDamage(6));
+                print("Cat attack with " + this.GetFullDamage(3));
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
+                player.receiveDamage(this, this.GetFullDamage(3), index);
             } else if (moveNumber == 2) {
                 print("applied shield");
                 this.AddBaseShield(6);
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
-                print("Cat attack with " + this.GetFullDamage(6) + " broken");
+                print("Cat attack with " + this.GetFullDamage(3) + " broken");
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
+                player.receiveDamage(this, this.GetFullDamage(3), index);
 
                 player.ChangeIsBroken(true);
                 

@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: CS2040S
-  health: 100
-  maxHp: 100
+  health: 50
+  maxHp: 50
   baseAttack: 0
   attackModifier: 1
   baseShield: 0

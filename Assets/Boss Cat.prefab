@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: CS3230
-  health: 110
-  maxHp: 110
+  health: 80
+  maxHp: 80
   baseAttack: 10
   attackModifier: 1
   baseShield: 0

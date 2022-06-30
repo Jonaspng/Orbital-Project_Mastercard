@@ -6,6 +6,8 @@ public class PopUpMenu : MonoBehaviour  {
 
     public GameObject confirmButton;
 
+    public GameObject NotificationMenu;
+
     public int newCardId;
  
     void Start () {
@@ -18,6 +20,7 @@ public class PopUpMenu : MonoBehaviour  {
     }
 
     public void OnConfirmClick() {
+        PlayerPrefs.SetInt("random event", 0); //reseted
         PlayerPrefs.SetInt("health", StageManager.instance.player.health);
         DeckID newDeck = StageManager.instance.deckManager.currentDeckID;
         newDeck.AddCardID(newCardId);
@@ -38,5 +41,9 @@ public class PopUpMenu : MonoBehaviour  {
 
     public void RenderConfirmButton() {
         confirmButton.SetActive(true);
+    }
+
+    public void NotificationConfirmClick() {
+        NotificationMenu.SetActive(false);
     }
 }

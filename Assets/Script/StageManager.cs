@@ -35,6 +35,10 @@ public class StageManager : MonoBehaviour {
     public GameObject endTurnButton;
 
     public TurnNotification turnNotification;
+
+    public GameObject notificationMenu;
+
+    public GameObject lockedCardPanel;
     
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
@@ -65,6 +69,7 @@ public class StageManager : MonoBehaviour {
         GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
         playerHUD.RemoveAllIcons();
         StageEventExecute();
+        deckManager.DrawCard(5);
         state = BattleState.PLAYERTURN;
     }
 
@@ -252,6 +257,10 @@ public class StageManager : MonoBehaviour {
         // Event 1: lock cat
         if (eventNumber == 1) {
             deckManager.LockCard();
+            GameObject lockedCard = Instantiate(deckManager.currentDeck.cardList[deckManager.lockedCard]);
+            deckManager.DisableAllScripts(lockedCard);
+            lockedCard.transform.SetParent(lockedCardPanel.transform, false);
+            notificationMenu.SetActive(true);
         }
         // Event 2: Heal Cat
         else if (eventNumber == 2) {
@@ -271,25 +280,25 @@ public class StageManager : MonoBehaviour {
             AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 2, 0)};
             AbstractEvent[] resetEvent = {new PlayerPoisonEvent(1, false, 0)};
 
-            if (playerEventManager.ContainsKey(currentTurn)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
-                playerEventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
+            if (enemyEventManager.ContainsKey(currentTurn)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn];
+                enemyEventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
             } else {
-                playerEventManager.Add(currentTurn, newEvent);
+                enemyEventManager.Add(currentTurn, newEvent);
+            }
+
+            if (enemyEventManager.ContainsKey(currentTurn + 1)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn + 1];
+                enemyEventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+            } else {
+                enemyEventManager.Add(currentTurn + 1, newEvent);
             }
 
             if (playerEventManager.ContainsKey(currentTurn + 1)) {
                 AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 1];
-                playerEventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+                playerEventManager[currentTurn + 1] = currEvent.Concat(resetEvent).ToArray();
             } else {
-                playerEventManager.Add(currentTurn + 1, newEvent);
-            }
-
-            if (playerEventManager.ContainsKey(currentTurn + 2)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 2];
-                playerEventManager[currentTurn + 2] = currEvent.Concat(resetEvent).ToArray();
-            } else {
-                playerEventManager.Add(currentTurn + 2, resetEvent);
+                playerEventManager.Add(currentTurn + 1, resetEvent);
             }        
         }
         // Event 4: Recess Cat
@@ -305,8 +314,7 @@ public class StageManager : MonoBehaviour {
             } else {
                 enemyEventManager.Add(currentTurn + 1, newResetEvent);
             }
-        }   
-        PlayerPrefs.SetInt("random event", 0); //reseted
+        }
     }
 
 

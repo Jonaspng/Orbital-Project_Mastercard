@@ -17,6 +17,7 @@ public abstract class Player : Unit {
 
     public void receivePoisonDamage(int damage) {
         health = health - damage;
+        DamageNumberAnimation(damage, Color.red);
         StageManager.instance.playerHUD.SetHP(this.health);
     }
 

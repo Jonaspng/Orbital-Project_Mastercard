@@ -29,7 +29,7 @@ public class DeckManager : MonoBehaviour {
 
     public void LockCard() {
         lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
-        currentDeck.RemoveCard(currentDeck.cardList[lockedCard]);
+        unusedPile.RemoveCard(currentDeck.cardList[lockedCard]);
     }
 
     public void DeckIdToDeck() {
@@ -96,7 +96,7 @@ public class DeckManager : MonoBehaviour {
             DeckIdToDeck();
         }
         Deck.Shuffle(unusedPile);
-        DrawCard(5);
+        //DrawCard(5);
     }
 
     public void Draw(int numOfDraws) {

@@ -36,8 +36,7 @@ public class EventStageManager : MonoBehaviour {
     public void OnApproachClick() {
         approachButton.SetActive(false);
         walkAwayButton.SetActive(false);
-        int eventNumber = 1;
-        //Random.Range(1, 5);
+        int eventNumber = Random.Range(1, 5);
         // Event 1: Lock Cat
         if (eventNumber == 1) {
             eventDescription.text = "You met a Lock Cat that locked one of your card for the next stage!";

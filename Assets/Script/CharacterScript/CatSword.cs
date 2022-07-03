@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 public class CatSword : Enemy {
+
+    public GameObject brokenIcon;
     
     public CatSword (double attackModifier, double shieldModifier) 
     : base(30, attackModifier, shieldModifier) { 
@@ -26,6 +28,7 @@ public class CatSword : Enemy {
                 print("Cat attack with " + this.GetFullDamage(3));
                 this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(3), index);
+                
             } else if (moveNumber == 2) {
                 print("applied shield");
                 this.AddBaseShield(6);
@@ -34,7 +37,9 @@ public class CatSword : Enemy {
                 print("Cat attack with " + this.GetFullDamage(3) + " broken");
                 this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(3), index);
-
+                GameObject broken = Instantiate(brokenIcon, player.gameObject.transform.GetChild(0));
+                // broken.setTrigger()
+                // destroy on fade out in animator
                 player.ChangeIsBroken(true);
                 
                 int currentTurn = StageManager.instance.currentTurn;

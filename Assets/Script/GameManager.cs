@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 class GameManager : MonoBehaviour {
 
@@ -15,6 +16,14 @@ class GameManager : MonoBehaviour {
     public GameObject[] playerPrefabList;
 
     public GameObject enemyPanel;
+
+    public Image ManaImage;
+
+    public Sprite ManaWarrior;
+
+    public Sprite ManaArcher;
+
+    public Sprite ManaMage;
 
 
     private void Awake() {
@@ -38,10 +47,13 @@ class GameManager : MonoBehaviour {
             playerType = PlayerPrefs.GetString("character");
             if (playerType == "Warrior") {
                 stage.playerGO = Instantiate(playerPrefabList[0], stage.playerBattleStation);
+                ManaImage.sprite = ManaWarrior;
             } else if (playerType == "Archer") {
                 stage.playerGO = Instantiate(playerPrefabList[1], stage.playerBattleStation);
+                ManaImage.sprite = ManaArcher;
             } else {
                 stage.playerGO = Instantiate(playerPrefabList[2], stage.playerBattleStation);
+                ManaImage.sprite = ManaMage;
             }
             Player player = stage.playerGO.GetComponentInChildren<Player>();
             if (PlayerPrefs.HasKey("health")) {

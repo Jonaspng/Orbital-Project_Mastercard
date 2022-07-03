@@ -195,6 +195,7 @@ MonoBehaviour:
   isImmobilised: 0
   isBurned: 0
   isBroken: 0
+  brokenIcon: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
 --- !u!95 &8827838565934297704
 Animator:
   serializedVersion: 4

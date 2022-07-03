@@ -39,7 +39,7 @@ public class StageManager : MonoBehaviour {
     public GameObject notificationMenu;
 
     public GameObject lockedCardPanel;
-    
+
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
     public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
@@ -62,6 +62,7 @@ public class StageManager : MonoBehaviour {
     public void InitialiseBattle() {
         playerEventManager = new Dictionary<int, AbstractEvent[]>();
         enemyEventManager = new Dictionary<int, AbstractEvent[]>();
+        GameObject.Find("Stage Number").GetComponent<TextMeshProUGUI>().text = "Stage " + PlayerPrefs.GetInt("stage");
         this.manaCount = 3;
         RerenderManaCount(3);
         this.currentTurn = 0;
@@ -308,11 +309,11 @@ public class StageManager : MonoBehaviour {
             enemies[randomEnemy].GetComponentInParent<BattleHUD>().RenderStunIcon();
             
             AbstractEvent[] newResetEvent = {new StunEvent(1, false, randomEnemy)};
-            if (enemyEventManager.ContainsKey(currentTurn + 1)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn + 1];
-                enemyEventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+            if (playerEventManager.ContainsKey(currentTurn)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
+                playerEventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
             } else {
-                enemyEventManager.Add(currentTurn + 1, newResetEvent);
+                playerEventManager.Add(currentTurn, newResetEvent);
             }
         }
     }

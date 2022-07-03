@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MessageManager4 : MonoBehaviour {
 
@@ -8,8 +9,12 @@ public class MessageManager4 : MonoBehaviour {
     [SerializeField] public TextWriter textWriter;
     public GameObject nextButton;
 
+    string deckPath;
+
     private void Awake() {
         nextButton.SetActive(false);
+        deckPath = $"{Application.persistentDataPath}/deckID.json";
+        File.Delete(deckPath);
     }
 
     public void OnNextButtonClick() {

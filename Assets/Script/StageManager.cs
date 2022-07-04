@@ -246,7 +246,7 @@ public class StageManager : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.8f);
         gameOverMenu.SetActive(true);
-        endTurnButton.SetActive(false);
+        endTurnButton.SetActive(true);
     }
 
 

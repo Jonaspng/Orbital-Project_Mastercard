@@ -58,45 +58,31 @@ public class DeckManager : MonoBehaviour {
             currentDeck = new Deck();
             currentDeckID = new DeckID(); 
             if (playerType == "Warrior") {
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(0);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(1);
+                }
             } else if (playerType == "Archer") {
-                currentDeckID.AddCardID(2); 
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(2);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(3);
+                }
             } else {
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(4);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(5);
+                }
             }
-            
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
         Deck.Shuffle(unusedPile);
-        //DrawCard(5);
     }
 
     public void Draw(int numOfDraws) {
@@ -112,7 +98,6 @@ public class DeckManager : MonoBehaviour {
             if (!(c is CardDisplay)) {
                 c.enabled = false;
             }
-            
         }
     }
 
@@ -164,8 +149,6 @@ public class DeckManager : MonoBehaviour {
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }
-
     }
-
    
 }

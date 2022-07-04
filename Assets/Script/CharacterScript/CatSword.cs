@@ -37,8 +37,9 @@ public class CatSword : Enemy {
                 print("Cat attack with " + this.GetFullDamage(3) + " broken");
                 this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(3), index);
-                GameObject broken = Instantiate(brokenIcon, player.gameObject.transform.GetChild(0));
-                // broken.setTrigger()
+                GameObject broken = Instantiate(brokenIcon, player.gameObject.transform.GetChild(1));
+                Animator anim = (Animator) broken.GetComponent("Animator");
+                anim.SetTrigger("Broken");
                 // destroy on fade out in animator
                 player.ChangeIsBroken(true);
                 

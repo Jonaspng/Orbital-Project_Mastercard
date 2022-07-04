@@ -40,6 +40,8 @@ public class StageManager : MonoBehaviour {
 
     public GameObject lockedCardPanel;
 
+    public GameObject pauseMenu;
+
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
     public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
@@ -249,6 +251,10 @@ public class StageManager : MonoBehaviour {
         endTurnButton.SetActive(true);
     }
 
+    public void OnPauseGameClick() {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
 
     public void StageEventExecute() {
         int eventNumber = 0;

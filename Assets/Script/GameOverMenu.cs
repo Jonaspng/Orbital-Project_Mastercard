@@ -24,7 +24,4 @@ public class GameOverMenu : MonoBehaviour  {
        SceneManager.LoadScene("Start Menu");
     }
 
-    // public void RenderConfirmButton() {
-    //     confirmButton.SetActive(true);
-    // }
 }

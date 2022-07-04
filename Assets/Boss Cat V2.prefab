@@ -305,7 +305,9 @@ MonoBehaviour:
   smokeBombIcon: {fileID: 3281889666080369051, guid: d3e975a5479f7c04a9cf3ef40d386ba5, type: 3}
   mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
   reflectIcon: {fileID: 0}
+  EndureIcon: {fileID: 0}
   isShieldIconOn: 0
+  isBrokenShieldIconOn: 0
   maxHp: 0
 --- !u!1 &1535405438221860825
 GameObject:
@@ -692,6 +694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 500336115667892148}
     m_Modifications:
+    - target: {fileID: 446887869201632575, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
+      propertyPath: brokenIcon
+      value: 
+      objectReference: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
     - target: {fileID: 519898598152194321, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
       propertyPath: m_LocalScale.x
       value: -3.363787

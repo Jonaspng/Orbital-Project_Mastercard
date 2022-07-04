@@ -50,6 +50,7 @@ public class ArcaneBolt : Cards {
         player.animator.SetTrigger("Attack");
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].RenderBrokenIndicator();
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }
     }

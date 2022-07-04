@@ -305,7 +305,9 @@ MonoBehaviour:
   smokeBombIcon: {fileID: 3281889666080369051, guid: d3e975a5479f7c04a9cf3ef40d386ba5, type: 3}
   mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
   reflectIcon: {fileID: 0}
+  EndureIcon: {fileID: 0}
   isShieldIconOn: 0
+  isBrokenShieldIconOn: 0
   maxHp: 0
 --- !u!1001 &4843758690879191133
 PrefabInstance:
@@ -338,6 +340,10 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5392083743733176048, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
+      propertyPath: brokenIcon
+      value: 
+      objectReference: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
     - target: {fileID: 5669182125797960689, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
       propertyPath: m_Size.x
       value: 89.52757

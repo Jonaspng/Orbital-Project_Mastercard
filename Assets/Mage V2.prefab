@@ -437,6 +437,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8763104392383384916}
     m_Modifications:
+    - target: {fileID: -4380994866705931044, guid: a540e3ef95f78584c813a2dee149011e, type: 3}
+      propertyPath: brokenIcon
+      value: 
+      objectReference: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
     - target: {fileID: 2529885632581163662, guid: a540e3ef95f78584c813a2dee149011e, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.377678

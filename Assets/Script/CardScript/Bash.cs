@@ -54,6 +54,7 @@ public class Bash : Cards {
 
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].RenderBrokenIndicator();
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }
         

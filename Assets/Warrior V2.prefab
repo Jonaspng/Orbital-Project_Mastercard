@@ -525,6 +525,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 7000
       objectReference: {fileID: 0}
+    - target: {fileID: 7186332194403598845, guid: 4df59c286e2310c4f9ded6ed29a41901, type: 3}
+      propertyPath: brokenIcon
+      value: 
+      objectReference: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
     - target: {fileID: 7919264731247161561, guid: 4df59c286e2310c4f9ded6ed29a41901, type: 3}
       propertyPath: m_Name
       value: Warrior

@@ -14,6 +14,8 @@ public abstract class Enemy : Unit {
 
     public bool isBroken;
 
+    public GameObject brokenIcon;
+
     public Enemy(int health, double attackModifier, double shieldModifier) {
         this.health = health;
         this.attackModifier = attackModifier;
@@ -145,9 +147,11 @@ public abstract class Enemy : Unit {
     
 
     public abstract void EnemyMove(Player player, Enemy[] enemies, int index);
-    
-    // eh shit we need change to abstract later lol
-    //overtime damage will be done by stageManager
+
+    public void RenderBrokenIndicator() {
+        GameObject broken = Instantiate(brokenIcon, this.gameObject.transform.GetChild(0));
+        broken.GetComponent<Animator>().SetTrigger("Broken");
+    }
 
        
 

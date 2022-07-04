@@ -5,7 +5,7 @@ public abstract class Player : Unit {
 
     public bool isBroken;
 
-    //private Card[] deck;
+    public GameObject brokenIcon;
 
     public Player(int health, double attackModifier, double shieldModifier) {
         this.health = health;
@@ -61,7 +61,11 @@ public abstract class Player : Unit {
     public abstract int GetFullDamage(int cardDamage);
 
    
-    //poison damage will be done by stageManager
+    public void RenderBrokenIndicator() {
+        GameObject broken = Instantiate(brokenIcon, this.gameObject.transform.GetChild(0));
+        broken.GetComponent<Animator>().SetTrigger("Broken");
+    }
+
 
        
 }

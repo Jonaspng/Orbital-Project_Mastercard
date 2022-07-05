@@ -42,17 +42,26 @@ public class StageManager : MonoBehaviour {
 
     public GameObject pauseMenu;
 
+    public GameObject canvas;
+
+    public GameObject backgroundCanvas;
+
     //key = int; value = AbstractEvent[];
     public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
     public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
 
+
     private void Awake() {
-        RectTransform rt = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        float height = GameObject.Find("Background Canvas").GetComponent<RectTransform>().rect.height;
-        Vector3 scale = GameObject.Find("Background Canvas").GetComponent<RectTransform>().localScale;
-        rt.sizeDelta = new Vector2(800, height);
-        rt.localScale = scale;
         instance = this;
+    }
+
+    private void Update() {
+        RectTransform rt = canvas.GetComponent<RectTransform>();
+        float height = backgroundCanvas.GetComponent<RectTransform>().rect.height;
+        float width = backgroundCanvas.GetComponent<RectTransform>().rect.width;
+        Vector3 scale = backgroundCanvas.GetComponent<RectTransform>().localScale;
+        rt.sizeDelta = new Vector2(width, height);
+        rt.localScale = scale;
     }
 
     private void Start() {

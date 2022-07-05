@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CardSelection : MonoBehaviour {
     public Material outline;
 
-    private void Start() {
+    private void Awake() {
         outline = Resources.Load<Material>("Solid_Contour_inside");
     }
 

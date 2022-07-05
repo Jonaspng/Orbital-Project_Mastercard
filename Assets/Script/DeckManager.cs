@@ -26,6 +26,7 @@ public class DeckManager : MonoBehaviour {
 
     public GameObject cardselectionPanel;
 
+    public Material cardOutline;
 
     public void LockCard() {
         lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
@@ -93,14 +94,6 @@ public class DeckManager : MonoBehaviour {
             }
     }
 
-    public void DisableAllScripts(GameObject obj) {
-        foreach (MonoBehaviour c in obj.GetComponents<MonoBehaviour>()) {
-            if (!(c is CardDisplay)) {
-                c.enabled = false;
-            }
-        }
-    }
-
     public void GenerateNewCards() {
         string playerType = PlayerPrefs.GetString("character");
         List<GameObject> newList = null;
@@ -121,8 +114,9 @@ public class DeckManager : MonoBehaviour {
         for (int i = 0; i < 3; i ++) {
             GameObject temp = Instantiate(playerDeck.cardList[i]);
             temp.transform.SetParent(cardselectionPanel.transform, false);
-            DisableAllScripts(temp);
+            temp.GetComponent<Cards>().DisableAllScripts();
             temp.AddComponent<CardSelection>();
+            temp.GetComponent<CardSelection>().outline = cardOutline;
         }
     }
 

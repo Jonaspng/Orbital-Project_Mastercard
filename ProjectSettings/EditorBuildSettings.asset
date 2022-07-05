@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: c5424e8ff28de51498721cd475736c33
   - enabled: 1
+    path: Assets/Scenes/Cards.unity
+    guid: d3466af7c18b6cf4e90b2b9635dd8cd1
+  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 97904344ef3b1b84982160b0f8ef1951
   - enabled: 1

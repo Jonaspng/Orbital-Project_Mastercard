@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour {
 
-    public GameObject gameSelectionMenu;  
+    public GameObject gameSelectionMenu;
+
+    public GameObject libraryMenu;
     public void OnStartClick() {
         gameSelectionMenu.SetActive(true);
     }
@@ -11,7 +13,8 @@ public class StartManager : MonoBehaviour {
     public void OnCreditsClick() {
         SceneManager.LoadScene("Credits");
     }
-    public void OnCloseClick() {
-        gameSelectionMenu.SetActive(false);
+
+    public void OnLibraryClick() {
+        libraryMenu.SetActive(true);
     }
 }

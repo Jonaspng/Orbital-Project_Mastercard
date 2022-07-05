@@ -4437,6 +4437,7 @@ MonoBehaviour:
   - {fileID: 5467180237992073273, guid: 1b440829d94cebc49b60f644f8a7d163, type: 3}
   currentHandPanel: {fileID: 243863394}
   cardselectionPanel: {fileID: 2043414938}
+  cardOutline: {fileID: 2100000, guid: 4e0ae13635569ec4faae7fbcd37a0854, type: 2}
 --- !u!1 &1922667942
 GameObject:
   m_ObjectHideFlags: 0

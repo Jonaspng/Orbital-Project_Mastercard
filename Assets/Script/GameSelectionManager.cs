@@ -21,7 +21,10 @@ public class GameSelectionManager : MonoBehaviour {
 
     public void OnStartNewGameClick() {
         SceneManager.LoadScene("Intro Cutscene1");
+    }
 
+    public void OnCloseClick() {
+        this.gameObject.SetActive(false);
     }
 
     

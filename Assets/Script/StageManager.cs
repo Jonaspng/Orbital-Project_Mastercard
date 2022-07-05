@@ -274,7 +274,7 @@ public class StageManager : MonoBehaviour {
         if (eventNumber == 1) {
             deckManager.LockCard();
             GameObject lockedCard = Instantiate(deckManager.currentDeck.cardList[deckManager.lockedCard]);
-            deckManager.DisableAllScripts(lockedCard);
+            lockedCard.GetComponent<Cards>().DisableAllScripts();
             lockedCard.transform.SetParent(lockedCardPanel.transform, false);
             notificationMenu.SetActive(true);
         }

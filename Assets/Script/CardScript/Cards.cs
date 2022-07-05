@@ -18,4 +18,12 @@ public abstract class Cards : MonoBehaviour {
 
     public abstract void OnDrop(int enemyIndex);
 
+    public void DisableAllScripts() {
+        foreach (MonoBehaviour c in this.GetComponents<MonoBehaviour>()) {
+            if (!(c is CardDisplay)) {
+                c.enabled = false;
+            }
+        }
+    }
+
 }

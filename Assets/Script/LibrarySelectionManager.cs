@@ -12,7 +12,7 @@ public class LibrarySelectionManager : MonoBehaviour {
     }
 
     public void OnHowToPlayClick() {
-        Application.OpenURL("https://docs.google.com/presentation/d/1b52Y2mCH7Td_oWUPccRgyYxF42fbpnZFgVSGS9y12NI/edit?usp=sharing");
+        SceneManager.LoadScene("Tut Page");
 
     }
 

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: c5424e8ff28de51498721cd475736c33
   - enabled: 1
+    path: Assets/Scenes/Tut Page.unity
+    guid: 6f4e8408f6a117744a9654cbc0c37dbe
+  - enabled: 1
     path: Assets/Scenes/Cards.unity
     guid: d3466af7c18b6cf4e90b2b9635dd8cd1
   - enabled: 1

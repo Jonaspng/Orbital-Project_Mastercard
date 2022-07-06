@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fade: 0.21810219
+    - _Fade: 0.15779974
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 47.5

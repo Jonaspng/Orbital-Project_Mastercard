@@ -24,8 +24,10 @@ public class TextWriter : MonoBehaviour {
     }
 
     public void OnSkipButtonClick() {
-        characterIndex = textToWrite.Length - 1;
-        uiText.text = textToWrite.Substring(0, textToWrite.Length);
+        if (characterIndex <= textToWrite.Length - 1) {
+            characterIndex = textToWrite.Length - 1;
+            uiText.text = textToWrite.Substring(0, textToWrite.Length);
+        }
     }
 
 

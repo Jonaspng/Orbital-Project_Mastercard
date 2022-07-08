@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 class GameManager : MonoBehaviour {
 
@@ -212,6 +213,17 @@ class GameManager : MonoBehaviour {
 
         Enemy[] temp = {enemy1};
         stage.enemies = stage.enemies.Concat(temp).ToArray();
+
+        int currentTurn = StageManager.instance.currentTurn;
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
+        AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemy1.enemyIndex)};
+        if (eventManager.ContainsKey(currentTurn)) {
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+            eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
+        } else {
+            eventManager.Add(currentTurn, newResetEvent);
+        }
+        enemy1.ChangeIsImmobilised(true);
 
         stage.enemyCount += 1;
     }

@@ -4,6 +4,10 @@ public class BossCat : Enemy {
 
     public BossCat(double attackModifier, double shieldModifier)
     : base(110, attackModifier, shieldModifier) {
+
+    }
+
+    private void Awake() {
         this.baseAttack = 8;
     }
 
@@ -20,14 +24,17 @@ public class BossCat : Enemy {
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Spawning Enemy");
-                if (StageManager.instance.enemyCount != 3) {
-                    GameManager.instance.SpawnEnemies();
-                } else {
-                    EnemyMoveNumberGenerator();
-                    EnemyMove(player, enemies, index);
-                }
+                GameManager.instance.SpawnEnemies();
             }
         }
+    }
+
+    public override void EnemyMoveNumberGenerator() {
+        this.moveNumber =  UnityEngine.Random.Range(1, 4);
+        if (StageManager.instance.enemyCount == 4 && this.moveNumber == 3) {
+            EnemyMoveNumberGenerator();
+        }
+
     }
 
     public override void RenderWarningIndicator() {

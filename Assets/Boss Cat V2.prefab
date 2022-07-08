@@ -301,7 +301,7 @@ MonoBehaviour:
   brokenShieldIcon: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
   burnedIcon: {fileID: 4501269151558208676, guid: 4756f0572c5917241a3697f81bb8fb70, type: 3}
   stunIcon: {fileID: 6147622139561121238, guid: dea1b6391f42daf4fa2d38a53b307ef3, type: 3}
-  attackIndicator: {fileID: 0}
+  attackIndicator: {fileID: 6107227337824231167, guid: 0bb1eecf43718254c97b19312b7daad0, type: 3}
   attackUpIcon: {fileID: 2912955603300944756, guid: 691937284723faa4e96ab59e0a43bfeb, type: 3}
   allAttackUpIcon: {fileID: 0}
   attackDownIcon: {fileID: 8608382886452050791, guid: 414ff70e02510844ea6a7208527dba3f, type: 3}
@@ -779,6 +779,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 16.56055
       objectReference: {fileID: 0}
+    - target: {fileID: 4524157843423755734, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524157843423755734, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 85.9
+      objectReference: {fileID: 0}
     - target: {fileID: 6804569956924094651, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
       propertyPath: m_Name
       value: Boss Cat
@@ -801,11 +809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194160130063982868, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -11
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 9194160130063982868, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 90.6
+      value: 109.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1634cec4a256dec4a8e4de277d495e24, type: 3}

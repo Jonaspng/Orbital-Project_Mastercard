@@ -4,6 +4,9 @@ public class CatArmour : Enemy {
     
     public CatArmour (double attackModifier, double shieldModifier) 
     : base(30, attackModifier, shieldModifier) { 
+    }
+
+    private void Awake() {
         this.baseAttack = 2;
     }
 

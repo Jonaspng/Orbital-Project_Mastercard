@@ -4,6 +4,9 @@ using UnityEngine;
 public class CatStaff : Enemy {
     public CatStaff(double attackModifier, double shieldModifier)
     : base(30, attackModifier, shieldModifier) {
+    }
+
+    private void Awake() {
         this.baseAttack = 6;
     }
 

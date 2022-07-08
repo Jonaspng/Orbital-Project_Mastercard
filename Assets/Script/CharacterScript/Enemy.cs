@@ -153,7 +153,7 @@ public abstract class Enemy : Unit {
         broken.GetComponent<Animator>().SetTrigger("Broken");
     }
 
-    public void EnemyMoveNumberGenerator() {
+    public virtual void EnemyMoveNumberGenerator() {
         moveNumber =  UnityEngine.Random.Range(1, 4);
     }
 

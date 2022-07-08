@@ -321,6 +321,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9131307509326684063}
     m_Modifications:
+    - target: {fileID: 3876583552149081186, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876583552149081186, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 73.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4359046994557743501, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
       propertyPath: m_Name
       value: Staff Cat
@@ -375,11 +383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5721226306935538571, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.92403
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 5721226306935538571, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 79.78646
+      value: 99.4
       objectReference: {fileID: 0}
     - target: {fileID: 7289022612872462375, guid: e1436e1a3b79de847a7759503b98081e, type: 3}
       propertyPath: m_LocalScale.x

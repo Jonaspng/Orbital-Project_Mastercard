@@ -10,7 +10,11 @@ public class BattleHUD : MonoBehaviour {
 
     public GameObject iconsBar;
 
+    public GameObject prewarnIndicator;
+
     public GameObject shieldIcon;
+
+    public GameObject shieldAllIcon;
 
     public GameObject poisonIcon;
 
@@ -20,7 +24,11 @@ public class BattleHUD : MonoBehaviour {
 
     public GameObject stunIcon;
 
+    public GameObject attackIndicator;
+
     public GameObject attackUpIcon;
+
+    public GameObject allAttackUpIcon;
 
     public GameObject attackDownIcon;
 
@@ -33,6 +41,8 @@ public class BattleHUD : MonoBehaviour {
     public GameObject reflectIcon;
 
     public GameObject EndureIcon;
+
+    public GameObject SummonIcon;
 
     public bool isShieldIconOn;
 
@@ -217,7 +227,38 @@ public class BattleHUD : MonoBehaviour {
         }
     }
 
+    public void RenderAttackIndicator() {
+        GameObject attack = Instantiate(attackIndicator, prewarnIndicator.transform);
+        attack.GetComponentInChildren<TextMeshProUGUI>().text = this.gameObject.GetComponentInChildren<Enemy>().GetFullDamage().ToString();
+    }
 
-   
+    public void RenderShieldIndicator() {
+        GameObject shield = Instantiate(shieldIcon, prewarnIndicator.transform);      
+        shield.GetComponentInChildren<TextMeshProUGUI>().text = "6";
+    }
+
+    public void RenderBrokenIndicator() {
+        GameObject broken = Instantiate(brokenShieldIcon, prewarnIndicator.transform);
+        broken.GetComponentInChildren<TextMeshProUGUI>().text = this.gameObject.GetComponentInChildren<Enemy>().GetFullDamage().ToString();
+    }
+
+    public void RenderShieldAllIndicator() {
+        GameObject shield = Instantiate(shieldAllIcon, prewarnIndicator.transform);
+        shield.GetComponentInChildren<TextMeshProUGUI>().text = "6";
+    }
+
+    public void RenderAttackUpAllIndicator() {
+        Instantiate(allAttackUpIcon, prewarnIndicator.transform);
+    }
+
+    public void RenderSummonIndicator() {
+        Instantiate(SummonIcon, prewarnIndicator.transform);
+    }
+
+    public void RemoveIndicator() {
+        foreach(Transform indicator in prewarnIndicator.transform) {
+            Destroy(indicator.gameObject);
+        }
+    }
 
 }

@@ -56,17 +56,23 @@ MonoBehaviour:
   nameText: {fileID: 8680435249791257169}
   hpSlider: {fileID: 3181355166300155478}
   iconsBar: {fileID: 8680435248489260256}
+  prewarnIndicator: {fileID: 3020942336263054830}
   shieldIcon: {fileID: 6915566598342927753, guid: ad90a3b75c2df9645ab29f1453be5ce7, type: 3}
+  shieldAllIcon: {fileID: 800630404879504058, guid: 71084f6207b746e4c84e4e04d5bd4729, type: 3}
   poisonIcon: {fileID: 1357525036848282443, guid: 8d000e54afb79784d8fa62d7dafa5e6f, type: 3}
   brokenShieldIcon: {fileID: 6789102838435960577, guid: ea008d7815343534aa182de96c394b45, type: 3}
   burnedIcon: {fileID: 4501269151558208676, guid: 4756f0572c5917241a3697f81bb8fb70, type: 3}
   stunIcon: {fileID: 6147622139561121238, guid: dea1b6391f42daf4fa2d38a53b307ef3, type: 3}
+  attackIndicator: {fileID: 6107227337824231167, guid: 0bb1eecf43718254c97b19312b7daad0, type: 3}
   attackUpIcon: {fileID: 2912955603300944756, guid: 691937284723faa4e96ab59e0a43bfeb, type: 3}
+  allAttackUpIcon: {fileID: 4848967233326589348, guid: e67afe6056cf55c44a1f78368fa944bc, type: 3}
   attackDownIcon: {fileID: 8608382886452050791, guid: 414ff70e02510844ea6a7208527dba3f, type: 3}
   dodgeIcon: {fileID: 4136961702214656306, guid: 7ec1f9bf14de4a34589783f7401690ea, type: 3}
   smokeBombIcon: {fileID: 3281889666080369051, guid: d3e975a5479f7c04a9cf3ef40d386ba5, type: 3}
   mysticShieldIcon: {fileID: 5414292098928263622, guid: 50467b9a4a0076f4ebe8c1b54e9bbd2d, type: 3}
   reflectIcon: {fileID: 0}
+  EndureIcon: {fileID: 0}
+  SummonIcon: {fileID: 5793700091914480186, guid: eb39ddf6019c90c4f81deca52880c109, type: 3}
   isShieldIconOn: 0
   isBrokenShieldIconOn: 0
   maxHp: 0
@@ -327,6 +333,18 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 750
       objectReference: {fileID: 0}
+    - target: {fileID: 123485539336401033, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 803550446035642003, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 803550446035642003, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 72.9
+      objectReference: {fileID: 0}
     - target: {fileID: 954403632816450068, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
       propertyPath: m_SizeDelta.x
       value: 3674.2964
@@ -337,11 +355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954403632816450068, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -7.5
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 954403632816450068, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 86.5
+      value: 102.6
       objectReference: {fileID: 0}
     - target: {fileID: 1134703103269041335, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
       propertyPath: m_Size.x
@@ -433,6 +451,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+--- !u!1 &3020942336263054830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3143551782609014673, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}
+  m_PrefabInstance: {fileID: 165692813601745535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4025677392763459747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3860355629976498908, guid: 2bb100960bcbe514db0c090c79c47255, type: 3}

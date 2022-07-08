@@ -6,6 +6,8 @@ public abstract class Enemy : Unit {
 
     public int enemyIndex;
 
+    public int moveNumber;
+
     public int arrowStuckCount; 
 
     public bool isImmobilised;
@@ -59,6 +61,7 @@ public abstract class Enemy : Unit {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }
         if (health <= 0) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RemoveIndicator();
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
             return;
@@ -141,18 +144,22 @@ public abstract class Enemy : Unit {
         }
     }
 
-    public int GetFullDamage(int damage) {
-        return (int) Math.Round(this.attackModifier * (damage + this.baseAttack), MidpointRounding.AwayFromZero);
-    }
-    
-
-    public abstract void EnemyMove(Player player, Enemy[] enemies, int index);
+    public int GetFullDamage() {
+        return (int) Math.Round(this.attackModifier * (this.baseAttack), MidpointRounding.AwayFromZero);
+    }    
 
     public void RenderBrokenIndicator() {
         GameObject broken = Instantiate(brokenIcon, this.gameObject.transform.GetChild(0));
         broken.GetComponent<Animator>().SetTrigger("Broken");
     }
 
+    public void EnemyMoveNumberGenerator() {
+        moveNumber =  UnityEngine.Random.Range(1, 4);
+    }
+
+    public abstract void EnemyMove(Player player, Enemy[] enemies, int index);
+
+    public abstract void RenderWarningIndicator();
        
 
 }

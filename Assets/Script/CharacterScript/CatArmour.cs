@@ -4,16 +4,15 @@ public class CatArmour : Enemy {
     
     public CatArmour (double attackModifier, double shieldModifier) 
     : base(30, attackModifier, shieldModifier) { 
-        //empty
+        this.baseAttack = 2;
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
         if (!this.isImmobilised) {
-            if (moveNumber == 1) {
+            if (this.moveNumber == 1) {
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(2), index);
-            } else if (moveNumber == 2) {
+                player.receiveDamage(this, this.GetFullDamage(), index);
+            } else if (this.moveNumber == 2) {
                 this.AddBaseShield(8);
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
@@ -25,9 +24,17 @@ public class CatArmour : Enemy {
                 } 
             }
         }
-        
-
     }
+
+    public override void RenderWarningIndicator() {
+        if (this.moveNumber == 1) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
+        } else if (this.moveNumber == 2) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldAllIndicator();
+        }
+    } 
        
 
 }

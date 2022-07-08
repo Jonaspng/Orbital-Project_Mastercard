@@ -82,6 +82,10 @@ public class StageManager : MonoBehaviour {
         playerHUD.RemoveAllIcons();
         StageEventExecute();
         deckManager.DrawCard(5);
+        foreach (Enemy enemy in enemies) {
+            enemy.EnemyMoveNumberGenerator();
+            enemy.RenderWarningIndicator();
+        }
         state = BattleState.PLAYERTURN;
     }
 
@@ -99,6 +103,7 @@ public class StageManager : MonoBehaviour {
             player.isBroken = false;
             
             deckManager.GenerateNewCards();
+
             if (PlayerPrefs.GetInt("stage") != 6) {
                 yield return new WaitForSeconds(0.8f);
                 this.GetComponent<PopUpMenu>().PopUp();
@@ -136,6 +141,15 @@ public class StageManager : MonoBehaviour {
         state = BattleState.ENEMYTURN;
         
         yield return StartCoroutine(EndTurn());
+
+        foreach (Enemy enemy in enemies) {
+            if (enemy != null) {
+                enemy.EnemyMoveNumberGenerator();
+                enemy.GetComponentInParent<BattleHUD>().RemoveIndicator();
+                enemy.RenderWarningIndicator();
+            }
+            
+        }
 
         state = BattleState.PLAYERTURN;
         

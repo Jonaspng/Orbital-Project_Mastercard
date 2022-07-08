@@ -5,8 +5,12 @@ using System.Collections.Generic;
 public class CatSword : Enemy {
     
     public CatSword (double attackModifier, double shieldModifier) 
-    : base(30, attackModifier, shieldModifier) { 
-        //empty
+    : base(30, attackModifier, shieldModifier) {
+
+    }
+
+    private void Awake() {
+        this.baseAttack = 3;
     }
 
     public bool CheckForBrokenResetEvent(AbstractEvent element) {
@@ -20,21 +24,20 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
         if (!this.isImmobilised) {
-            if (moveNumber == 1) {
-                print("Cat attack with " + this.GetFullDamage(3));
+            if (this.moveNumber == 1) {
+                print("Cat attack with " + this.GetFullDamage());
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(3), index);
+                player.receiveDamage(this, this.GetFullDamage(), index);
                 
-            } else if (moveNumber == 2) {
+            } else if (this.moveNumber == 2) {
                 print("applied shield");
                 this.AddBaseShield(6);
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
-                print("Cat attack with " + this.GetFullDamage(3) + " broken");
+                print("Cat attack with " + this.GetFullDamage() + " broken");
                 this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(3), index);
+                player.receiveDamage(this, this.GetFullDamage(), index);
                 player.RenderBrokenIndicator();
                 player.ChangeIsBroken(true);
                 
@@ -62,6 +65,16 @@ public class CatSword : Enemy {
         }
         
     }
+
+    public override void RenderWarningIndicator() {
+        if (this.moveNumber == 1) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
+        } else if (this.moveNumber == 2) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderBrokenIndicator();
+        }
+    } 
        
 
 }

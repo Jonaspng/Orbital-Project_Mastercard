@@ -250,7 +250,7 @@ RectTransform:
   m_AnchorMin: {x: 0.1225, y: 0.04817808}
   m_AnchorMax: {x: 0.93250006, y: 0.3732877}
   m_AnchoredPosition: {x: -0.2611084, y: 0.000022888184}
-  m_SizeDelta: {x: 0.5222169, y: 0.000047683716}
+  m_SizeDelta: {x: 0.5222168, y: 0.000045776367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1146766650150548228
 CanvasRenderer:
@@ -581,12 +581,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b961ec0dbea83254fb83f33a9b043221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  originalDamage: 0
   id: 12
+  description: 
   manaCost: 0
   turns: 1
   damageModifier: 1.25
   material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
   dissolve: 0
+  descriptionTag: {fileID: 1534415329286597466}
 --- !u!114 &4766218387387058573
 MonoBehaviour:
   m_ObjectHideFlags: 0

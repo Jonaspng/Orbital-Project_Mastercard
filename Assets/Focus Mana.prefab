@@ -594,12 +594,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f5cf0dabc4067479d5d71acccebf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  originalDamage: 0
   id: 32
+  description: 
   manaCost: 1
   turns: 1
   manaGained: 2
   material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
   dissolve: 0
+  descriptionTag: {fileID: 909757305501716757}
 --- !u!225 &8330984948645727209
 CanvasGroup:
   m_ObjectHideFlags: 0

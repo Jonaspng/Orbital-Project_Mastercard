@@ -19,7 +19,7 @@ public class MultipleShots : Cards {
     }
 
     public override void RefreshString() {
-        this.description = "Shoot 2 - 5 arrows, each dealing " + this.damage  + " damage.";
+        descriptionTag.text = "Shoot 2 - 5 arrows, each dealing " + this.damage  + " damage.";
     }
 
     private void Update() {

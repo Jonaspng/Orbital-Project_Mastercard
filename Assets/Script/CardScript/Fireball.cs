@@ -22,7 +22,7 @@ public class Fireball : Cards {
     }
 
     public override void RefreshString() {
-        this.description = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
+        descriptionTag.text = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
     }
 
     private void Update() {

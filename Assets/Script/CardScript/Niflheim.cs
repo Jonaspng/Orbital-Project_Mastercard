@@ -20,7 +20,6 @@ public class Niflheim : Cards {
     }
 
     public override void RefreshString() {
-        this.description = "Deal " + this.damage + " damage to all enemies.";
     }
 
     private void Update() {

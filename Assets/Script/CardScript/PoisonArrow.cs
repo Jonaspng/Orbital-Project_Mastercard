@@ -24,7 +24,7 @@ class PoisonArrow : Cards {
     }
 
     public override void RefreshString() {
-        this.description = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
+        descriptionTag.text = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
     }
 
     private void Update() {

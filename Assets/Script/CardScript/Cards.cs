@@ -3,7 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Cards : MonoBehaviour {
 
+    public int damage;
+
+    public int originalDamage;
     public int id;
+
+    public string description;
 
     public int manaCost;
 
@@ -24,6 +29,10 @@ public abstract class Cards : MonoBehaviour {
                 c.enabled = false;
             }
         }
+    }
+
+    public virtual void RefreshString() {
+        // does nothing
     }
 
 }

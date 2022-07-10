@@ -2,21 +2,32 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ArcaneBolt : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
 
-    public ArcaneBolt(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+
+    public ArcaneBolt(int damage, int turns, int manaCost) : base(manaCost, turns) {
+        // does nothing
     }
+
+    private void Awake() {
+        this.damage = 10;
+        this.originalDamage = 10;
+        this.description = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+    }
+
 
     private void Update() {
         if (this.dissolve) {
@@ -46,7 +57,7 @@ public class ArcaneBolt : Cards {
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);

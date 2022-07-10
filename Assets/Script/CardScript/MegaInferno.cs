@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MegaInferno : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
+
+    public TextMeshProUGUI descriptionTag;
 
     public MegaInferno(int damage, int turns, int manaCost) : base(manaCost, turns) {
         this.damage = damage;
@@ -18,6 +19,16 @@ public class MegaInferno : Cards {
             material.SetFloat("_Fade", Mathf.MoveTowards(material.GetFloat("_Fade"), 0f, 2f * Time.deltaTime));
             Destroy(this.gameObject, 0.4f);
         }
+    }
+
+    private void Awake() {
+        this.originalDamage = 10;
+        this.damage = 10;
+        this.description = "Deal " + this.damage + " base damage to all enemies.";
+    }
+
+    public override void RefreshString() {
+       
     }
     
     public override void OnDrop(int enemyIndex) {
@@ -35,7 +46,7 @@ public class MegaInferno : Cards {
         player.animator.SetTrigger("Attack");
         for (int i = 0; i < enemies.Length; i ++) {
             if (enemies[i] != null) {
-                enemies[i].receiveDamage(this.damage, i);
+                enemies[i].receiveDamage(player.GetFullDamage(this.originalDamage), i);
             }         
         }
     }

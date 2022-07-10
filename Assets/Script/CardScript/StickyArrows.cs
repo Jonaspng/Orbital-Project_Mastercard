@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class StickyArrows : Cards {
@@ -8,8 +9,18 @@ public class StickyArrows : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public StickyArrows(int turns, int manaCost) : base(manaCost, turns) {
 
+    }
+
+    private void Awake() {
+        this.description = "Your arrows now stick to enemies. Your attacks deal 2 more damage for each arrow stuck.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

@@ -2,18 +2,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class ThunderboltArrow : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public ThunderboltArrow(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 8;
+        this.damage = 8;
+        this.description = "Deal "+ this.damage + " damage. Enemy takes 25% more damage for 2 turns.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal "+ this.damage + " damage. Enemy takes 25% more damage for 2 turns.";
     }
 
     private void Update() {
@@ -37,7 +48,7 @@ public class ThunderboltArrow : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
 
         int currentTurn = StageManager.instance.currentTurn;

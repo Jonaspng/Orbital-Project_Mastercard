@@ -1,17 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Cleave : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Cleave(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+    private void Awake() {
+        this.damage = 8;
+        this.originalDamage = 8;
+        this.description = "Deal 8 base damage to all enemies";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {
@@ -36,7 +46,7 @@ public class Cleave : Cards {
         player.animator.SetTrigger("Attack");
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.receiveDamage(player.GetFullDamage(this.damage), enemyindex);
+                enemy.receiveDamage(player.GetFullDamage(this.originalDamage), enemyindex);
             }
         }
         

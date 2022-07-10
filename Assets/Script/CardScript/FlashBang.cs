@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 class FlashBang : Cards {
 
@@ -9,9 +10,19 @@ class FlashBang : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public FlashBang(int manaCost, int turns) 
     : base(manaCost, turns){
 
+    }
+
+    private void Awake() {
+        this.description = "Stun an enemy for 1 turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

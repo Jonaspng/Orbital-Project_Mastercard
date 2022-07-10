@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class SmokeBomb : Cards {
 
@@ -9,8 +10,18 @@ public class SmokeBomb : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public SmokeBomb(int turns, 
     int manaCost) : base(manaCost, turns) {
+    }
+
+    private void Awake() {
+        this.description = "Enemy attacks have a 50% chance of missing this turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

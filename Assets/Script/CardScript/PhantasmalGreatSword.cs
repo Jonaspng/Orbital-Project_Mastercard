@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PhantasmalGreatSword : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public PhantasmalGreatSword(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 20;
+        this.damage = 20;
+        this.description = "Deal " + this.damage +" damage.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage.";
     }
 
     private void Update() {
@@ -33,7 +44,7 @@ public class PhantasmalGreatSword : Cards {
 }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
     }
 }

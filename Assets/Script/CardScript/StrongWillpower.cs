@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StrongWillpower : Cards {
 
@@ -7,8 +8,18 @@ public class StrongWillpower : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public StrongWillpower(int turns, int manaCost) : base(manaCost, turns) {
 
+    }
+
+    private void Awake() {
+        this.description = "For every hit you take, your attacks do 2 more damage for rest of combat.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

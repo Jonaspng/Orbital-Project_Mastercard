@@ -1,13 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class MysticShield : Cards {
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public MysticShield(int turns, int manaCost) : base(manaCost, turns) {
 
+    }
+
+    private void Awake() {
+        this.description = "Reduce damage by 25% this turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {
@@ -16,6 +27,7 @@ public class MysticShield : Cards {
             Destroy(this.gameObject, 0.4f);
         }
     }
+
 
     public override void OnDrop(int enemyIndex) {
         foreach (Transform word in this.transform.Find("Frame").transform) {

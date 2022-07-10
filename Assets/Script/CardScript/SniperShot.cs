@@ -1,17 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SniperShot : Cards {
-
-    public int damage;
-
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public SniperShot(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+    private void Awake() {
+        this.originalDamage = 20;
+        this.damage = 20;
+        this.description = "Deal " + this.damage +" damage.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage.";
     }
 
     private void Update() {
@@ -34,7 +43,7 @@ public class SniperShot : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
     }
 }

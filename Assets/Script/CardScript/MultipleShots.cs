@@ -1,14 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class MultipleShots : Cards {
-    public int damage;
-
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public MultipleShots(int shotCount, int damage, int turns, int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 3;
+        this.damage = 3;
+        this.description = "Shoot 2 - 5 arrows, each dealing " + this.damage  + " damage.";
+    }
+
+    public override void RefreshString() {
+        this.description = "Shoot 2 - 5 arrows, each dealing " + this.damage  + " damage.";
     }
 
     private void Update() {
@@ -34,7 +45,7 @@ public class MultipleShots : Cards {
         Archer archer = (Archer) player;
         for (int i = 0; i < Random.Range(2, 6); i++) {
             if (enemies[enemyIndex] != null) {
-                enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+                enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
             }
         }      
     }

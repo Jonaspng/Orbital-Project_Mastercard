@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
@@ -67,9 +66,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             eventData.position.y,
             Camera.main.nearClipPlane
         ));
-        //The longer the line gets, the smaller relative to the entire line the arrowhead should be
         float percentSize = (float) (arrowHeadSize / Vector3.Distance (startPosition, touchWorld));
-        //h/t ShawnFeatherly (http://answers.unity.com/answers/1330338/view.html)
         arrowLine.SetPosition (0, startPosition);
         arrowLine.SetPosition (1, Vector3.Lerp(startPosition, touchWorld, 0.999f - percentSize));
         arrowLine.SetPosition (2, Vector3.Lerp (startPosition, touchWorld, 1 - percentSize));
@@ -96,6 +93,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         DrawArrow(eventData);
         Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position);
         GameObject.Destroy(arrow);
+        Enemy enemySelected = DetectEnemySelected();
+        if (enemySelected != null) {
+            Cards temp = this.gameObject.GetComponent<Cards>();
+            int number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+            temp.damage = number;
+            temp.RefreshString();
+        }
      }
 
     public Enemy DetectEnemySelected() {

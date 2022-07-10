@@ -12,9 +12,19 @@ public class FocusMana : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public FocusMana(int manaGained, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.manaGained = manaGained;
+    }
+
+    private void Awake() {
+        this.description = "Gain 2 mana next turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

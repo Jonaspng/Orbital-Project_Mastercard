@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Endure : Cards {
 
@@ -7,8 +8,18 @@ public class Endure : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Endure(int turns, int manaCost) : base(manaCost, turns) {
 
+    }
+
+    private void Awake() {
+        this.description = "If you receive lethal damage this turn, set your health to 1 ";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

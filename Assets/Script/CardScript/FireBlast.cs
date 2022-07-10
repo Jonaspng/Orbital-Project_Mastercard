@@ -2,18 +2,29 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 class FireBlast : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public FireBlast(int manaCost, int damage, int turns) 
     : base(manaCost, turns){
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 8;
+        this.damage = 8;
+        this.description = "Deal " + this.damage +" damage. Apply burn for 2 turns.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage. Apply burn for 2 turns.";
     }
 
     private void Update() {
@@ -62,7 +73,7 @@ class FireBlast : Cards {
         }
         
         player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].receiveDamage(this.damage, enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBurned(true);

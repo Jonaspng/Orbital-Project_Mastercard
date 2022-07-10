@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwordDance : Cards {
 
@@ -9,7 +10,18 @@ public class SwordDance : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public SwordDance(double attackModifier, int turns, int manaCost) : base(manaCost, turns) {
+        
+    }
+
+    private void Awake() {
+        this.attackModifier = 2.0f;
+        this.description = "Double your cards' attack this turn.";
+    }
+
+    public override void RefreshString() {
         
     }
 

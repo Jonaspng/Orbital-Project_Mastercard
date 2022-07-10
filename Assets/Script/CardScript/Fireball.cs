@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fireball : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Fireball(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 10;
+        this.damage = 10;
+        this.description = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
+    }
+
+    public override void RefreshString() {
+        this.description = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
     }
 
     private void Update() {
@@ -34,6 +45,6 @@ public class Fireball : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(damage), enemyIndex);
+        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
     }
 }

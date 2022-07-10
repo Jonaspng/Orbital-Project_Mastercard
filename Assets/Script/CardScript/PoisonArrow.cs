@@ -2,18 +2,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 class PoisonArrow : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public PoisonArrow(int damage, int manaCost, int turns) 
     : base(manaCost, turns){
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 8;
+        this.damage = 8;
+        this.description = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
+    }
+
+    public override void RefreshString() {
+        this.description = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
     }
 
     private void Update() {
@@ -38,7 +49,7 @@ class PoisonArrow : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(8), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
 
         if (enemies[enemyIndex] != null) {

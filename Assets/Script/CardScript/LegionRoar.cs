@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LegionRoar : Cards {
 
@@ -7,7 +8,17 @@ public class LegionRoar : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public LegionRoar(int turns, int manaCost) : base(manaCost, turns) {
+    }
+
+    private void Awake() {
+        this.description = "All enemies do 25% less damage this turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

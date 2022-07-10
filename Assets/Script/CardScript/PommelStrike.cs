@@ -1,13 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 
 class PommelStrike : Cards {
     public Material material;
 
     public bool dissolve;
+
+    public TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        this.description = "Stun an enemy for 1 turn.";
+    }
+
+    public override void RefreshString() {
+        
+    }
 
     public PommelStrike(int manaCost, int turns) 
     : base(manaCost, turns){

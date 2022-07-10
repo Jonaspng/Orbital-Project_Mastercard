@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Dodge : Cards {
 
@@ -9,8 +10,18 @@ public class Dodge : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Dodge(int evasionCount, int turns, int manaCost) : base(manaCost, turns) {
         this.evasionCount = evasionCount;
+    }
+
+    private void Awake() {
+        this.description = "Evade 1 attack.";
+    }
+
+    public override void RefreshString() {
+
     }
 
     private void Update() {

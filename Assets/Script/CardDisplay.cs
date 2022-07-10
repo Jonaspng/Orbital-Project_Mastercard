@@ -17,7 +17,7 @@ public class CardDisplay : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
      nameText.text = card.cardName;
-     descriptionText.text = card.description;
+     descriptionText.text = this.GetComponent<Cards>().description;
      frameImage.sprite = card.frame;
      manaText.text = card.manaCost.ToString();   
     }

@@ -2,14 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class AncientPower : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
+
+    public TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        this.description = "Give 5 spell damage for next turn";
+    }
+
+    public override void RefreshString() {
+        
+    }
 
     public AncientPower(int damage, int turns, int manaCost) : base(manaCost, turns) {
         this.damage = damage;

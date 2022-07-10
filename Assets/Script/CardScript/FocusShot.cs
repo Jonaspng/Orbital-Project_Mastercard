@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FocusShot : Cards {
 
@@ -9,9 +10,20 @@ public class FocusShot : Cards {
 
     public double damageModifier;
 
+    public TextMeshProUGUI descriptionTag;
+
     public FocusShot(double damageModifier, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damageModifier = damageModifier;
+    }
+
+    private void Awake() {
+        this.damageModifier = 1.25f;
+        this.description = "Do 25% more damage this turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

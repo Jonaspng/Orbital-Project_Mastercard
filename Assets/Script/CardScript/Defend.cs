@@ -9,8 +9,18 @@ public class Defend : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Defend(int shield, int turns, int manaCost) : base(manaCost, turns) {
         this.shield = shield;
+    }
+
+    private void Awake() {
+        this.description = "Gain 6 shield.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
 

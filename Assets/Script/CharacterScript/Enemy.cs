@@ -80,6 +80,13 @@ public abstract class Enemy : Unit {
         }
     }
 
+    public int DamageTaken(int damage) {
+        if (isBroken) {
+            return (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
+        }
+        return damage;
+    }
+
     public int getHealth() {
         return health;
     }

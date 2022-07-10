@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ArcherBasicAttack : Cards {
-
-    public int damage;
-
+    
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public ArcherBasicAttack(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+        // does nothing
+    }
+
+    private void Awake() {
+        this.originalDamage = 6;
+        this.damage = 6;
+        this.description = "Deal " + this.damage +" damage.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage.";
     }
 
     private void Update() {
@@ -35,7 +46,7 @@ public class ArcherBasicAttack : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
     }
 
 }

@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BasicAttack : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public BasicAttack(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 6;
+        this.damage = 6;
+        this.description = "Deal " + this.damage +" damage.";
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + this.damage +" damage.";
     }
 
     private void Update() {
@@ -34,7 +45,7 @@ public class BasicAttack : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);// must be original damage
     }
 
 }

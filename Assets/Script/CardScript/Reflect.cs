@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class Reflect : Cards {
 
@@ -9,9 +10,19 @@ public class Reflect : Cards {
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public Reflect(int turns, 
     int manaCost) : base(manaCost, turns) {
 
+    }
+
+    private void Awake() {
+        this.description = "Reflects 75% of damage to enemies this turn.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {

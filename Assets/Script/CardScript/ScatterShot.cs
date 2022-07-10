@@ -1,17 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScatterShot : Cards {
-
-    public int damage;
-
     public Material material;
 
     public bool dissolve;
 
+    public TextMeshProUGUI descriptionTag;
+
     public ScatterShot(int damage, int turns, 
     int manaCost) : base(manaCost, turns) {
         this.damage = damage;
+    }
+
+    private void Awake() {
+        this.originalDamage = 8;
+        this.damage = 8;
+        this.description = "Deal "+ this.damage +" base damage to all enemies.";
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {
@@ -39,7 +49,7 @@ public class ScatterShot : Cards {
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
                 Archer archer = (Archer) player;
-                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyindex);
+                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyindex);
             }
             
         }

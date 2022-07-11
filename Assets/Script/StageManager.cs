@@ -124,6 +124,7 @@ public class StageManager : MonoBehaviour {
     
 
     public void OnEndTurnClick() {
+        endTurnButton.SetActive(false);
         StartCoroutine(OnEndTurnCoroutine());
     }
 
@@ -189,8 +190,6 @@ public class StageManager : MonoBehaviour {
         if (enemyCount > 0) {
 
             deckManager.ClearCards();
-
-            endTurnButton.SetActive(false);
 
             //enemy turn
             turnNotification.ChangeText("Enemy Turn");

@@ -87,6 +87,15 @@ public abstract class Enemy : Unit {
         return damage + arrowStuckCount * 2;
     }
 
+    public int FireballDamageTaken(int damage) {
+        if (isBurned && isBroken) {
+            return (int) Math.Round(damage * 1.25 * 1.25, MidpointRounding.AwayFromZero);
+        } else if (isBroken || isBurned) {
+            return (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
+        }
+        return damage;
+    }
+
     public int getHealth() {
         return health;
     }

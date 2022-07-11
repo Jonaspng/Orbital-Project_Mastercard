@@ -96,7 +96,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Enemy enemySelected = DetectEnemySelected();
         if (enemySelected != null) {
             Cards temp = this.gameObject.GetComponent<Cards>();
-            int number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+            int number;
+            if (enemySelected.isBurned && temp is Fireball) {
+                number = enemySelected.FireballDamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+            } else {
+                number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+            }
             temp.damage = number;
             temp.RefreshString();
         }

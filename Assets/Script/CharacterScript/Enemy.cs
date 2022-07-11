@@ -82,9 +82,9 @@ public abstract class Enemy : Unit {
 
     public int DamageTaken(int damage) {
         if (isBroken) {
-            return (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
+            return (int) Math.Round((damage + arrowStuckCount * 2) * 1.25, MidpointRounding.AwayFromZero);
         }
-        return damage;
+        return damage + arrowStuckCount * 2;
     }
 
     public int getHealth() {
@@ -140,6 +140,10 @@ public abstract class Enemy : Unit {
         } else {
             receiveDamage(damage, enemyIndex);
         }
+    }
+    // Method to calculate damage from arrow damage cards if StickyArrows has been used.
+    public int CalculateArrowDamage(int damage) {
+        return damage + arrowStuckCount * 2;
     }
 
     // Method to calculate damage from "Fireball" card.

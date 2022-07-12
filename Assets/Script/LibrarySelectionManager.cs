@@ -11,6 +11,10 @@ public class LibrarySelectionManager : MonoBehaviour {
         SceneManager.LoadScene("Cards");
     }
 
+    public void OnIconsClick() {
+        SceneManager.LoadScene("Icons Intro");
+    }
+
     public void OnHowToPlayClick() {
         SceneManager.LoadScene("Tut Page");
 

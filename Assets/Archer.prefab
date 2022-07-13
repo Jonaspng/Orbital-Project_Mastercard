@@ -56,7 +56,10 @@ MonoBehaviour:
   shieldModifier: 1
   isPoisoned: 0
   animator: {fileID: 9153205184267865467}
+  attackSource: {fileID: 0}
+  shieldSource: {fileID: 0}
   isBroken: 0
+  brokenIcon: {fileID: 0}
   evasionCount: 0
   isStickyArrowEnabled: 0
   isStealthed: 0

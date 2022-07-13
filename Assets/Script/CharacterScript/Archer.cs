@@ -64,7 +64,7 @@ public class Archer : Player {
                     DamageNumberAnimation("Evaded", Color.white);
                     evaded = true;
                     evasionCount--;
-                    GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveDodgeIcon();
+                    StageManager.instance.playerHUD.RemoveDodgeIcon();
                 } else {
                     evaded = false;
                     health = health - realDamage + this.baseShield;

@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class PauseMenuManager : MonoBehaviour  {
+public class SettingsManager : MonoBehaviour  {
 
     [SerializeField] private Slider volumeSlider;
     
@@ -20,18 +19,7 @@ public class PauseMenuManager : MonoBehaviour  {
         AudioListener.volume = volumeSlider.value;
     }
 
- 
-    private void Start ()  {
-        this.gameObject.SetActive(false); 
-    }
-
-    public void OnReturnClick() {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Start Menu");
-    }
-
-    public void OnResumeGameClick() {
-        Time.timeScale = 1;
+    public void OnCloseClick() {
         this.gameObject.SetActive(false);
     }
 

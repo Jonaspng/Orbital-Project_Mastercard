@@ -12,7 +12,6 @@ public class GameSelectionManager : MonoBehaviour {
         if (!File.Exists(deckPath)) {
             GameObject.Find("ResumeButton").SetActive(false);
         }
-        this.gameObject.SetActive(false);
     }
 
     public void OnResumeClick() {

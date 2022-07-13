@@ -53,6 +53,7 @@ public class StageManager : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        AudioListener.volume = PlayerPrefs.GetFloat("volumeValue");
     }
 
     private void Update() {

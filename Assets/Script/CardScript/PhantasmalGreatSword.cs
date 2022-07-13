@@ -46,5 +46,6 @@ public class PhantasmalGreatSword : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
     }
 }

@@ -45,5 +45,6 @@ public class SniperShot : Cards {
         Archer archer = (Archer) player;
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
     }
 }

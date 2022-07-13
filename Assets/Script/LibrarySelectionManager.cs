@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class LibrarySelectionManager : MonoBehaviour {
 
-    void Start() {
-        this.gameObject.SetActive(false);
-    }
-
     public void OnCardsClick() {
         SceneManager.LoadScene("Cards");
+    }
+
+    public void OnIconsClick() {
+        SceneManager.LoadScene("Icons Intro");
     }
 
     public void OnHowToPlayClick() {

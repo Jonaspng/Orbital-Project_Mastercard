@@ -45,6 +45,7 @@ public class Fireball : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
         enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
     }
 }

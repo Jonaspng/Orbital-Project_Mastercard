@@ -17,10 +17,12 @@ public class BossCat : Enemy {
             if (this.moveNumber == 1) {
                 print("Enemy Attacks");
                 this.animator.SetTrigger("Attack");
+                this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);      
             } else if (this.moveNumber == 2) {
                 print("Enemy Defends");
                 this.AddBaseShield(6);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Spawning Enemy");

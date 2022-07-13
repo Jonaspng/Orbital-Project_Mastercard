@@ -27,15 +27,18 @@ public class CatSword : Enemy {
             if (this.moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage());
                 this.animator.SetTrigger("Attack");
+                this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 
             } else if (this.moveNumber == 2) {
                 print("applied shield");
                 this.AddBaseShield(6);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Cat attack with " + this.GetFullDamage() + " broken");
                 this.animator.SetTrigger("Attack");
+                this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 player.RenderBrokenIndicator();
                 player.ChangeIsBroken(true);

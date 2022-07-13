@@ -107,7 +107,7 @@ public class DeckManager : MonoBehaviour {
             playerDeck = new Deck(newList);
             Deck.Shuffle(playerDeck);
         } else {
-            newList = prefabList.GetRange(33, 3); //26
+            newList = prefabList.GetRange(26, 3);
             playerDeck = new Deck(newList);
             Deck.Shuffle(playerDeck);
         }

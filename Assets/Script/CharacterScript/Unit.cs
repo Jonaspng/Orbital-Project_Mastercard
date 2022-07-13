@@ -21,6 +21,10 @@ public abstract class Unit : MonoBehaviour {
 
     public Animator animator;
 
+    public AudioSource attackSource;
+
+    public AudioSource shieldSource;
+
     public void ChangeIsPoisoned(bool status) {
         this.isPoisoned = status;
     }
@@ -36,6 +40,14 @@ public abstract class Unit : MonoBehaviour {
         this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().color = color;
         this.gameObject.transform.Find("Damage").GetComponent<TextMeshProUGUI>().text = message;
         this.gameObject.transform.Find("Damage").GetComponent<Animator>().SetTrigger("Damaged");
+    }
+
+    public void PlayAttackSound() {
+        attackSource.Play();
+    }
+
+    public void PlayShieldSound() {
+        shieldSource.Play();
     }
 
        

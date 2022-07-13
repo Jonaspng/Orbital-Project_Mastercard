@@ -73,6 +73,7 @@ class FireBlast : Cards {
         }
         
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
         
         if (enemies[enemyIndex] != null) {

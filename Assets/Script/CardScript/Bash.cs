@@ -60,6 +60,7 @@ public class Bash : Cards {
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
 
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
 
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);

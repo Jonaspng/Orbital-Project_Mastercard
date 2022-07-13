@@ -50,6 +50,7 @@ public class ThunderboltArrow : Cards {
         
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
 
         int currentTurn = StageManager.instance.currentTurn;
         Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;

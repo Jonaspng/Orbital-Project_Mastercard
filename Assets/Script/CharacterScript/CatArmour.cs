@@ -14,11 +14,14 @@ public class CatArmour : Enemy {
         if (!this.isImmobilised) {
             if (this.moveNumber == 1) {
                 this.animator.SetTrigger("Attack");
+                this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
             } else if (this.moveNumber == 2) {
                 this.AddBaseShield(8);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
+                this.PlayShieldSound();
                 foreach (Enemy enemy in enemies) {
                     if (enemy != null) {
                         enemy.AddBaseShield(6);

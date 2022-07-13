@@ -47,5 +47,6 @@ public class Defend : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.AddBaseShield(this.shield);
+        player.PlayShieldSound();
     }
 }

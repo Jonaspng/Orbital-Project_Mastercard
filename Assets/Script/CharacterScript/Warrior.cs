@@ -70,6 +70,7 @@ public class Warrior : Player {
     }
 
 
+
     public override int GetFullDamage(int cardDamage) {
         if (this.isStrongWillpower) {
             return (int) Math.Round(this.attackModifier * (this.baseAttack + cardDamage + this.hitCount * 2));

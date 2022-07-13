@@ -46,6 +46,7 @@ public class ArcherBasicAttack : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
         enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
     }
 

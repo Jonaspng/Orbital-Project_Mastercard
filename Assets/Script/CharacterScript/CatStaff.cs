@@ -15,11 +15,13 @@ public class CatStaff : Enemy {
         if (!this.isImmobilised) {
             if (this.moveNumber == 1) {
                 print("Enemy Attacks");
+                this.PlayAttackSound();
                 this.animator.SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(), index);      
             } else if (this.moveNumber == 2) {
                 print("Enemy Defends");
                 this.AddBaseShield(6);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 foreach(Enemy enemy in enemies) {

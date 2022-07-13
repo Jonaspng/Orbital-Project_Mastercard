@@ -45,6 +45,7 @@ public class BasicAttack : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.animator.SetTrigger("Attack");
+        player.PlayAttackSound();
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);// must be original damage
     }
 

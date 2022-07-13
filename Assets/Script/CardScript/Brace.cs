@@ -49,6 +49,7 @@ public class Brace : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         player.AddBaseShield(this.shield);
+        player.PlayAttackSound();
         enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
     }
 }

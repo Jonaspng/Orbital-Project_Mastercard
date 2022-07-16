@@ -99,7 +99,7 @@ public class StageManager : MonoBehaviour {
             }
 
             playerHUD.RemoveAllIcons();
-            player.ResetBaseShield();
+            player.SetBaseShield(0);
             player.ResetAttackModifier();
             player.isBroken = false;
             
@@ -133,7 +133,7 @@ public class StageManager : MonoBehaviour {
 
         foreach(Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.ResetBaseShield();
+                enemy.SetBaseShield(0);
                 enemy.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
             }
         }        
@@ -171,11 +171,11 @@ public class StageManager : MonoBehaviour {
 
 
     public void playerMove(Cards card, int enemyIndex) {
-        if (this.manaCount - card.manaCost < 0) {
+        if (this.manaCount - card.GetManaCost() < 0) {
 
         } else {
             card.executeCard(player, enemies, enemyIndex);
-            this.manaCount -= card.manaCost;
+            this.manaCount -= card.GetManaCost();
             RerenderManaCount(this.manaCount);
         }
     }
@@ -203,7 +203,7 @@ public class StageManager : MonoBehaviour {
                 if (enemies[i] != null) {
                     enemies[i].EnemyMove(player, enemies, i);
                     yield return new WaitForSeconds(1f);
-                    if (player.getHealth() <= 0) {
+                    if (player.GetHealth() <= 0) {
                         StartCoroutine(OnPlayerDeath());
                         yield break;
                     }
@@ -221,7 +221,7 @@ public class StageManager : MonoBehaviour {
             }
 
             playerHUD.RemoveShieldIcon();
-            player.ResetBaseShield();
+            player.SetBaseShield(0);
             player.ResetAttackModifier();
             playerHUD.RemoveEndureIcon();
             for (int i = 0; i < 5; i++) {
@@ -238,7 +238,7 @@ public class StageManager : MonoBehaviour {
 
             foreach(Enemy enemy in enemies) {
                 if (enemy != null) {
-                    enemy.ResetAttackModifier();
+                    enemy.SetAttackModifier(1);
                     // just in case go 2 attack up icon
                     for (int i = 0; i < 2; i++) {
                         enemy.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackUpIcon();
@@ -256,17 +256,17 @@ public class StageManager : MonoBehaviour {
 
             endTurnButton.SetActive(true);
             
-            if (enemyCount > 0 && player.getHealth() > 0) {
+            if (enemyCount > 0 && player.GetHealth() > 0) {
                 deckManager.DrawCard(5);
             }
         }        
     }
 
     public IEnumerator OnPlayerDeath() {
-        player.animator.SetTrigger("Dead");
+        player.GetAnimator().SetTrigger("Dead");
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.animator.SetTrigger("Dead");
+                enemy.GetAnimator().SetTrigger("Dead");
             }
         }
         yield return new WaitForSeconds(0.8f);
@@ -294,13 +294,13 @@ public class StageManager : MonoBehaviour {
         }
         // Event 2: Heal Cat
         else if (eventNumber == 2) {
-            if (player.maxHp - player.health <= 20) {
-                player.health = player.maxHp;
+            if (player.GetMaxHp() - player.GetHealth() <= 20) {
+                player.SetHealth(player.GetMaxHp());
             } else {
-                player.health += 20;
+                player.SetHealth(player.GetHealth() + 20);
             }
-            PlayerPrefs.SetInt("health", player.health);
-            playerHUD.SetHP(player.health);
+            PlayerPrefs.SetInt("health", player.GetHealth());
+            playerHUD.SetHP(player.GetHealth());
         }
         // Event 3: Poison Cat
         else if (eventNumber == 3) {

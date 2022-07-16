@@ -5,22 +5,14 @@ using TMPro;
 
 public class StickyArrows : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public StickyArrows(int turns, int manaCost) : base(manaCost, turns) {
-
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Your arrows now stick to enemies. Your attacks deal 2 more damage for each arrow stuck.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Your arrows now stick to enemies. Your attacks deal 2 more damage for each arrow stuck.");
     }
 
     private void Update() {

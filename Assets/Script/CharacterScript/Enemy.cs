@@ -18,12 +18,6 @@ public abstract class Enemy : Unit {
 
     public GameObject brokenIcon;
 
-    public Enemy(int health, double attackModifier, double shieldModifier) {
-        this.health = health;
-        this.attackModifier = attackModifier;
-        this.shieldModifier = shieldModifier;
-    }
-
     public void receiveDamage(int damage, int index) {
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
@@ -34,33 +28,33 @@ public abstract class Enemy : Unit {
         } else {
             realDamage = damage;                
         }
-        if (realDamage > this.baseShield) {
+        if (realDamage > GetBaseShield()) {
             print("real damage: " + realDamage);
-            print("base shield: " + this.baseShield);
-            health = health - realDamage + this.baseShield;
+            print("base shield: " + GetBaseShield());
+            SetHealth(GetHealth() - realDamage + GetBaseShield());
         } 
         
-        print(health);
-        if (this.health < 0) {
+        print(GetHealth());
+        if (GetHealth() < 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
         } else {
-            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(GetHealth());
         }
-        if (realDamage >= this.baseShield) {
+        if (realDamage >= GetBaseShield()) {
             print("shield destroyed");
-            if (realDamage == this.baseShield) {
+            if (realDamage == GetBaseShield()) {
                 DamageNumberAnimation("Blocked", Color.white);
             } else {
-                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
             }
-            ResetBaseShield();
+            SetBaseShield(0);
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
-            this.baseShield -= realDamage;
+            SetBaseShield(GetBaseShield() - realDamage);
             this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemyIndex);
         }
-        if (health <= 0) {
+        if (GetHealth() <= 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveIndicator();
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
@@ -69,14 +63,14 @@ public abstract class Enemy : Unit {
     }
 
     public void receiveOverTimeDamage(int damage, int index) {
-        this.health = this.health - damage;
+        SetHealth(GetHealth() - damage);
         DamageNumberAnimation(damage, Color.red);
-        if (this.health <= 0) {
+        if (GetHealth() <= 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
             StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
         } else {
-            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(this.health);
+            this.gameObject.GetComponentInParent<BattleHUD>().SetHP(GetHealth());
         }
     }
 
@@ -94,35 +88,6 @@ public abstract class Enemy : Unit {
             return (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         }
         return damage;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void changeBaseAttack(int baseAttack) {
-        this.baseAttack = baseAttack;
-    }
-
-    public void AddBaseShield(int baseShield) {
-        this.baseShield += baseShield;
-    }
-
-    public void ResetBaseShield() {
-        this.baseShield = 0;
-    }
-    
-    public void changeAttackModifier(double attackModifier) {
-        this.attackModifier *= attackModifier;
-    }
-
-    public void ResetAttackModifier() {
-        this.attackModifier = 1;
-        this.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackDownIcon();        
-    }
-
-    public void changeShieldModifier(double shieldModifier) {
-        this.shieldModifier *= shieldModifier;
     }
 
     public void IncrementArrowStuckCount() {
@@ -165,7 +130,7 @@ public abstract class Enemy : Unit {
     }
 
     public int GetFullDamage() {
-        return (int) Math.Round(this.attackModifier * (this.baseAttack), MidpointRounding.AwayFromZero);
+        return (int) Math.Round(GetAttackModifier() * (GetBaseAttack()), MidpointRounding.AwayFromZero);
     }    
 
     public void RenderBrokenIndicator() {

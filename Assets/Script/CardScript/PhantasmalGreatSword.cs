@@ -4,25 +4,18 @@ using TMPro;
 
 public class PhantasmalGreatSword : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public PhantasmalGreatSword(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 20;
-        this.damage = 20;
-        this.description = "Deal " + this.damage +" damage.";
+        InitialiseValues(30, 30, "Deal 30 damage.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -44,8 +37,8 @@ public class PhantasmalGreatSword : Cards {
 }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicCreditManager : MonoBehaviour {
@@ -34,8 +32,7 @@ public class MusicCreditManager : MonoBehaviour {
     }
 
     public void OnMagicEffectClick() {
-        Application.OpenURL("https://freesound.org/people/qubodup/sounds/442872/");
-        
+        Application.OpenURL("https://freesound.org/people/qubodup/sounds/442872/"); 
     }
 
     

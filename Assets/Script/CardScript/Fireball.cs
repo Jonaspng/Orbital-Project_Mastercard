@@ -4,25 +4,18 @@ using TMPro;
 
 public class Fireball : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Fireball(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 10;
-        this.damage = 10;
-        this.description = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
+        InitialiseValues(10, 10, "Deal 10 damage. If enemy is burned, deal 25% more.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage + " damage. If enemy is burned, deal 25% more.";
+        descriptionTag.text = "Deal " + GetDamage() + " damage. If enemy is burned, deal 25% more.";
     }
 
     private void Update() {
@@ -44,8 +37,8 @@ public class Fireball : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
-        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
+        enemies[enemyIndex].ReceiveFireballDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
     }
 }

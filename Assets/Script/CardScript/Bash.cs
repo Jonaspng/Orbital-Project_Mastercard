@@ -6,24 +6,18 @@ using TMPro;
 
 
 public class Bash : Cards {
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public Bash(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
     private void Awake() {
-        this.damage = 8;
-        this.originalDamage = 8;
-        this.description = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+        InitialiseValues(8, 8, "Deal 8 damage. Enemy receives 25% more damage for 2 turns.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Enemy receives 25% more damage for 2 turns.";
     }
 
     private void Update() {
@@ -57,9 +51,9 @@ public class Bash : Cards {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
 
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
 
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
 
         if (enemies[enemyIndex] != null) {

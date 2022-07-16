@@ -6,23 +6,14 @@ using TMPro;
 
 public class Reflect : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Reflect(int turns, 
-    int manaCost) : base(manaCost, turns) {
-
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Reflects 75% of damage to enemies this turn.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Reflects 75% of damage to enemies this turn.");
     }
 
     private void Update() {

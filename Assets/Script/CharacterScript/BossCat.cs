@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class BossCat : Enemy {
 
-    public BossCat(double attackModifier, double shieldModifier)
-    : base(110, attackModifier, shieldModifier) {
-
-    }
-
     private void Awake() {
-        this.baseAttack = 8;
+        SetBaseAttack(8);
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
@@ -16,12 +11,12 @@ public class BossCat : Enemy {
         if (!this.isImmobilised) {
             if (this.moveNumber == 1) {
                 print("Enemy Attacks");
-                this.animator.SetTrigger("Attack");
+                this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);      
             } else if (this.moveNumber == 2) {
                 print("Enemy Defends");
-                this.AddBaseShield(6);
+                SetBaseShield(GetBaseShield() + 6);
                 this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {

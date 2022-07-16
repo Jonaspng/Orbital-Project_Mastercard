@@ -4,26 +4,17 @@ using TMPro;
 
 public class FocusShot : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public double damageModifier;
+    [SerializeField] private double damageModifier;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public FocusShot(double damageModifier, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damageModifier = damageModifier;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
         this.damageModifier = 1.25f;
-        this.description = "Do 25% more damage this turn.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Do 25% more damage this turn.");
     }
 
     private void Update() {
@@ -46,7 +37,7 @@ public class FocusShot : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddAttackModifier(damageModifier);
+        player.SetAttackModifier(player.GetAttackModifier() * damageModifier);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
     }
 }

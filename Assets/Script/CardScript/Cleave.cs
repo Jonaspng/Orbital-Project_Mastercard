@@ -4,24 +4,14 @@ using TMPro;
 
 public class Cleave : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public Cleave(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
     private void Awake() {
-        this.damage = 8;
-        this.originalDamage = 8;
-        this.description = "Deal 8 base damage to all enemies";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues(8, 8, "Deal 8 base damage to all enemies");
     }
 
     private void Update() {
@@ -43,11 +33,11 @@ public class Cleave : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.receiveDamage(player.GetFullDamage(this.originalDamage), enemyindex);
+                enemy.receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyindex);
             }
         }
         

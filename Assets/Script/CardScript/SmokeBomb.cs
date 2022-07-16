@@ -6,22 +6,14 @@ using TMPro;
 
 public class SmokeBomb : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public SmokeBomb(int turns, 
-    int manaCost) : base(manaCost, turns) {
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Enemy attacks have a 50% chance of missing this turn.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Enemy attacks have a 50% chance of missing this turn.");
     }
 
     private void Update() {

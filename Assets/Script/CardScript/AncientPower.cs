@@ -6,22 +6,14 @@ using TMPro;
 
 public class AncientPower : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Give 5 spell damage for next turn";
-    }
-
-    public override void RefreshString() {
-        
-    }
-
-    public AncientPower(int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+        InitialiseValues("Give 5 spell damage for next turn");
     }
 
     private void Update() {

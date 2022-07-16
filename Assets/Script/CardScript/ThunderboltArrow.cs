@@ -12,19 +12,12 @@ public class ThunderboltArrow : Cards {
 
     public TextMeshProUGUI descriptionTag;
 
-    public ThunderboltArrow(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
-
     private void Awake() {
-        this.originalDamage = 8;
-        this.damage = 8;
-        this.description = "Deal "+ this.damage + " damage. Enemy takes 25% more damage for 2 turns.";
+        InitialiseValues(8, 8, "Deal 8 damage. Enemy takes 25% more damage for 2 turns.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal "+ this.damage + " damage. Enemy takes 25% more damage for 2 turns.";
+        descriptionTag.text = "Deal "+ GetDamage() + " damage. Enemy takes 25% more damage for 2 turns.";
     }
 
     private void Update() {
@@ -48,8 +41,8 @@ public class ThunderboltArrow : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
 
         int currentTurn = StageManager.instance.currentTurn;

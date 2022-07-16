@@ -35,7 +35,7 @@
     }
  
     public void OnEndDrag(PointerEventData eventData) {
-        if (isInDropZone && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().manaCost >= 0) {
+        if (isInDropZone && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().GetManaCost() >= 0) {
             eventData.pointerDrag.GetComponent<Cards>().OnDrop(0);
         } else {
             this.transform.SetParent(parentToReturnTo);
@@ -45,12 +45,5 @@
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         
-    }
-
-     //Add Event System to the Camera
-    void addEventSystem() {
-        GameObject eventSystem = new GameObject("EventSystem");
-        eventSystem.AddComponent<EventSystem>();
-        eventSystem.AddComponent<StandaloneInputModule>();
     }
 }

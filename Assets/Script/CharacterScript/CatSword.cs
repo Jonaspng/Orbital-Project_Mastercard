@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 public class CatSword : Enemy {
     
-    public CatSword (double attackModifier, double shieldModifier) 
-    : base(30, attackModifier, shieldModifier) {
-
-    }
-
     private void Awake() {
-        this.baseAttack = 3;
+        SetBaseAttack(3);
     }
 
     public bool CheckForBrokenResetEvent(AbstractEvent element) {
@@ -26,18 +21,18 @@ public class CatSword : Enemy {
         if (!this.isImmobilised) {
             if (this.moveNumber == 1) {
                 print("Cat attack with " + this.GetFullDamage());
-                this.animator.SetTrigger("Attack");
+                this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 
             } else if (this.moveNumber == 2) {
                 print("applied shield");
-                this.AddBaseShield(6);
+                SetBaseShield(GetBaseShield() + 6);
                 this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Cat attack with " + this.GetFullDamage() + " broken");
-                this.animator.SetTrigger("Attack");
+                this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 player.RenderBrokenIndicator();

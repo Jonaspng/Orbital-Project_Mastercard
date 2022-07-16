@@ -3,26 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 public class Defend : Cards {
 
-    public int shield;
+    [SerializeField] private int shield;
 
-    public Material outline;
+    [SerializeField] private Material outline;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Defend(int shield, int turns, int manaCost) : base(manaCost, turns) {
-        this.shield = shield;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Gain 6 shield.";
+        InitialiseValues("Gain 6 shield.");
     }
-
-    public override void RefreshString() {
-        
-    }
-
 
     private void Update() {
         if (this.dissolve) {
@@ -46,7 +37,7 @@ public class Defend : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddBaseShield(this.shield);
+        player.SetBaseShield(player.GetBaseShield() + this.shield);
         player.PlayShieldSound();
     }
 }

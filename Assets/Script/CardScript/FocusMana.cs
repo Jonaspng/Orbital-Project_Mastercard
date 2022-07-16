@@ -6,25 +6,16 @@ using TMPro;
 
 public class FocusMana : Cards {
 
-    public int manaGained = 2;
+    [SerializeField] private int manaGained = 2;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public FocusMana(int manaGained, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.manaGained = manaGained;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Gain 2 mana next turn.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Gain 2 mana next turn.");
     }
 
     private void Update() {

@@ -51,11 +51,11 @@ public class BattleHUD : MonoBehaviour {
     public int maxHp;
 
     public void SetHUD(Unit unit) {
-        nameText.text = unit.unitName;
-        hpSlider.maxValue = unit.maxHp;
-        this.maxHp = unit.maxHp;
-        hpSlider.value = unit.health;
-        this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = unit.health + "/" + unit.maxHp;
+        nameText.text = unit.GetUnitName();
+        hpSlider.maxValue = unit.GetMaxHp();
+        this.maxHp = unit.GetMaxHp();
+        hpSlider.value = unit.GetHealth();
+        this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = unit.GetHealth() + "/" + unit.GetMaxHp();
     }
 
     public void SetHP(int hp) {
@@ -64,7 +64,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderPlayerShieldIcon(int shield) {
-        int baseShield = StageManager.instance.player.baseShield;
+        int baseShield = StageManager.instance.player.GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
@@ -74,7 +74,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderEnemyShieldIcon(int enemyIndex) {
-        int baseShield = StageManager.instance.enemies[enemyIndex].baseShield;
+        int baseShield = StageManager.instance.enemies[enemyIndex].GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = baseShield.ToString();

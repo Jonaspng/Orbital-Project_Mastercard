@@ -3,22 +3,14 @@ using UnityEngine.UI;
 using TMPro;
 public class MysticShield : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public MysticShield(int turns, int manaCost) : base(manaCost, turns) {
-
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Reduce damage by 25% this turn.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues("Reduce damage by 25% this turn.");
     }
 
     private void Update() {
@@ -41,7 +33,7 @@ public class MysticShield : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].changeAttackModifier(0.75);
+        enemies[enemyIndex].SetAttackModifier(0.75);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderMysticShieldIcon();
     }
 

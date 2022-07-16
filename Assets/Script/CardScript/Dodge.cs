@@ -4,20 +4,16 @@ using TMPro;
 
 public class Dodge : Cards {
 
-    public int evasionCount;
+    [SerializeField] private int evasionCount;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Dodge(int evasionCount, int turns, int manaCost) : base(manaCost, turns) {
-        this.evasionCount = evasionCount;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Evade 1 attack.";
+        InitialiseValues("Evade 1 attack.");
     }
 
     public override void RefreshString() {

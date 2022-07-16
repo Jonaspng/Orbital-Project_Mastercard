@@ -4,25 +4,19 @@ using TMPro;
 
 public class BasicAttack : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public BasicAttack(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
 
     private void Awake() {
-        this.originalDamage = 6;
-        this.damage = 6;
-        this.description = "Deal " + this.damage +" damage.";
+        InitialiseValues(6, 6, "Deal 6 damage.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -44,9 +38,11 @@ public class BasicAttack : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);// must be original damage
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);// must be original damage
     }
+
+    
 
 }

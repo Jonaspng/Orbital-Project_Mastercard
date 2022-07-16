@@ -4,25 +4,17 @@ using TMPro;
 
 public class SwordDance : Cards {
 
-    public double attackModifier;
+    [SerializeField] private double attackModifier;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public SwordDance(double attackModifier, int turns, int manaCost) : base(manaCost, turns) {
-        
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
+        InitialiseValues("Double your cards' attack this turn.");
         this.attackModifier = 2.0f;
-        this.description = "Double your cards' attack this turn.";
-    }
-
-    public override void RefreshString() {
-        
     }
 
     private void Update() {
@@ -44,7 +36,7 @@ public class SwordDance : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddAttackModifier(2);
+        player.SetAttackModifier(2);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
     }
 }

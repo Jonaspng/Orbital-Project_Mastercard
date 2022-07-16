@@ -3,25 +3,14 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ScatterShot : Cards {
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public ScatterShot(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 8;
-        this.damage = 8;
-        this.description = "Deal "+ this.damage +" base damage to all enemies.";
-    }
-
-    public override void RefreshString() {
-        
+        InitialiseValues(8, 8, "Deal 8 base damage to all enemies.");
     }
 
     private void Update() {
@@ -45,12 +34,12 @@ public class ScatterShot : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
                 Archer archer = (Archer) player;
-                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyindex);
+                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyindex);
             }
             
         }

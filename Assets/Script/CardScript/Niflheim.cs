@@ -4,22 +4,14 @@ using TMPro;
 
 public class Niflheim : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Niflheim(int damage, int turns, int manaCost) : base(manaCost, turns) {
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 25;
-        this.damage = 25;
-        this.description = "Deal " + this.damage + " damage to all enemies.";
-    }
-
-    public override void RefreshString() {
+        InitialiseValues(25, 25, "Deal 25 damage to all enemies.");
     }
 
     private void Update() {
@@ -42,11 +34,11 @@ public class Niflheim : Cards {
     }
 
      public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
         for (int i = 0; i < enemies.Length; i ++) {
             if (enemies[i] != null) {
-                enemies[i].receiveDamage(player.GetFullDamage(this.originalDamage), i);                
+                enemies[i].receiveDamage(player.GetFullDamage(GetOriginalDamage()), i);                
             }
         }
         

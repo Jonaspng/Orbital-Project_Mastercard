@@ -58,7 +58,7 @@ class GameManager : MonoBehaviour {
             }
             Player player = stage.playerGO.GetComponentInChildren<Player>();
             if (PlayerPrefs.HasKey("health")) {
-                player.health = PlayerPrefs.GetInt("health");
+                player.SetHealth(PlayerPrefs.GetInt("health"));
             }            
             stage.player = player;
             stage.playerHUD = player.GetComponentInParent<BattleHUD>();

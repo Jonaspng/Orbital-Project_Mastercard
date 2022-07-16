@@ -3,24 +3,18 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SniperShot : Cards {
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public SniperShot(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
     private void Awake() {
-        this.originalDamage = 20;
-        this.damage = 20;
-        this.description = "Deal " + this.damage +" damage.";
+        InitialiseValues(30, 30, "Deal 30 damage.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -43,8 +37,8 @@ public class SniperShot : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
     }
 }

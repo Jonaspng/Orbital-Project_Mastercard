@@ -7,15 +7,10 @@ public class Mage : Player {
 
     public bool isReflected;
 
-    public Mage(double attackModifier, double shieldModifier) 
-    : base(80, attackModifier, shieldModifier) { 
-        //empty
-    }
-
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
-        this.animator.SetTrigger("Damaged");
+        this.GetAnimator().SetTrigger("Damaged");
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (isBroken) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
@@ -23,19 +18,19 @@ public class Mage : Player {
             realDamage = damage;
         }
     
-        if (realDamage >= this.baseShield) {
-                health = health - realDamage + this.baseShield;
-                if (realDamage == this.baseShield) {
+        if (realDamage >= GetBaseShield()) {
+                SetHealth(GetHealth() - realDamage + GetBaseShield());
+                if (realDamage == GetBaseShield()) {
                     DamageNumberAnimation("Blocked", Color.white);
                 } else {
-                    DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                    DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                 }   
-                ResetBaseShield();
+                SetBaseShield(0);
                 StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
-            this.baseShield -= realDamage;
+            SetBaseShield(GetBaseShield() - realDamage);
         }
         if (isReflected) {
             int reflectedDamage = (int) Math.Round(0.75 * realDamage, MidpointRounding.AwayFromZero);
@@ -44,16 +39,16 @@ public class Mage : Player {
             }
         }
 
-        if (this.health < 0) {
+        if (GetHealth() < 0) {
             StageManager.instance.playerHUD.SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(this.health);
+            StageManager.instance.playerHUD.SetHP(GetHealth());
         }
     
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return (int) Math.Round(this.attackModifier * (cardDamage + this.baseAttack));
+        return (int) Math.Round(GetAttackModifier() * (cardDamage + GetBaseAttack()));
     }
 
     public void ChangeReflectStatus(bool status) {

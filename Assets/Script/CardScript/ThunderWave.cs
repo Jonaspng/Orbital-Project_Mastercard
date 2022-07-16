@@ -6,19 +6,14 @@ using TMPro;
 
 class ThunderWave : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public ThunderWave(int manaCost, int turns) 
-    : base(manaCost, turns){
-
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "Stun an enemy for 1 turn.";
+        InitialiseValues("Stun an enemy for 1 turn.");
     }
 
     public override void RefreshString() {

@@ -4,15 +4,11 @@ using TMPro;
 
 public class MegaInferno : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public MegaInferno(int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Update() {
         if (this.dissolve) {
@@ -22,15 +18,9 @@ public class MegaInferno : Cards {
     }
 
     private void Awake() {
-        this.originalDamage = 10;
-        this.damage = 10;
-        this.description = "Deal " + this.damage + " base damage to all enemies.";
+        InitialiseValues(10, 10, "Deal 10 base damage to all enemies.");
     }
 
-    public override void RefreshString() {
-       
-    }
-    
     public override void OnDrop(int enemyIndex) {
         foreach (Transform word in this.transform.Find("Frame").transform) {
             word.gameObject.SetActive(false);
@@ -43,11 +33,11 @@ public class MegaInferno : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
         for (int i = 0; i < enemies.Length; i ++) {
             if (enemies[i] != null) {
-                enemies[i].receiveDamage(player.GetFullDamage(this.originalDamage), i);
+                enemies[i].receiveDamage(player.GetFullDamage(GetOriginalDamage()), i);
             }         
         }
     }

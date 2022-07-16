@@ -10,7 +10,7 @@ public class CardSelection : MonoBehaviour {
             obj.gameObject.GetComponentInChildren<Image>().material = null;
         }
         this.GetComponentInChildren<Image>().material = outline;
-        GameObject.Find("StageManager").GetComponent<PopUpMenu>().newCardId = this.GetComponent<Cards>().id;    
+        GameObject.Find("StageManager").GetComponent<PopUpMenu>().newCardId = this.GetComponent<Cards>().GetId();    
     }
 
 }

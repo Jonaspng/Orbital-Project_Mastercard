@@ -4,28 +4,21 @@ using TMPro;
 
 public class Brace : Cards {
 
-    public int shield;
+    [SerializeField] private int shield;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Brace(int shield, int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.shield = shield;
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
         this.shield = 10;
-        this.originalDamage = 10;
-        this.damage = 10;
-        this.description = "Gain 10 shield. Deal " + this.damage + " damage.";
+        InitialiseValues(10, 10, "Gain 10 shield. Deal 10 damage.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage + " damage.";
+        descriptionTag.text = "Deal " + GetDamage() + " damage.";
     }
 
     private void Update() {
@@ -48,8 +41,8 @@ public class Brace : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddBaseShield(this.shield);
+        player.SetBaseShield(player.GetBaseShield() + this.shield);
         player.PlayAttackSound();
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
     }
 }

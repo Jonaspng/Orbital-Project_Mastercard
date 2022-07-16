@@ -13,12 +13,6 @@ public class Archer : Player {
 
     public bool evaded;
 
-    public Archer(double attackModifier, 
-    double shieldModifier) 
-    : base(70, attackModifier, shieldModifier) { 
-        
-    }
-
     public void AddEvasionCount(int evasionCount) {
         this.evasionCount += evasionCount;
     }
@@ -35,7 +29,7 @@ public class Archer : Player {
         }
 
         // special conditions
-        if (realDamage >= this.baseShield) {
+        if (realDamage >= GetBaseShield()) {
             if (isStealthed) {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
@@ -45,14 +39,14 @@ public class Archer : Player {
                         evasionCount--;
                     } else {
                         evaded = false;
-                        health = health - realDamage + this.baseShield;
-                        if (realDamage == this.baseShield) {
+                        SetHealth(GetHealth() - realDamage + GetBaseShield());
+                        if (realDamage == GetBaseShield()) {
                             DamageNumberAnimation("Blocked", Color.white);
                         } else {
-                            DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                            DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                         }   
-                        this.animator.SetTrigger("Damaged");
-                        ResetBaseShield();
+                        this.GetAnimator().SetTrigger("Damaged");
+                        SetBaseShield(0);
                         StageManager.instance.playerHUD.RemoveShieldIcon();
                     }
                 } else {
@@ -67,26 +61,26 @@ public class Archer : Player {
                     StageManager.instance.playerHUD.RemoveDodgeIcon();
                 } else {
                     evaded = false;
-                    health = health - realDamage + this.baseShield;
-                    if (realDamage == this.baseShield) {
+                    SetHealth(GetHealth() - realDamage + GetBaseShield());
+                    if (realDamage == GetBaseShield()) {
                         DamageNumberAnimation("Blocked", Color.white);
                     } else {
-                        DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                        DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                     }
-                    this.animator.SetTrigger("Damaged");
-                    ResetBaseShield();
+                    this.GetAnimator().SetTrigger("Damaged");
+                    SetBaseShield(0);
                     StageManager.instance.playerHUD.RemoveShieldIcon();
                 }           
             }
         } else {
             DamageNumberAnimation("Blocked", Color.white);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
-            this.baseShield -= realDamage;
+            SetBaseShield(GetBaseAttack() - realDamage);
         }
-        if (this.health < 0) {
+        if (GetHealth() < 0) {
             StageManager.instance.playerHUD.SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(this.health);
+            StageManager.instance.playerHUD.SetHP(GetHealth());
         }
     }
 
@@ -105,7 +99,7 @@ public class Archer : Player {
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return (int) Math.Round(this.attackModifier * (cardDamage + this.baseAttack));
+        return (int) Math.Round(GetAttackModifier() * (cardDamage + GetBaseAttack()));
     }  
 
     public void ChangeStealthStatus(bool status) {

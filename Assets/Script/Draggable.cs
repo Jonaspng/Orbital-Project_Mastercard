@@ -98,11 +98,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             Cards temp = this.gameObject.GetComponent<Cards>();
             int number;
             if (enemySelected.isBurned && temp is Fireball) {
-                number = enemySelected.FireballDamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+                number = enemySelected.FireballDamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.GetOriginalDamage()));
             } else {
-                number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.originalDamage));
+                number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.GetOriginalDamage()));
             }
-            temp.damage = number;
+            temp.SetDamage(number);
             temp.RefreshString();
         }
      }
@@ -123,7 +123,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
      public void OnEndDrag(PointerEventData eventData) {
         Enemy enemySelected = DetectEnemySelected();
         arrowLine.enabled = false;
-        if (enemySelected != null && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().manaCost >= 0) {
+        if (enemySelected != null && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().GetManaCost() >= 0) {
             this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
         } else {
             this.transform.position = originalPosition;

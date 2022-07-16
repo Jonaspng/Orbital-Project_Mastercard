@@ -3,26 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 public class Adrenaline : Cards {
 
-    public double damageModifier;
+    [SerializeField] private float damageModifier;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Adrenaline(double damageModifier, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damageModifier = damageModifier;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
         this.damageModifier = 1.25f;
-        this.description = "Do 25% more damage this turn.";
-    }
-
-    public override void RefreshString() {
-        // does nothing
+        InitialiseValues("Do 25% more damage this turn.");
     }
 
     private void Update() {
@@ -44,7 +35,7 @@ public class Adrenaline : Cards {
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddAttackModifier(damageModifier);
+        player.SetAttackModifier(player.GetAttackModifier() * damageModifier);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
     }
 }

@@ -4,23 +4,15 @@ using TMPro;
 
 public class LegionRoar : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public LegionRoar(int turns, int manaCost) : base(manaCost, turns) {
-    }
-
+    [SerializeField] private TextMeshProUGUI descriptionTag;
     private void Awake() {
-        this.description = "All enemies do 25% less damage this turn.";
+        InitialiseValues("All enemies do 25% less damage this turn.");
     }
-
-    public override void RefreshString() {
-        
-    }
-
+    
     private void Update() {
         if (this.dissolve) {
             material.SetFloat("_Fade", Mathf.MoveTowards(material.GetFloat("_Fade"), 0f, 2f * Time.deltaTime));
@@ -43,7 +35,7 @@ public class LegionRoar : Cards {
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
        foreach(Enemy enemy in enemies) {
            if (enemy != null) {
-               enemy.changeAttackModifier(0.75);
+               enemy.SetAttackModifier(0.75);
                enemy.GetComponentInParent<BattleHUD>().RenderAttackDownIcon();
            }
        }

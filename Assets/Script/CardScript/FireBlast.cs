@@ -6,25 +6,18 @@ using TMPro;
 
 class FireBlast : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public FireBlast(int manaCost, int damage, int turns) 
-    : base(manaCost, turns){
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 8;
-        this.damage = 8;
-        this.description = "Deal " + this.damage +" damage. Apply burn for 2 turns.";
+        InitialiseValues(8, 8, "Deal 8 damage. Apply burn for 2 turns.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage. Apply burn for 2 turns.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Apply burn for 2 turns.";
     }
 
     private void Update() {
@@ -72,9 +65,9 @@ class FireBlast : Cards {
             eventManager2.Add(currentTurn + 1, resetEvent);
         }
         
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
         
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBurned(true);

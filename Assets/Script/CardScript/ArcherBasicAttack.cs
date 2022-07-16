@@ -4,25 +4,18 @@ using TMPro;
 
 public class ArcherBasicAttack : Cards {
     
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public ArcherBasicAttack(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        // does nothing
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 6;
-        this.damage = 6;
-        this.description = "Deal " + this.damage +" damage.";
+        InitialiseValues(6, 6, "Deal 6 damage.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -45,9 +38,9 @@ public class ArcherBasicAttack : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.originalDamage), enemyIndex);
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
     }
 
 }

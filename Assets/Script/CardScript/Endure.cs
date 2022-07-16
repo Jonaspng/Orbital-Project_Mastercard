@@ -4,18 +4,14 @@ using TMPro;
 
 public class Endure : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public Endure(int turns, int manaCost) : base(manaCost, turns) {
-
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.description = "If you receive lethal damage this turn, set your health to 1 ";
+        InitialiseValues("If you receive lethal damage this turn, set your health to 1 ");
     }
 
     public override void RefreshString() {

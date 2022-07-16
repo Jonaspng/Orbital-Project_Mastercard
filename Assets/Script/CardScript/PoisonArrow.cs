@@ -6,25 +6,18 @@ using TMPro;
 
 class PoisonArrow : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-    public PoisonArrow(int damage, int manaCost, int turns) 
-    : base(manaCost, turns){
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.originalDamage = 8;
-        this.damage = 8;
-        this.description = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
+        InitialiseValues(8, 8, "Deal 8 damage. Apply poison for 2 turns.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage + " damage. Apply poison for 2 turns. ";
+        descriptionTag.text = "Deal " + GetDamage() + " damage. Apply poison for 2 turns. ";
     }
 
     private void Update() {
@@ -49,8 +42,8 @@ class PoisonArrow : Cards {
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
 
         if (enemies[enemyIndex] != null) {

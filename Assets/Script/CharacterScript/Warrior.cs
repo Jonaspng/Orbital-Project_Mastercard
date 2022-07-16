@@ -11,16 +11,12 @@ public class Warrior : Player {
 
     public int hitCount;
 
-    public Warrior(double attackModifier, double shieldModifier) 
-    : base(100, attackModifier, shieldModifier) { 
-        //empty
-    }
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-        this.animator.SetTrigger("Damaged");
+        this.GetAnimator().SetTrigger("Damaged");
         if (isStrongWillpower) {
             hitCount++;
         }
@@ -29,30 +25,30 @@ public class Warrior : Player {
         } else {
             realDamage = damage;
         }
-        if (realDamage >= this.baseShield ) {
-            if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
-                this.health = 1;
+        if (realDamage >= GetBaseShield() ) {
+            if (this.isEndure && GetHealth() - realDamage + GetBaseShield() <= 0) {
+                SetHealth(1);
                 this.isEndure = false;          
             } else {
-                health = health - realDamage + this.baseShield;
+                SetHealth(GetHealth() - realDamage + GetBaseShield());
             }
-            if (realDamage == this.baseShield) {
+            if (realDamage == GetBaseShield()) {
                 DamageNumberAnimation("Blocked", Color.white);
             } else {
-                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
             }            
-            ResetBaseShield();
+            SetBaseShield(0);
             StageManager.instance.playerHUD.RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
             StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
-            this.baseShield -= realDamage;
+            SetBaseShield(GetBaseShield() - realDamage);
         }
-        print(health);
-        if (this.health < 0) {
+        print(GetHealth());
+        if (this.GetHealth() < 0) {
             StageManager.instance.playerHUD.SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(this.health);
+            StageManager.instance.playerHUD.SetHP(GetHealth());
         }
         
     }
@@ -69,13 +65,11 @@ public class Warrior : Player {
         this.hitCount = 0;
     }
 
-
-
     public override int GetFullDamage(int cardDamage) {
         if (this.isStrongWillpower) {
-            return (int) Math.Round(this.attackModifier * (this.baseAttack + cardDamage + this.hitCount * 2));
+            return (int) Math.Round(GetAttackModifier() * (GetBaseAttack() + cardDamage + this.hitCount * 2));
         } else {
-            return (int) Math.Round(this.attackModifier * cardDamage + baseAttack);
+            return (int) Math.Round(GetAttackModifier() * cardDamage + GetBaseAttack());
         }
     }
 

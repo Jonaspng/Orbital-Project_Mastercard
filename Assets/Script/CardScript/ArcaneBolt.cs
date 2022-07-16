@@ -7,25 +7,18 @@ using TMPro;
 
 public class ArcaneBolt : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public TextMeshProUGUI descriptionTag;
-
-
-    public ArcaneBolt(int damage, int turns, int manaCost) : base(manaCost, turns) {
-        // does nothing
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        this.damage = 10;
-        this.originalDamage = 10;
-        this.description = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+        InitialiseValues(10, 10, "Deal 10 damage. Enemy receives 25% more damage for 2 turns.");
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + this.damage +" damage. Enemy receives 25% more damage for 2 turns.";
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Enemy receives 25% more damage for 2 turns.";
     }
 
 
@@ -57,8 +50,8 @@ public class ArcaneBolt : Cards {
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.originalDamage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBroken(true);

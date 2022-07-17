@@ -3,11 +3,11 @@ using TMPro;
 
 public class IconCanvasManager : MonoBehaviour {
     
-    public GameObject popUpMenu;
+    [SerializeField] private GameObject popUpMenu;
 
-    public TextMeshProUGUI iconName;
+    [SerializeField] private TextMeshProUGUI iconName;
 
-    public TextMeshProUGUI iconDescription;
+    [SerializeField] private TextMeshProUGUI iconDescription;
 
     public void OnAttackUpClick() {
         iconName.text = "Attack Up Icon";

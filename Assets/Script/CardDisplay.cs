@@ -3,22 +3,22 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CardDisplay : MonoBehaviour {
-    public Card card;
+    [SerializeField] private Card card;
 
-    public TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    public TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public Image frameImage;
+    [SerializeField] private Image frameImage;
 
-    public TextMeshProUGUI manaText;
+    [SerializeField] private TextMeshProUGUI manaText;
 
 
     // Start is called before the first frame update
     void Start() {
-     nameText.text = card.cardName;
+     nameText.text = card.GetCardName();
      descriptionText.text = this.GetComponent<Cards>().GetDescription();
-     frameImage.sprite = card.frame;
-     manaText.text = card.manaCost.ToString();   
+     frameImage.sprite = card.GetFrame();
+     manaText.text = card.GetManaCost().ToString();   
     }
 }

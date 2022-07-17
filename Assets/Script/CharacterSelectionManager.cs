@@ -6,37 +6,37 @@ using TMPro;
 
 public class CharacterSelectionManager : MonoBehaviour {
 
-    public string characterChosen;
+    [SerializeField] private string characterChosen;
 
-    public GameObject backgroundImage;
+    [SerializeField] private GameObject backgroundImage;
     
-    public GameObject characterName;
+    [SerializeField] private GameObject characterName;
 
-    public GameObject hp;
+    [SerializeField] private GameObject hp;
 
-    public GameObject description;
+    [SerializeField] private GameObject description;
 
-    public string currentCharacter;
+    [SerializeField] private string currentCharacter;
 
-    public int currentHp;
+    [SerializeField] private int currentHp;
 
-    public Sprite warriorSelection;
+    [SerializeField] private Sprite warriorSelection;
 
-    public Sprite archerSelection;
+    [SerializeField] private Sprite archerSelection;
 
-    public Sprite mageSelection;
+    [SerializeField] private Sprite mageSelection;
 
-    public GameObject warriorButton;
+    [SerializeField] private GameObject warriorButton;
 
-    public GameObject archerButton;
+    [SerializeField] private GameObject archerButton;
 
-    public GameObject mageButton;
+    [SerializeField] private GameObject mageButton;
 
-    public Material buttonOutline;
+    [SerializeField] private Material buttonOutline;
 
-    public GameObject confirmButton;
+    [SerializeField] private GameObject confirmButton;
 
-    public string deckPath;
+    [SerializeField] private string deckPath;
     private void Start() {
         deckPath = $"{Application.persistentDataPath}/deckID.json";
         OnSwordClick();

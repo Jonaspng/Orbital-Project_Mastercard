@@ -2,9 +2,9 @@ using UnityEngine;
 
 class StealthEvent : AbstractEvent {
 
-    public bool isStealthed;
-    public StealthEvent(int numberOfTurns, bool isStealthed, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex) {
+    [SerializeField] private bool isStealthed;
+    public StealthEvent(bool isStealthed, int enemyIndex) 
+    : base(enemyIndex) {
         this.isStealthed = isStealthed;
     }
 

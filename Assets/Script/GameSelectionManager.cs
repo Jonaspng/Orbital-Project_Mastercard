@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSelectionManager : MonoBehaviour {
 
-    string deckPath;
+    [SerializeField] private string deckPath;
 
     // Start is called before the first frame update
     void Start() {

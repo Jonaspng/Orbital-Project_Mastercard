@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour {
 
-    public GameObject warriorPanel1;
+    [SerializeField] private GameObject warriorPanel1;
 
-    public GameObject warriorPanel2;
+    [SerializeField] private GameObject warriorPanel2;
 
-    public GameObject archerPanel1;
+    [SerializeField] private GameObject archerPanel1;
 
-    public GameObject archerPanel2;
+    [SerializeField] private GameObject archerPanel2;
 
-    public GameObject magePanel1;
+    [SerializeField] private GameObject magePanel1;
 
-    public GameObject magePanel2;
+    [SerializeField] private GameObject magePanel2;
 
     private void Awake() {
         foreach(Transform obj in warriorPanel1.transform) {

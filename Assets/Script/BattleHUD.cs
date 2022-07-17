@@ -4,51 +4,51 @@ using TMPro;
 
 public class BattleHUD : MonoBehaviour {
 
-    public TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    public Slider hpSlider;
+    [SerializeField] private Slider hpSlider;
 
-    public GameObject iconsBar;
+    [SerializeField] private GameObject iconsBar;
 
-    public GameObject prewarnIndicator;
+    [SerializeField] private GameObject prewarnIndicator;
 
-    public GameObject shieldIcon;
+    [SerializeField] private GameObject shieldIcon;
 
-    public GameObject shieldAllIcon;
+    [SerializeField] private GameObject shieldAllIcon;
 
-    public GameObject poisonIcon;
+    [SerializeField] private GameObject poisonIcon;
 
-    public GameObject brokenShieldIcon;
+    [SerializeField] private GameObject brokenShieldIcon;
 
-    public GameObject burnedIcon;
+    [SerializeField] private GameObject burnedIcon;
 
-    public GameObject stunIcon;
+    [SerializeField] private GameObject stunIcon;
 
-    public GameObject attackIndicator;
+    [SerializeField] private GameObject attackIndicator;
 
-    public GameObject attackUpIcon;
+    [SerializeField] private GameObject attackUpIcon;
 
-    public GameObject allAttackUpIcon;
+    [SerializeField] private GameObject allAttackUpIcon;
 
-    public GameObject attackDownIcon;
+    [SerializeField] private GameObject attackDownIcon;
 
-    public GameObject dodgeIcon;
+    [SerializeField] private GameObject dodgeIcon;
 
-    public GameObject smokeBombIcon;
+    [SerializeField] private GameObject smokeBombIcon;
 
-    public GameObject mysticShieldIcon;
+    [SerializeField] private GameObject mysticShieldIcon;
 
-    public GameObject reflectIcon;
+    [SerializeField] private GameObject reflectIcon;
 
-    public GameObject EndureIcon;
+    [SerializeField] private GameObject EndureIcon;
 
-    public GameObject SummonIcon;
+    [SerializeField] private GameObject SummonIcon;
 
-    public bool isShieldIconOn;
+    [SerializeField] private bool isShieldIconOn;
 
-    public bool isBrokenShieldIconOn;
+    [SerializeField] private bool isBrokenShieldIconOn;
 
-    public int maxHp;
+    [SerializeField] private int maxHp;
 
     public void SetHUD(Unit unit) {
         nameText.text = unit.GetUnitName();
@@ -64,7 +64,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderPlayerShieldIcon(int shield) {
-        int baseShield = StageManager.instance.player.GetBaseShield();
+        int baseShield = StageManager.GetInstance().GetPlayer().GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
@@ -74,7 +74,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderEnemyShieldIcon(int enemyIndex) {
-        int baseShield = StageManager.instance.enemies[enemyIndex].GetBaseShield();
+        int baseShield = StageManager.GetInstance().GetEnemies()[enemyIndex].GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = baseShield.ToString();

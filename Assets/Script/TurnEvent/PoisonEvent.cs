@@ -2,18 +2,17 @@ using UnityEngine;
 
 class PoisonEvent : AbstractEvent {
 
-    public bool isPoisoned;
+    [SerializeField] private bool isPoisoned;
 
-    public PoisonEvent(int numberOfTurns, bool isPoisoned, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex){
-        this.numberOfTurns = numberOfTurns;
+    public PoisonEvent(bool isPoisoned, int enemyIndex) 
+    : base(enemyIndex){
         this.isPoisoned = isPoisoned;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        if (enemies[this.enemyIndex] != null) {
-            enemies[this.enemyIndex].ChangeIsPoisoned(this.isPoisoned);
-            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemovePoisonIcon();
+        if (enemies[this.GetEnemyIndex()] != null) {
+            enemies[this.GetEnemyIndex()].ChangeIsPoisoned(this.isPoisoned);
+            enemies[this.GetEnemyIndex()].GetComponentInParent<BattleHUD>().RemovePoisonIcon();
  
         }
     }

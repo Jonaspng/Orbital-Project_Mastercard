@@ -35,7 +35,7 @@ class PoisonArrow : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
 
     }
@@ -51,11 +51,11 @@ class PoisonArrow : Cards {
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon();
         }
 
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.instance.playerEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
-        AbstractEvent[] resetEvent = {new PoisonEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, enemyIndex)};
+        AbstractEvent[] resetEvent = {new PoisonEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();

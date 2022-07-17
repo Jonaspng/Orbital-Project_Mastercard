@@ -6,38 +6,50 @@ using System.Collections.Generic;
 [System.Serializable]
 public class DeckManager : MonoBehaviour {
 
-    public string deckPath;
+    [SerializeField] private string deckPath;
 
-    public DeckID currentDeckID;
+    [SerializeField] private DeckID currentDeckID;
     
-    public Deck currentDeck;
+    [SerializeField] private Deck currentDeck;
 
-    public Deck usedPile;
+    [SerializeField] private Deck usedPile;
     
-    public Deck unusedPile;
+    [SerializeField] private Deck unusedPile;
 
-    public Deck currentHand;
+    [SerializeField] private Deck currentHand;
 
-    public int lockedCard;
+    [SerializeField] private int lockedCard;
     
-    public List<GameObject> prefabList;
+    [SerializeField] private List<GameObject> prefabList;
 
-    public GameObject currentHandPanel;
+    [SerializeField] private GameObject currentHandPanel;
 
-    public GameObject cardselectionPanel;
+    [SerializeField] private GameObject cardselectionPanel;
 
-    public Material cardOutline;
+    [SerializeField] private Material cardOutline;
+
+    public Deck GetCurrentDeck() {
+        return this.currentDeck;
+    }
+
+    public int GetLockedCard() {
+        return this.lockedCard;
+    }
+
+    public DeckID GetCurrentDeckID() {
+        return this.currentDeckID;
+    }
 
     public void LockCard() {
-        lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
-        unusedPile.RemoveCard(currentDeck.cardList[lockedCard]);
+        lockedCard = Random.Range(0, currentDeckID.GetCardIDList().Count);
+        unusedPile.RemoveCard(currentDeck.GetCardList()[lockedCard]);
     }
 
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();
         unusedPile.ResetDeck();
         usedPile.ResetDeck();
-        foreach (int id in currentDeckID.cardIDList) {
+        foreach (int id in currentDeckID.GetCardIDList()) {
             currentDeck.AddCard(prefabList[id]);
             unusedPile.AddCard(prefabList[id]);       
         }
@@ -87,10 +99,10 @@ public class DeckManager : MonoBehaviour {
     }
 
     public void Draw(int numOfDraws) {
-        for (int i = currentHand.cardList.Count; i < numOfDraws; i++) {
-                currentHand.AddCard(unusedPile.cardList[0]);
-                Instantiate(currentHand.cardList[i]).transform.SetParent(currentHandPanel.transform, false);
-                unusedPile.RemoveCard(unusedPile.cardList[0]);
+        for (int i = currentHand.GetCardList().Count; i < numOfDraws; i++) {
+                currentHand.AddCard(unusedPile.GetCardList()[0]);
+                Instantiate(currentHand.GetCardList()[i]).transform.SetParent(currentHandPanel.transform, false);
+                unusedPile.RemoveCard(unusedPile.GetCardList()[0]);
             }
     }
 
@@ -112,23 +124,23 @@ public class DeckManager : MonoBehaviour {
             Deck.Shuffle(playerDeck);
         }
         for (int i = 0; i < 3; i ++) {
-            GameObject temp = Instantiate(playerDeck.cardList[i]);
+            GameObject temp = Instantiate(playerDeck.GetCardList()[i]);
             temp.transform.SetParent(cardselectionPanel.transform, false);
             temp.GetComponent<Cards>().DisableAllScripts();
             temp.AddComponent<CardSelection>();
-            temp.GetComponent<CardSelection>().outline = cardOutline;
+            temp.GetComponent<CardSelection>().SetOutline(cardOutline);
         }
     }
 
     public void DrawCard(int numOfCards) {
         currentHand.ResetDeck();
-        int numOfCardLeft = unusedPile.cardList.Count;
+        int numOfCardLeft = unusedPile.GetCardList().Count;
         if (numOfCardLeft < numOfCards) {
             this.Draw(numOfCardLeft);       
             usedPile.CopyTo(unusedPile);
             usedPile.ResetDeck();
             Deck.Shuffle(unusedPile);
-            this.Draw(numOfCards - numOfCardLeft + currentHand.cardList.Count);
+            this.Draw(numOfCards - numOfCardLeft + currentHand.GetCardList().Count);
         } else {
             this.Draw(numOfCards);
         }
@@ -138,7 +150,7 @@ public class DeckManager : MonoBehaviour {
     public void ClearCards() {
         // destroy cards left on panel
         for (int i = 0; i < 5; i ++) {
-            usedPile.AddCard(currentHand.cardList[i]);
+            usedPile.AddCard(currentHand.GetCardList()[i]);
         }
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);

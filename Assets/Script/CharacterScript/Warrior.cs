@@ -5,11 +5,11 @@ using EZCameraShake;
 
 public class Warrior : Player {
 
-    public bool isStrongWillpower;
+    [SerializeField] private bool isStrongWillpower;
 
-    public bool isEndure;
+    [SerializeField] private bool isEndure;
 
-    public int hitCount;
+    [SerializeField] private int hitCount;
 
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
@@ -20,7 +20,7 @@ public class Warrior : Player {
         if (isStrongWillpower) {
             hitCount++;
         }
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
@@ -38,23 +38,27 @@ public class Warrior : Player {
                 DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
             }            
             SetBaseShield(0);
-            StageManager.instance.playerHUD.RemoveShieldIcon();
+            StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
+            StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
             SetBaseShield(GetBaseShield() - realDamage);
         }
         print(GetHealth());
         if (this.GetHealth() < 0) {
-            StageManager.instance.playerHUD.SetHP(0);
+            StageManager.GetInstance().GetPlayerHUD().SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(GetHealth());
+            StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
         }
         
     }
 
     public void ChangeIsStrongWillpower(bool status) {
         this.isStrongWillpower = status;
+    }
+
+    public bool CheckEndure() {
+        return this.isEndure;
     }
 
     public void ChangeIsEndure(bool status) {

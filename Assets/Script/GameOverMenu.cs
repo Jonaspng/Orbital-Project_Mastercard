@@ -3,19 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour  {
 
-    public GameObject restartStageButton;
+    [SerializeField] private GameObject restartStageButton;
 
-    public GameObject returnToMainButton;
+    [SerializeField] private GameObject returnToMainButton;
 
  
-    void Start ()  {
+    private void Start ()  {
         this.gameObject.SetActive(false); 
     }
 
          
     public void OnRestartClick() {
         this.gameObject.SetActive(false);
-        StageManager.instance.InitialiseBattle();
+        StageManager.GetInstance().InitialiseBattle();
        
     }
 

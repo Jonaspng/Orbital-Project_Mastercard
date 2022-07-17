@@ -7,12 +7,12 @@ public class CatArmour : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        if (!this.isImmobilised) {
-            if (this.moveNumber == 1) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
                 this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
-            } else if (this.moveNumber == 2) {
+            } else if (this.GetMoveNumber() == 2) {
                 SetBaseShield(GetBaseShield() + 8);
                 this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
@@ -21,7 +21,7 @@ public class CatArmour : Enemy {
                 foreach (Enemy enemy in enemies) {
                     if (enemy != null) {
                         enemy.SetBaseShield(enemy.GetBaseShield() + 6);
-                        enemy.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemy.enemyIndex);
+                        enemy.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(enemy.GetEnemyIndex());
                     }
                 } 
             }
@@ -29,9 +29,9 @@ public class CatArmour : Enemy {
     }
 
     public override void RenderWarningIndicator() {
-        if (this.moveNumber == 1) {
+        if (this.GetMoveNumber() == 1) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
-        } else if (this.moveNumber == 2) {
+        } else if (this.GetMoveNumber() == 2) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldAllIndicator();

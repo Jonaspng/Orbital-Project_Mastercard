@@ -3,19 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour {
 
-    public GameObject panel1;
+    [SerializeField] private GameObject panel1;
 
-    public GameObject panel2;
+    [SerializeField] private GameObject panel2;
 
-    public GameObject panel3;
+    [SerializeField] private GameObject panel3;
 
-    public GameObject panel4;
+    [SerializeField] private GameObject panel4;
 
-    public GameObject nextBtn;
+    [SerializeField] private GameObject nextBtn;
 
-    public GameObject prevBtn;
+    [SerializeField] private GameObject prevBtn;
 
-    private int counter;
+    [SerializeField] private int counter;
 
     private void Start() {
         counter = 1;

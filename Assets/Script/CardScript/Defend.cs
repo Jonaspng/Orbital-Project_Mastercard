@@ -30,8 +30,8 @@ public class Defend : Cards {
         outline.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = outline;
         this.dissolve = true;
-        StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
    
     }

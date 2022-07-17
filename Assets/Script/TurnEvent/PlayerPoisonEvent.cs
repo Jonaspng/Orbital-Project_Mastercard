@@ -2,11 +2,10 @@ using UnityEngine;
 
 class PlayerPoisonEvent : AbstractEvent {
 
-    public bool isPoisoned;
+    [SerializeField] private bool isPoisoned;
 
-    public PlayerPoisonEvent(int numberOfTurns, bool isPoisoned, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex){
-        this.numberOfTurns = numberOfTurns;
+    public PlayerPoisonEvent(bool isPoisoned, int enemyIndex) 
+    : base(enemyIndex){
         this.isPoisoned = isPoisoned;
     }
 

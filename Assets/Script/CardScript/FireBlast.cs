@@ -34,17 +34,17 @@ class FireBlast : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.instance.playerEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
-        AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyIndex)};
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, enemyIndex)};
+        AbstractEvent[] resetEvent = {new BurnEvent(false, enemyIndex)};
 
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];

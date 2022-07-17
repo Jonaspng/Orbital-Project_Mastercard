@@ -4,7 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public class Deck {
 
-    public List<GameObject> cardList;
+    [SerializeField] private List<GameObject> cardList;
+
+    public List<GameObject> GetCardList() {
+        return this.cardList;
+    }
 
     public Deck() {   
         this.cardList = new List<GameObject>(); 

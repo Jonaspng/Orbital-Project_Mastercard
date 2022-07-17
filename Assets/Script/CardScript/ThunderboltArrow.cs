@@ -34,7 +34,7 @@ public class ThunderboltArrow : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
@@ -45,9 +45,9 @@ public class ThunderboltArrow : Cards {
         player.GetAnimator().SetTrigger("Attack");
         player.PlayAttackSound();
 
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(false, enemyIndex)};
 
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];

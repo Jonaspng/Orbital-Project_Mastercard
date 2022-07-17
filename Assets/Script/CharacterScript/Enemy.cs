@@ -4,26 +4,48 @@ using System;
 
 public abstract class Enemy : Unit {
 
-    public int enemyIndex;
+    [SerializeField] private int enemyIndex;
 
-    public int moveNumber;
+    [SerializeField] private int moveNumber;
 
-    public int arrowStuckCount; 
+    [SerializeField] private int arrowStuckCount; 
 
-    public bool isImmobilised;
+    [SerializeField] private bool isImmobilised;
 
-    public bool isBurned;
+    [SerializeField] private bool isBurned;
 
-    public bool isBroken;
+    [SerializeField] private GameObject brokenIcon;
 
-    public GameObject brokenIcon;
+    public bool CheckImmobilised() {
+        return this.isImmobilised;
+    }
+
+    public bool CheckBurn() {
+        return this.isBurned;
+    }
+
+    public int GetMoveNumber() {
+        return this.moveNumber;
+    }
+
+    public void SetMoveNumber(int i) {
+        this.moveNumber = i;
+    }
+
+    public int GetEnemyIndex() {
+        return this.enemyIndex;
+    }
+
+    public void SetEnemyIndex(int enemyIndex) {
+        this.enemyIndex = enemyIndex;
+    }
 
     public void receiveDamage(int damage, int index) {
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         this.gameObject.GetComponent<Animator>().SetTrigger("Damaged");
         int realDamage;
     
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;                
@@ -57,7 +79,7 @@ public abstract class Enemy : Unit {
         if (GetHealth() <= 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().RemoveIndicator();
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
-            StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+            StartCoroutine(StageManager.GetInstance().DestroyEnemy(enemyIndex));
             return;
         }
     }
@@ -68,23 +90,23 @@ public abstract class Enemy : Unit {
         if (GetHealth() <= 0) {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(0);
             this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
-            StartCoroutine(StageManager.instance.DestroyEnemy(enemyIndex));
+            StartCoroutine(StageManager.GetInstance().DestroyEnemy(enemyIndex));
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().SetHP(GetHealth());
         }
     }
 
     public int DamageTaken(int damage) {
-        if (isBroken) {
+        if (BrokenStatus()) {
             return (int) Math.Round((damage + arrowStuckCount * 2) * 1.25, MidpointRounding.AwayFromZero);
         }
         return damage + arrowStuckCount * 2;
     }
 
     public int FireballDamageTaken(int damage) {
-        if (isBurned && isBroken) {
+        if (isBurned && BrokenStatus()) {
             return (int) Math.Round(damage * 1.25 * 1.25, MidpointRounding.AwayFromZero);
-        } else if (isBroken || isBurned) {
+        } else if (BrokenStatus() || isBurned) {
             return (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         }
         return damage;
@@ -98,9 +120,7 @@ public abstract class Enemy : Unit {
         this.isImmobilised = status;
     }
 
-    public void ChangeIsBroken(bool status) {
-        this.isBroken = status;
-    }
+
 
     public void ChangeIsBurned(bool status) {
         this.isBurned = status;
@@ -108,7 +128,7 @@ public abstract class Enemy : Unit {
     
     // Method to calculate damage from arrow damage cards if StickyArrows has been used.
     public void ReceiveArrowDamage(Archer source, int damage, int enemyIndex) {
-        if (source.isStickyArrowEnabled) {
+        if (source.CheckStickyArrow()) {
             receiveDamage(damage + arrowStuckCount * 2, enemyIndex);
             arrowStuckCount++;
         } else {

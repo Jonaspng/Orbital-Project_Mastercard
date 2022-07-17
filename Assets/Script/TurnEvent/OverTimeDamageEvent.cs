@@ -1,17 +1,17 @@
 using UnityEngine;
 class OvertimeDamageEvent : AbstractEvent {
 
-    public int damagePerTurn;
+    [SerializeField] private int damagePerTurn;
 
-    public OvertimeDamageEvent(int damagePerTurn, int numberOfTurns, int enemyIndex)
-    : base(numberOfTurns, enemyIndex) {
+    public OvertimeDamageEvent(int damagePerTurn, int enemyIndex)
+    : base(enemyIndex) {
         this.damagePerTurn = damagePerTurn;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        if (enemies[this.enemyIndex] != null) {
-            enemies[enemyIndex].GetAnimator().SetTrigger("Poisoned");
-            enemies[enemyIndex].receiveOverTimeDamage(damagePerTurn, enemyIndex);              
+        if (enemies[this.GetEnemyIndex()] != null) {
+            enemies[this.GetEnemyIndex()].GetAnimator().SetTrigger("Poisoned");
+            enemies[this.GetEnemyIndex()].receiveOverTimeDamage(damagePerTurn, this.GetEnemyIndex());              
         }
     }
 

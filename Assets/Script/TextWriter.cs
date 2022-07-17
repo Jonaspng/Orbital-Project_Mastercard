@@ -8,11 +8,11 @@ using TMPro;
 
 public class TextWriter : MonoBehaviour {
 
-    private TextMeshProUGUI uiText;
-    private string textToWrite;
-    private int characterIndex;
-    private float timePerCharacter;
-    private float timer;
+    [SerializeField] private TextMeshProUGUI uiText;
+    [SerializeField] private string textToWrite;
+    [SerializeField] private int characterIndex;
+    [SerializeField] private float timePerCharacter;
+    [SerializeField] private float timer;
 
     public GameObject nextButton;
 

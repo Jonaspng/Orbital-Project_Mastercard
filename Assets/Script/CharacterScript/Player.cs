@@ -2,9 +2,7 @@ using UnityEngine;
 
 public abstract class Player : Unit {
 
-    public bool isBroken;
-
-    public GameObject brokenIcon;
+    [SerializeField] private GameObject brokenIcon;
 
 
     public abstract void receiveDamage(Enemy source, int damage, int enemyIndex);
@@ -12,11 +10,13 @@ public abstract class Player : Unit {
     public void receivePoisonDamage(int damage) {
         SetHealth(GetHealth() - damage);
         DamageNumberAnimation(damage, Color.red);
-        StageManager.instance.playerHUD.SetHP(GetHealth());
+        StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
     }
+
     
-    public virtual void ChangeIsBroken(bool status) {
-        this.isBroken = status;
+    
+    public override void ChangeIsBroken(bool status) {
+        this.SetBrokenStatus(status);
         if (status) {
             GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
         }

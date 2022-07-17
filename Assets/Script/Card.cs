@@ -1,12 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
-public class Card : ScriptableObject
-{
-    public string cardName;
-    public string description;
-    public Sprite frame;
-    public int manaCost;
+public class Card : ScriptableObject {
+    [SerializeField] private string cardName;
+    [SerializeField] private string description;
+    [SerializeField] private Sprite frame;
+    [SerializeField] private int manaCost;
+    
+    public Sprite GetFrame() {
+        return this.frame;
+    }
+
+    public string GetCardName() {
+        return this.cardName;
+    }
+
+    public int GetManaCost() {
+        return this.manaCost;
+    }
 }

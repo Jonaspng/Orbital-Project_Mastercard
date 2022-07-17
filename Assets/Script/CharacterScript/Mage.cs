@@ -5,14 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class Mage : Player {
 
-    public bool isReflected;
+    [SerializeField] private bool isReflected;
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         this.GetAnimator().SetTrigger("Damaged");
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
@@ -26,10 +26,10 @@ public class Mage : Player {
                     DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                 }   
                 SetBaseShield(0);
-                StageManager.instance.playerHUD.RemoveShieldIcon();
+                StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
+            StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
             SetBaseShield(GetBaseShield() - realDamage);
         }
         if (isReflected) {
@@ -40,9 +40,9 @@ public class Mage : Player {
         }
 
         if (GetHealth() < 0) {
-            StageManager.instance.playerHUD.SetHP(0);
+            StageManager.GetInstance().GetPlayerHUD().SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(GetHealth());
+            StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
         }
     
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ArrowHead : MonoBehaviour {
     // Start is called before the first frame update
-    LineRenderer arrowLine;
+    [SerializeField] private LineRenderer arrowLine;
 
-    EdgeCollider2D arrowHead;
+    [SerializeField] private EdgeCollider2D arrowHead;
 
     public void Start() {
         arrowHead = this.GetComponent<EdgeCollider2D>();

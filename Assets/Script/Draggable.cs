@@ -5,33 +5,33 @@ using System.Collections.Generic;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
  
-    Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
 
-    Vector3 clickOffset = Vector3.zero;
+    [SerializeField] private Vector3 clickOffset = Vector3.zero;
 
-    Vector3 touchWorld;
+    [SerializeField] private Vector3 touchWorld;
 
-    Vector3 startPosition;
+    [SerializeField] private Vector3 startPosition;
 
-    Transform parentToReturnTo = null;
+    [SerializeField] private Transform parentToReturnTo = null;
 
-    public float arrowHeadSize;
+    [SerializeField] private float arrowHeadSize;
 
-    public GameObject prefabArrow;
+    [SerializeField] private GameObject prefabArrow;
 
-    public GameObject arrow;
+    [SerializeField] private GameObject arrow;
 
-    public LineRenderer arrowLine;
+    [SerializeField] private LineRenderer arrowLine;
 
-    public EdgeCollider2D arrowCollider;
+    [SerializeField] private EdgeCollider2D arrowCollider;
 
-    public Quaternion originalRotation;
+    [SerializeField] private Quaternion originalRotation;
 
-    public Transform parentToReturn;
+    [SerializeField] private Transform parentToReturn;
 
-    public Vector3 originalPosition;
+    [SerializeField] private Vector3 originalPosition;
 
-    public int originalIndex;
+    [SerializeField] private int originalIndex;
 
     public Enemy[] enemies;
      // Use this for initialization
@@ -97,7 +97,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (enemySelected != null) {
             Cards temp = this.gameObject.GetComponent<Cards>();
             int number;
-            if (enemySelected.isBurned && temp is Fireball) {
+            if (enemySelected.CheckBurn() && temp is Fireball) {
                 number = enemySelected.FireballDamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.GetOriginalDamage()));
             } else {
                 number = enemySelected.DamageTaken(GameObject.Find("Player Battlestation").GetComponentInChildren<Player>().GetFullDamage(temp.GetOriginalDamage()));
@@ -108,7 +108,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
      }
 
     public Enemy DetectEnemySelected() {
-        enemies = StageManager.instance.enemies;  
+        enemies = StageManager.GetInstance().GetEnemies();  
         foreach(Enemy enemy in enemies) {
             if (enemy != null) {
                 if (this.GetComponent<EdgeCollider2D>().IsTouching(enemy.GetComponentInChildren<Collider2D>())) {
@@ -123,8 +123,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
      public void OnEndDrag(PointerEventData eventData) {
         Enemy enemySelected = DetectEnemySelected();
         arrowLine.enabled = false;
-        if (enemySelected != null && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().GetManaCost() >= 0) {
-            this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.enemyIndex);
+        if (enemySelected != null && StageManager.GetInstance().GetManaCount() - eventData.pointerDrag.GetComponent<Cards>().GetManaCost() >= 0) {
+            this.gameObject.GetComponent<Cards>().OnDrop(enemySelected.GetEnemyIndex());
         } else {
             this.transform.position = originalPosition;
             this.transform.rotation = originalRotation;

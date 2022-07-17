@@ -2,17 +2,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class IconIntroManager : MonoBehaviour {
     
-    public GameObject popUpMenu;
+    [SerializeField] private GameObject popUpMenu;
 
-    public GameObject iconCanvas;
+    [SerializeField] private GameObject iconCanvas;
 
-    public GameObject indicatorCanvas;
+    [SerializeField] private GameObject indicatorCanvas;
 
-    public GameObject nextButton;
+    [SerializeField] private GameObject nextButton;
 
-    public GameObject previousButton;
+    [SerializeField] private GameObject previousButton;
 
-    private int counter = 1;
+    [SerializeField] private int counter = 1;
 
     
     public void OnCloseClick() {

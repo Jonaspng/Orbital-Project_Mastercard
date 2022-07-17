@@ -32,7 +32,7 @@ public class ArcherBasicAttack : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     } 
 

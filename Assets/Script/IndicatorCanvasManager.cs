@@ -2,11 +2,11 @@ using UnityEngine;
 using TMPro;
 
 public class IndicatorCanvasManager : MonoBehaviour {
-    public GameObject popUpMenu;
+    [SerializeField] private GameObject popUpMenu;
 
-    public TextMeshProUGUI iconName;
+    [SerializeField] private TextMeshProUGUI iconName;
 
-    public TextMeshProUGUI iconDescription;
+    [SerializeField] private TextMeshProUGUI iconDescription;
 
     public void OnAttackClick() {
         iconName.text = "Attack Indicator";

@@ -10,7 +10,7 @@ public class CatSword : Enemy {
     public bool CheckForBrokenResetEvent(AbstractEvent element) {
         if (element is BrokenPlayerEvent) {
             BrokenPlayerEvent temp = (BrokenPlayerEvent) element;
-            if (!temp.isBroken) {
+            if (!temp.CheckBroken()) {
                 return true;
             }
         }
@@ -18,14 +18,14 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        if (!this.isImmobilised) {
-            if (this.moveNumber == 1) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
                 print("Cat attack with " + this.GetFullDamage());
                 this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 
-            } else if (this.moveNumber == 2) {
+            } else if (this.GetMoveNumber() == 2) {
                 print("applied shield");
                 SetBaseShield(GetBaseShield() + 6);
                 this.PlayShieldSound();
@@ -38,11 +38,11 @@ public class CatSword : Enemy {
                 player.RenderBrokenIndicator();
                 player.ChangeIsBroken(true);
                 
-                int currentTurn = StageManager.instance.currentTurn;
+                int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-                Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-                AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(1, false, this.enemyIndex)};
-                AbstractEvent[] newEvent = {new BrokenPlayerEvent(1, true, this.enemyIndex)};
+                Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+                AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(false, this.GetEnemyIndex())};
+                AbstractEvent[] newEvent = {new BrokenPlayerEvent(true, this.GetEnemyIndex())};
 
                 if (eventManager.ContainsKey(currentTurn)) {
                     AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
@@ -64,9 +64,9 @@ public class CatSword : Enemy {
     }
 
     public override void RenderWarningIndicator() {
-        if (this.moveNumber == 1) {
+        if (this.GetMoveNumber() == 1) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
-        } else if (this.moveNumber == 2) {
+        } else if (this.GetMoveNumber() == 2) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderBrokenIndicator();

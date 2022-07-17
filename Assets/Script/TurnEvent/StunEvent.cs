@@ -2,18 +2,17 @@ using UnityEngine;
 
 class StunEvent : AbstractEvent {
 
-    public bool isImmobilised;
+    [SerializeField] private bool isImmobilised;
 
-    public StunEvent(int numberOfTurns, bool isImmobilised, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex){
-        this.numberOfTurns = numberOfTurns;
+    public StunEvent(bool isImmobilised, int enemyIndex) 
+    : base(enemyIndex){
         this.isImmobilised = isImmobilised;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        if (enemies[this.enemyIndex] != null) {
-            enemies[this.enemyIndex].ChangeIsImmobilised(this.isImmobilised);
-            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemoveStunIcon();
+        if (enemies[this.GetEnemyIndex()] != null) {
+            enemies[this.GetEnemyIndex()].ChangeIsImmobilised(this.isImmobilised);
+            enemies[this.GetEnemyIndex()].GetComponentInParent<BattleHUD>().RemoveStunIcon();
         }
     }   
 

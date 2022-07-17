@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class EventStageManager : MonoBehaviour {
 
-    public static EventStageManager instance;
+    [SerializeField] private static EventStageManager instance;
 
-    public TextMeshProUGUI eventDescription;
+    [SerializeField] private TextMeshProUGUI eventDescription;
 
-    public GameObject approachButton;
+    [SerializeField] private GameObject approachButton;
 
-    public GameObject walkAwayButton;
+    [SerializeField] private GameObject walkAwayButton;
 
-    public GameObject nextStageButton;
+    [SerializeField] private GameObject nextStageButton;
     
     private void Awake() {
         instance = this;

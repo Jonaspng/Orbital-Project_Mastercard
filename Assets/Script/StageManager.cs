@@ -8,53 +8,126 @@ using TMPro;
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class StageManager : MonoBehaviour {
 
-    public BattleState state;
+    [SerializeField] private BattleState state;
 
-    public Transform playerBattleStation;
+    [SerializeField] private Transform playerBattleStation;
 
-    public int enemyCount;
+    [SerializeField] private int enemyCount;
 
-    public static StageManager instance;
+    [SerializeField] private static StageManager instance;
     
-    public Player player;
+    [SerializeField] private Player player;
 
-    public GameObject playerGO;
+    [SerializeField] private GameObject playerGO;
 
-    public Enemy[] enemies;
+    [SerializeField] private Enemy[] enemies;
 
-    public GameObject gameOverMenu;
+    [SerializeField] private GameObject gameOverMenu;
 
-    public int manaCount;
+    [SerializeField] private int manaCount;
 
-    public int currentTurn;
+    [SerializeField] private int currentTurn;
 
-    public BattleHUD playerHUD;
+    [SerializeField] private BattleHUD playerHUD;
 
-    public DeckManager deckManager;
+    [SerializeField] private DeckManager deckManager;
 
-    public GameObject endTurnButton;
+    [SerializeField] private GameObject endTurnButton;
 
-    public TurnNotification turnNotification;
+    [SerializeField] private TurnNotification turnNotification;
 
-    public GameObject notificationMenu;
+    [SerializeField] private GameObject notificationMenu;
 
-    public GameObject lockedCardPanel;
+    [SerializeField] private GameObject lockedCardPanel;
 
-    public GameObject pauseMenu;
+    [SerializeField] private GameObject pauseMenu;
 
-    public GameObject canvas;
+    [SerializeField] private GameObject canvas;
 
-    public GameObject backgroundCanvas;
+    [SerializeField] private GameObject backgroundCanvas;
 
     //key = int; value = AbstractEvent[];
-    public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
-    public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
+    [SerializeField] private Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
+    [SerializeField] private Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
 
 
     private void Awake() {
         instance = this;
         AudioListener.volume = PlayerPrefs.GetFloat("volumeValue");
     }
+
+    public static StageManager GetInstance() {
+        return instance;
+    }
+
+    public int GetCurrentTurn() {
+        return this.currentTurn;
+    }
+
+    public Dictionary<int, AbstractEvent[]> GetPlayerEventManager() {
+        return this.playerEventManager;
+    }
+
+    public Dictionary<int, AbstractEvent[]> GetEnemyEventManager() {
+        return this.enemyEventManager;
+    }
+
+    public BattleHUD GetPlayerHUD() {
+        return this.playerHUD;
+    }
+
+    public int GetEnemyCount() {
+        return this.enemyCount;
+    }
+
+    public void AddManaCount(int mana) {
+        this.manaCount += mana;
+    }
+
+    public Player GetPlayer() {
+        return this.player;
+    }
+
+    public Enemy[] GetEnemies() {
+        return this.enemies;
+    }
+
+    public int GetManaCount() {
+        return this.manaCount;
+    }
+
+    public void SetPlayerGO(GameObject playerGO) {
+        this.playerGO = playerGO;
+    }
+    
+    public GameObject GetPlayerGO() {
+        return this.playerGO;
+    }
+
+    public Transform GetPlayerBattleStation() {
+        return this.playerBattleStation;
+    }
+
+    public void SetPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void SetPlayerHUD(BattleHUD battlehud) {
+        this.playerHUD = battlehud;
+    }
+
+    public void SetEnemies(Enemy[] enemies) {
+        this.enemies = enemies;
+    }
+
+    public void SetEnemyCount(int i ) {
+        this.enemyCount = i;
+    }
+
+    public DeckManager GetDeckManager() {
+        return this.deckManager;
+    }
+
 
     private void Update() {
         RectTransform rt = canvas.GetComponent<RectTransform>();
@@ -101,7 +174,7 @@ public class StageManager : MonoBehaviour {
             playerHUD.RemoveAllIcons();
             player.SetBaseShield(0);
             player.ResetAttackModifier();
-            player.isBroken = false;
+            player.ChangeIsBroken(false);
             
             deckManager.GenerateNewCards();
 
@@ -194,8 +267,8 @@ public class StageManager : MonoBehaviour {
 
             //enemy turn
             turnNotification.ChangeText("Enemy Turn");
-            turnNotification.backgroundAnimator.SetTrigger("ChangeTurn");
-            turnNotification.textAnimator.SetTrigger("ChangeTurn");
+            turnNotification.GetBackgroundAnimator().SetTrigger("ChangeTurn");
+            turnNotification.GetTextAnimator().SetTrigger("ChangeTurn");
 
             yield return new WaitForSeconds(2f);
             
@@ -216,7 +289,7 @@ public class StageManager : MonoBehaviour {
             
             if (player is Archer) { // resets evasion count of archer
                 Archer temp = (Archer) player;
-                temp.evasionCount = 0;
+                temp.SetEvasionCount(0);
                 playerHUD.RemoveDodgeIcon();
             }
 
@@ -249,8 +322,8 @@ public class StageManager : MonoBehaviour {
 
             // player turn
             turnNotification.ChangeText("Player Turn");
-            turnNotification.backgroundAnimator.SetTrigger("ChangeTurn");
-            turnNotification.textAnimator.SetTrigger("ChangeTurn");
+            turnNotification.GetBackgroundAnimator().SetTrigger("ChangeTurn");
+            turnNotification.GetTextAnimator().SetTrigger("ChangeTurn");
 
             yield return new WaitForSeconds(2f);
 
@@ -287,7 +360,7 @@ public class StageManager : MonoBehaviour {
         // Event 1: lock cat
         if (eventNumber == 1) {
             deckManager.LockCard();
-            GameObject lockedCard = Instantiate(deckManager.currentDeck.cardList[deckManager.lockedCard]);
+            GameObject lockedCard = Instantiate(deckManager.GetCurrentDeck().GetCardList()[deckManager.GetLockedCard()]);
             lockedCard.GetComponent<Cards>().DisableAllScripts();
             lockedCard.transform.SetParent(lockedCardPanel.transform, false);
             notificationMenu.SetActive(true);
@@ -307,8 +380,8 @@ public class StageManager : MonoBehaviour {
             player.ChangeIsPoisoned(true);
             playerHUD.RenderEnemyPoisonIcon();
 
-            AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 2, 0)};
-            AbstractEvent[] resetEvent = {new PlayerPoisonEvent(1, false, 0)};
+            AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 0)};
+            AbstractEvent[] resetEvent = {new PlayerPoisonEvent(false, 0)};
 
             if (enemyEventManager.ContainsKey(currentTurn)) {
                 AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn];
@@ -337,7 +410,7 @@ public class StageManager : MonoBehaviour {
             enemies[randomEnemy].ChangeIsImmobilised(true);
             enemies[randomEnemy].GetComponentInParent<BattleHUD>().RenderStunIcon();
             
-            AbstractEvent[] newResetEvent = {new StunEvent(1, false, randomEnemy)};
+            AbstractEvent[] newResetEvent = {new StunEvent(false, randomEnemy)};
             if (playerEventManager.ContainsKey(currentTurn)) {
                 AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
                 playerEventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();

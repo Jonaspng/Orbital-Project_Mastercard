@@ -2,7 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CardSelection : MonoBehaviour {
-    public Material outline;
+    [SerializeField] private Material outline;
+
+    public void SetOutline(Material ol) {
+        this.outline = ol;
+    }
 
     public void OnMouseDown() {
         GameObject.Find("StageManager").GetComponent<PopUpMenu>().RenderConfirmButton();
@@ -10,7 +14,7 @@ public class CardSelection : MonoBehaviour {
             obj.gameObject.GetComponentInChildren<Image>().material = null;
         }
         this.GetComponentInChildren<Image>().material = outline;
-        GameObject.Find("StageManager").GetComponent<PopUpMenu>().newCardId = this.GetComponent<Cards>().GetId();    
+        GameObject.Find("StageManager").GetComponent<PopUpMenu>().SetNewCardID(this.GetComponent<Cards>().GetId());    
     }
 
 }

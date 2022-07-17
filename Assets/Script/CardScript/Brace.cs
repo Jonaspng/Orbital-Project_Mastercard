@@ -18,7 +18,7 @@ public class Brace : Cards {
     }
 
     public override void RefreshString() {
-        descriptionTag.text = "Deal " + GetDamage() + " damage.";
+        descriptionTag.text = "Gain 10 shield. Deal " + GetDamage() + " damage.";
     }
 
     private void Update() {
@@ -35,8 +35,8 @@ public class Brace : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 

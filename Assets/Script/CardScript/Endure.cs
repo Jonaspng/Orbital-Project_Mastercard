@@ -32,13 +32,13 @@ public class Endure : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Warrior temp = (Warrior) player;
-        if (!temp.isEndure) {
+        if (!temp.CheckEndure()) {
             GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderEndureIcon();
         }
         temp.ChangeIsEndure(true);

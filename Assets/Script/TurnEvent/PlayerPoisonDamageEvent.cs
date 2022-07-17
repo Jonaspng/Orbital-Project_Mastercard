@@ -1,10 +1,10 @@
 using UnityEngine;
 class PlayerPoisonDamageEvent : AbstractEvent {
 
-    public int damagePerTurn;
+    [SerializeField] private int damagePerTurn;
 
-    public PlayerPoisonDamageEvent(int damagePerTurn, int numberOfTurns, int enemyIndex)
-    : base(numberOfTurns, enemyIndex) {
+    public PlayerPoisonDamageEvent(int damagePerTurn, int enemyIndex)
+    : base(enemyIndex) {
         this.damagePerTurn = damagePerTurn;
     }
 

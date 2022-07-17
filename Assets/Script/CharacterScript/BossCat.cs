@@ -8,36 +8,36 @@ public class BossCat : Enemy {
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int numberOfEnemies = enemies.Length;
-        if (!this.isImmobilised) {
-            if (this.moveNumber == 1) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
                 print("Enemy Attacks");
                 this.GetAnimator().SetTrigger("Attack");
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);      
-            } else if (this.moveNumber == 2) {
+            } else if (this.GetMoveNumber() == 2) {
                 print("Enemy Defends");
                 SetBaseShield(GetBaseShield() + 6);
                 this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 print("Spawning Enemy");
-                GameManager.instance.SpawnEnemies();
+                GameManager.GetInstance().SpawnEnemies();
             }
         }
     }
 
     public override void EnemyMoveNumberGenerator() {
-        this.moveNumber =  UnityEngine.Random.Range(1, 4);
-        if (StageManager.instance.enemyCount == 4 && this.moveNumber == 3) {
+        this.SetMoveNumber(UnityEngine.Random.Range(1, 4));
+        if (StageManager.GetInstance().GetEnemyCount() == 4 && this.GetMoveNumber() == 3) {
             EnemyMoveNumberGenerator();
         }
 
     }
 
     public override void RenderWarningIndicator() {
-        if (this.moveNumber == 1) {
+        if (this.GetMoveNumber() == 1) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
-        } else if (this.moveNumber == 2) {
+        } else if (this.GetMoveNumber() == 2) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderSummonIndicator();

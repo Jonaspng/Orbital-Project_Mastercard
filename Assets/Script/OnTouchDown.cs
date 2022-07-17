@@ -1,10 +1,8 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class OnTouchDown : MonoBehaviour
-{
-    void Update () {
+
+public class OnTouchDown : MonoBehaviour {
+    private void Update () {
         RaycastHit hit = new RaycastHit();
         for (int i = 0; i < Input.touchCount; ++i) {
             if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {

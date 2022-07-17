@@ -2,13 +2,14 @@ using UnityEngine;
 
 public abstract class AbstractEvent {
 
-    public int numberOfTurns;
+    [SerializeField] private int enemyIndex;
 
-    public int enemyIndex;
-
-    public AbstractEvent(int numberOfTurns, int enemyIndex) {
-        this.numberOfTurns = numberOfTurns;
+    public AbstractEvent(int enemyIndex) {
         this.enemyIndex = enemyIndex;
+    }
+
+    public int GetEnemyIndex() {
+        return this.enemyIndex;
     }
 
     public abstract void executeEvent(Player player, Enemy[] enemies);

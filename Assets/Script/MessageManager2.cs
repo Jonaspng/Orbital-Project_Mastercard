@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class MessageManager2 : MonoBehaviour {
 
-    public TextMeshProUGUI message;
-    [SerializeField] public TextWriter textWriter;
-    public GameObject nextButton;
+    [SerializeField] private TextMeshProUGUI message;
+    [SerializeField] private TextWriter textWriter;
+    [SerializeField] private GameObject nextButton;
 
     private void Awake() {
         nextButton.SetActive(false);

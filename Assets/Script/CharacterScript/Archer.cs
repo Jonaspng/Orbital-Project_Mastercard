@@ -5,16 +5,24 @@ using EZCameraShake;
 [System.Serializable]
 public class Archer : Player {
 
-    public int evasionCount; 
+    [SerializeField] private int evasionCount; 
 
-    public bool isStickyArrowEnabled;
+    [SerializeField] private bool isStickyArrowEnabled;
 
-    public bool isStealthed;
+    [SerializeField] private bool isStealthed;
 
-    public bool evaded;
+    [SerializeField] private bool evaded;
 
     public void AddEvasionCount(int evasionCount) {
         this.evasionCount += evasionCount;
+    }
+
+    public bool CheckStickyArrow() {
+        return this.isStickyArrowEnabled;
+    }
+
+    public void SetEvasionCount(int i) {
+        this.evasionCount = i;
     }
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
@@ -22,7 +30,7 @@ public class Archer : Player {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
@@ -47,7 +55,7 @@ public class Archer : Player {
                         }   
                         this.GetAnimator().SetTrigger("Damaged");
                         SetBaseShield(0);
-                        StageManager.instance.playerHUD.RemoveShieldIcon();
+                        StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
                     }
                 } else {
                     DamageNumberAnimation("Evaded", Color.white);
@@ -58,7 +66,7 @@ public class Archer : Player {
                     DamageNumberAnimation("Evaded", Color.white);
                     evaded = true;
                     evasionCount--;
-                    StageManager.instance.playerHUD.RemoveDodgeIcon();
+                    StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
                 } else {
                     evaded = false;
                     SetHealth(GetHealth() - realDamage + GetBaseShield());
@@ -69,24 +77,24 @@ public class Archer : Player {
                     }
                     this.GetAnimator().SetTrigger("Damaged");
                     SetBaseShield(0);
-                    StageManager.instance.playerHUD.RemoveShieldIcon();
+                    StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
                 }           
             }
         } else {
             DamageNumberAnimation("Blocked", Color.white);
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
+            StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
             SetBaseShield(GetBaseAttack() - realDamage);
         }
         if (GetHealth() < 0) {
-            StageManager.instance.playerHUD.SetHP(0);
+            StageManager.GetInstance().GetPlayerHUD().SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(GetHealth());
+            StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
         }
     }
 
     public override void ChangeIsBroken(bool status) {
         if (!evaded) {
-            this.isBroken = status;
+            ChangeIsBroken(status);
             if (status) {
                 GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
             }            

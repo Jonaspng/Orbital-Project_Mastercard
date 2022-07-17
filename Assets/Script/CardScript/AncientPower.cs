@@ -30,16 +30,16 @@ public class AncientPower : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
 public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-        AbstractEvent[] newAddEvent = {new PlayerDamageEvent(1, 5, enemyIndex)};
-        AbstractEvent[] newResetEvent = {new PlayerDamageEvent(1, -5, enemyIndex)};
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newAddEvent = {new PlayerDamageEvent(5, enemyIndex)};
+        AbstractEvent[] newResetEvent = {new PlayerDamageEvent(-5, enemyIndex)};
 
         
         if (eventManager.ContainsKey(currentTurn)) {

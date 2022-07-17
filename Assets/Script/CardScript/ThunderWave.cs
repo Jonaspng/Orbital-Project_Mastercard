@@ -35,14 +35,14 @@ class ThunderWave : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
         GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int,AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-        AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int,AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newResetEvent = {new StunEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();

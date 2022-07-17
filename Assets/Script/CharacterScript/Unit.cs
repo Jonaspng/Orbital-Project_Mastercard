@@ -25,8 +25,22 @@ public abstract class Unit : MonoBehaviour {
 
     [SerializeField] private AudioSource shieldSource;
 
+    [SerializeField] private bool isBroken;
+
     public string GetUnitName() {
         return this.unitName;
+    }
+
+    public bool BrokenStatus() {
+        return isBroken;
+    }
+
+    public virtual void ChangeIsBroken(bool status) {
+        this.isBroken = status;
+    }
+
+    public void SetBrokenStatus(bool status) {
+        this.isBroken = status;
     }
 
     public int GetHealth() {

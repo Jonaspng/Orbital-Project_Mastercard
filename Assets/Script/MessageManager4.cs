@@ -5,16 +5,13 @@ using System.IO;
 
 public class MessageManager4 : MonoBehaviour {
 
-    public TextMeshProUGUI message;
-    [SerializeField] public TextWriter textWriter;
-    public GameObject nextButton;
-
-    string deckPath;
+    [SerializeField] private TextMeshProUGUI message;
+    [SerializeField] private TextWriter textWriter;
+    [SerializeField] private GameObject nextButton;
 
     private void Awake() {
         nextButton.SetActive(false);
-        deckPath = $"{Application.persistentDataPath}/deckID.json";
-        File.Delete(deckPath);
+        File.Delete($"{Application.persistentDataPath}/deckID.json");
     }
 
     public void OnNextButtonClick() {

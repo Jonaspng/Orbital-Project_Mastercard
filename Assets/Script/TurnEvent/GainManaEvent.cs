@@ -1,14 +1,15 @@
+using UnityEngine;
 class GainManaEvent : AbstractEvent {
 
-    public int manaGained;
+    [SerializeField] private int manaGained;
 
-    public GainManaEvent(int numberOfTurns, int manaGained, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex) {
+    public GainManaEvent(int manaGained, int enemyIndex) 
+    : base(enemyIndex) {
         this.manaGained = manaGained;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        StageManager.instance.manaCount += manaGained;
+        StageManager.GetInstance().AddManaCount(manaGained);
     }
 
 }

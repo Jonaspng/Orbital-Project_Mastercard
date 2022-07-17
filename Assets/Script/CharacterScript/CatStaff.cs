@@ -9,13 +9,13 @@ public class CatStaff : Enemy {
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
         int numberOfEnemies = enemies.Length;
-        if (!this.isImmobilised) {
-            if (this.moveNumber == 1) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
                 print("Enemy Attacks");
                 this.PlayAttackSound();
                 this.GetAnimator().SetTrigger("Attack");
                 player.receiveDamage(this, this.GetFullDamage(), index);      
-            } else if (this.moveNumber == 2) {
+            } else if (this.GetMoveNumber() == 2) {
                 print("Enemy Defends");
                 SetBaseShield(GetBaseShield() + 6);
                 this.PlayShieldSound();
@@ -32,9 +32,9 @@ public class CatStaff : Enemy {
     }
 
     public override void RenderWarningIndicator() {
-        if (this.moveNumber == 1) {
+        if (this.GetMoveNumber() == 1) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
-        } else if (this.moveNumber == 2) {
+        } else if (this.GetMoveNumber() == 2) {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
         } else {
             this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackUpAllIndicator();

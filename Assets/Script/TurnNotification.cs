@@ -3,10 +3,17 @@ using TMPro;
 
 public class TurnNotification : MonoBehaviour {
 
-    public Animator backgroundAnimator;
+    [SerializeField] private Animator backgroundAnimator;
 
-    public Animator textAnimator;
+    [SerializeField] private Animator textAnimator;
 
+    public Animator GetBackgroundAnimator() {
+        return this.backgroundAnimator;
+    }
+
+    public Animator GetTextAnimator() {
+        return this.textAnimator;
+    }
 
     public void ChangeText(string message) {
         this.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = message;

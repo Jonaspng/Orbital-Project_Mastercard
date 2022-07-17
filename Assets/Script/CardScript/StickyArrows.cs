@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class StickyArrows : Cards {
 
     [SerializeField] private Material material;

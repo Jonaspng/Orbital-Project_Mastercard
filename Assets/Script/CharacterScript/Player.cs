@@ -13,9 +13,7 @@ public abstract class Player : Unit {
         StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
     }
 
-    
-    
-    public override void ChangeIsBroken(bool status) {
+    public virtual void ChangeIsBroken(bool status) {
         this.SetBrokenStatus(status);
         if (status) {
             GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();

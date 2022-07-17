@@ -420,8 +420,4 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-
-
-
-    
 }

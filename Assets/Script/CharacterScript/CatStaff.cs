@@ -1,6 +1,3 @@
-using UnityEngine;
-
-
 public class CatStaff : Enemy {
 
     private void Awake() {

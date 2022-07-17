@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class OnTouchDown : MonoBehaviour {
     private void Update () {
         RaycastHit hit = new RaycastHit();

@@ -94,7 +94,7 @@ public class Archer : Player {
 
     public override void ChangeIsBroken(bool status) {
         if (!evaded) {
-            ChangeIsBroken(status);
+            SetBrokenStatus(status);
             if (status) {
                 GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
             }            

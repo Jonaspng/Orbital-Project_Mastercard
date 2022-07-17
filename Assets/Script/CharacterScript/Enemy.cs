@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 
-
 public abstract class Enemy : Unit {
 
     [SerializeField] private int enemyIndex;

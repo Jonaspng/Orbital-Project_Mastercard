@@ -35,10 +35,6 @@ public abstract class Unit : MonoBehaviour {
         return isBroken;
     }
 
-    public virtual void ChangeIsBroken(bool status) {
-        this.isBroken = status;
-    }
-
     public void SetBrokenStatus(bool status) {
         this.isBroken = status;
     }

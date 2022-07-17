@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BossCat : Enemy {
 
     private void Awake() {

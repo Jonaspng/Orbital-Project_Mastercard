@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using EZCameraShake;
 
-
 public class Warrior : Player {
 
     [SerializeField] private bool isStrongWillpower;

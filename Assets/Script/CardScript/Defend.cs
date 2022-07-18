@@ -32,7 +32,7 @@ public class Defend : Cards {
         this.dissolve = true;
         StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
         StageManager.GetInstance().playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
    
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Testing : MonoBehaviour {
+public class FanShapeArranger : MonoBehaviour {
     
     public void ArrangeCards() {
         int numberOfCards = this.transform.childCount;

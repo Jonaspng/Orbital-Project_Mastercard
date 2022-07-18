@@ -30,7 +30,7 @@ class PommelStrike : Cards {
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
         StageManager.GetInstance().playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

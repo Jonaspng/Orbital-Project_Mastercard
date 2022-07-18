@@ -37,7 +37,7 @@ public class Brace : Cards {
         this.dissolve = true;
         StageManager.GetInstance().playerMove(this, enemyIndex);
         StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

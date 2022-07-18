@@ -144,7 +144,7 @@ public class DeckManager : MonoBehaviour {
         } else {
             this.Draw(numOfCards);
         }
-        GameObject.Find("Current Hand").GetComponent<Testing>().ArrangeCards();
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ArrangeCards();
     }
 
     public void ClearCards() {

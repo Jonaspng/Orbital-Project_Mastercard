@@ -10,7 +10,7 @@ MasterCard a Single-Player survival based card game. With the storyline of a NUS
 - [Installation](#installation)
     - [Android User](#android-user)
     - [Non-Android User](#non-andriod-user)
-    - [No Installation?](#no-installation)
+- [No Installation?](#no-installation)
 - [Developers](#developers)
 - [Special Thanks](#special-thanks)
 - [Links](#links)

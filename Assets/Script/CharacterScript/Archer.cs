@@ -34,6 +34,7 @@ public class Archer : Player {
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
+            print("real Damage is" + realDamage);
         } else {
             realDamage = damage;
         }
@@ -85,7 +86,7 @@ public class Archer : Player {
         } else {
             DamageNumberAnimation("Blocked", Color.white);
             StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
-            SetBaseShield(GetBaseAttack() - realDamage);
+            SetBaseShield(GetBaseShield() - realDamage);
         }
         if (GetHealth() < 0) {
             StageManager.GetInstance().GetPlayerHUD().SetHP(0);
@@ -106,8 +107,10 @@ public class Archer : Player {
             AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(false, 0)};
 
             if (eventManager.ContainsKey(currentTurn)) {
-                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
-                    eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+                    eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
+            } else {
+                eventManager.Add(currentTurn, newResetEvent);
             }
 
         }

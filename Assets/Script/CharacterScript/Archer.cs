@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using EZCameraShake;
+using System.Linq;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Archer : Player {
@@ -98,6 +100,16 @@ public class Archer : Player {
             if (status) {
                 GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
             }            
+        } else{
+            int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+            Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+            AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(false, 0)};
+
+            if (eventManager.ContainsKey(currentTurn)) {
+                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
+                    eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+            }
+
         }
         evaded = false;
     }

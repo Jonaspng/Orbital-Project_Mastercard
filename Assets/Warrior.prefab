@@ -141,6 +141,8 @@ MonoBehaviour:
   shieldModifier: 1
   isPoisoned: 0
   animator: {fileID: 2529367327091240091}
+  attackSource: {fileID: 0}
+  shieldSource: {fileID: 0}
   isBroken: 0
   brokenIcon: {fileID: 0}
   isStrongWillpower: 0
@@ -195,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 818080653064577004, guid: 7e086c63fff633b4fb3d854ed0e2faaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 235.32358
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 818080653064577004, guid: 7e086c63fff633b4fb3d854ed0e2faaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -317,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_LocalRotation.w

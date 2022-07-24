@@ -6,6 +6,7 @@ public abstract class Cards : MonoBehaviour {
     [SerializeField] private int damage;
 
     [SerializeField] private int originalDamage;
+    
     [SerializeField] private int id;
 
     [SerializeField] private string description;

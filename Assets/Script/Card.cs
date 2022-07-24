@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject {
     [SerializeField] private string cardName;
-    [SerializeField] private string description;
     [SerializeField] private Sprite frame;
     [SerializeField] private int manaCost;
     

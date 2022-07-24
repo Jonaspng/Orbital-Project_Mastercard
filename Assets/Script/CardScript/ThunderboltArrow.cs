@@ -13,7 +13,7 @@ public class ThunderboltArrow : Cards {
     public TextMeshProUGUI descriptionTag;
 
     private void Awake() {
-        InitialiseValues(8, 8, "Deal 8 damage. Enemy takes 25% more damage for 2 turns.");
+        InitialiseValues(10, 10, "Deal 10 damage. Enemy takes 25% more damage for 2 turns.");
     }
 
     public override void RefreshString() {

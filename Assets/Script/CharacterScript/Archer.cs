@@ -27,6 +27,16 @@ public class Archer : Player {
         this.evasionCount = i;
     }
 
+    public bool CheckForBrokenEvent(AbstractEvent element) {
+        if (element is BrokenPlayerEvent) {
+            BrokenPlayerEvent temp = (BrokenPlayerEvent) element;
+            if (temp.CheckBroken()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
         // Effective damage calculation
         int realDamage;
@@ -104,15 +114,9 @@ public class Archer : Player {
         } else{
             int currentTurn = StageManager.GetInstance().GetCurrentTurn();
             Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
-            AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(false, 0)};
-
-            if (eventManager.ContainsKey(currentTurn)) {
-                    AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
-                    eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
-            } else {
-                eventManager.Add(currentTurn, newResetEvent);
-            }
-
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+            currEvent = currEvent.Where((element, index) => !CheckForBrokenEvent(element)).ToArray();
+            eventManager[currentTurn] = currEvent;
         }
         evaded = false;
     }

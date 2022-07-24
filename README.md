@@ -33,7 +33,7 @@ For non-android user, you will need an android emulator in order to run the apk 
 
 ## No Installation?
 
-Not willing to install this game on your phone or emulator? Don't worry play our game online through your computer. Try out the WebGL Build hosted on Github <a>here</a>.
+Not willing to install this game on your phone or emulator? Don't worry play our game online through your computer. Try out the WebGL Build hosted on Github [here](https://jonaspng.github.io/Mobile-2D/Builds/Milestone%203/index.html).
 
 ## Developers
 * Png Yi Wei Jonas

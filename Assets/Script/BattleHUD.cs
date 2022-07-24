@@ -4,48 +4,58 @@ using TMPro;
 
 public class BattleHUD : MonoBehaviour {
 
-    public TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    public Slider hpSlider;
+    [SerializeField] private Slider hpSlider;
 
-    public GameObject iconsBar;
+    [SerializeField] private GameObject iconsBar;
 
-    public GameObject shieldIcon;
+    [SerializeField] private GameObject prewarnIndicator;
 
-    public GameObject poisonIcon;
+    [SerializeField] private GameObject shieldIcon;
 
-    public GameObject brokenShieldIcon;
+    [SerializeField] private GameObject shieldAllIcon;
 
-    public GameObject burnedIcon;
+    [SerializeField] private GameObject poisonIcon;
 
-    public GameObject stunIcon;
+    [SerializeField] private GameObject brokenShieldIcon;
 
-    public GameObject attackUpIcon;
+    [SerializeField] private GameObject burnedIcon;
 
-    public GameObject attackDownIcon;
+    [SerializeField] private GameObject stunIcon;
 
-    public GameObject dodgeIcon;
+    [SerializeField] private GameObject attackIndicator;
 
-    public GameObject smokeBombIcon;
+    [SerializeField] private GameObject attackUpIcon;
 
-    public GameObject mysticShieldIcon;
+    [SerializeField] private GameObject allAttackUpIcon;
 
-    public GameObject reflectIcon;
+    [SerializeField] private GameObject attackDownIcon;
 
-    public GameObject EndureIcon;
+    [SerializeField] private GameObject dodgeIcon;
 
-    public bool isShieldIconOn;
+    [SerializeField] private GameObject smokeBombIcon;
 
-    public bool isBrokenShieldIconOn;
+    [SerializeField] private GameObject mysticShieldIcon;
 
-    public int maxHp;
+    [SerializeField] private GameObject reflectIcon;
+
+    [SerializeField] private GameObject EndureIcon;
+
+    [SerializeField] private GameObject SummonIcon;
+
+    [SerializeField] private bool isShieldIconOn;
+
+    [SerializeField] private bool isBrokenShieldIconOn;
+
+    [SerializeField] private int maxHp;
 
     public void SetHUD(Unit unit) {
-        nameText.text = unit.unitName;
-        hpSlider.maxValue = unit.maxHp;
-        this.maxHp = unit.maxHp;
-        hpSlider.value = unit.health;
-        this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = unit.health + "/" + unit.maxHp;
+        nameText.text = unit.GetUnitName();
+        hpSlider.maxValue = unit.GetMaxHp();
+        this.maxHp = unit.GetMaxHp();
+        hpSlider.value = unit.GetHealth();
+        this.transform.Find("Health bar").GetComponentInChildren<TextMeshProUGUI>().text = unit.GetHealth() + "/" + unit.GetMaxHp();
     }
 
     public void SetHP(int hp) {
@@ -54,7 +64,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderPlayerShieldIcon(int shield) {
-        int baseShield = StageManager.instance.player.baseShield;
+        int baseShield = StageManager.GetInstance().GetPlayer().GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = shield.ToString();
@@ -64,7 +74,7 @@ public class BattleHUD : MonoBehaviour {
     }
 
     public void RenderEnemyShieldIcon(int enemyIndex) {
-        int baseShield = StageManager.instance.enemies[enemyIndex].baseShield;
+        int baseShield = StageManager.GetInstance().GetEnemies()[enemyIndex].GetBaseShield();
         if (iconsBar.transform.Find("Shield Icon(Clone)") == null) {
             GameObject icon = Instantiate(shieldIcon, iconsBar.transform);
             icon.GetComponentInChildren<TextMeshProUGUI>().text = baseShield.ToString();
@@ -217,7 +227,38 @@ public class BattleHUD : MonoBehaviour {
         }
     }
 
+    public void RenderAttackIndicator() {
+        GameObject attack = Instantiate(attackIndicator, prewarnIndicator.transform);
+        attack.GetComponentInChildren<TextMeshProUGUI>().text = this.gameObject.GetComponentInChildren<Enemy>().GetFullDamage().ToString();
+    }
 
-   
+    public void RenderShieldIndicator() {
+        GameObject shield = Instantiate(shieldIcon, prewarnIndicator.transform);      
+        shield.GetComponentInChildren<TextMeshProUGUI>().text = "6";
+    }
+
+    public void RenderBrokenIndicator() {
+        GameObject broken = Instantiate(brokenShieldIcon, prewarnIndicator.transform);
+        broken.GetComponentInChildren<TextMeshProUGUI>().text = this.gameObject.GetComponentInChildren<Enemy>().GetFullDamage().ToString();
+    }
+
+    public void RenderShieldAllIndicator() {
+        GameObject shield = Instantiate(shieldAllIcon, prewarnIndicator.transform);
+        shield.GetComponentInChildren<TextMeshProUGUI>().text = "6";
+    }
+
+    public void RenderAttackUpAllIndicator() {
+        Instantiate(allAttackUpIcon, prewarnIndicator.transform);
+    }
+
+    public void RenderSummonIndicator() {
+        Instantiate(SummonIcon, prewarnIndicator.transform);
+    }
+
+    public void RemoveIndicator() {
+        foreach(Transform indicator in prewarnIndicator.transform) {
+            Destroy(indicator.gameObject);
+        }
+    }
 
 }

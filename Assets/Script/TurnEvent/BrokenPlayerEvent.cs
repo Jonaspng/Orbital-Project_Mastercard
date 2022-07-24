@@ -3,12 +3,15 @@ using UnityEngine;
 class BrokenPlayerEvent : AbstractEvent {
 
     // Event that makes player broken
-    public bool isBroken;
+    [SerializeField] private bool isBroken;
 
-    public BrokenPlayerEvent(int numberOfTurns, bool isBroken, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex){
-        this.numberOfTurns = numberOfTurns;
+    public BrokenPlayerEvent(bool isBroken, int enemyIndex) 
+    : base(enemyIndex){
         this.isBroken = isBroken;
+    }
+
+    public bool CheckBroken() {
+        return this.isBroken;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {

@@ -1,14 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Endure : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public Endure(int turns, int manaCost) : base(manaCost, turns) {
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
+    private void Awake() {
+        InitialiseValues("If you receive lethal damage this turn, set your health to 1 ");
+    }
+
+    public override void RefreshString() {
+        
     }
 
     private void Update() {
@@ -25,13 +32,13 @@ public class Endure : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Warrior temp = (Warrior) player;
-        if (!temp.isEndure) {
+        if (!temp.CheckEndure()) {
             GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderEndureIcon();
         }
         temp.ChangeIsEndure(true);

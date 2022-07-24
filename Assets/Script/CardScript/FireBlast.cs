@@ -2,18 +2,22 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 class FireBlast : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public FireBlast(int manaCost, int damage, int turns) 
-    : base(manaCost, turns){
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(8, 8, "Deal 8 damage. Apply burn for 2 turns.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Apply burn for 2 turns.";
     }
 
     private void Update() {
@@ -30,17 +34,17 @@ class FireBlast : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.instance.playerEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
-        AbstractEvent[] resetEvent = {new BurnEvent(1, false, enemyIndex)};
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, enemyIndex)};
+        AbstractEvent[] resetEvent = {new BurnEvent(false, enemyIndex)};
 
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
@@ -61,8 +65,9 @@ class FireBlast : Cards {
             eventManager2.Add(currentTurn + 1, resetEvent);
         }
         
-        player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].receiveDamage(this.damage, enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
         
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsBurned(true);

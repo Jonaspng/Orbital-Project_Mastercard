@@ -2,18 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 class PoisonArrow : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public PoisonArrow(int damage, int manaCost, int turns) 
-    : base(manaCost, turns){
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(8, 8, "Deal 8 damage. Apply poison for 2 turns.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() + " damage. Apply poison for 2 turns. ";
     }
 
     private void Update() {
@@ -31,26 +35,27 @@ class PoisonArrow : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
 
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(8), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
 
         if (enemies[enemyIndex] != null) {
             enemies[enemyIndex].ChangeIsPoisoned(true);
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderEnemyPoisonIcon();
         }
 
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.instance.playerEventManager;
-        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, 2, enemyIndex)};
-        AbstractEvent[] resetEvent = {new PoisonEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        Dictionary<int, AbstractEvent[]> eventManager2 = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newEvent = {new OvertimeDamageEvent(3, enemyIndex)};
+        AbstractEvent[] resetEvent = {new PoisonEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();

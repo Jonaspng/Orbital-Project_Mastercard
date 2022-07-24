@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class MultipleShots : Cards {
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public MultipleShots(int shotCount, int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(3, 3, "Shoot 2 - 5 arrows, each dealing 3 damage.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Shoot 2 - 5 arrows, each dealing " + GetDamage() + " damage.";
     }
 
     private void Update() {
@@ -25,16 +30,17 @@ public class MultipleShots : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
     
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
         Archer archer = (Archer) player;
         for (int i = 0; i < Random.Range(2, 6); i++) {
             if (enemies[enemyIndex] != null) {
-                enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
+                enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
             }
         }      
     }

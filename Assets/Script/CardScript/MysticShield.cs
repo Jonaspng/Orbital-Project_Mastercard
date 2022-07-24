@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class MysticShield : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public MysticShield(int turns, int manaCost) : base(manaCost, turns) {
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
+    private void Awake() {
+        InitialiseValues("Reduce damage by 25% this turn.");
     }
 
     private void Update() {
@@ -17,6 +20,7 @@ public class MysticShield : Cards {
         }
     }
 
+
     public override void OnDrop(int enemyIndex) {
         foreach (Transform word in this.transform.Find("Frame").transform) {
             word.gameObject.SetActive(false);
@@ -24,12 +28,12 @@ public class MysticShield : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].changeAttackModifier(0.75);
+        enemies[enemyIndex].SetAttackModifier(0.75);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderMysticShieldIcon();
     }
 

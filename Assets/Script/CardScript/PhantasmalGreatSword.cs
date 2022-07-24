@@ -1,17 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PhantasmalGreatSword : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public PhantasmalGreatSword(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(30, 30, "Deal 30 damage.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -28,12 +32,13 @@ public class PhantasmalGreatSword : Cards {
         }
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
 }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
     }
 }

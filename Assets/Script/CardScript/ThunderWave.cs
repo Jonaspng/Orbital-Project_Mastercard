@@ -2,16 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 class ThunderWave : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public ThunderWave(int manaCost, int turns) 
-    : base(manaCost, turns){
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
+    private void Awake() {
+        InitialiseValues("Stun an enemy for 1 turn.");
+    }
+
+    public override void RefreshString() {
+        
     }
     
     private void Update() {
@@ -29,14 +35,14 @@ class ThunderWave : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int,AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-        AbstractEvent[] newResetEvent = {new StunEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int,AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newResetEvent = {new StunEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();

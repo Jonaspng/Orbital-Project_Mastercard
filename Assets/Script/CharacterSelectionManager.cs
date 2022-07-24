@@ -6,29 +6,37 @@ using TMPro;
 
 public class CharacterSelectionManager : MonoBehaviour {
 
-    public string characterChosen;
+    [SerializeField] private string characterChosen;
 
-    public GameObject backgroundImage;
+    [SerializeField] private GameObject backgroundImage;
     
-    public GameObject characterName;
+    [SerializeField] private GameObject characterName;
 
-    public GameObject hp;
+    [SerializeField] private GameObject hp;
 
-    public GameObject description;
+    [SerializeField] private GameObject description;
 
-    public string currentCharacter;
+    [SerializeField] private string currentCharacter;
 
-    public int currentHp;
+    [SerializeField] private int currentHp;
 
-    public Sprite warriorSelection;
+    [SerializeField] private Sprite warriorSelection;
 
-    public Sprite archerSelection;
+    [SerializeField] private Sprite archerSelection;
 
-    public Sprite mageSelection;
+    [SerializeField] private Sprite mageSelection;
 
-    public GameObject confirmButton;
+    [SerializeField] private GameObject warriorButton;
 
-    public string deckPath;
+    [SerializeField] private GameObject archerButton;
+
+    [SerializeField] private GameObject mageButton;
+
+    [SerializeField] private Material buttonOutline;
+
+    [SerializeField] private GameObject confirmButton;
+
+    [SerializeField] private string deckPath;
     private void Start() {
         deckPath = $"{Application.persistentDataPath}/deckID.json";
         OnSwordClick();
@@ -36,6 +44,9 @@ public class CharacterSelectionManager : MonoBehaviour {
     }
 
     public void OnSwordClick() {
+        warriorButton.GetComponent<Image>().material = buttonOutline;
+        archerButton.GetComponent<Image>().material = null;
+        mageButton.GetComponent<Image>().material = null;
         backgroundImage.GetComponent<Image>().sprite = warriorSelection;
         currentCharacter = "Warrior";
         currentHp = 60;
@@ -48,6 +59,9 @@ public class CharacterSelectionManager : MonoBehaviour {
     }
 
     public void OnArrowClick() {
+        warriorButton.GetComponent<Image>().material = null;
+        archerButton.GetComponent<Image>().material = buttonOutline;
+        mageButton.GetComponent<Image>().material = null;
         backgroundImage.GetComponent<Image>().sprite = archerSelection;
         currentCharacter = "Archer";
         currentHp = 40;
@@ -60,6 +74,9 @@ public class CharacterSelectionManager : MonoBehaviour {
     }
 
     public void OnStaffClick() {
+        warriorButton.GetComponent<Image>().material = null;
+        archerButton.GetComponent<Image>().material = null;
+        mageButton.GetComponent<Image>().material = buttonOutline;
         backgroundImage.GetComponent<Image>().sprite = mageSelection;
         currentCharacter = "Mage";
         currentHp = 50;

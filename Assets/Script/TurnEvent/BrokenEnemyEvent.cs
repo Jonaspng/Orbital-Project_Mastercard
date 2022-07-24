@@ -3,18 +3,17 @@ using UnityEngine;
 class BrokenEnemyEvent : AbstractEvent {
 
     // Event that makes enemy broken
-    public bool isBroken;
+    [SerializeField] private bool isBroken;
 
-    public BrokenEnemyEvent(int numberOfTurns, bool isBroken, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex){
-        this.numberOfTurns = numberOfTurns;
+    public BrokenEnemyEvent(bool isBroken, int enemyIndex) 
+    : base(enemyIndex){
         this.isBroken = isBroken;
     }
 
     public override void executeEvent(Player player, Enemy[] enemies) {
-        if (enemies[this.enemyIndex] != null) {
-            enemies[this.enemyIndex].ChangeIsBroken(this.isBroken);
-            enemies[enemyIndex].GetComponentInParent<BattleHUD>().RemoveBrokenIcon();
+        if (enemies[this.GetEnemyIndex()] != null) {
+            enemies[this.GetEnemyIndex()].SetBrokenStatus(this.isBroken);
+            enemies[this.GetEnemyIndex()].GetComponentInParent<BattleHUD>().RemoveBrokenIcon();
         }
         
     }

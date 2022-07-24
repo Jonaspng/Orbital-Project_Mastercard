@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 519898598152194321}
   - {fileID: 9194160130063982868}
+  - {fileID: 4524157843423755734}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: CS3230
-  health: 110
-  maxHp: 110
+  health: 80
+  maxHp: 80
   baseAttack: 10
   attackModifier: 1
   baseShield: 0
@@ -106,10 +107,12 @@ MonoBehaviour:
   isPoisoned: 0
   animator: {fileID: 3772967356377890853}
   enemyIndex: 0
+  moveNumber: 0
   arrowStuckCount: 0
   isImmobilised: 0
   isBurned: 0
   isBroken: 0
+  brokenIcon: {fileID: 0}
 --- !u!95 &3772967356377890853
 Animator:
   serializedVersion: 4
@@ -130,6 +133,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &6952153127445555388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4524157843423755734}
+  m_Layer: 5
+  m_Name: Prewarn Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4524157843423755734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952153127445555388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37, y: 2.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1626296337726825644}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7371251392171403163
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.55
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: 715872036966037736, guid: 496cf8017d37b7849bac4e995ffd5bd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

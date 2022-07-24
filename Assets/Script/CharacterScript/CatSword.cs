@@ -1,18 +1,16 @@
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
 public class CatSword : Enemy {
     
-    public CatSword (double attackModifier, double shieldModifier) 
-    : base(30, attackModifier, shieldModifier) { 
-        //empty
+    private void Awake() {
+        SetBaseAttack(3);
     }
 
     public bool CheckForBrokenResetEvent(AbstractEvent element) {
         if (element is BrokenPlayerEvent) {
             BrokenPlayerEvent temp = (BrokenPlayerEvent) element;
-            if (!temp.isBroken) {
+            if (!temp.CheckBroken()) {
                 return true;
             }
         }
@@ -20,28 +18,31 @@ public class CatSword : Enemy {
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
-        if (!this.isImmobilised) {
-            if (moveNumber == 1) {
-                print("Cat attack with " + this.GetFullDamage(6));
-                this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
-            } else if (moveNumber == 2) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
+                print("Cat attack with " + this.GetFullDamage());
+                this.GetAnimator().SetTrigger("Attack");
+                this.PlayAttackSound();
+                player.receiveDamage(this, this.GetFullDamage(), index);
+                
+            } else if (this.GetMoveNumber() == 2) {
                 print("applied shield");
-                this.AddBaseShield(6);
+                SetBaseShield(GetBaseShield() + 6);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
-                print("Cat attack with " + this.GetFullDamage(6) + " broken");
-                this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(6), index);
-
-                player.ChangeIsBroken(true);
+                print("Cat attack with " + this.GetFullDamage() + " broken");
+                this.GetAnimator().SetTrigger("Attack");
+                this.PlayAttackSound();
+                player.receiveDamage(this, this.GetFullDamage(), index);
+                player.RenderBrokenIndicator();
                 
-                int currentTurn = StageManager.instance.currentTurn;
+                
+                int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-                Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-                AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(1, false, this.enemyIndex)};
-                AbstractEvent[] newEvent = {new BrokenPlayerEvent(1, true, this.enemyIndex)};
+                Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+                AbstractEvent[] newResetEvent = {new BrokenPlayerEvent(false, this.GetEnemyIndex())};
+                AbstractEvent[] newEvent = {new BrokenPlayerEvent(true, this.GetEnemyIndex())};
 
                 if (eventManager.ContainsKey(currentTurn)) {
                     AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
@@ -57,10 +58,21 @@ public class CatSword : Enemy {
                 } else {
                     eventManager.Add(currentTurn + 1, newResetEvent);
                 }
+                player.ChangeIsBroken(true);
             }
         }
         
     }
+
+    public override void RenderWarningIndicator() {
+        if (this.GetMoveNumber() == 1) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
+        } else if (this.GetMoveNumber() == 2) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderBrokenIndicator();
+        }
+    } 
        
 
 }

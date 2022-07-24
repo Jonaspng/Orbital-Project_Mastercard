@@ -1,17 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ArcherBasicAttack : Cards {
+    
+    [SerializeField] private Material material;
 
-    public int damage;
+    [SerializeField] private bool dissolve;
 
-    public Material material;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public bool dissolve;
+    private void Awake() {
+        InitialiseValues(6, 6, "Deal 6 damage.");
+    }
 
-    public ArcherBasicAttack(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() +" damage.";
     }
 
     private void Update() {
@@ -28,14 +32,15 @@ public class ArcherBasicAttack : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     } 
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        player.animator.SetTrigger("Attack");
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(this.damage), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
     }
 
 }

@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StrongWillpower : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public StrongWillpower(int turns, int manaCost) : base(manaCost, turns) {
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
+    private void Awake() {
+        InitialiseValues("For every hit you take, your attacks do 2 more damage for rest of combat.");
     }
 
     private void Update() {
@@ -25,8 +28,8 @@ public class StrongWillpower : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

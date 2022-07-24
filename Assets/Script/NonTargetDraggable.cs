@@ -2,18 +2,22 @@
  using UnityEngine.EventSystems;
  
  public class NonTargetDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-    Camera mainCamera;
-    float zAxis = 1.0f;
-    Transform parentToReturnTo;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float zAxis = 1.0f;
+    [SerializeField] private Transform parentToReturnTo;
      // Use this for initialization
-    Quaternion originalAngle;
-    Vector3 originalPosition;
+    [SerializeField] private Quaternion originalAngle;
+    [SerializeField] private Vector3 originalPosition;
 
-    public bool isInDropZone;
+    [SerializeField] private bool isInDropZone;
 
-    int originalIndex;
-    void Start() {
+    [SerializeField] private int originalIndex;
+    private void Start() {
         mainCamera = Camera.main;
+    }
+
+    public void SetInDropZone(bool boolean) {
+        this.isInDropZone = boolean;
     }
  
     public void OnBeginDrag(PointerEventData eventData) {
@@ -35,7 +39,7 @@
     }
  
     public void OnEndDrag(PointerEventData eventData) {
-        if (isInDropZone && StageManager.instance.manaCount - eventData.pointerDrag.GetComponent<Cards>().manaCost >= 0) {
+        if (isInDropZone && StageManager.GetInstance().GetManaCount() - eventData.pointerDrag.GetComponent<Cards>().GetManaCost() >= 0) {
             eventData.pointerDrag.GetComponent<Cards>().OnDrop(0);
         } else {
             this.transform.SetParent(parentToReturnTo);
@@ -45,12 +49,5 @@
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         
-    }
-
-     //Add Event System to the Camera
-    void addEventSystem() {
-        GameObject eventSystem = new GameObject("EventSystem");
-        eventSystem.AddComponent<EventSystem>();
-        eventSystem.AddComponent<StandaloneInputModule>();
     }
 }

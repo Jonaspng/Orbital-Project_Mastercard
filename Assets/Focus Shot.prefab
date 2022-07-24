@@ -449,8 +449,8 @@ MonoBehaviour:
   m_fontSizeMin: 1
   m_fontSizeMax: 32
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -581,12 +581,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3e0d94d1e7a914885427c5f4ef7d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  originalDamage: 0
   id: 22
-  manaCost: 1
+  description: 
+  manaCost: 0
   turns: 0
   material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
   dissolve: 0
   damageModifier: 1.25
+  descriptionTag: {fileID: 1277945582181735477}
 --- !u!114 &8186345946314116990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +603,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100650cc32d6ffc47b803e96fa72ffd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  zAxis: 1
+  parentToReturnTo: {fileID: 0}
+  originalAngle: {x: 0, y: 0, z: 0, w: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
   isInDropZone: 0
+  originalIndex: 0
 --- !u!225 &-173036872130857835
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -141,7 +141,10 @@ MonoBehaviour:
   shieldModifier: 1
   isPoisoned: 0
   animator: {fileID: 5603534878026775476}
+  attackSource: {fileID: 0}
+  shieldSource: {fileID: 0}
   isBroken: 0
+  brokenIcon: {fileID: 0}
   isReflected: 0
 --- !u!95 &5603534878026775476
 Animator:

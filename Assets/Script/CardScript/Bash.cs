@@ -2,19 +2,22 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 
 public class Bash : Cards {
+    [SerializeField] private Material material;
 
-    public int damage;
+    [SerializeField] private bool dissolve;
 
-    public Material material;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public bool dissolve;
+    private void Awake() {
+        InitialiseValues(8, 8, "Deal 8 damage. Enemy receives 25% more damage for 2 turns.");
+    }
 
-    public Bash(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Enemy receives 25% more damage for 2 turns.";
     }
 
     private void Update() {
@@ -31,15 +34,15 @@ public class Bash : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
                 
-        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(false, enemyIndex)};
         
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
@@ -48,12 +51,14 @@ public class Bash : Cards {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
 
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
 
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
 
         if (enemies[enemyIndex] != null) {
-            enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].SetBrokenStatus(true);
+            enemies[enemyIndex].RenderBrokenIndicator();
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }
         

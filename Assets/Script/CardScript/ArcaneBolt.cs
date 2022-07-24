@@ -2,21 +2,25 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ArcaneBolt : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-
-    public ArcaneBolt(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(10, 10, "Deal 10 damage. Enemy receives 25% more damage for 2 turns.");
     }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal " + GetDamage() +" damage. Enemy receives 25% more damage for 2 turns.";
+    }
+
 
     private void Update() {
         if (this.dissolve) {
@@ -32,24 +36,26 @@ public class ArcaneBolt : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
             eventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
         } else {
             eventManager.Add(currentTurn + 1, newResetEvent);
         }
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
         if (enemies[enemyIndex] != null) {
-            enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].SetBrokenStatus(true);
+            enemies[enemyIndex].RenderBrokenIndicator();
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }
     }

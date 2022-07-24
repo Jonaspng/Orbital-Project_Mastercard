@@ -2,15 +2,18 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class SmokeBomb : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public SmokeBomb(int turns, 
-    int manaCost) : base(manaCost, turns) {
+    [SerializeField] private TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        InitialiseValues("Enemy attacks have a 50% chance of missing this turn.");
     }
 
     private void Update() {
@@ -27,15 +30,15 @@ public class SmokeBomb : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-        AbstractEvent[] newResetEvent = {new StealthEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newResetEvent = {new StealthEvent(false, enemyIndex)};
         if (eventManager.ContainsKey(currentTurn)) {
             AbstractEvent[] currEvent = (AbstractEvent[]) eventManager[currentTurn];
             eventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();

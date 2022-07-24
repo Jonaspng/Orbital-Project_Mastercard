@@ -1,8 +1,8 @@
 using UnityEngine;
 class ReflectEvent : AbstractEvent {
-    public bool isReflected;
-    public ReflectEvent(int numberOfTurns, bool isReflected, int enemyIndex) 
-    : base(numberOfTurns, enemyIndex) {
+    [SerializeField] private bool isReflected;
+    public ReflectEvent(bool isReflected, int enemyIndex) 
+    : base(enemyIndex) {
         this.isReflected = isReflected;
     }
 

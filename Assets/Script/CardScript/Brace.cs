@@ -1,19 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Brace : Cards {
 
-    public int shield;
+    [SerializeField] private int shield;
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public Brace(int shield, int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.shield = shield;
-        this.damage = damage;
+    private void Awake() {
+        this.shield = 10;
+        InitialiseValues(10, 10, "Gain 10 shield. Deal 10 damage.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Gain 10 shield. Deal " + GetDamage() + " damage.";
     }
 
     private void Update() {
@@ -30,13 +35,14 @@ public class Brace : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddBaseShield(this.shield);
-        enemies[enemyIndex].receiveDamage(player.GetFullDamage(this.damage), enemyIndex);
+        player.SetBaseShield(player.GetBaseShield() + this.shield);
+        player.PlayAttackSound();
+        enemies[enemyIndex].receiveDamage(player.GetFullDamage(GetOriginalDamage()), enemyIndex);
     }
 }

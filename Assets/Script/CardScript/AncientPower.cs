@@ -2,17 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class AncientPower : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public AncientPower(int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues("Give 5 spell damage for next turn");
     }
 
     private void Update() {
@@ -29,16 +30,16 @@ public class AncientPower : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
 public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        int currentTurn = StageManager.instance.currentTurn;
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.playerEventManager;
-        AbstractEvent[] newAddEvent = {new PlayerDamageEvent(1, 5, enemyIndex)};
-        AbstractEvent[] newResetEvent = {new PlayerDamageEvent(1, -5, enemyIndex)};
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+        AbstractEvent[] newAddEvent = {new PlayerDamageEvent(5, enemyIndex)};
+        AbstractEvent[] newResetEvent = {new PlayerDamageEvent(-5, enemyIndex)};
 
         
         if (eventManager.ContainsKey(currentTurn)) {

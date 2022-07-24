@@ -2,18 +2,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class ThunderboltArrow : Cards {
-
-    public int damage;
 
     public Material material;
 
     public bool dissolve;
 
-    public ThunderboltArrow(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    public TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        InitialiseValues(10, 10, "Deal 10 damage. Enemy takes 25% more damage for 2 turns.");
+    }
+
+    public override void RefreshString() {
+        descriptionTag.text = "Deal "+ GetDamage() + " damage. Enemy takes 25% more damage for 2 turns.";
     }
 
     private void Update() {
@@ -30,19 +34,20 @@ public class ThunderboltArrow : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
         Archer archer = (Archer) player;
         
-        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyIndex);
-        player.animator.SetTrigger("Attack");
+        enemies[enemyIndex].ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyIndex);
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
 
-        int currentTurn = StageManager.instance.currentTurn;
-        Dictionary<int, AbstractEvent[]> eventManager = StageManager.instance.enemyEventManager;
-        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(1, false, enemyIndex)};
+        int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+        Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetEnemyEventManager();
+        AbstractEvent[] newResetEvent = {new BrokenEnemyEvent(false, enemyIndex)};
 
         if (eventManager.ContainsKey(currentTurn + 1)) {
             AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn + 1];
@@ -52,7 +57,8 @@ public class ThunderboltArrow : Cards {
         }
 
         if (enemies[enemyIndex] != null) {
-            enemies[enemyIndex].ChangeIsBroken(true);
+            enemies[enemyIndex].SetBrokenStatus(true);
+            enemies[enemyIndex].RenderBrokenIndicator();
             enemies[enemyIndex].GetComponentInParent<BattleHUD>().RenderBrokenIcon();
         }    
     }

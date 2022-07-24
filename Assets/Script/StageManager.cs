@@ -8,43 +8,134 @@ using TMPro;
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class StageManager : MonoBehaviour {
 
-    public BattleState state;
+    [SerializeField] private BattleState state;
 
-    public Transform playerBattleStation;
+    [SerializeField] private Transform playerBattleStation;
 
-    public int enemyCount;
+    [SerializeField] private int enemyCount;
 
-    public static StageManager instance;
+    [SerializeField] private static StageManager instance;
     
-    public Player player;
+    [SerializeField] private Player player;
 
-    public GameObject playerGO;
+    [SerializeField] private GameObject playerGO;
 
-    public Enemy[] enemies;
+    [SerializeField] private Enemy[] enemies;
 
-    public GameObject gameOverMenu;
+    [SerializeField] private GameObject gameOverMenu;
 
-    public int manaCount;
+    [SerializeField] private int manaCount;
 
-    public int currentTurn;
+    [SerializeField] private int currentTurn;
 
-    public BattleHUD playerHUD;
+    [SerializeField] private BattleHUD playerHUD;
 
-    public DeckManager deckManager;
+    [SerializeField] private DeckManager deckManager;
 
-    public GameObject endTurnButton;
-    
+    [SerializeField] private GameObject endTurnButton;
+
+    [SerializeField] private TurnNotification turnNotification;
+
+    [SerializeField] private GameObject notificationMenu;
+
+    [SerializeField] private GameObject lockedCardPanel;
+
+    [SerializeField] private GameObject pauseMenu;
+
+    [SerializeField] private GameObject canvas;
+
+    [SerializeField] private GameObject backgroundCanvas;
+
     //key = int; value = AbstractEvent[];
-    public Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
-    public Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
+    [SerializeField] private Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
+    [SerializeField] private Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
+
 
     private void Awake() {
-        RectTransform rt = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        float height = GameObject.Find("Background Canvas").GetComponent<RectTransform>().rect.height;
-        Vector3 scale = GameObject.Find("Background Canvas").GetComponent<RectTransform>().localScale;
-        rt.sizeDelta = new Vector2(800, height);
-        rt.localScale = scale;
         instance = this;
+        AudioListener.volume = PlayerPrefs.GetFloat("volumeValue");
+    }
+
+    public static StageManager GetInstance() {
+        return instance;
+    }
+
+    public int GetCurrentTurn() {
+        return this.currentTurn;
+    }
+
+    public Dictionary<int, AbstractEvent[]> GetPlayerEventManager() {
+        return this.playerEventManager;
+    }
+
+    public Dictionary<int, AbstractEvent[]> GetEnemyEventManager() {
+        return this.enemyEventManager;
+    }
+
+    public BattleHUD GetPlayerHUD() {
+        return this.playerHUD;
+    }
+
+    public int GetEnemyCount() {
+        return this.enemyCount;
+    }
+
+    public void AddManaCount(int mana) {
+        this.manaCount += mana;
+    }
+
+    public Player GetPlayer() {
+        return this.player;
+    }
+
+    public Enemy[] GetEnemies() {
+        return this.enemies;
+    }
+
+    public int GetManaCount() {
+        return this.manaCount;
+    }
+
+    public void SetPlayerGO(GameObject playerGO) {
+        this.playerGO = playerGO;
+    }
+    
+    public GameObject GetPlayerGO() {
+        return this.playerGO;
+    }
+
+    public Transform GetPlayerBattleStation() {
+        return this.playerBattleStation;
+    }
+
+    public void SetPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void SetPlayerHUD(BattleHUD battlehud) {
+        this.playerHUD = battlehud;
+    }
+
+    public void SetEnemies(Enemy[] enemies) {
+        this.enemies = enemies;
+    }
+
+    public void SetEnemyCount(int i ) {
+        this.enemyCount = i;
+    }
+
+    public DeckManager GetDeckManager() {
+        return this.deckManager;
+    }
+
+
+    private void Update() {
+        RectTransform rt = canvas.GetComponent<RectTransform>();
+        float height = backgroundCanvas.GetComponent<RectTransform>().rect.height;
+        float width = backgroundCanvas.GetComponent<RectTransform>().rect.width;
+        Vector3 scale = backgroundCanvas.GetComponent<RectTransform>().localScale;
+        rt.sizeDelta = new Vector2(width, height);
+        rt.localScale = scale;
     }
 
     private void Start() {
@@ -56,6 +147,7 @@ public class StageManager : MonoBehaviour {
     public void InitialiseBattle() {
         playerEventManager = new Dictionary<int, AbstractEvent[]>();
         enemyEventManager = new Dictionary<int, AbstractEvent[]>();
+        GameObject.Find("Stage Number").GetComponent<TextMeshProUGUI>().text = "Stage " + PlayerPrefs.GetInt("stage");
         this.manaCount = 3;
         RerenderManaCount(3);
         this.currentTurn = 0;
@@ -63,6 +155,11 @@ public class StageManager : MonoBehaviour {
         GameObject.Find("GameManager").GetComponent<GameManager>().InitialiseStage();
         playerHUD.RemoveAllIcons();
         StageEventExecute();
+        deckManager.DrawCard(5);
+        foreach (Enemy enemy in enemies) {
+            enemy.EnemyMoveNumberGenerator();
+            enemy.RenderWarningIndicator();
+        }
         state = BattleState.PLAYERTURN;
     }
 
@@ -75,11 +172,12 @@ public class StageManager : MonoBehaviour {
             }
 
             playerHUD.RemoveAllIcons();
-            player.ResetBaseShield();
+            player.SetBaseShield(0);
             player.ResetAttackModifier();
-            player.isBroken = false;
+            player.ChangeIsBroken(false);
             
             deckManager.GenerateNewCards();
+
             if (PlayerPrefs.GetInt("stage") != 6) {
                 yield return new WaitForSeconds(0.8f);
                 this.GetComponent<PopUpMenu>().PopUp();
@@ -100,6 +198,7 @@ public class StageManager : MonoBehaviour {
     
 
     public void OnEndTurnClick() {
+        endTurnButton.SetActive(false);
         StartCoroutine(OnEndTurnCoroutine());
     }
 
@@ -107,7 +206,7 @@ public class StageManager : MonoBehaviour {
 
         foreach(Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.ResetBaseShield();
+                enemy.SetBaseShield(0);
                 enemy.GetComponentInParent<BattleHUD>().RemoveShieldIcon();
             }
         }        
@@ -118,7 +217,17 @@ public class StageManager : MonoBehaviour {
         
         yield return StartCoroutine(EndTurn());
 
+        foreach (Enemy enemy in enemies) {
+            if (enemy != null) {
+                enemy.EnemyMoveNumberGenerator();
+                enemy.GetComponentInParent<BattleHUD>().RemoveIndicator();
+                enemy.RenderWarningIndicator();
+            }
+            
+        }
+
         state = BattleState.PLAYERTURN;
+        
     }
 
     public IEnumerator ExecuteEventsInManager(Dictionary<int, AbstractEvent[]> eventManager) {
@@ -135,11 +244,11 @@ public class StageManager : MonoBehaviour {
 
 
     public void playerMove(Cards card, int enemyIndex) {
-        if (this.manaCount - card.manaCost < 0) {
+        if (this.manaCount - card.GetManaCost() < 0) {
 
         } else {
             card.executeCard(player, enemies, enemyIndex);
-            this.manaCount -= card.manaCost;
+            this.manaCount -= card.GetManaCost();
             RerenderManaCount(this.manaCount);
         }
     }
@@ -156,13 +265,18 @@ public class StageManager : MonoBehaviour {
 
             deckManager.ClearCards();
 
-            endTurnButton.SetActive(false);
-            yield return new WaitForSeconds(1f);
+            //enemy turn
+            turnNotification.ChangeText("Enemy Turn");
+            turnNotification.GetBackgroundAnimator().SetTrigger("ChangeTurn");
+            turnNotification.GetTextAnimator().SetTrigger("ChangeTurn");
+
+            yield return new WaitForSeconds(2f);
+            
             for (int i = 0; i< enemies.Length; i++) {
                 if (enemies[i] != null) {
                     enemies[i].EnemyMove(player, enemies, i);
                     yield return new WaitForSeconds(1f);
-                    if (player.getHealth() <= 0) {
+                    if (player.GetHealth() <= 0) {
                         StartCoroutine(OnPlayerDeath());
                         yield break;
                     }
@@ -175,12 +289,12 @@ public class StageManager : MonoBehaviour {
             
             if (player is Archer) { // resets evasion count of archer
                 Archer temp = (Archer) player;
-                temp.evasionCount = 0;
+                temp.SetEvasionCount(0);
                 playerHUD.RemoveDodgeIcon();
             }
 
             playerHUD.RemoveShieldIcon();
-            player.ResetBaseShield();
+            player.SetBaseShield(0);
             player.ResetAttackModifier();
             playerHUD.RemoveEndureIcon();
             for (int i = 0; i < 5; i++) {
@@ -197,7 +311,7 @@ public class StageManager : MonoBehaviour {
 
             foreach(Enemy enemy in enemies) {
                 if (enemy != null) {
-                    enemy.ResetAttackModifier();
+                    enemy.SetAttackModifier(1);
                     // just in case go 2 attack up icon
                     for (int i = 0; i < 2; i++) {
                         enemy.gameObject.GetComponentInParent<BattleHUD>().RemoveAttackUpIcon();
@@ -206,26 +320,37 @@ public class StageManager : MonoBehaviour {
                 }
             }
 
+            // player turn
+            turnNotification.ChangeText("Player Turn");
+            turnNotification.GetBackgroundAnimator().SetTrigger("ChangeTurn");
+            turnNotification.GetTextAnimator().SetTrigger("ChangeTurn");
+
+            yield return new WaitForSeconds(2f);
+
             endTurnButton.SetActive(true);
             
-            if (enemyCount > 0 && player.getHealth() > 0) {
+            if (enemyCount > 0 && player.GetHealth() > 0) {
                 deckManager.DrawCard(5);
             }
         }        
     }
 
     public IEnumerator OnPlayerDeath() {
-        player.animator.SetTrigger("Dead");
+        player.GetAnimator().SetTrigger("Dead");
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
-                enemy.animator.SetTrigger("Dead");
+                enemy.GetAnimator().SetTrigger("Dead");
             }
         }
         yield return new WaitForSeconds(0.8f);
         gameOverMenu.SetActive(true);
-        endTurnButton.SetActive(false);
+        endTurnButton.SetActive(true);
     }
 
+    public void OnPauseGameClick() {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
 
     public void StageEventExecute() {
         int eventNumber = 0;
@@ -235,44 +360,48 @@ public class StageManager : MonoBehaviour {
         // Event 1: lock cat
         if (eventNumber == 1) {
             deckManager.LockCard();
+            GameObject lockedCard = Instantiate(deckManager.GetCurrentDeck().GetCardList()[deckManager.GetLockedCard()]);
+            lockedCard.GetComponent<Cards>().DisableAllScripts();
+            lockedCard.transform.SetParent(lockedCardPanel.transform, false);
+            notificationMenu.SetActive(true);
         }
         // Event 2: Heal Cat
         else if (eventNumber == 2) {
-            if (player.maxHp - player.health <= 20) {
-                player.health = player.maxHp;
+            if (player.GetMaxHp() - player.GetHealth() <= 20) {
+                player.SetHealth(player.GetMaxHp());
             } else {
-                player.health += 20;
+                player.SetHealth(player.GetHealth() + 20);
             }
-            PlayerPrefs.SetInt("health", player.health);
-            playerHUD.SetHP(player.health);
+            PlayerPrefs.SetInt("health", player.GetHealth());
+            playerHUD.SetHP(player.GetHealth());
         }
         // Event 3: Poison Cat
         else if (eventNumber == 3) {
             player.ChangeIsPoisoned(true);
             playerHUD.RenderEnemyPoisonIcon();
 
-            AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 2, 0)};
-            AbstractEvent[] resetEvent = {new PlayerPoisonEvent(1, false, 0)};
+            AbstractEvent[] newEvent = {new PlayerPoisonDamageEvent(3, 0)};
+            AbstractEvent[] resetEvent = {new PlayerPoisonEvent(false, 0)};
 
-            if (playerEventManager.ContainsKey(currentTurn)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
-                playerEventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
+            if (enemyEventManager.ContainsKey(currentTurn)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn];
+                enemyEventManager[currentTurn] = currEvent.Concat(newEvent).ToArray();
             } else {
-                playerEventManager.Add(currentTurn, newEvent);
+                enemyEventManager.Add(currentTurn, newEvent);
+            }
+
+            if (enemyEventManager.ContainsKey(currentTurn + 1)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn + 1];
+                enemyEventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+            } else {
+                enemyEventManager.Add(currentTurn + 1, newEvent);
             }
 
             if (playerEventManager.ContainsKey(currentTurn + 1)) {
                 AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 1];
-                playerEventManager[currentTurn + 1] = currEvent.Concat(newEvent).ToArray();
+                playerEventManager[currentTurn + 1] = currEvent.Concat(resetEvent).ToArray();
             } else {
-                playerEventManager.Add(currentTurn + 1, newEvent);
-            }
-
-            if (playerEventManager.ContainsKey(currentTurn + 2)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn + 2];
-                playerEventManager[currentTurn + 2] = currEvent.Concat(resetEvent).ToArray();
-            } else {
-                playerEventManager.Add(currentTurn + 2, resetEvent);
+                playerEventManager.Add(currentTurn + 1, resetEvent);
             }        
         }
         // Event 4: Recess Cat
@@ -281,19 +410,14 @@ public class StageManager : MonoBehaviour {
             enemies[randomEnemy].ChangeIsImmobilised(true);
             enemies[randomEnemy].GetComponentInParent<BattleHUD>().RenderStunIcon();
             
-            AbstractEvent[] newResetEvent = {new StunEvent(1, false, randomEnemy)};
-            if (enemyEventManager.ContainsKey(currentTurn + 1)) {
-                AbstractEvent[] currEvent = (AbstractEvent[])enemyEventManager[currentTurn + 1];
-                enemyEventManager[currentTurn + 1] = currEvent.Concat(newResetEvent).ToArray();
+            AbstractEvent[] newResetEvent = {new StunEvent(false, randomEnemy)};
+            if (playerEventManager.ContainsKey(currentTurn)) {
+                AbstractEvent[] currEvent = (AbstractEvent[])playerEventManager[currentTurn];
+                playerEventManager[currentTurn] = currEvent.Concat(newResetEvent).ToArray();
             } else {
-                enemyEventManager.Add(currentTurn + 1, newResetEvent);
+                playerEventManager.Add(currentTurn, newResetEvent);
             }
-        }   
-        PlayerPrefs.SetInt("random event", 0); //reseted
+        }
     }
 
-
-
-
-    
 }

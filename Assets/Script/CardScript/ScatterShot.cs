@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScatterShot : Cards {
+    [SerializeField] private Material material;
 
-    public int damage;
+    [SerializeField] private bool dissolve;
 
-    public Material material;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
-    public bool dissolve;
-
-    public ScatterShot(int damage, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
+    private void Awake() {
+        InitialiseValues(8, 8, "Deal 8 base damage to all enemies.");
     }
 
     private void Update() {
@@ -29,17 +28,18 @@ public class ScatterShot : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
 
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyindex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
         foreach (Enemy enemy in enemies) {
             if (enemy != null) {
                 Archer archer = (Archer) player;
-                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(damage), enemyindex);
+                enemy.ReceiveArrowDamage(archer, player.GetFullDamage(GetOriginalDamage()), enemyindex);
             }
             
         }

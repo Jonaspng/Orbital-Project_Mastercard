@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class MessageManager3 : MonoBehaviour {
 
-    public TextMeshProUGUI message;
-    [SerializeField] public TextWriter textWriter;
-    public GameObject nextButton;
+    [SerializeField] private TextMeshProUGUI message;
+    [SerializeField] private TextWriter textWriter;
+    [SerializeField] private GameObject nextButton;
 
     private void Awake() {
         nextButton.SetActive(false);
@@ -16,7 +16,12 @@ public class MessageManager3 : MonoBehaviour {
 
     private void Start() {
         string messageText = "Location: Unknown\nT-Minus: Unknown\n\nThank you so much for freeing the minds of catkind.\n\nWe are forever indebted to your actions.\n\nI will now send you back to your world.\n\nAlways keep this in mind, young one: No matter what happens, SU will always be your friend.";
-        textWriter.AddWriter(message, messageText, 0.1f);
+        textWriter.AddWriter(message, messageText, 0.05f);
+    }
+
+    
+    public void OnMouseDown() {
+        GameObject.Find("Text Writer").GetComponent<TextWriter>().OnSkipButtonClick();
     }
   
 }

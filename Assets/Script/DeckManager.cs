@@ -6,36 +6,52 @@ using System.Collections.Generic;
 [System.Serializable]
 public class DeckManager : MonoBehaviour {
 
-    public string deckPath;
+    [SerializeField] private string deckPath;
 
-    public DeckID currentDeckID;
+    [SerializeField] private DeckID currentDeckID;
     
-    public Deck currentDeck;
+    [SerializeField] private Deck currentDeck;
 
-    public Deck usedPile;
+    [SerializeField] private Deck usedPile;
     
-    public Deck unusedPile;
+    [SerializeField] private Deck unusedPile;
 
-    public Deck currentHand;
+    [SerializeField] private Deck currentHand;
 
-    public int lockedCard;
+    [SerializeField] private int lockedCard;
     
-    public List<GameObject> prefabList;
+    [SerializeField] private List<GameObject> prefabList;
 
-    public GameObject currentHandPanel;
+    [SerializeField] private GameObject currentHandPanel;
 
-    public GameObject cardselectionPanel;
+    [SerializeField] private GameObject cardselectionPanel;
 
+    [SerializeField] private Material cardOutline;
+
+    public Deck GetCurrentDeck() {
+        return this.currentDeck;
+    }
+
+    public int GetLockedCard() {
+        return this.lockedCard;
+    }
+
+    public DeckID GetCurrentDeckID() {
+        return this.currentDeckID;
+    }
 
     public void LockCard() {
-        lockedCard = Random.Range(0, currentDeckID.cardIDList.Count);
-        currentDeck.RemoveCard(currentDeck.cardList[lockedCard]);
+        lockedCard = Random.Range(0, currentDeckID.GetCardIDList().Count);
+        unusedPile.RemoveCard(currentDeck.GetCardList()[lockedCard]);
     }
 
     public void DeckIdToDeck() {
         currentDeck.ResetDeck();
-        foreach (int id in currentDeckID.cardIDList) {
-            currentDeck.AddCard(prefabList[id]);            
+        unusedPile.ResetDeck();
+        usedPile.ResetDeck();
+        foreach (int id in currentDeckID.GetCardIDList()) {
+            currentDeck.AddCard(prefabList[id]);
+            unusedPile.AddCard(prefabList[id]);       
         }
     }
 
@@ -55,63 +71,39 @@ public class DeckManager : MonoBehaviour {
             currentDeck = new Deck();
             currentDeckID = new DeckID(); 
             if (playerType == "Warrior") {
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(0);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
-                currentDeckID.AddCardID(1);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(0);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(1);
+                }
             } else if (playerType == "Archer") {
-                currentDeckID.AddCardID(2); 
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(2);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
-                currentDeckID.AddCardID(3);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(2);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(3);
+                }
             } else {
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(4);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
-                currentDeckID.AddCardID(5);
+                for (int i = 0; i < 5; i++) {
+                    currentDeckID.AddCardID(4);
+                }
+                for (int j = 0; j < 5; j++) {
+                    currentDeckID.AddCardID(5);
+                }
             }
-            
             SaveJson(currentDeckID);
             DeckIdToDeck();
         }
-        unusedPile = currentDeck;
         Deck.Shuffle(unusedPile);
-        DrawCard(5);
     }
 
     public void Draw(int numOfDraws) {
-        for (int i = currentHand.cardList.Count; i < numOfDraws; i++) {
-                currentHand.AddCard(unusedPile.cardList[0]);
-                Instantiate(currentHand.cardList[i]).transform.SetParent(currentHandPanel.transform, false);
-                unusedPile.RemoveCard(unusedPile.cardList[0]);
+        for (int i = currentHand.GetCardList().Count; i < numOfDraws; i++) {
+                currentHand.AddCard(unusedPile.GetCardList()[0]);
+                Instantiate(currentHand.GetCardList()[i]).transform.SetParent(currentHandPanel.transform, false);
+                unusedPile.RemoveCard(unusedPile.GetCardList()[0]);
             }
-    }
-
-    public void DisableAllScripts(GameObject obj) {
-        foreach (MonoBehaviour c in obj.GetComponents<MonoBehaviour>()) {
-            if (!(c is CardDisplay)) {
-                c.enabled = false;
-            }
-            
-        }
     }
 
     public void GenerateNewCards() {
@@ -132,38 +124,37 @@ public class DeckManager : MonoBehaviour {
             Deck.Shuffle(playerDeck);
         }
         for (int i = 0; i < 3; i ++) {
-            GameObject temp = Instantiate(playerDeck.cardList[i]);
+            GameObject temp = Instantiate(playerDeck.GetCardList()[i]);
             temp.transform.SetParent(cardselectionPanel.transform, false);
-            DisableAllScripts(temp);
+            temp.GetComponent<Cards>().DisableAllScripts();
             temp.AddComponent<CardSelection>();
+            temp.GetComponent<CardSelection>().SetOutline(cardOutline);
         }
     }
 
     public void DrawCard(int numOfCards) {
         currentHand.ResetDeck();
-        int numOfCardLeft = unusedPile.cardList.Count;
+        int numOfCardLeft = unusedPile.GetCardList().Count;
         if (numOfCardLeft < numOfCards) {
             this.Draw(numOfCardLeft);       
             usedPile.CopyTo(unusedPile);
             usedPile.ResetDeck();
             Deck.Shuffle(unusedPile);
-            this.Draw(numOfCards - numOfCardLeft + currentHand.cardList.Count);
+            this.Draw(numOfCards - numOfCardLeft + currentHand.GetCardList().Count);
         } else {
             this.Draw(numOfCards);
         }
-        GameObject.Find("Current Hand").GetComponent<Testing>().ArrangeCards();
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ArrangeCards();
     }
 
     public void ClearCards() {
         // destroy cards left on panel
         for (int i = 0; i < 5; i ++) {
-            usedPile.AddCard(currentHand.cardList[i]);
+            usedPile.AddCard(currentHand.GetCardList()[i]);
         }
         foreach (Transform obj in currentHandPanel.transform) {
             GameObject.Destroy(obj.gameObject);
         }
-
     }
-
    
 }

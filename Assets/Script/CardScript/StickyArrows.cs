@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class StickyArrows : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public StickyArrows(int turns, int manaCost) : base(manaCost, turns) {
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
+    private void Awake() {
+        InitialiseValues("Your arrows now stick to enemies. Your attacks deal 2 more damage for each arrow stuck.");
     }
 
     private void Update() {
@@ -26,8 +28,8 @@ public class StickyArrows : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {

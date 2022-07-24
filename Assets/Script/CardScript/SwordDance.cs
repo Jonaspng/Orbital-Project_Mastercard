@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwordDance : Cards {
 
-    public double attackModifier;
+    [SerializeField] private double attackModifier;
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public SwordDance(double attackModifier, int turns, int manaCost) : base(manaCost, turns) {
-        
+    [SerializeField] private TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        InitialiseValues("Double your cards' attack this turn.");
+        this.attackModifier = 2.0f;
     }
 
     private void Update() {
@@ -27,12 +31,12 @@ public class SwordDance : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddAttackModifier(2);
+        player.SetAttackModifier(this.attackModifier);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
     }
 }

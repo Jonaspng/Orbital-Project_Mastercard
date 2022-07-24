@@ -1,17 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MegaInferno : Cards {
 
-    public int damage;
+    [SerializeField] private Material material;
 
-    public Material material;
+    [SerializeField] private bool dissolve;
 
-    public bool dissolve;
-
-    public MegaInferno(int damage, int turns, int manaCost) : base(manaCost, turns) {
-        this.damage = damage;
-    }
+    [SerializeField] private TextMeshProUGUI descriptionTag;
 
     private void Update() {
         if (this.dissolve) {
@@ -19,7 +16,11 @@ public class MegaInferno : Cards {
             Destroy(this.gameObject, 0.4f);
         }
     }
-    
+
+    private void Awake() {
+        InitialiseValues(10, 10, "Deal 10 base damage to all enemies.");
+    }
+
     public override void OnDrop(int enemyIndex) {
         foreach (Transform word in this.transform.Find("Frame").transform) {
             word.gameObject.SetActive(false);
@@ -27,15 +28,16 @@ public class MegaInferno : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.animator.SetTrigger("Attack");
+        player.GetAnimator().SetTrigger("Attack");
+        player.PlayAttackSound();
         for (int i = 0; i < enemies.Length; i ++) {
             if (enemies[i] != null) {
-                enemies[i].receiveDamage(this.damage, i);
+                enemies[i].receiveDamage(player.GetFullDamage(GetOriginalDamage()), i);
             }         
         }
     }

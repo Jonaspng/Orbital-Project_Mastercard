@@ -307,10 +307,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
+  m_fontSize: 16.55
   m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 36
   m_fontStyle: 0
@@ -727,9 +727,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cf6bc4a17587b4d8266e0dea669043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 8
+  originalDamage: 0
   id: 19
+  description: 
   manaCost: 1
   turns: 0
-  damage: 8
   material: {fileID: 2100000, guid: f6062ddf560080f47ace0891576e4bbd, type: 2}
   dissolve: 0
+  descriptionTag: {fileID: 44869763689552247}

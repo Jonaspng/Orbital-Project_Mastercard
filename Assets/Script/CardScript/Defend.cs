@@ -3,16 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 public class Defend : Cards {
 
-    public int shield;
+    [SerializeField] private int shield;
 
-    public Material outline;
+    [SerializeField] private Material outline;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public Defend(int shield, int turns, int manaCost) : base(manaCost, turns) {
-        this.shield = shield;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        InitialiseValues("Gain 6 shield.");
     }
-
 
     private void Update() {
         if (this.dissolve) {
@@ -29,13 +30,14 @@ public class Defend : Cards {
         outline.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = outline;
         this.dissolve = true;
-        StageManager.instance.playerHUD.RenderPlayerShieldIcon(this.shield);
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(this.shield);
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
    
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddBaseShield(this.shield);
+        player.SetBaseShield(player.GetBaseShield() + this.shield);
+        player.PlayShieldSound();
     }
 }

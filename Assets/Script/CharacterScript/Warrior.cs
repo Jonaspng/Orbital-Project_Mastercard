@@ -2,63 +2,62 @@ using UnityEngine;
 using System;
 using EZCameraShake;
 
-
 public class Warrior : Player {
 
-    public bool isStrongWillpower;
+    [SerializeField] private bool isStrongWillpower;
 
-    public bool isEndure;
+    [SerializeField] private bool isEndure;
 
-    public int hitCount;
+    [SerializeField] private int hitCount;
 
-    public Warrior(double attackModifier, double shieldModifier) 
-    : base(100, attackModifier, shieldModifier) { 
-        //empty
-    }
 
     public override void receiveDamage(Enemy Source, int damage, int enemyIndex) {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-        this.animator.SetTrigger("Damaged");
+        this.GetAnimator().SetTrigger("Damaged");
         if (isStrongWillpower) {
             hitCount++;
         }
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
         } else {
             realDamage = damage;
         }
-        if (realDamage >= this.baseShield ) {
-            if (this.isEndure && this.health - realDamage + this.baseShield <= 0) {
-                this.health = 1;
+        if (realDamage >= GetBaseShield() ) {
+            if (this.isEndure && GetHealth() - realDamage + GetBaseShield() <= 0) {
+                SetHealth(1);
                 this.isEndure = false;          
             } else {
-                health = health - realDamage + this.baseShield;
+                SetHealth(GetHealth() - realDamage + GetBaseShield());
             }
-            if (realDamage == this.baseShield) {
+            if (realDamage == GetBaseShield()) {
                 DamageNumberAnimation("Blocked", Color.white);
             } else {
-                DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
             }            
-            ResetBaseShield();
-            StageManager.instance.playerHUD.RemoveShieldIcon();
+            SetBaseShield(0);
+            StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
         } else {
             DamageNumberAnimation("Blocked", Color.white);
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
-            this.baseShield -= realDamage;
+            StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+            SetBaseShield(GetBaseShield() - realDamage);
         }
-        print(health);
-        if (this.health < 0) {
-            StageManager.instance.playerHUD.SetHP(0);
+        print(GetHealth());
+        if (this.GetHealth() < 0) {
+            StageManager.GetInstance().GetPlayerHUD().SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(this.health);
+            StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
         }
         
     }
 
     public void ChangeIsStrongWillpower(bool status) {
         this.isStrongWillpower = status;
+    }
+
+    public bool CheckEndure() {
+        return this.isEndure;
     }
 
     public void ChangeIsEndure(bool status) {
@@ -69,12 +68,11 @@ public class Warrior : Player {
         this.hitCount = 0;
     }
 
-
     public override int GetFullDamage(int cardDamage) {
         if (this.isStrongWillpower) {
-            return (int) Math.Round(this.attackModifier * (this.baseAttack + cardDamage + this.hitCount * 2));
+            return (int) Math.Round(GetAttackModifier() * (GetBaseAttack() + cardDamage + this.hitCount * 2));
         } else {
-            return (int) Math.Round(this.attackModifier * cardDamage + baseAttack);
+            return (int) Math.Round(GetAttackModifier() * cardDamage + GetBaseAttack());
         }
     }
 

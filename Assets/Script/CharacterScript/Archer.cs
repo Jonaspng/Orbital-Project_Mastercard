@@ -1,26 +1,40 @@
 using UnityEngine;
 using System;
 using EZCameraShake;
+using System.Linq;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Archer : Player {
 
-    public int evasionCount; 
+    [SerializeField] private int evasionCount; 
 
-    public bool isStickyArrowEnabled;
+    [SerializeField] private bool isStickyArrowEnabled;
 
-    public bool isStealthed;
+    [SerializeField] private bool isStealthed;
 
-    public bool evaded;
-
-    public Archer(double attackModifier, 
-    double shieldModifier) 
-    : base(70, attackModifier, shieldModifier) { 
-        
-    }
+    [SerializeField] private bool evaded;
 
     public void AddEvasionCount(int evasionCount) {
         this.evasionCount += evasionCount;
+    }
+
+    public bool CheckStickyArrow() {
+        return this.isStickyArrowEnabled;
+    }
+
+    public void SetEvasionCount(int i) {
+        this.evasionCount = i;
+    }
+
+    public bool CheckForBrokenEvent(AbstractEvent element) {
+        if (element is BrokenPlayerEvent) {
+            BrokenPlayerEvent temp = (BrokenPlayerEvent) element;
+            if (temp.CheckBroken()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public override void receiveDamage(Enemy source, int damage, int enemyIndex) {
@@ -28,14 +42,15 @@ public class Archer : Player {
         int realDamage;
         this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-        if (isBroken) {
+        if (BrokenStatus()) {
             realDamage = (int) Math.Round(damage * 1.25, MidpointRounding.AwayFromZero);
+            print("real Damage is" + realDamage);
         } else {
             realDamage = damage;
         }
 
         // special conditions
-        if (realDamage >= this.baseShield) {
+        if (realDamage >= GetBaseShield()) {
             if (isStealthed) {
                 bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
                 if (isAttacked) {
@@ -45,15 +60,15 @@ public class Archer : Player {
                         evasionCount--;
                     } else {
                         evaded = false;
-                        health = health - realDamage + this.baseShield;
-                        if (realDamage == this.baseShield) {
+                        SetHealth(GetHealth() - realDamage + GetBaseShield());
+                        if (realDamage == GetBaseShield()) {
                             DamageNumberAnimation("Blocked", Color.white);
                         } else {
-                            DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                            DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                         }   
-                        this.animator.SetTrigger("Damaged");
-                        ResetBaseShield();
-                        StageManager.instance.playerHUD.RemoveShieldIcon();
+                        this.GetAnimator().SetTrigger("Damaged");
+                        SetBaseShield(0);
+                        StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
                     }
                 } else {
                     DamageNumberAnimation("Evaded", Color.white);
@@ -64,38 +79,77 @@ public class Archer : Player {
                     DamageNumberAnimation("Evaded", Color.white);
                     evaded = true;
                     evasionCount--;
-                    GameObject.Find("PlayerHUD").GetComponent<BattleHUD>().RemoveDodgeIcon();
+                    StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
                 } else {
                     evaded = false;
-                    health = health - realDamage + this.baseShield;
-                    if (realDamage == this.baseShield) {
+                    SetHealth(GetHealth() - realDamage + GetBaseShield());
+                    if (realDamage == GetBaseShield()) {
                         DamageNumberAnimation("Blocked", Color.white);
                     } else {
-                        DamageNumberAnimation(realDamage - this.baseShield, Color.red);
+                        DamageNumberAnimation(realDamage - GetBaseShield(), Color.red);
                     }
-                    this.animator.SetTrigger("Damaged");
-                    ResetBaseShield();
-                    StageManager.instance.playerHUD.RemoveShieldIcon();
+                    this.GetAnimator().SetTrigger("Damaged");
+                    SetBaseShield(0);
+                    StageManager.GetInstance().GetPlayerHUD().RemoveShieldIcon();
                 }           
             }
         } else {
-            DamageNumberAnimation("Blocked", Color.white);
-            StageManager.instance.playerHUD.RenderPlayerShieldIcon(-realDamage);
-            this.baseShield -= realDamage;
+            if (isStealthed) {
+                bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
+                if (isAttacked) {
+                    if (evasionCount > 0) {
+                        DamageNumberAnimation("Evaded", Color.white);
+                        evaded = true;
+                        evasionCount--;
+                        StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
+                    } else {
+                        evaded = false;
+                        DamageNumberAnimation("Blocked", Color.white); 
+                        this.GetAnimator().SetTrigger("Damaged");
+                        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+                        SetBaseShield(GetBaseShield() - realDamage);
+                    }
+                } else {
+                    DamageNumberAnimation("Evaded", Color.white);
+                    evaded = true;
+                }      
+            } else {
+                if (evasionCount > 0) {
+                    DamageNumberAnimation("Evaded", Color.white);
+                    evaded = true;
+                    evasionCount--;
+                    StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
+                } else {
+                    evaded = false;
+                    DamageNumberAnimation("Blocked", Color.white); 
+                    this.GetAnimator().SetTrigger("Damaged");
+                    StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+                    SetBaseShield(GetBaseShield() - realDamage);
+                }           
+            }
+            // DamageNumberAnimation("Blocked", Color.white);
+            // StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+            // SetBaseShield(GetBaseShield() - realDamage);
         }
-        if (this.health < 0) {
-            StageManager.instance.playerHUD.SetHP(0);
+        if (GetHealth() < 0) {
+            StageManager.GetInstance().GetPlayerHUD().SetHP(0);
         } else {
-            StageManager.instance.playerHUD.SetHP(this.health);
+            StageManager.GetInstance().GetPlayerHUD().SetHP(GetHealth());
         }
     }
 
     public override void ChangeIsBroken(bool status) {
         if (!evaded) {
-            this.isBroken = status;
+            SetBrokenStatus(status);
             if (status) {
                 GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderBrokenIcon();
             }            
+        } else{
+            int currentTurn = StageManager.GetInstance().GetCurrentTurn();
+            Dictionary<int, AbstractEvent[]> eventManager = StageManager.GetInstance().GetPlayerEventManager();
+            AbstractEvent[] currEvent = (AbstractEvent[])eventManager[currentTurn];
+            currEvent = currEvent.Where((element, index) => !CheckForBrokenEvent(element)).ToArray();
+            eventManager[currentTurn] = currEvent;
         }
         evaded = false;
     }
@@ -105,7 +159,7 @@ public class Archer : Player {
     }
 
     public override int GetFullDamage(int cardDamage) {
-        return (int) Math.Round(this.attackModifier * (cardDamage + this.baseAttack));
+        return (int) Math.Round(GetAttackModifier() * (cardDamage + GetBaseAttack()));
     }  
 
     public void ChangeStealthStatus(bool status) {

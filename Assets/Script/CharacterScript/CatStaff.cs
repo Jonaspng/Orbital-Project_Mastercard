@@ -1,32 +1,40 @@
-using UnityEngine;
-
-
 public class CatStaff : Enemy {
-    public CatStaff(double attackModifier, double shieldModifier)
-    : base(30, attackModifier, shieldModifier) {
-        
+
+    private void Awake() {
+        SetBaseAttack(6);
     }
 
     public override void EnemyMove(Player player, Enemy[] enemies, int index) {
-        int moveNumber = Random.Range(1, 4);
         int numberOfEnemies = enemies.Length;
-        if (!this.isImmobilised) {
-            if (moveNumber == 1) {
+        if (!this.CheckImmobilised()) {
+            if (this.GetMoveNumber() == 1) {
                 print("Enemy Attacks");
-                this.animator.SetTrigger("Attack");
-                player.receiveDamage(this, this.GetFullDamage(8), index);      
-            } else if (moveNumber == 2) {
+                this.PlayAttackSound();
+                this.GetAnimator().SetTrigger("Attack");
+                player.receiveDamage(this, this.GetFullDamage(), index);      
+            } else if (this.GetMoveNumber() == 2) {
                 print("Enemy Defends");
-                this.AddBaseShield(6);
+                SetBaseShield(GetBaseShield() + 6);
+                this.PlayShieldSound();
                 this.gameObject.GetComponentInParent<BattleHUD>().RenderEnemyShieldIcon(index);
             } else {
                 foreach(Enemy enemy in enemies) {
                     if (enemy != null) {
                         enemy.gameObject.GetComponentInParent<BattleHUD>().RenderAttackUpIcon();
-                        enemy.changeAttackModifier(1.25);
+                        enemy.SetAttackModifier(1.25);
                     }
                 }
             }
         }
     }
+
+    public override void RenderWarningIndicator() {
+        if (this.GetMoveNumber() == 1) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackIndicator();
+        } else if (this.GetMoveNumber() == 2) {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderShieldIndicator();
+        } else {
+            this.gameObject.GetComponentInParent<BattleHUD>().RenderAttackUpAllIndicator();
+        }
+    } 
 }

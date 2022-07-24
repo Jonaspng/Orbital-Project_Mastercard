@@ -4,7 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public class DeckID {
 
-    public List<int> cardIDList;
+    [SerializeField] private List<int> cardIDList;
+
+    public List<int> GetCardIDList() {
+        return this.cardIDList;
+    }
 
     public DeckID() {
         this.cardIDList = new List<int>(); 

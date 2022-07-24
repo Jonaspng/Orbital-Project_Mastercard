@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-
 public class TextWriter : MonoBehaviour {
 
-    private TextMeshProUGUI uiText;
-    private string textToWrite;
-    private int characterIndex;
-    private float timePerCharacter;
-    private float timer;
+    [SerializeField] private TextMeshProUGUI uiText;
+    [SerializeField] private string textToWrite;
+    [SerializeField] private int characterIndex;
+    [SerializeField] private float timePerCharacter;
+    [SerializeField] private float timer;
 
     public GameObject nextButton;
 
@@ -24,8 +20,10 @@ public class TextWriter : MonoBehaviour {
     }
 
     public void OnSkipButtonClick() {
-        characterIndex = textToWrite.Length - 1;
-        uiText.text = textToWrite.Substring(0, textToWrite.Length);
+        if (characterIndex <= textToWrite.Length - 1) {
+            characterIndex = textToWrite.Length - 1;
+            uiText.text = textToWrite.Substring(0, textToWrite.Length);
+        }
     }
 
 

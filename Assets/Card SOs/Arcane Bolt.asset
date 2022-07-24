@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Arcane Bolt
   m_EditorClassIdentifier: 
   cardName: Arcane Bolt
-  description: Deal 10 damage. Enemy receives 25% mroe damage for 2 turns.
+  description: 
   frame: {fileID: 21300000, guid: 5273e829b6b59b545abb8832d24fcae0, type: 3}
   manaCost: 1

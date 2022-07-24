@@ -2,14 +2,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PopUpMenu : MonoBehaviour  {
-    public GameObject cardSelectionMenu;
+    [SerializeField] private GameObject cardSelectionMenu;
 
-    public GameObject confirmButton;
+    [SerializeField] private GameObject confirmButton;
 
-    public int newCardId;
+    [SerializeField] private GameObject NotificationMenu;
+
+    [SerializeField] private int newCardId;
  
     void Start () {
         cardSelectionMenu.SetActive(false); 
+    }
+
+    public void SetNewCardID(int cardID) {
+        this.newCardId = cardID;
     }
          
     public void PopUp()  { 
@@ -18,25 +24,30 @@ public class PopUpMenu : MonoBehaviour  {
     }
 
     public void OnConfirmClick() {
-        PlayerPrefs.SetInt("health", StageManager.instance.player.health);
-        DeckID newDeck = StageManager.instance.deckManager.currentDeckID;
+        PlayerPrefs.SetInt("random event", 0); //reseted
+        PlayerPrefs.SetInt("health", StageManager.GetInstance().GetPlayer().GetHealth());
+        DeckID newDeck = StageManager.GetInstance().GetDeckManager().GetCurrentDeckID();
         newDeck.AddCardID(newCardId);
-        StageManager.instance.deckManager.SaveJson(newDeck);
-        PlayerPrefs.SetInt("stage", GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber + 1);
+        StageManager.GetInstance().GetDeckManager().SaveJson(newDeck);
+        PlayerPrefs.SetInt("stage", GameObject.Find("GameManager").GetComponent<GameManager>().GetStageNumber() + 1);
         foreach (Transform obj in GameObject.Find("NewCards").transform) {
             GameObject.Destroy(obj.gameObject);
         }
         this.PopUp();
-        int stageNumber = GameObject.Find("GameManager").GetComponent<GameManager>().stageNumber + 1;
+        int stageNumber = GameObject.Find("GameManager").GetComponent<GameManager>().GetStageNumber() + 1;
         if (stageNumber == 3 || stageNumber == 6) {
             SceneManager.LoadScene("Event");
         } else {
-            StageManager.instance.InitialiseBattle();
+            StageManager.GetInstance().InitialiseBattle();
         }
         
     }
 
     public void RenderConfirmButton() {
         confirmButton.SetActive(true);
+    }
+
+    public void NotificationConfirmClick() {
+        NotificationMenu.SetActive(false);
     }
 }

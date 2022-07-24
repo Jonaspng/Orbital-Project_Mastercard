@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FocusShot : Cards {
 
-    public Material material;
+    [SerializeField] private Material material;
 
-    public bool dissolve;
+    [SerializeField] private bool dissolve;
 
-    public double damageModifier;
+    [SerializeField] private double damageModifier;
 
-    public FocusShot(double damageModifier, int turns, 
-    int manaCost) : base(manaCost, turns) {
-        this.damageModifier = damageModifier;
+    [SerializeField] private TextMeshProUGUI descriptionTag;
+
+    private void Awake() {
+        this.damageModifier = 1.25f;
+        InitialiseValues("Do 25% more damage this turn.");
     }
 
     private void Update() {
@@ -28,13 +31,13 @@ public class FocusShot : Cards {
         material.SetFloat("_Fade",1f);
         this.GetComponentInChildren<Image>().material = material;
         this.dissolve = true;
-        StageManager.instance.playerMove(this, enemyIndex);
-        GameObject.Find("Current Hand").GetComponent<Testing>().ReArrangeCards();
+        StageManager.GetInstance().playerMove(this, enemyIndex);
+        GameObject.Find("Current Hand").GetComponent<FanShapeArranger>().ReArrangeCards();
         
     }
 
     public override void executeCard(Player player, Enemy[] enemies, int enemyIndex) {
-        player.AddAttackModifier(damageModifier);
+        player.SetAttackModifier(player.GetAttackModifier() * damageModifier);
         GameObject.Find("Player Battlestation").GetComponentInChildren<BattleHUD>().RenderAttackUpIcon();
     }
 }

@@ -94,9 +94,42 @@ public class Archer : Player {
                 }           
             }
         } else {
-            DamageNumberAnimation("Blocked", Color.white);
-            StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
-            SetBaseShield(GetBaseShield() - realDamage);
+            if (isStealthed) {
+                bool isAttacked = UnityEngine.Random.Range(0, 2) == 0;
+                if (isAttacked) {
+                    if (evasionCount > 0) {
+                        DamageNumberAnimation("Evaded", Color.white);
+                        evaded = true;
+                        evasionCount--;
+                        StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
+                    } else {
+                        evaded = false;
+                        DamageNumberAnimation("Blocked", Color.white); 
+                        this.GetAnimator().SetTrigger("Damaged");
+                        StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+                        SetBaseShield(GetBaseShield() - realDamage);
+                    }
+                } else {
+                    DamageNumberAnimation("Evaded", Color.white);
+                    evaded = true;
+                }      
+            } else {
+                if (evasionCount > 0) {
+                    DamageNumberAnimation("Evaded", Color.white);
+                    evaded = true;
+                    evasionCount--;
+                    StageManager.GetInstance().GetPlayerHUD().RemoveDodgeIcon();
+                } else {
+                    evaded = false;
+                    DamageNumberAnimation("Blocked", Color.white); 
+                    this.GetAnimator().SetTrigger("Damaged");
+                    StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+                    SetBaseShield(GetBaseShield() - realDamage);
+                }           
+            }
+            // DamageNumberAnimation("Blocked", Color.white);
+            // StageManager.GetInstance().GetPlayerHUD().RenderPlayerShieldIcon(-realDamage);
+            // SetBaseShield(GetBaseShield() - realDamage);
         }
         if (GetHealth() < 0) {
             StageManager.GetInstance().GetPlayerHUD().SetHP(0);

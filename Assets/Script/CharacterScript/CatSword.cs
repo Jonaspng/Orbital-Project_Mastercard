@@ -36,7 +36,7 @@ public class CatSword : Enemy {
                 this.PlayAttackSound();
                 player.receiveDamage(this, this.GetFullDamage(), index);
                 player.RenderBrokenIndicator();
-                player.ChangeIsBroken(true);
+                
                 
                 int currentTurn = StageManager.GetInstance().GetCurrentTurn();
 
@@ -58,6 +58,7 @@ public class CatSword : Enemy {
                 } else {
                     eventManager.Add(currentTurn + 1, newResetEvent);
                 }
+                player.ChangeIsBroken(true);
             }
         }
         

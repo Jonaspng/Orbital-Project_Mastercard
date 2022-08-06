@@ -14,7 +14,6 @@ public class IconIntroManager : MonoBehaviour {
 
     [SerializeField] private int counter = 1;
 
-    
     public void OnCloseClick() {
         popUpMenu.SetActive(false);
     }

@@ -12,7 +12,6 @@ class GameManager : MonoBehaviour {
     [SerializeField] private string playerType;
 
     [SerializeField] private GameObject[] enemyPrefabList;
-    //sword cat, staff cat, armour cat, boss cat
 
     [SerializeField] private GameObject[] playerPrefabList;
 
@@ -39,7 +38,6 @@ class GameManager : MonoBehaviour {
         return instance;
     }
 
-
     public void InitialiseStage() {
         if (PlayerPrefs.HasKey("stage")) {
             this.stageNumber = PlayerPrefs.GetInt("stage");
@@ -47,7 +45,6 @@ class GameManager : MonoBehaviour {
         InitialisePlayer();
         InitialiseEnemies();
     }
-
 
     public void InitialisePlayer() {
         StageManager stage = StageManager.GetInstance();
@@ -74,7 +71,6 @@ class GameManager : MonoBehaviour {
         }
         
     }
-
 
     public void InitialiseEnemies() {
         StageManager stage = StageManager.GetInstance();

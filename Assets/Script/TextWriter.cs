@@ -26,7 +26,6 @@ public class TextWriter : MonoBehaviour {
         }
     }
 
-
     private void Update() {
         if (uiText != null) {
             timer -= Time.deltaTime;

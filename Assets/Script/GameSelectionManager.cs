@@ -6,8 +6,7 @@ public class GameSelectionManager : MonoBehaviour {
 
     [SerializeField] private string deckPath;
 
-    // Start is called before the first frame update
-    void Start() {
+    private void Start() {
         deckPath = $"{Application.persistentDataPath}/deckID.json";
         if (!File.Exists(deckPath)) {
             GameObject.Find("ResumeButton").SetActive(false);
@@ -26,5 +25,4 @@ public class GameSelectionManager : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
-    
 }

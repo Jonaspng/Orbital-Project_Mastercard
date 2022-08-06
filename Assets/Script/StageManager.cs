@@ -46,7 +46,6 @@ public class StageManager : MonoBehaviour {
 
     [SerializeField] private GameObject backgroundCanvas;
 
-    //key = int; value = AbstractEvent[];
     [SerializeField] private Dictionary<int, AbstractEvent[]> playerEventManager; // affects player
     [SerializeField] private Dictionary<int, AbstractEvent[]> enemyEventManager; // affects enemy
 

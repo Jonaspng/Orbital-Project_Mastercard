@@ -81,5 +81,4 @@ public class IconCanvasManager : MonoBehaviour {
         popUpMenu.SetActive(true);
     }
 
-
 }

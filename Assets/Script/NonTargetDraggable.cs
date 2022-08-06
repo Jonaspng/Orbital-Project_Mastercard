@@ -5,7 +5,6 @@
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float zAxis = 1.0f;
     [SerializeField] private Transform parentToReturnTo;
-     // Use this for initialization
     [SerializeField] private Quaternion originalAngle;
     [SerializeField] private Vector3 originalPosition;
 
@@ -32,9 +31,8 @@
     }
  
     public void OnDrag(PointerEventData eventData) {
-         //Use Offset To Prevent Sprite from Jumping to where the finger is
         Vector3 tempVec = mainCamera.ScreenToWorldPoint(eventData.position);
-        tempVec.z = zAxis; //Make sure that the z zxis never change
+        tempVec.z = zAxis;
         transform.position = tempVec;
     }
  

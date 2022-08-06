@@ -20,7 +20,6 @@ public class PauseMenuManager : MonoBehaviour  {
         AudioListener.volume = volumeSlider.value;
     }
 
- 
     private void Start ()  {
         this.gameObject.SetActive(false); 
     }

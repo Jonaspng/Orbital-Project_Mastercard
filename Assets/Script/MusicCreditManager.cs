@@ -35,7 +35,4 @@ public class MusicCreditManager : MonoBehaviour {
         Application.OpenURL("https://freesound.org/people/qubodup/sounds/442872/"); 
     }
 
-    
-
-    
 }
